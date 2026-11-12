@@ -1,0 +1,69 @@
+{
+  "source": {
+    "assetFile": "sharedassets1.assets",
+    "pathId": 3436,
+    "type": "GameObject"
+  },
+  "data": {
+    "m_Component": [
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 4516
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7070
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7165
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 8885
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 6669
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 9400
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 8916
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 9003
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 9343
+        }
+      }
+    ],
+    "m_Layer": 0,
+    "m_Name": "SwordProjectilePrefab",
+    "m_Tag": 0,
+    "m_IsActive": true
+  }
+}

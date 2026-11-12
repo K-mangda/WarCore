@@ -53,3 +53,15 @@ SwordPose.ts now aligns the visible crescent edge (local +X of the exported X-mi
 ## Impact audio correction — 2026-11-12
 
 Removed the provisional universal hit -> Bonk.wav mapping from both combat events and audio loading. It previously played on every successful sword/bolt hit, without verified source mapping. Sword swing still uses HeroSwordAttack.wav; projectile shot still uses its existing clip. Enemy-hit and weapon-impact audio is pending verified references from the external extraction task. The Bonk file remains preserved as an unused source asset; its presence does not justify playing it on every hit. This entry supersedes the earlier hit mapping/interval in this register.
+
+## Correct Sword identity and automatic cadence — 2026-11-12
+
+IMPORTANT: Earlier entries calling the HeroSword assets the Knight's Sword were wrong and are superseded here. The external package combined the name HeroSword with enum ID2, but installed data proves these are different weapons.
+
+Verified chain (sharedassets1.assets): Knight CharacterData7823 -> WeaponData8633 WeaponSword (EWeapon.Sword2) -> attack4144/WeaponAttack8928 -> SwordProjectilePrefab3436 -> Particle7070/Renderer7165 -> Material428 -> Texture704. Icon1315 and AudioClip2119 SwordSwing are separate from HeroSword27 / WeaponData8622 / Particle7039 / Texture930 / HeroSwordAttack2112.
+
+The playable Sword now loads public/weapons/knight-sword, exported with tools/import_knight_sword_assets.py. Source particle size10.7, lifetime0.15s, speed6, UV8x8row1 and its active blue color/alpha gradient are used. ExtraGlow3 and compiled shader metadata are preserved, but native glow/postprocessing is not reproduced by the web MeshBasicMaterial. Previous HeroSword assets remain archived under public/weapons/sword; they are no longer the playable Sword's media. The WAV is a validated prior local Unity export because direct decode fails; provenance states this limitation.
+
+Sword now swings on cooldown even in empty space and never acquires an enemy to determine its direction. This corrects the user's reported automatic behavior. The web chooses facing from camera yaw, and range4m,120degree sector,0.3s hit window,multishot spread,1.8m forward anchor and attack cooldown remain provisional. Source visual lifetime0.15s is kept separate from the provisional0.3s damage window. Full native trajectory and timing have not been reconstructed.
+
+Validation: build, combat including empty-space/facing/cadence regressions, and sword-pose checks pass. Browser loaded the corrected asset set and completed a run. Automated screenshots did not isolate the short slash reliably; no exact screenshot or audio comparison with native gameplay is claimed.

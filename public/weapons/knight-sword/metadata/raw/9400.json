@@ -1,0 +1,10 @@
+{
+  "source": {
+    "assetFile": "sharedassets1.assets",
+    "pathId": 9400,
+    "type": "MonoBehaviour"
+  },
+  "scriptClass": "RandomSfx",
+  "hex": "000000006c0d0000000000000100000001000000ed0700000000000000000000010000000000000047080000000000006666663fcdcc8c3f9a99993e000000000d1a00000000000001000000",
+  "byteLength": 76
+}

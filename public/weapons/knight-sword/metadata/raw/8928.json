@@ -1,0 +1,10 @@
+{
+  "source": {
+    "assetFile": "sharedassets1.assets",
+    "pathId": 8928,
+    "type": "MonoBehaviour"
+  },
+  "scriptClass": "WeaponAttack",
+  "hex": "0000000030100000000000000100000001000000c10300000000000000000000000000006c0d00000000000000000000000000000000000000000000ce0e0000000000000000803f00000000",
+  "byteLength": 76
+}

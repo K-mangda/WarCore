@@ -15,3 +15,5 @@ Evidence and missing systems: [master spec](docs/MEGABONK_MASTER_SPEC.md), [pari
 Temporary behavior and unverified tuning are tracked in [the temporary implementation register](docs/TEMPORARY_IMPLEMENTATIONS.md), including audio clip mapping, overlap limits, combat, movement, camera, map and UI.
 
 Sword is now selectable before starting a fresh run. Its original sound/icon/atlas and source Quad are imported with corrected metadata; melee rules and VFX shader/placement remain provisional. See [sword handoff review](docs/SWORD_ASSET_REVIEW.md) and [temporary settings](docs/TEMPORARY_IMPLEMENTATIONS.md). Rebuild source exports with `python tools/import_sword_assets.py` (requires the installed local game and the external extraction package).
+
+Identity correction: the earlier external sword package was HeroSword (ID27), distinct from Knight's starting Sword (ID2). Playable Sword now uses the verified Knight -> WeaponSword -> projectile reference chain and assets under public/weapons/knight-sword. Rebuild those with `python tools/import_knight_sword_assets.py`. Sword attacks repeatedly without requiring a nearby target; exact native timing/motion remain unverified.

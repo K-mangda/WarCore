@@ -1,0 +1,10 @@
+{
+  "source": {
+    "assetFile": "sharedassets1.assets",
+    "pathId": 9003,
+    "type": "MonoBehaviour"
+  },
+  "scriptClass": "AudioSpamFilter",
+  "hex": "000000006c0d00000000000001000000010000000e0700000000000000000000000000000d1a00000000000000000000b824000000000000cdcccc3d0000003fcdcccc3e00000000",
+  "byteLength": 72
+}

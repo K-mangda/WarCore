@@ -1,0 +1,65 @@
+{
+  "source": {
+    "assetFile": "sharedassets1.assets",
+    "pathId": 6669,
+    "type": "AudioSource"
+  },
+  "clip": {
+    "source": {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 2119,
+      "type": "AudioClip"
+    },
+    "name": "SwordSwing",
+    "file": "audio/SwordSwing.wav"
+  },
+  "volume": 0.4000000059604645,
+  "pitch": 1.0,
+  "loop": false,
+  "spatialBlendCurve": {
+    "m_Curve": [
+      {
+        "time": 0.0,
+        "value": 0.5,
+        "inSlope": 0.0,
+        "outSlope": 0.0,
+        "weightedMode": 0,
+        "inWeight": 0.3333333432674408,
+        "outWeight": 0.3333333432674408
+      }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+  },
+  "randomSfx": {
+    "source": {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 9400,
+      "type": "MonoBehaviour"
+    },
+    "serializedMaxPitch": 0.8999999761581421,
+    "serializedMinPitch": 1.100000023841858,
+    "randomVolume": 0.30000001192092896,
+    "playOnAwake": true
+  },
+  "spamFilter": {
+    "source": {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 9003,
+      "type": "MonoBehaviour"
+    },
+    "spamDelay": 0.10000000149011612,
+    "minVolumeMultiplier": 0.5,
+    "maxInterval": 0.4000000059604645,
+    "overrideMinInterval": 0.0
+  },
+  "unverified": "Native RandomSfx/AudioSpamFilter algorithms unknown. Keep serialized field names despite reversed min/max values; distribution/order not inferred.",
+  "exportOrigin": "Existing local Unity WAV export: C:\\Users\\Korawit\\Desktop\\WarCore\\public\\audio\\megabonk\\SwordSwing.wav; direct decode failed FmodError. Native compressed waveform not independently compared.",
+  "validation": {
+    "channels": 2,
+    "rate": 48000,
+    "sampleWidth": 2,
+    "frames": 25193
+  }
+}

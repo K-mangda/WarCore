@@ -39,5 +39,16 @@ for(let i=0;i<5;i++)sword.gems.push({position:player.clone()});sword.step(.02,pl
 const slashLife=sword.slashes[0].life;sword.step(.1,player);assert.equal(sword.slashes[0].life,slashLife,'Upgrade pause must freeze slash age');
 sword.reset();assert.equal(sword.snapshot().weapon,'sword');assert.equal(sword.slashes.length,0);assert.equal(sword.snapshot().elapsed,0);assert.equal(sword.setWeapon('bolt'),true);
 const multi=new Run(()=>0,()=>true,random);multi.setWeapon('sword');for(let i=0;i<5;i++)multi.gems.push({position:player.clone()});multi.step(.02,player);multi.choose('projectiles');
+for(let i=0;i<44;i++)multi.step(.02,player);
 const shared=enemy(1004,0,-2);multi.swarm.enemies.push(shared);multi.step(.02,player);assert.equal(multi.slashes.length,2);assert.equal(shared.health,90,'Overlapping multishot sectors share one hit per attack');
 console.log('Sword checks passed: sector, range, single-hit window, bolt isolation, selection, pause, reset and overlapping sectors.');
+
+const emptySword=new Run(()=>0,()=>true,random);emptySword.setWeapon('sword');
+emptySword.step(.02,player,new Vector3(1,0,0));
+assert.equal(emptySword.swarm.enemies.length,0);assert.equal(emptySword.slashes.length,1,'Sword must swing even without enemies');
+assert.ok(emptySword.slashes[0].direction.equals(new Vector3(1,0,0)),'Sword must use facing rather than acquire a target');
+const sideTarget=enemy(1100,0,-2);emptySword.swarm.enemies.push(sideTarget);
+emptySword.step(.02,player,new Vector3(1,0,0));assert.equal(sideTarget.health,100,'A monster to the side must not redirect the swing');
+emptySword.swarm.clear();for(let i=0;i<44;i++)emptySword.step(.02,player,new Vector3(1,0,0));
+assert.ok(emptySword.slashes.length>0,'Sword must repeat on cooldown without a target');
+console.log('Sword cadence checks passed: empty-space attacks, facing direction, no target steering and repeated swings.');

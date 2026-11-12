@@ -1,0 +1,10 @@
+{
+  "source": {
+    "assetFile": "sharedassets1.assets",
+    "pathId": 8885,
+    "type": "MonoBehaviour"
+  },
+  "scriptClass": "ProjectileMelee",
+  "hex": "000000006c0d0000000000000100000001000000d309000000000000000000000000a840000000000000000000000000000000000000000000000000000000000000003f0000803f",
+  "byteLength": 72
+}

@@ -31,3 +31,7 @@ The review agent successfully parsed WAV, PNG and GLB files. GLB has 198 vertice
 AudioSpamFilter9591 raw bytes, interpreted using dump field order, yield spamDelay~0.1, minVolumeMultiplier~0.5, maxInterval~0.4, overrideMinInterval=0, with references to AudioSource6741 and RandomSfx9607. This provides candidate serialized configuration, not a verified reconstruction of OnEnable/FindVolumeMultiplier. In particular it does not support README's 0.06-second rule.
 
 RandomSfx9607 references clip2112 and AudioSource6741 and stores float values~0.9/~1.1/~0.3 plus its own autoplay flag. Check dump field ordering before labeling the first two values min/max; normalized intended range and actual serialized field names must remain distinguishable.
+
+## Identity correction — supersedes the initial package labels
+
+The original package was HeroSword (EWeapon27), not the Knight's starting Sword (EWeapon2). Knight CharacterData7823 references WeaponSword8633, which references attack4144 and projectile3436. Runtime now uses public/weapons/knight-sword: Particle7070, Material428, Texture704/row1, Icon1315 and SwordSwing2119. Original HeroSword media are retained separately. See TEMPORARY_IMPLEMENTATIONS.md for the remaining renderer/gameplay approximations. Never identify a weapon solely from a mesh or package filename.

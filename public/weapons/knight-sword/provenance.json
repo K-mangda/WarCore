@@ -1,0 +1,79 @@
+{
+  "identity": {
+    "character": {
+      "name": "Knight",
+      "source": {
+        "assetFile": "sharedassets1.assets",
+        "pathId": 7823,
+        "type": "MonoBehaviour"
+      },
+      "weaponPPtrOffset": 316,
+      "weaponPathId": 8633
+    },
+    "weapon": {
+      "name": "WeaponSword",
+      "source": {
+        "assetFile": "sharedassets1.assets",
+        "pathId": 8633,
+        "type": "MonoBehaviour"
+      },
+      "enumOffset": 212,
+      "eWeapon": 2,
+      "attackPPtrOffset": 332,
+      "attackPathId": 4144
+    },
+    "attackComponent": {
+      "source": {
+        "assetFile": "sharedassets1.assets",
+        "pathId": 8928,
+        "type": "MonoBehaviour"
+      },
+      "projectilePPtrOffset": 32,
+      "projectilePathId": 3436
+    },
+    "projectile": {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 3436,
+      "type": "GameObject"
+    }
+  },
+  "notHeroSword": {
+    "wrongPreviousWeaponData": 8622,
+    "wrongPreviousEWeapon": 27,
+    "wrongPreviousTexture": 930,
+    "wrongPreviousParticle": 7039
+  },
+  "sourceGameData": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Megabonk\\Megabonk_Data",
+  "unityVersion": "2023.2.22f1",
+  "unityPyVersion": "1.25.4",
+  "audioOrigin": "Existing local Unity WAV export: C:\\Users\\Korawit\\Desktop\\WarCore\\public\\audio\\megabonk\\SwordSwing.wav; direct decode failed FmodError. Native compressed waveform not independently compared.",
+  "hashes": {
+    "audio/SwordSwing.wav": "77741532cef521c280887efb45b94bf4177377102a586c3fe5e10162daf27ce6",
+    "metadata/audio.json": "a426cd21589b25a2be10d596be9d38e3299a0ce80d6c93c8d3db029169333bb5",
+    "metadata/material.json": "17ca26a4b97d4871105aff3f47ac6965e9afa7a198694f7e793a1bbe2a33b150",
+    "metadata/particles.json": "ce61cf6d2d6729af604e8491433cf859a7ecd66da4264cb77900cdb244ee9c39",
+    "metadata/raw/3436.json": "14ea34b951ecdcc446a509e8310df4240ac227db257637daecc621191f7c58e0",
+    "metadata/raw/4144.json": "75a9102777234818a9700a6115d60958a3078f5a85721eb0a6cc1bba4b09c51f",
+    "metadata/raw/428.json": "6e5186ca6575132f96c50a2b79afda37d7fbe051640c7f7060e50eaa50915aa1",
+    "metadata/raw/4516.json": "867cfcf108ba2129767e45c3db9957f38b0ef572653310d000ed16f8552dc479",
+    "metadata/raw/6669.json": "f241f55926f289643e5b7c202d3ce2b3060ac1c649a64796b951e67a7dd2b977",
+    "metadata/raw/7070.json": "242a037de03751fdf3057f22f1b63d4819e958642051b82cf512a91711432a7c",
+    "metadata/raw/7165.json": "2a2641be31ce1af9b59fe08b40cb8fb87172e010d6b92315e8dd4f07d462110c",
+    "metadata/raw/7823.json": "ae5867f174fe44cfb1759fa7319787936f73b62350e06f138df0d95b4efe07ee",
+    "metadata/raw/8633.json": "90e9553c1364e8f43c36c5282cd906b44067acc5e8294a553be2f78b640c3d98",
+    "metadata/raw/8885.json": "f3d178a6867be5e60e10585f326a212725f99561dbd633c9af895a0e79841aa5",
+    "metadata/raw/8916.json": "636664ad0d6812cee230dffca76c6e125815c058f8e05d767d75b6686a405df4",
+    "metadata/raw/8928.json": "308d492bf1e7c3d0bf0ab9bd38c94723b66a36e8918618486ee47734162093a5",
+    "metadata/raw/9003.json": "4735f3dc4f4f26d875b2617a1932c9df9a768ec99b2bc4c871fc29a45aa2ac24",
+    "metadata/raw/9343.json": "e7daf6a00fe7119a87b26772f2f1e23c37f933852ef0e47b2a0f95da6efbe68b",
+    "metadata/raw/9400.json": "41676df0cccd4e203cdc566b9567e4f28517f58a68abfc8fbc0a5346e6703a0d",
+    "particle.json": "767fe288c256102a2c4fe73903343fbf747e75fd3e0e9040c3c58b099388aa8f",
+    "slash-mesh.json": "f069e151ca49dcea09bea9c426862f37cca79eccf224700d0be2f2827e4ef879",
+    "vfx/textures/Atlas03.png": "96a312721235eac1dfb9fae555ba3990da92778a8ef60b6cd4e284487e65be32",
+    "vfx/textures/Sword_Icon.png": "e274c31af44d82f53fc4eaced0e6118c8048e8c437f281fd389f75e28ba3154c"
+  },
+  "limitations": [
+    "Native attack motion, opacity controller behavior and damage collision not reconstructed.",
+    "No live game comparison performed."
+  ]
+}

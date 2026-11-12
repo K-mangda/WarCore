@@ -1,0 +1,27 @@
+{
+  "source": {
+    "assetFile": "sharedassets1.assets",
+    "pathId": 4144,
+    "type": "GameObject"
+  },
+  "data": {
+    "m_Component": [
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 5386
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 8928
+        }
+      }
+    ],
+    "m_Layer": 0,
+    "m_Name": "SwordAttackPrefab",
+    "m_Tag": 20000,
+    "m_IsActive": true
+  }
+}

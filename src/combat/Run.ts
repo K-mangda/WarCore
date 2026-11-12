@@ -39,10 +39,11 @@ export class Run {
     while(this.state.xp>=this.state.xpNeeded){this.state.xp-=this.state.xpNeeded;this.state.level++;this.state.xpNeeded=5+(this.state.level-1)*3;this.state.pendingUpgrades++;this.sound('level');}
   }
   /** Sandbox melee sector; native swing trajectory and hit timing are not reconstructed. */
-  private swing(player:Vector3){
-    const target=this.swarm.enemies.filter(enemy=>enemy.position.distanceTo(player)<=balance.swordRange).sort((a,b)=>a.position.distanceToSquared(player)-b.position.distanceToSquared(player))[0];
-    if(!target||this.slashes.length>=balance.maxSlashes)return false;
-    const forward=target.position.clone().sub(player);forward.y=0;if(forward.lengthSq()<.0001)forward.set(0,0,-1);forward.normalize();
+  private swing(player:Vector3,facing:Vector3){
+    if(this.slashes.length>=balance.maxSlashes)return false;
+    const forward=new Vector3(facing.x,0,facing.z);
+    if(forward.lengthSq()<.0001)forward.set(0,0,-1);
+    forward.normalize();
     // Multiple sectors share hit history, so one attack cannot damage the same enemy twice.
     const hits=new Set<number>();
     for(let i=0;i<this.state.projectiles&&this.slashes.length<balance.maxSlashes;i++){
@@ -69,7 +70,7 @@ export class Run {
     }
     this.sound('shot');return true;
   }
-  step(dt:number,player:Vector3){
+  step(dt:number,player:Vector3,facing=new Vector3(0,0,-1)){
     if(this.blocked)return;
     this.state.elapsed+=dt;this.hurtClock=Math.max(0,this.hurtClock-dt);
     if(!this.started){for(let i=0;i<balance.initialEnemies;i++)this.swarm.spawn(player,this.ground,this.visible,this.random);this.started=true;}
@@ -77,7 +78,7 @@ export class Run {
     if(this.spawnClock<=0){this.swarm.spawn(player,this.ground,this.visible,this.random);this.spawnClock=balance.spawnInterval;}
     this.swarm.step(dt,player,this.ground);
     this.attackClock=Math.max(0,this.attackClock-dt);
-    if(this.attackClock===0&&(this.state.weapon==='sword'?this.swing(player):this.fire(player)))this.attackClock=this.state.attackInterval;
+    if(this.attackClock===0&&(this.state.weapon==='sword'?this.swing(player,facing):this.fire(player)))this.attackClock=this.state.attackInterval;
     for(let i=this.slashes.length-1;i>=0;i--){
       const slash=this.slashes[i];
       for(const enemy of [...this.swarm.enemies]){

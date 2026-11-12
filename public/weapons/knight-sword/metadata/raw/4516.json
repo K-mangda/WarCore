@@ -1,0 +1,34 @@
+{
+  "source": {
+    "assetFile": "sharedassets1.assets",
+    "pathId": 4516,
+    "type": "Transform"
+  },
+  "data": {
+    "m_GameObject": {
+      "m_FileID": 0,
+      "m_PathID": 3436
+    },
+    "m_LocalRotation": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 1.0
+    },
+    "m_LocalPosition": {
+      "x": 154.27000427246094,
+      "y": 11.079999923706055,
+      "z": 129.94000244140625
+    },
+    "m_LocalScale": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+    },
+    "m_Children": [],
+    "m_Father": {
+      "m_FileID": 0,
+      "m_PathID": 0
+    }
+  }
+}
