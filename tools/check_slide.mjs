@@ -1,0 +1,14 @@
+import ts from 'typescript';
+import { readFileSync } from 'node:fs';
+import assert from 'node:assert/strict';
+const source=ts.transpileModule(readFileSync('src/player/Slide.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+const {Slide}=await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+const slide=new Slide();
+assert.equal(slide.update(true,true,0,0,false),false,'standing crouch must not slide');
+slide.reset();assert.equal(slide.update(true,false,10,0,false),false,'airborne press must not start slide');
+slide.reset();assert.equal(slide.update(true,true,10,0,true),false,'limited mode must block slide');
+slide.reset();assert.equal(slide.update(true,true,10,0,false),true,'moving grounded press starts slide');
+assert.equal(slide.update(true,true,7,0,false),false,'low speed returns to crouch');
+assert.equal(slide.update(true,true,10,0,false),false,'holding key must not retrigger transition');
+slide.update(false,true,10,0,false);assert.equal(slide.update(true,true,10,0,false),true,'new press permits a transition');
+console.log('Slide transition regression checks passed. Native cooldown/impulse remain unresolved.');
