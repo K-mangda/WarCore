@@ -32,14 +32,14 @@ export class Motor {
       if(wish.lengthSq()>0) direction.add(wish).normalize();
       this.velocity.addScaledVector(direction,slideStartDelta());
     }
-    const jump=(this.grounded || this.aerialJumps>0) && this.jumpCooldown<=0 && input.jumpUntil>=performance.now();
+    const jump=(this.grounded || this.aerialJumps>0) && this.jumpCooldown<=0 && input.jumpTicks>0;
     if(jump) {
       if(!this.grounded)this.aerialJumps--;
       this.velocity.y=Math.max(0,this.velocity.y);
       const impulse=jumpDelta(normal,this.jumpStat);
       this.velocity.add(new Vector3(impulse.x,impulse.y,impulse.z));
       this.jumpCooldown=physics.jumpCooldown;
-      this.grounded=false; input.jumpUntil=0; this.jumps++;
+      this.grounded=false; this.jumps++;
     }
     const before=this.speed;
     if(this.grounded && !slide && !jump) { const friction=Math.exp(-12*dt); this.velocity.x*=friction; this.velocity.z*=friction; }
@@ -67,5 +67,6 @@ export class Motor {
     if(next.y<=floor || (this.grounded && !jump && Math.abs(next.y-floor)<.7)) { next.y=floor; this.velocity.y=0; this.grounded=true; this.aerialJumps=this.extraJumps; } else this.grounded=false;
     this.position.copy(next); this.position.x=MathUtils.clamp(this.position.x,-95,95); this.position.z=MathUtils.clamp(this.position.z,-95,95);
     this.state=!this.grounded?EMovementState.Airborne:slide?EMovementState.Sliding:crouch?EMovementState.Crouching:this.speed>.1?EMovementState.Walking:EMovementState.Idle;
+    input.jumpTicks=Math.max(0,input.jumpTicks-1);
   }
 }

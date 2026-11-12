@@ -1,5 +1,6 @@
 """Disassemble selected movement methods using REA-derived address evidence."""
 import sys,json,struct
+from bisect import bisect_right
 from pathlib import Path
 sys.path.insert(0,str(Path('.local-evidence/python').resolve()))
 import pefile
@@ -16,6 +17,21 @@ all_addresses=sorted(names)
 targets.update({'PlayerMovement.Jump','PlayerMovement.GetJumpForce','PlayerMovement.CanJump','PlayerMovement.CanBhopJump','PlayerMovement.MovementTick','PlayerMovement.CounterMovement','PlayerMovement.UpdateCooldowns','PlayerMovementValues.Init','PlayerMovementValues.GetGravity'})
 targets.update({'StatsConstants..cctor','PlayerMovement.UpdateTickRate','PlayerMovementValues.CreateMovement','PlayerMovement.RampMovement'})
 targets.update({'PlayerStatsNew.GetBaseValue','PlayerMovement.ResetAerialJumps'})
+targets.update({'PlayerInput.FixedUpdate','PlayerInput.MovementInput','PlayerInput..ctor','PlayerMovement.SetBetterInput','PlayerMovement.CheckLanding','PlayerMovement.StartGrounded','PlayerMovement.AirAccelerate','PlayerMovement.GetAirDeceleration','PlayerMovement.GetWishDir'})
+# Discover direct callers without assuming the location of Bhop handling.
+calls_to={a for a,n in names.items() if n in {'PlayerMovement.CanBhopJump','PlayerInput.IsHoldingJump'}}
+for section in pe.sections:
+    if not section.Characteristics & 0x20000000: continue
+    data=section.get_data(); cursor=0
+    while True:
+        offset=data.find(b'\xe8',cursor)
+        if offset<0 or offset+5>len(data): break
+        address=base+section.VirtualAddress+offset
+        target=address+5+struct.unpack_from('<i',data,offset+1)[0]
+        if target in calls_to:
+            index=bisect_right(all_addresses,address)-1
+            if index>=0: targets.add(names[all_addresses[index]])
+        cursor=offset+1
 output=[]
 for address,name in sorted(names.items()):
     if name not in targets: continue
