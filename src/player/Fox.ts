@@ -1,3 +1,4 @@
+import {playtestMovement} from './Physics';
 import * as T from 'three';
 
 interface RigNode {name:string;position:number[];rotation:number[];scale:number[];children:number[];}
@@ -67,6 +68,7 @@ export class Fox {
   update(position:T.Vector3,yaw:number,speed:number,grounded:boolean,vertical:number,dt:number){
     this.root.position.copy(position);this.root.rotation.y=yaw+Math.PI;
     this.play(!grounded?(vertical>0?'FoxJump4':'FoxFalling'):speed>.1?'FoxRun':'FoxIdle');
+    this.current?.setEffectiveTimeScale(grounded?1:playtestMovement.airTimeScale);
     this.mixer?.update(dt);
   }
   dispose(){this.disposed=true;this.mixer?.stopAllAction();this.mixer?.uncacheRoot(this.model);this.skeleton?.dispose();this.geometry?.dispose();this.material?.dispose();this.texture?.dispose();}

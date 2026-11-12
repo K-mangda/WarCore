@@ -38,7 +38,7 @@ export class Motor {
       if(!this.grounded)this.aerialJumps--;
       this.velocity.y=Math.max(0,this.velocity.y);
       const impulse=jumpDelta(normal,this.jumpStat);
-      this.velocity.add(new Vector3(impulse.x,impulse.y,impulse.z));
+      this.velocity.add(new Vector3(impulse.x,impulse.y*playtestMovement.airTimeScale,impulse.z));
       this.jumpCooldown=physics.jumpCooldown;
       this.grounded=false; this.jumps++;
     }
@@ -61,7 +61,7 @@ export class Motor {
       this.velocity.addScaledVector(projected,dt);
       this.velocity.y=gx*this.velocity.x+gz*this.velocity.z;
     }
-    if(!this.grounded) { this.velocity.y+=(physics.gravity-physics.extraGravity)*dt; this.velocity.x*=Math.exp(-values.airDeceleration*dt); this.velocity.z*=Math.exp(-values.airDeceleration*dt); }
+    if(!this.grounded) { this.velocity.y+=(physics.gravity-physics.extraGravity)*playtestMovement.airTimeScale**2*dt; this.velocity.x*=Math.exp(-values.airDeceleration*dt); this.velocity.z*=Math.exp(-values.airDeceleration*dt); }
     const oldGround=heightAt(this.position.x,this.position.z);
     const next=this.position.clone().addScaledVector(this.velocity,dt); const ground=heightAt(next.x,next.z);
     if(ground-next.y>0.7 && ground-oldGround>0.7) { next.x=this.position.x; next.z=this.position.z; this.velocity.x=0; this.velocity.z=0; }

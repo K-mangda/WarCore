@@ -103,3 +103,9 @@ LAB button opens /lab.html embedded over the paused game. Back to game removes t
 Native damage chain: sharedassets2 DamageNumbersNew785 -> DamageNumbers3114 -> TMP3205 -> PressStart2P-Regular SDF3029 -> Material2 -> Texture110. Original SDF atlas/glyph metrics are exported under public/game-ui/damage using tools/export_damage_font.py. It is Press Start2P, not Alagard or monospace. No original TTF was found; no substitute TTF is used.
 
 DamageNumbers.ts rasterizes original alpha-channel SDF digits with foreground threshold0.5/black-underlay threshold0.3 and native padding20. CPU threshold rendering, cream foreground color, sprite dimensions and animation are web approximations; native TMP shader/underlay rendering is not fully reproduced. Font raster height is28px, reduced from42px by one third at the user's request. This same renderer serves game and Lab. Build and glyph preview were checked; this does not claim native pixel-perfect damage typography.
+
+## User-requested slower jump/fall/animation — 2026-11-12
+
+Added playtestMovement.airTimeScale0.8. Vertical jump impulse is multiplied by0.8 and airborne gravity by0.8 squared, extending flight roughly25% while retaining approximately the prior jump height (small fixed-step differences remain). Both ascent and descent slow down; walk/run speed override0.7 stays separate. Jump/fall animation actions use matching0.8 playback speed; idle/run animation and combat timing are not globally slowed.
+
+Original physics constants, source clips and jumpDelta() are retained. This is user-requested feel tuning, not a newly recovered native formula. Jump and landing sounds still trigger on actual motor transitions, so the landing sound follows the later contact; original sound pitch/duration is not stretched. The regression check verifies approximate height/longer flight and queued input still surviving the slower landing.
