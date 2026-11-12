@@ -1,3 +1,4 @@
+import {assetUrl} from '../core/assetUrl';
 import {playtestMovement} from './Physics';
 import * as T from 'three';
 
@@ -19,11 +20,11 @@ export class Fox {
   private disposed=false;
 
   async load():Promise<void>{
-    const response=await fetch('/megabonk/fox-rig.json');
+    const response=await fetch(assetUrl('megabonk/fox-rig.json'));
     if(!response.ok)throw new Error(`Fox rig failed to load (${response.status})`);
     const rig=await response.json() as FoxRig;
     if(rig.weights.length!==rig.positions.length/3*4 || rig.joints.length!==rig.inverseBindMatrices.length)throw new Error('Incomplete Fox skin data');
-    const texture=await new T.TextureLoader().loadAsync('/megabonk/'+encodeURIComponent(rig.texture));
+    const texture=await new T.TextureLoader().loadAsync(assetUrl('megabonk/'+encodeURIComponent(rig.texture)));
     if(this.disposed){texture.dispose();return;}
     this.texture=texture;texture.colorSpace=T.SRGBColorSpace;texture.magFilter=T.NearestFilter;texture.minFilter=T.NearestMipmapLinearFilter;
     this.geometry=new T.BufferGeometry();

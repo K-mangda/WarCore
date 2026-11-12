@@ -1,3 +1,4 @@
+import {assetUrl} from '../core/assetUrl';
 import * as T from 'three';
 interface Glyph {imageRect:{x:number;y:number;width:number;height:number};metrics:{horizontalBearingX:number;horizontalBearingY:number;horizontalAdvance:number};scale:number;}
 interface FontData {faceInfo:{m_PointSize:number;m_AscentLine:number};atlas:{padding:number};characters:Record<string,Glyph>;}
@@ -8,7 +9,7 @@ export class DamageNumbers {
   private glyphs=new Map<string,HTMLCanvasElement>();
   private materials=new Map<number,T.SpriteMaterial>();
   async load(){
-    const [response,image]=await Promise.all([fetch('/game-ui/damage/glyphs.json'),new Promise<HTMLImageElement>((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image);image.onerror=()=>reject(Error('Damage font atlas unavailable'));image.src='/game-ui/damage/atlas.png';})]);
+    const [response,image]=await Promise.all([fetch(assetUrl('game-ui/damage/glyphs.json')),new Promise<HTMLImageElement>((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image);image.onerror=()=>reject(Error('Damage font atlas unavailable'));image.src=assetUrl('game-ui/damage/atlas.png');})]);
     if(!response.ok)throw Error('Damage font metadata unavailable');
     this.data=await response.json() as FontData;this.image=image;
   }

@@ -1,5 +1,6 @@
+import {assetUrl} from '../core/assetUrl';
 const clips={click:'MenuClick',hover:'menuMove',shot:'retro_shoot_fireball3',xp:'Xp2',level:'Levelup3',hurt:'PlayerDamage',death:'DeathImpact',jump:'Player_Jump',land:'Player_Landing',sword:'SwordSwing'} as const;
-const clipUrl=(key:Sound,file:string)=>key==='sword'?'/weapons/knight-sword/audio/SwordSwing.wav':`/game-audio/${file}.wav`;
+const clipUrl=(key:Sound,file:string)=>assetUrl(key==='sword'?'weapons/knight-sword/audio/SwordSwing.wav':`game-audio/${file}.wav`);
 export type Sound=keyof typeof clips;
 interface Voice {key:Sound;source:AudioBufferSourceNode;gain:GainNode;priority:number;}
 const gameplaySounds=new Set<Sound>(['shot','sword','xp','hurt','jump','land']);

@@ -1,3 +1,5 @@
+import './lab.css';
+import {assetUrl} from '../core/assetUrl';
 import * as T from 'three';
 import {SwordView} from '../combat/SwordView';
 import {Run} from '../combat/Run';
@@ -5,6 +7,7 @@ import {Fox} from '../player/Fox';
 import {GameAudio} from '../audio/GameAudio';
 import {DamageNumbers} from '../combat/DamageNumbers';
 const host=document.getElementById('view')!;
+(document.getElementById('back') as HTMLAnchorElement).href=assetUrl('');
 if(new URLSearchParams(location.search).has('embedded'))document.getElementById('back')!.hidden=true;
 const renderer=new T.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0x27392c);host.append(renderer.domElement);
 const scene=new T.Scene();scene.add(new T.HemisphereLight(0xffffff,0x444444,3));

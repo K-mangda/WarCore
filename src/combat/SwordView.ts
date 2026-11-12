@@ -1,3 +1,4 @@
+import {assetUrl} from '../core/assetUrl';
 import {balance} from './Balance';
 import {placeSwordSlash,orientSwordArc} from './SwordPose';
 import * as T from 'three';
@@ -15,7 +16,7 @@ export class SwordView {
   private disposed=false;
   constructor(private scene:T.Scene){}
   async load(){
-    const base='/weapons/knight-sword/';
+    const base=assetUrl('weapons/knight-sword/');
     const json=async(path:string)=>{const r=await fetch(base+path);if(!r.ok)throw Error(`Sword asset unavailable: ${path}`);return r.json();};
     const [mesh,particles,alignment,atlas]=await Promise.all([json('slash-mesh.json'),json('particle.json'),json('frame-alignment.json'),new T.TextureLoader().loadAsync(base+'vfx/textures/Atlas03.png')]);
     if(this.disposed){atlas.dispose();return;}

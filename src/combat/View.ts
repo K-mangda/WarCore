@@ -1,3 +1,4 @@
+import {assetUrl} from '../core/assetUrl';
 import {DamageNumbers} from './DamageNumbers';
 import {SwordView} from './SwordView';
 import * as T from 'three';
@@ -15,9 +16,9 @@ export class CombatView {
   constructor(private scene:T.Scene){this.sword=new SwordView(scene);this.bolts.count=0;this.gems.count=0;this.bolts.frustumCulled=false;this.gems.frustumCulled=false;scene.add(this.bolts,this.gems);}
   async load(){
     await Promise.all([this.sword.load(),this.numbers.load()]);
-    const response=await fetch('/combat/skeleton.json');if(!response.ok)throw new Error('Skeleton visual failed to load');
+    const response=await fetch(assetUrl('combat/skeleton.json'));if(!response.ok)throw new Error('Skeleton visual failed to load');
     const data=await response.json() as MeshData;
-    const texture=await new T.TextureLoader().loadAsync('/combat/'+encodeURIComponent(data.tex));
+    const texture=await new T.TextureLoader().loadAsync(assetUrl('combat/'+encodeURIComponent(data.tex)));
     if(this.disposed){texture.dispose();return;}
     texture.colorSpace=T.SRGBColorSpace;texture.magFilter=T.NearestFilter;
     const geometry=new T.BufferGeometry();geometry.setAttribute('position',new T.Float32BufferAttribute(data.pos,3));geometry.setAttribute('uv',new T.Float32BufferAttribute(data.uv,2));geometry.setIndex(data.idx);geometry.computeVertexNormals();geometry.computeBoundingBox();
