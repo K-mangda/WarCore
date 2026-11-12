@@ -19,3 +19,5 @@ Sword is now selectable before starting a fresh run. Its original sound/icon/atl
 Identity correction: the earlier external sword package was HeroSword (ID27), distinct from Knight's starting Sword (ID2). Playable Sword now uses the verified Knight -> WeaponSword -> projectile reference chain and assets under public/weapons/knight-sword. Rebuild those with `python tools/import_knight_sword_assets.py`. Sword attacks repeatedly without requiring a nearby target; exact native timing/motion remain unverified.
 
 Before implementing another weapon, follow [weapon behavior checks](docs/WEAPON_BEHAVIOR.md): identity, quantity/burst policy, aiming, spawn pose, hit history and audio must be checked separately for each weapon.
+
+The LAB button opens the Sword room over the paused game; BACK TO GAME preserves the game instance. Direct room: /lab.html. It uses the same SwordView, audio player and native Press Start 2P damage glyph renderer as gameplay. Frame/facing controls, attack+sound playback and a damage-number sample are available. The production build includes both game and Lab pages.

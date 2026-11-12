@@ -14,6 +14,7 @@ export class GameAudio {
   private requests=new AbortController();
   private encoded=new Map<Sound,Promise<ArrayBuffer|null>>();
   private disposed=false;
+  private decoding:Promise<void>=Promise.resolve();
   muted=false;
   constructor(){
     // Network preload needs no AudioContext or user gesture. Decoding and playback
@@ -31,13 +32,14 @@ export class GameAudio {
       if(!this.context){
         const context=this.context=new AudioContext();
         this.gain=context.createGain();this.gain.gain.value=this.muted?0:.35;this.gain.connect(context.destination);
-        for(const [key,bytes] of this.encoded)void bytes.then(data=>data?context.decodeAudioData(data):null).then(buffer=>{
+        this.decoding=Promise.all([...this.encoded].map(([key,bytes])=>bytes.then(data=>data?context.decodeAudioData(data):null).then(buffer=>{
           if(buffer&&!this.disposed)this.buffers.set(key,buffer);
-        }).catch(()=>{});
+        }).catch(()=>{}))).then(()=>{});
       }
       void this.context.resume().catch(()=>{});
     }catch{/* Audio remains optional when a browser blocks it. */}
   }
+  async prepare(){this.unlock();await this.decoding;}
   toggle(){this.muted=!this.muted;if(this.gain)this.gain.gain.value=this.muted?0:.35;return this.muted;}
   private release(voice:Voice,stop=false){
     if(!this.voices.delete(voice))return;

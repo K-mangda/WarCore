@@ -6,7 +6,7 @@
     8,
     8
   ],
-  "derivation": "Alpha-weighted visible center in exported quad coordinates. Web alignment correction, not native pivot metadata.",
+  "derivation": "Measured alpha centers in exported quad coordinates. Only the first frame calibrates a fixed web orientation; later frames must never move the quad pivot. Not native pivot metadata.",
   "frames": [
     {
       "index": 0,

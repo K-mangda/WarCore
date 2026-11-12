@@ -44,6 +44,7 @@ export class Engine {
   };
   private pause=()=>{this.audio.stopGameplay();this.active=false;this.input.clear();if(document.pointerLockElement===this.renderer.domElement)document.exitPointerLock();};
   private lockChanged=()=>{const locked=document.pointerLockElement===this.renderer.domElement;if(this.hadLock&&!locked)this.pause();this.hadLock=locked;};
+  pauseForLab=()=>{this.pause();this.emit();};
   reset=(top=false)=>{this.audio.stopGameplay();this.motor.reset(top);this.run.reset();this.emit();};
   setWeapon=(weapon:Weapon)=>{if(this.active)return;this.run.setWeapon(weapon);this.emit();};
   restart=()=>{this.reset();this.lock();};

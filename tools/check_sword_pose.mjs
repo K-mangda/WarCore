@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import {Object3D,Vector3} from 'three';
 const folder=resolve('.local-evidence/sword-pose');mkdirSync(folder,{recursive:true});
 const file=resolve(folder,'SwordPose.mjs');writeFileSync(file,ts.transpileModule(readFileSync('src/combat/SwordPose.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText);
-const {placeSwordSlash,centerSwordFrame}=await import(pathToFileURL(file));
+const {placeSwordSlash,orientSwordArc}=await import(pathToFileURL(file));
 const origin=new Vector3(10,2,-7);
 for(const direction of [new Vector3(0,0,-1),new Vector3(1,0,0),new Vector3(0,0,1),new Vector3(-1,0,0),new Vector3(1,0,-1).normalize()]){
  const mesh=new Object3D();placeSwordSlash(mesh,origin,direction);
@@ -19,11 +19,15 @@ console.log('Sword pose checks passed: source-local orientation, handedness, hor
 
 const alignment=JSON.parse(readFileSync('public/weapons/knight-sword/frame-alignment.json','utf8'));
 for(const direction of [new Vector3(0,0,-1),new Vector3(1,0,0),new Vector3(1,0,-1).normalize()]){
+ const reference=alignment.frames[0].center;let basePosition,baseRotation;
  for(const frame of alignment.frames.filter(f=>f.visible)){
   const mesh=new Object3D();placeSwordSlash(mesh,origin,direction);mesh.scale.setScalar(10.7*.55);
-  const intended=mesh.position.clone();centerSwordFrame(mesh,frame.center);
-  const visibleCenter=new Vector3(...frame.center).multiply(mesh.scale).applyQuaternion(mesh.quaternion).add(mesh.position);
-  assert.ok(visibleCenter.distanceTo(intended)<1e-6,'Every visible atlas frame must stay centered ahead, rather than drift sideways');
+  orientSwordArc(mesh,reference,direction);
+  if(!basePosition){basePosition=mesh.position.clone();baseRotation=mesh.quaternion.clone();}
+  assert.ok(mesh.position.equals(basePosition),'Changing atlas cells must not teleport the quad');
+  assert.ok(mesh.quaternion.angleTo(baseRotation)<1e-6,'Changing atlas cells must not rotate the quad');
+  const leadingCenter=new Vector3(...reference).applyQuaternion(mesh.quaternion).normalize();
+  assert.ok(leadingCenter.dot(direction)>.999999,'First visible arc must face forward');
  }
 }
-console.log('Full-frame Sword checks passed: alpha-weighted visible center stays forward through the animation.');
+console.log('Sword animation checks passed: fixed pivot/orientation across atlas cells and forward first arc.');

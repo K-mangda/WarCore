@@ -1,0 +1,2459 @@
+{
+  "faceInfo": {
+    "m_FaceIndex": 0,
+    "m_FamilyName": "Press Start 2P",
+    "m_StyleName": "Regular",
+    "m_PointSize": 76,
+    "m_Scale": 1.0,
+    "m_UnitsPerEM": 1000,
+    "m_LineHeight": 76.0,
+    "m_AscentLine": 76.0,
+    "m_CapLine": 76.0,
+    "m_MeanLine": 57.0,
+    "m_Baseline": 0.0,
+    "m_DescentLine": 0.0,
+    "m_SuperscriptOffset": 76.0,
+    "m_SuperscriptSize": 0.5,
+    "m_SubscriptOffset": 0.0,
+    "m_SubscriptSize": 0.5,
+    "m_UnderlineOffset": -7.599999904632568,
+    "m_UnderlineThickness": 3.799999952316284,
+    "m_StrikethroughOffset": 22.799999237060547,
+    "m_StrikethroughThickness": 3.799999952316284,
+    "m_TabWidth": 76.0
+  },
+  "atlas": {
+    "file": "atlas.png",
+    "width": 1024,
+    "height": 1024,
+    "padding": 20
+  },
+  "characters": {
+    " ": {
+      "unicode": 32,
+      "glyphIndex": 3,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "imageRect": {
+        "x": 0,
+        "y": 1024,
+        "width": 0,
+        "height": 0
+      },
+      "metrics": {
+        "width": 0.0,
+        "height": 0.0,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 0.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "!": {
+      "unicode": 33,
+      "glyphIndex": 528,
+      "rect": {
+        "x": 974,
+        "y": 21,
+        "width": 29,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 974,
+        "y": 936,
+        "width": 29,
+        "height": 67
+      },
+      "metrics": {
+        "width": 28.5,
+        "height": 66.5,
+        "horizontalBearingX": 19.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "\"": {
+      "unicode": 34,
+      "glyphIndex": 534,
+      "rect": {
+        "x": 345,
+        "y": 968,
+        "width": 48,
+        "height": 29
+      },
+      "imageRect": {
+        "x": 345,
+        "y": 27,
+        "width": 48,
+        "height": 29
+      },
+      "metrics": {
+        "width": 47.5,
+        "height": 28.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "#": {
+      "unicode": 35,
+      "glyphIndex": 530,
+      "rect": {
+        "x": 21,
+        "y": 138,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 21,
+        "y": 819,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "$": {
+      "unicode": 36,
+      "glyphIndex": 566,
+      "rect": {
+        "x": 110,
+        "y": 21,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 110,
+        "y": 936,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "%": {
+      "unicode": 37,
+      "glyphIndex": 598,
+      "rect": {
+        "x": 21,
+        "y": 246,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 21,
+        "y": 711,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "&": {
+      "unicode": 38,
+      "glyphIndex": 618,
+      "rect": {
+        "x": 21,
+        "y": 354,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 21,
+        "y": 603,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "'": {
+      "unicode": 39,
+      "glyphIndex": 535,
+      "rect": {
+        "x": 434,
+        "y": 968,
+        "width": 19,
+        "height": 29
+      },
+      "imageRect": {
+        "x": 434,
+        "y": 27,
+        "width": 19,
+        "height": 29
+      },
+      "metrics": {
+        "width": 19.0,
+        "height": 28.5,
+        "horizontalBearingX": 19.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "(": {
+      "unicode": 40,
+      "glyphIndex": 543,
+      "rect": {
+        "x": 731,
+        "y": 780,
+        "width": 38,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 731,
+        "y": 177,
+        "width": 38,
+        "height": 67
+      },
+      "metrics": {
+        "width": 38.0,
+        "height": 66.5,
+        "horizontalBearingX": 19.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    ")": {
+      "unicode": 41,
+      "glyphIndex": 544,
+      "rect": {
+        "x": 651,
+        "y": 739,
+        "width": 39,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 651,
+        "y": 218,
+        "width": 39,
+        "height": 67
+      },
+      "metrics": {
+        "width": 38.0,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "*": {
+      "unicode": 42,
+      "glyphIndex": 521,
+      "rect": {
+        "x": 561,
+        "y": 345,
+        "width": 67,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 561,
+        "y": 631,
+        "width": 67,
+        "height": 48
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 47.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 66.5,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "+": {
+      "unicode": 43,
+      "glyphIndex": 577,
+      "rect": {
+        "x": 345,
+        "y": 790,
+        "width": 58,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 345,
+        "y": 186,
+        "width": 58,
+        "height": 48
+      },
+      "metrics": {
+        "width": 57.0,
+        "height": 47.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 66.5,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    ",": {
+      "unicode": 44,
+      "glyphIndex": 526,
+      "rect": {
+        "x": 966,
+        "y": 710,
+        "width": 29,
+        "height": 29
+      },
+      "imageRect": {
+        "x": 966,
+        "y": 285,
+        "width": 29,
+        "height": 29
+      },
+      "metrics": {
+        "width": 28.5,
+        "height": 28.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 28.5,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "-": {
+      "unicode": 45,
+      "glyphIndex": 548,
+      "rect": {
+        "x": 237,
+        "y": 993,
+        "width": 58,
+        "height": 10
+      },
+      "imageRect": {
+        "x": 237,
+        "y": 21,
+        "width": 58,
+        "height": 10
+      },
+      "metrics": {
+        "width": 57.0,
+        "height": 9.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 47.5,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    ".": {
+      "unicode": 46,
+      "glyphIndex": 531,
+      "rect": {
+        "x": 444,
+        "y": 888,
+        "width": 19,
+        "height": 20
+      },
+      "imageRect": {
+        "x": 444,
+        "y": 116,
+        "width": 19,
+        "height": 20
+      },
+      "metrics": {
+        "width": 19.0,
+        "height": 19.0,
+        "horizontalBearingX": 19.0,
+        "horizontalBearingY": 28.5,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "/": {
+      "unicode": 47,
+      "glyphIndex": 537,
+      "rect": {
+        "x": 21,
+        "y": 462,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 21,
+        "y": 495,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "0": {
+      "unicode": 48,
+      "glyphIndex": 503,
+      "rect": {
+        "x": 21,
+        "y": 570,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 21,
+        "y": 387,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "1": {
+      "unicode": 49,
+      "glyphIndex": 504,
+      "rect": {
+        "x": 669,
+        "y": 523,
+        "width": 58,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 669,
+        "y": 434,
+        "width": 58,
+        "height": 67
+      },
+      "metrics": {
+        "width": 57.0,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "2": {
+      "unicode": 50,
+      "glyphIndex": 505,
+      "rect": {
+        "x": 21,
+        "y": 678,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 21,
+        "y": 279,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "3": {
+      "unicode": 51,
+      "glyphIndex": 506,
+      "rect": {
+        "x": 21,
+        "y": 786,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 21,
+        "y": 171,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "4": {
+      "unicode": 52,
+      "glyphIndex": 507,
+      "rect": {
+        "x": 21,
+        "y": 894,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 21,
+        "y": 63,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "5": {
+      "unicode": 53,
+      "glyphIndex": 508,
+      "rect": {
+        "x": 218,
+        "y": 21,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 218,
+        "y": 936,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "6": {
+      "unicode": 54,
+      "glyphIndex": 509,
+      "rect": {
+        "x": 326,
+        "y": 21,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 326,
+        "y": 936,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "7": {
+      "unicode": 55,
+      "glyphIndex": 510,
+      "rect": {
+        "x": 434,
+        "y": 21,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 434,
+        "y": 936,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "8": {
+      "unicode": 56,
+      "glyphIndex": 511,
+      "rect": {
+        "x": 542,
+        "y": 21,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 542,
+        "y": 936,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "9": {
+      "unicode": 57,
+      "glyphIndex": 512,
+      "rect": {
+        "x": 650,
+        "y": 21,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 650,
+        "y": 936,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    ":": {
+      "unicode": 58,
+      "glyphIndex": 525,
+      "rect": {
+        "x": 494,
+        "y": 949,
+        "width": 19,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 494,
+        "y": 27,
+        "width": 19,
+        "height": 48
+      },
+      "metrics": {
+        "width": 19.0,
+        "height": 47.5,
+        "horizontalBearingX": 19.0,
+        "horizontalBearingY": 66.5,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    ";": {
+      "unicode": 59,
+      "glyphIndex": 536,
+      "rect": {
+        "x": 966,
+        "y": 611,
+        "width": 29,
+        "height": 58
+      },
+      "imageRect": {
+        "x": 966,
+        "y": 355,
+        "width": 29,
+        "height": 58
+      },
+      "metrics": {
+        "width": 28.5,
+        "height": 57.0,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 66.5,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "<": {
+      "unicode": 60,
+      "glyphIndex": 583,
+      "rect": {
+        "x": 858,
+        "y": 719,
+        "width": 48,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 858,
+        "y": 238,
+        "width": 48,
+        "height": 67
+      },
+      "metrics": {
+        "width": 47.5,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "=": {
+      "unicode": 61,
+      "glyphIndex": 580,
+      "rect": {
+        "x": 453,
+        "y": 532,
+        "width": 67,
+        "height": 29
+      },
+      "imageRect": {
+        "x": 453,
+        "y": 463,
+        "width": 67,
+        "height": 29
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 28.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    ">": {
+      "unicode": 62,
+      "glyphIndex": 582,
+      "rect": {
+        "x": 947,
+        "y": 780,
+        "width": 48,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 947,
+        "y": 177,
+        "width": 48,
+        "height": 67
+      },
+      "metrics": {
+        "width": 47.5,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "?": {
+      "unicode": 63,
+      "glyphIndex": 532,
+      "rect": {
+        "x": 758,
+        "y": 21,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 758,
+        "y": 936,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "@": {
+      "unicode": 64,
+      "glyphIndex": 617,
+      "rect": {
+        "x": 866,
+        "y": 21,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 866,
+        "y": 936,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "A": {
+      "unicode": 65,
+      "glyphIndex": 4,
+      "rect": {
+        "x": 129,
+        "y": 129,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 129,
+        "y": 828,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "B": {
+      "unicode": 66,
+      "glyphIndex": 15,
+      "rect": {
+        "x": 129,
+        "y": 237,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 129,
+        "y": 720,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "C": {
+      "unicode": 67,
+      "glyphIndex": 16,
+      "rect": {
+        "x": 129,
+        "y": 345,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 129,
+        "y": 612,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "D": {
+      "unicode": 68,
+      "glyphIndex": 22,
+      "rect": {
+        "x": 129,
+        "y": 453,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 129,
+        "y": 504,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "E": {
+      "unicode": 69,
+      "glyphIndex": 26,
+      "rect": {
+        "x": 129,
+        "y": 561,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 129,
+        "y": 396,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "F": {
+      "unicode": 70,
+      "glyphIndex": 36,
+      "rect": {
+        "x": 129,
+        "y": 669,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 129,
+        "y": 288,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "G": {
+      "unicode": 71,
+      "glyphIndex": 37,
+      "rect": {
+        "x": 129,
+        "y": 777,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 129,
+        "y": 180,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "H": {
+      "unicode": 72,
+      "glyphIndex": 42,
+      "rect": {
+        "x": 129,
+        "y": 885,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 129,
+        "y": 72,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "I": {
+      "unicode": 73,
+      "glyphIndex": 45,
+      "rect": {
+        "x": 561,
+        "y": 612,
+        "width": 58,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 561,
+        "y": 345,
+        "width": 58,
+        "height": 67
+      },
+      "metrics": {
+        "width": 57.0,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "J": {
+      "unicode": 74,
+      "glyphIndex": 56,
+      "rect": {
+        "x": 237,
+        "y": 129,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 237,
+        "y": 828,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "K": {
+      "unicode": 75,
+      "glyphIndex": 58,
+      "rect": {
+        "x": 345,
+        "y": 129,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 345,
+        "y": 828,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "L": {
+      "unicode": 76,
+      "glyphIndex": 60,
+      "rect": {
+        "x": 453,
+        "y": 672,
+        "width": 58,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 453,
+        "y": 285,
+        "width": 58,
+        "height": 67
+      },
+      "metrics": {
+        "width": 57.0,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "M": {
+      "unicode": 77,
+      "glyphIndex": 66,
+      "rect": {
+        "x": 453,
+        "y": 129,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 453,
+        "y": 828,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "N": {
+      "unicode": 78,
+      "glyphIndex": 67,
+      "rect": {
+        "x": 561,
+        "y": 129,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 561,
+        "y": 828,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "O": {
+      "unicode": 79,
+      "glyphIndex": 73,
+      "rect": {
+        "x": 669,
+        "y": 129,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 669,
+        "y": 828,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "P": {
+      "unicode": 80,
+      "glyphIndex": 84,
+      "rect": {
+        "x": 777,
+        "y": 129,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 777,
+        "y": 828,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "Q": {
+      "unicode": 81,
+      "glyphIndex": 86,
+      "rect": {
+        "x": 885,
+        "y": 129,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 885,
+        "y": 828,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "R": {
+      "unicode": 82,
+      "glyphIndex": 87,
+      "rect": {
+        "x": 237,
+        "y": 237,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 237,
+        "y": 720,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "S": {
+      "unicode": 83,
+      "glyphIndex": 91,
+      "rect": {
+        "x": 237,
+        "y": 345,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 237,
+        "y": 612,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "T": {
+      "unicode": 84,
+      "glyphIndex": 96,
+      "rect": {
+        "x": 345,
+        "y": 682,
+        "width": 58,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 345,
+        "y": 275,
+        "width": 58,
+        "height": 67
+      },
+      "metrics": {
+        "width": 57.0,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "U": {
+      "unicode": 85,
+      "glyphIndex": 100,
+      "rect": {
+        "x": 237,
+        "y": 453,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 237,
+        "y": 504,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "V": {
+      "unicode": 86,
+      "glyphIndex": 111,
+      "rect": {
+        "x": 237,
+        "y": 561,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 237,
+        "y": 396,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "W": {
+      "unicode": 87,
+      "glyphIndex": 112,
+      "rect": {
+        "x": 237,
+        "y": 669,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 237,
+        "y": 288,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "X": {
+      "unicode": 88,
+      "glyphIndex": 114,
+      "rect": {
+        "x": 237,
+        "y": 777,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 237,
+        "y": 180,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "Y": {
+      "unicode": 89,
+      "glyphIndex": 115,
+      "rect": {
+        "x": 768,
+        "y": 523,
+        "width": 58,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 768,
+        "y": 434,
+        "width": 58,
+        "height": 67
+      },
+      "metrics": {
+        "width": 57.0,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "Z": {
+      "unicode": 90,
+      "glyphIndex": 119,
+      "rect": {
+        "x": 237,
+        "y": 885,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 237,
+        "y": 72,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "[": {
+      "unicode": 91,
+      "glyphIndex": 541,
+      "rect": {
+        "x": 645,
+        "y": 847,
+        "width": 38,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 645,
+        "y": 110,
+        "width": 38,
+        "height": 67
+      },
+      "metrics": {
+        "width": 38.0,
+        "height": 66.5,
+        "horizontalBearingX": 19.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "\\": {
+      "unicode": 92,
+      "glyphIndex": 522,
+      "rect": {
+        "x": 345,
+        "y": 237,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 345,
+        "y": 720,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "]": {
+      "unicode": 93,
+      "glyphIndex": 542,
+      "rect": {
+        "x": 565,
+        "y": 828,
+        "width": 39,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 565,
+        "y": 129,
+        "width": 39,
+        "height": 67
+      },
+      "metrics": {
+        "width": 38.0,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "^": {
+      "unicode": 94,
+      "glyphIndex": 630,
+      "rect": {
+        "x": 759,
+        "y": 720,
+        "width": 48,
+        "height": 19
+      },
+      "imageRect": {
+        "x": 759,
+        "y": 285,
+        "width": 48,
+        "height": 19
+      },
+      "metrics": {
+        "width": 47.5,
+        "height": 19.0,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "_": {
+      "unicode": 95,
+      "glyphIndex": 538,
+      "rect": {
+        "x": 129,
+        "y": 993,
+        "width": 67,
+        "height": 10
+      },
+      "imageRect": {
+        "x": 129,
+        "y": 21,
+        "width": 67,
+        "height": 10
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 9.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 9.5,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "`": {
+      "unicode": 96,
+      "glyphIndex": 647,
+      "rect": {
+        "x": 504,
+        "y": 888,
+        "width": 20,
+        "height": 19
+      },
+      "imageRect": {
+        "x": 504,
+        "y": 117,
+        "width": 20,
+        "height": 19
+      },
+      "metrics": {
+        "width": 19.0,
+        "height": 19.0,
+        "horizontalBearingX": 28.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "a": {
+      "unicode": 97,
+      "glyphIndex": 123,
+      "rect": {
+        "x": 669,
+        "y": 345,
+        "width": 67,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 669,
+        "y": 631,
+        "width": 67,
+        "height": 48
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 47.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "b": {
+      "unicode": 98,
+      "glyphIndex": 134,
+      "rect": {
+        "x": 453,
+        "y": 237,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 453,
+        "y": 720,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "c": {
+      "unicode": 99,
+      "glyphIndex": 135,
+      "rect": {
+        "x": 777,
+        "y": 345,
+        "width": 67,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 777,
+        "y": 631,
+        "width": 67,
+        "height": 48
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 47.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "d": {
+      "unicode": 100,
+      "glyphIndex": 141,
+      "rect": {
+        "x": 561,
+        "y": 237,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 561,
+        "y": 720,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "e": {
+      "unicode": 101,
+      "glyphIndex": 145,
+      "rect": {
+        "x": 885,
+        "y": 433,
+        "width": 67,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 885,
+        "y": 543,
+        "width": 67,
+        "height": 48
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 47.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "f": {
+      "unicode": 102,
+      "glyphIndex": 155,
+      "rect": {
+        "x": 867,
+        "y": 611,
+        "width": 58,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 867,
+        "y": 346,
+        "width": 58,
+        "height": 67
+      },
+      "metrics": {
+        "width": 57.0,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "g": {
+      "unicode": 103,
+      "glyphIndex": 156,
+      "rect": {
+        "x": 885,
+        "y": 237,
+        "width": 67,
+        "height": 57
+      },
+      "imageRect": {
+        "x": 885,
+        "y": 730,
+        "width": 67,
+        "height": 57
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 57.0,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "h": {
+      "unicode": 104,
+      "glyphIndex": 161,
+      "rect": {
+        "x": 669,
+        "y": 237,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 669,
+        "y": 720,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "i": {
+      "unicode": 105,
+      "glyphIndex": 164,
+      "rect": {
+        "x": 660,
+        "y": 631,
+        "width": 58,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 660,
+        "y": 326,
+        "width": 58,
+        "height": 67
+      },
+      "metrics": {
+        "width": 57.0,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "j": {
+      "unicode": 106,
+      "glyphIndex": 175,
+      "rect": {
+        "x": 21,
+        "y": 21,
+        "width": 48,
+        "height": 76
+      },
+      "imageRect": {
+        "x": 21,
+        "y": 927,
+        "width": 48,
+        "height": 76
+      },
+      "metrics": {
+        "width": 47.5,
+        "height": 76.0,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "k": {
+      "unicode": 107,
+      "glyphIndex": 177,
+      "rect": {
+        "x": 777,
+        "y": 237,
+        "width": 67,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 777,
+        "y": 720,
+        "width": 67,
+        "height": 67
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 66.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "l": {
+      "unicode": 108,
+      "glyphIndex": 180,
+      "rect": {
+        "x": 552,
+        "y": 720,
+        "width": 58,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 552,
+        "y": 237,
+        "width": 58,
+        "height": 67
+      },
+      "metrics": {
+        "width": 57.0,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "m": {
+      "unicode": 109,
+      "glyphIndex": 186,
+      "rect": {
+        "x": 561,
+        "y": 434,
+        "width": 67,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 561,
+        "y": 542,
+        "width": 67,
+        "height": 48
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 47.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "n": {
+      "unicode": 110,
+      "glyphIndex": 187,
+      "rect": {
+        "x": 345,
+        "y": 443,
+        "width": 67,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 345,
+        "y": 533,
+        "width": 67,
+        "height": 48
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 47.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "o": {
+      "unicode": 111,
+      "glyphIndex": 193,
+      "rect": {
+        "x": 453,
+        "y": 443,
+        "width": 67,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 453,
+        "y": 533,
+        "width": 67,
+        "height": 48
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 47.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "p": {
+      "unicode": 112,
+      "glyphIndex": 204,
+      "rect": {
+        "x": 885,
+        "y": 335,
+        "width": 67,
+        "height": 57
+      },
+      "imageRect": {
+        "x": 885,
+        "y": 632,
+        "width": 67,
+        "height": 57
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 57.0,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "q": {
+      "unicode": 113,
+      "glyphIndex": 206,
+      "rect": {
+        "x": 345,
+        "y": 345,
+        "width": 67,
+        "height": 57
+      },
+      "imageRect": {
+        "x": 345,
+        "y": 622,
+        "width": 67,
+        "height": 57
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 57.0,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "r": {
+      "unicode": 114,
+      "glyphIndex": 207,
+      "rect": {
+        "x": 345,
+        "y": 879,
+        "width": 58,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 345,
+        "y": 97,
+        "width": 58,
+        "height": 48
+      },
+      "metrics": {
+        "width": 57.0,
+        "height": 47.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "s": {
+      "unicode": 115,
+      "glyphIndex": 211,
+      "rect": {
+        "x": 669,
+        "y": 434,
+        "width": 67,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 669,
+        "y": 542,
+        "width": 67,
+        "height": 48
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 47.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "t": {
+      "unicode": 116,
+      "glyphIndex": 218,
+      "rect": {
+        "x": 444,
+        "y": 780,
+        "width": 58,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 444,
+        "y": 177,
+        "width": 58,
+        "height": 67
+      },
+      "metrics": {
+        "width": 57.0,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "u": {
+      "unicode": 117,
+      "glyphIndex": 222,
+      "rect": {
+        "x": 777,
+        "y": 434,
+        "width": 67,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 777,
+        "y": 542,
+        "width": 67,
+        "height": 48
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 47.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "v": {
+      "unicode": 118,
+      "glyphIndex": 233,
+      "rect": {
+        "x": 759,
+        "y": 631,
+        "width": 58,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 759,
+        "y": 345,
+        "width": 58,
+        "height": 48
+      },
+      "metrics": {
+        "width": 57.0,
+        "height": 47.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "w": {
+      "unicode": 119,
+      "glyphIndex": 234,
+      "rect": {
+        "x": 885,
+        "y": 522,
+        "width": 67,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 885,
+        "y": 454,
+        "width": 67,
+        "height": 48
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 47.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "x": {
+      "unicode": 120,
+      "glyphIndex": 236,
+      "rect": {
+        "x": 561,
+        "y": 523,
+        "width": 67,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 561,
+        "y": 453,
+        "width": 67,
+        "height": 48
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 47.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "y": {
+      "unicode": 121,
+      "glyphIndex": 237,
+      "rect": {
+        "x": 453,
+        "y": 345,
+        "width": 67,
+        "height": 57
+      },
+      "imageRect": {
+        "x": 453,
+        "y": 622,
+        "width": 67,
+        "height": 57
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 57.0,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "z": {
+      "unicode": 122,
+      "glyphIndex": 241,
+      "rect": {
+        "x": 345,
+        "y": 532,
+        "width": 67,
+        "height": 48
+      },
+      "imageRect": {
+        "x": 345,
+        "y": 444,
+        "width": 67,
+        "height": 48
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 47.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "{": {
+      "unicode": 123,
+      "glyphIndex": 539,
+      "rect": {
+        "x": 724,
+        "y": 888,
+        "width": 38,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 724,
+        "y": 69,
+        "width": 38,
+        "height": 67
+      },
+      "metrics": {
+        "width": 38.0,
+        "height": 66.5,
+        "horizontalBearingX": 19.0,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "|": {
+      "unicode": 124,
+      "glyphIndex": 625,
+      "rect": {
+        "x": 803,
+        "y": 888,
+        "width": 20,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 803,
+        "y": 69,
+        "width": 20,
+        "height": 67
+      },
+      "metrics": {
+        "width": 19.0,
+        "height": 66.5,
+        "horizontalBearingX": 28.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "}": {
+      "unicode": 125,
+      "glyphIndex": 540,
+      "rect": {
+        "x": 565,
+        "y": 936,
+        "width": 39,
+        "height": 67
+      },
+      "imageRect": {
+        "x": 565,
+        "y": 21,
+        "width": 39,
+        "height": 67
+      },
+      "metrics": {
+        "width": 38.0,
+        "height": 66.5,
+        "horizontalBearingX": 9.5,
+        "horizontalBearingY": 76.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "~": {
+      "unicode": 126,
+      "glyphIndex": 588,
+      "rect": {
+        "x": 453,
+        "y": 602,
+        "width": 67,
+        "height": 29
+      },
+      "imageRect": {
+        "x": 453,
+        "y": 393,
+        "width": 67,
+        "height": 29
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 28.5,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 57.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "\u00a0": {
+      "unicode": 160,
+      "glyphIndex": 562,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "imageRect": {
+        "x": 0,
+        "y": 1024,
+        "width": 0,
+        "height": 0
+      },
+      "metrics": {
+        "width": 0.0,
+        "height": 0.0,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 0.0,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    },
+    "\u2026": {
+      "unicode": 8230,
+      "glyphIndex": 527,
+      "rect": {
+        "x": 345,
+        "y": 621,
+        "width": 67,
+        "height": 20
+      },
+      "imageRect": {
+        "x": 345,
+        "y": 383,
+        "width": 67,
+        "height": 20
+      },
+      "metrics": {
+        "width": 66.5,
+        "height": 19.0,
+        "horizontalBearingX": 0.0,
+        "horizontalBearingY": 28.5,
+        "horizontalAdvance": 76.0
+      },
+      "scale": 1.0,
+      "atlasIndex": 0
+    }
+  },
+  "rectCoordinates": "rect uses Unity bottom-left; imageRect converts to exported PNG top-left. Glyph rect is native content; sample additional atlas padding when implementing SDF underlay."
+}

@@ -1,5 +1,5 @@
 import {balance} from './Balance';
-import {placeSwordSlash,centerSwordFrame} from './SwordPose';
+import {placeSwordSlash,orientSwordArc} from './SwordPose';
 import * as T from 'three';
 import type {Run} from './Run';
 interface Curve {scalar:number;maxCurve:{m_Curve:{time:number;value:number}[]};}
@@ -51,7 +51,7 @@ export class SwordView {
       placeSwordSlash(mesh,slash.position,slash.direction,{x:p.initialModule.startRotationX.scalar,y:p.initialModule.startRotationY.scalar,z:p.initialModule.startRotation.scalar});
       mesh.position.addScaledVector(slash.direction,p.initialModule.startSpeed.scalar*elapsed);
       mesh.scale.setScalar(p.initialModule.startSize.scalar*balance.swordVisualScale);
-      centerSwordFrame(mesh,pivot.center);
+      orientSwordArc(mesh,this.frames[0].center,slash.direction);
     });
   }
   dispose(){this.disposed=true;for(const mesh of this.meshes){this.scene.remove(mesh);mesh.material.map?.dispose();mesh.material.dispose();}this.geometry?.dispose();this.atlas?.dispose();}

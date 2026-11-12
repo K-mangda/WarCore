@@ -14,8 +14,10 @@ export function placeSwordSlash(mesh:T.Object3D,origin:T.Vector3,direction:T.Vec
   mesh.position.copy(origin).addScaledVector(forward,2.5);
 }
 
-/** Anchor visible pixels, not the full transparent tile, to the intended forward position. */
-export function centerSwordFrame(mesh:T.Object3D,center:readonly number[]){
-  const offset=new T.Vector3(center[0],center[1],center[2]).multiply(mesh.scale).applyQuaternion(mesh.quaternion);
-  mesh.position.sub(offset);
+/** Calibrate once from the first atlas frame; never move/rotate per animation cell. */
+export function orientSwordArc(mesh:T.Object3D,reference:readonly number[],direction:T.Vector3){
+  const axis=new T.Vector3(reference[0],reference[1],reference[2]).applyQuaternion(mesh.quaternion);axis.y=0;
+  const forward=new T.Vector3(direction.x,0,direction.z).normalize();
+  if(axis.lengthSq()<1e-8||forward.lengthSq()<1e-8)return;
+  mesh.quaternion.premultiply(new T.Quaternion().setFromUnitVectors(axis.normalize(),forward));
 }

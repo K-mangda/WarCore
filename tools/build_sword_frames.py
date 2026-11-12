@@ -1,4 +1,4 @@
-"""Derive per-frame alpha pivots from the original Sword atlas; no image edits."""
+"""Measure original Sword atlas alpha centers; no image edits or dynamic pivot changes."""
 from pathlib import Path
 import hashlib,json
 from PIL import Image
@@ -17,7 +17,7 @@ def build(root=None):
         x=sum((i%width+.5)*a for i,a in enumerate(alpha))/total/width if total else .5
         y=sum((i//width+.5)*a for i,a in enumerate(alpha))/total/height if total else .5
         frames.append({'index':frame,'visible':total>0,'center':[.5-x,.5-y,0]})
-    result={'source':'vfx/textures/Atlas03.png','sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'row':row,'tiles':[cols,rows],'derivation':'Alpha-weighted visible center in exported quad coordinates. Web alignment correction, not native pivot metadata.','frames':frames}
+    result={'source':'vfx/textures/Atlas03.png','sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'row':row,'tiles':[cols,rows],'derivation':'Measured alpha centers in exported quad coordinates. Only the first frame calibrates a fixed web orientation; later frames must never move the quad pivot. Not native pivot metadata.','frames':frames}
     (root/'frame-alignment.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
     return result
 
