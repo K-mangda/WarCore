@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.log
+.env*
+.local-evidence/
+tools/rea-runtime/
+public/models/*
+public/audio/*
+public/ui/items/*
+!**/.gitkeep
