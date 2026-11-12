@@ -10,5 +10,6 @@ slide.reset();assert.equal(slide.update(true,true,10,0,true),false,'limited mode
 slide.reset();assert.equal(slide.update(true,true,10,0,false),true,'moving grounded press starts slide');
 assert.equal(slide.update(true,true,7,0,false),false,'low speed returns to crouch');
 assert.equal(slide.update(true,true,10,0,false),false,'holding key must not retrigger transition');
-slide.update(false,true,10,0,false);assert.equal(slide.update(true,true,10,0,false),true,'new press permits a transition');
-console.log('Slide transition regression checks passed. Native cooldown/impulse remain unresolved.');
+slide.update(false,true,10,0,false);assert.equal(slide.update(true,true,10,0,false),false,'new press during cooldown must not retrigger');
+slide.tick(.5);slide.update(false,true,10,0,false);assert.equal(slide.update(true,true,10,0,false),true,'new press after cooldown permits transition');
+console.log('Slide transition regression checks passed. Native runtime parity remains unverified.');

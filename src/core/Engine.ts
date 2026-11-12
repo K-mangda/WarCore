@@ -5,6 +5,7 @@ import { Input } from './Input';
 import { Effects } from '../vfx/Effects';
 import { makeSandbox } from '../environment/forest/Sandbox';
 import { EMovementState } from '../types/movement';
+import { physics } from '../player/Physics';
 export interface Telemetry { speed:number; fps:number; state:string; jumps:number; locked:boolean; }
 export class Engine {
   private active=false;
@@ -34,7 +35,7 @@ export class Engine {
   private tick=(time:number)=>{
     const dt=this.previous?Math.min((time-this.previous)/1000,.1):0;this.previous=time;
     const locked=this.active;
-    if(locked){this.accumulator+=dt;while(this.accumulator>=1/120){this.motor.step(1/120,this.input,this.orbit.yaw);this.accumulator-=1/120;}}
+    if(locked){this.accumulator+=dt;while(this.accumulator>=physics.fixedStep){this.motor.step(physics.fixedStep,this.input,this.orbit.yaw);this.accumulator-=physics.fixedStep;}}
     else this.accumulator=0;
     const slide=this.motor.state===EMovementState.Sliding; this.avatar.position.copy(this.motor.position);this.avatar.scale.y=slide?.5:1;
     this.orbit.update(this.motor.position,this.terrain);this.effects.update(locked?dt:0,this.motor.position,locked&&slide,this.motor.speed);this.renderer.render(this.scene,this.camera);

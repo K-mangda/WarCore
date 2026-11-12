@@ -5,7 +5,7 @@ sys.path.insert(0,str(Path('.local-evidence/python').resolve()))
 import pefile
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
 source=Path(r'C:\Program Files (x86)\Steam\steamapps\common\Megabonk\GameAssembly.dll')
-pe=pefile.PE(str(source)); base=pe.OPTIONAL_HEADER.ImageBase
+pe=pefile.PE(str(source),fast_load=True); base=pe.OPTIONAL_HEADER.ImageBase
 evidence=json.loads(Path('.local-evidence/il2cpp-stdout.json').read_text(encoding='utf-8-sig'))['normalized_result']
 names={}
 for method,address in zip(evidence['methods'],evidence['method_addresses']):
@@ -13,6 +13,9 @@ for method,address in zip(evidence['methods'],evidence['method_addresses']):
 decoder=Cs(CS_ARCH_X86,CS_MODE_64); decoder.detail=True
 targets={'PlayerMovement.StartSlide','PlayerMovement.StartCrouch','PlayerMovement.CheckInput','PlayerMovement.UseLimitedMovement','PlayerMovement.UpdateCrouchState','PlayerMovement.IsSliding','PlayerMovement..ctor','PlayerMovementValues.GetMoveSpeedMultiplier','PlayerMovementValues.GetCounterMovementMultiplier'}
 all_addresses=sorted(names)
+targets.update({'PlayerMovement.Jump','PlayerMovement.GetJumpForce','PlayerMovement.CanJump','PlayerMovement.CanBhopJump','PlayerMovement.MovementTick','PlayerMovement.CounterMovement','PlayerMovement.UpdateCooldowns','PlayerMovementValues.Init','PlayerMovementValues.GetGravity'})
+targets.update({'StatsConstants..cctor','PlayerMovement.UpdateTickRate','PlayerMovementValues.CreateMovement','PlayerMovement.RampMovement'})
+targets.update({'PlayerStatsNew.GetBaseValue','PlayerMovement.ResetAerialJumps'})
 output=[]
 for address,name in sorted(names.items()):
     if name not in targets: continue
@@ -28,4 +31,4 @@ for address,name in sorted(names.items()):
                 except Exception: pass
         output.append(f'{ins.address:#x}: {ins.mnemonic} {ins.op_str} {note}')
 Path('.local-evidence/movement-disassembly.txt').write_text('\n'.join(output),encoding='utf-8')
-print('\n'.join(output))
+print('Saved movement disassembly')

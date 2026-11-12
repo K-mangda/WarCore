@@ -1,5 +1,7 @@
 # Slide bug and direct binary evidence
 
+Update: base force, mass cancellation, timestep, jump and gravity have since been recovered and implemented. See [movement rebuild](MOVEMENT_REBUILD.md); the withheld-force description below is historical.
+
 The browser previously applied `slideForce * dt` every grounded frame with crouch held, normalized the slope irrespective of steepness, and never limited that acceleration. The reported 80 m/s is consistent with that bug; it was not an observed original-game speed.
 
 REA-derived method addresses were used to disassemble the installed GameAssembly.dll with Capstone. Reproduce with `python tools/inspect_movement.py` after installing local `capstone` and `pefile` modules into `.local-evidence/python`. The complete disassembly remains local.
