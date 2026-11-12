@@ -1,0 +1,47 @@
+{
+  "source": "sharedassets1.assets",
+  "mesh": 1831,
+  "renderer": 6842,
+  "material": 150,
+  "materialName": "m_fox_default",
+  "textureSource": {
+    "fileId": 5,
+    "pathId": 77,
+    "name": "Fox_Default"
+  },
+  "bones": 23,
+  "nodes": 37,
+  "vertices": 2577,
+  "clips": [
+    {
+      "id": 2031,
+      "name": "FoxIdle",
+      "duration": 6.416666507720947
+    },
+    {
+      "id": 2033,
+      "name": "FoxRun",
+      "duration": 0.8888888955116272
+    },
+    {
+      "id": 2032,
+      "name": "FoxJump4",
+      "duration": 0.9166666865348816
+    },
+    {
+      "id": 2029,
+      "name": "FoxFalling",
+      "duration": 0.8888888955116272
+    },
+    {
+      "id": 2030,
+      "name": "FoxGrind2",
+      "duration": 0.5555555820465088
+    }
+  ],
+  "conversion": "Mirrored x with reversed winding; original hierarchy, normalized skin weights, original inverse binds; streamed curves sampled at original clip sample rate",
+  "sha256": {
+    "fox-rig.json": "4d19401fa176edb3df192b8fb0e4ed97663404c009a3959d5de25e97a141e8d8",
+    "FoxBase.png": "b2fecabbf3c14205bc91f82a062029cfa645602d33a3a0672421075ca021d54e"
+  }
+}

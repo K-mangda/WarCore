@@ -2,6 +2,8 @@
 
 No system has verified 100% behavioral parity. Native method bodies and reference captures are required.
 
+Current visual update: Fox default skin, original 23-joint rig and Idle/Run/Jump/Falling clips are integrated; see [Fox provenance](FOX_ASSETS.md). Map replacement and sliding are deferred at the user's request. Native Animator transition/shader parity is not claimed.
+
 | Source | Browser module | Evidence / status |
 | --- | --- | --- |
 | PlayerMovementValues / PlayerMovement | player/Motor.ts | Declared constants and movement enum extracted; motor formulas provisional |

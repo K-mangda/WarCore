@@ -5,6 +5,7 @@ import type { Input } from '../core/Input';
 import { Slide } from './Slide';
 import { physics, jumpDelta, slideStartDelta } from './Physics';
 export class Motor {
+  slideEnabled=false;
   private slideState = new Slide();
   // ConfigSaveFile settings.pege_mode == 1 blocks crouch/slide in native code.
   limitedMovement = false;
@@ -16,7 +17,7 @@ export class Motor {
   get speed() { return Math.hypot(this.velocity.x,this.velocity.z); }
   reset(top=false) { this.position.set(0,top?16:0,top?-34:8); this.velocity.set(0,0,0); this.grounded=true; this.slideState.reset(); this.aerialJumps=this.extraJumps;this.jumpCooldown=0; }
   step(dt:number,input:Input,yaw:number) {
-    const k=input.keys; const crouchPressed=k.has('KeyC')||k.has('ControlLeft')||k.has('ControlRight');
+    const k=input.keys; const crouchPressed=this.slideEnabled&&(k.has('KeyC')||k.has('ControlLeft')||k.has('ControlRight'));
     const e=.1;
     const gx=(heightAt(this.position.x+e,this.position.z)-heightAt(this.position.x-e,this.position.z))/(2*e);
     const gz=(heightAt(this.position.x,this.position.z+e)-heightAt(this.position.x,this.position.z-e))/(2*e);

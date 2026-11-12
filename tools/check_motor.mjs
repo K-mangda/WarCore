@@ -12,7 +12,7 @@ for(const file of files){
 const {Motor}=await import(pathToFileURL(resolve('.local-evidence/check/player/Motor.js')));
 const {physics}=await import(pathToFileURL(resolve('.local-evidence/check/player/Physics.js')));
 const input={keys:new Set(),jumpTicks:0};const dt=physics.fixedStep;
-const motor=new Motor();motor.velocity.z=-10;input.keys.add('KeyC');motor.step(dt,input,0);
+const motor=new Motor();motor.slideEnabled=true;motor.velocity.z=-10;input.keys.add('KeyC');motor.step(dt,input,0);
 assert.ok(motor.speed>13.7&&motor.speed<14.1,`Slide start must boost 10 m/s once: ${motor.speed}`);
 let maxSpeed=motor.speed;for(let i=0;i<15;i++){motor.step(dt,input,0);maxSpeed=Math.max(maxSpeed,motor.speed);}
 assert.ok(maxSpeed<14.1,'Holding slide must not repeat its start force');
