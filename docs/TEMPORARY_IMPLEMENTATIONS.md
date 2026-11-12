@@ -45,3 +45,7 @@ Updated: 2026-11-12. This register describes the current web implementation, not
 - Sword sound uses source volume~0.4 and normalized pitch endpoints~0.9/1.1. Uniform sampling is a web choice: serialized min/max labels are reversed relative to those normalized endpoints. Native random-volume distribution is not reconstructed; no invented volume jitter is applied.
 - Sword minimum repeat interval0.1s uses the saved spamDelay as a tuning input, but hard-skipping repeats and the global10voice cap remain web approximations. Native filter volume attenuation is not implemented. Sword uses the web master gain0.35 and nonspatial routing, not the native mixer/spatialBlend0.5.
 - Build and combat/sword simulation checks pass. Browser visual/audio verification of this revision was blocked by in-app browser localhost connection timeout; do not claim listening or screenshot verification.
+
+## Sword orientation correction — 2026-11-12
+
+SwordPose.ts now aligns the visible crescent edge (local +X of the exported X-mirrored Quad) with the actual horizontal attack direction. The previous orientation treated a different quad axis as forward, making the crescent appear at the character's side. The quad normal remains world up and the center retains the provisional 1.8m forward offset. This corrects the web axis mismatch; native placement/swing trajectory remains unverified. Run node tools/check_sword_pose.mjs for the directional regression check.

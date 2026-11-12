@@ -1,3 +1,4 @@
+import {placeSwordSlash} from './SwordPose';
 import * as T from 'three';
 import type {Run} from './Run';
 interface Curve {scalar:number;maxCurve:{m_Curve:{time:number;value:number}[]};}
@@ -36,8 +37,7 @@ export class SwordView {
       const frame=Math.min(uv.tilesX-1,Math.max(0,Math.floor(value*uv.tilesX)));
       mesh.material.map!.offset.set(frame/uv.tilesX,1-(uv.rowIndex+1)/uv.tilesY);
       mesh.material.opacity=color.a*Math.min(1,slash.life/.08);
-      mesh.position.copy(slash.position).addScaledVector(slash.direction,1.8);
-      mesh.rotation.set(-Math.PI/2,0,Math.atan2(slash.direction.x,-slash.direction.z));
+      placeSwordSlash(mesh,slash.position,slash.direction);
       mesh.scale.setScalar(p.initialModule.startSize.scalar);
     });
   }
