@@ -1,0 +1,84 @@
+{
+  "source": "vfx/textures/Atlas03.png",
+  "sha256": "96a312721235eac1dfb9fae555ba3990da92778a8ef60b6cd4e284487e65be32",
+  "row": 1,
+  "tiles": [
+    8,
+    8
+  ],
+  "derivation": "Alpha-weighted visible center in exported quad coordinates. Web alignment correction, not native pivot metadata.",
+  "frames": [
+    {
+      "index": 0,
+      "visible": true,
+      "center": [
+        0.18218447336561744,
+        0.15573925544794187,
+        0
+      ]
+    },
+    {
+      "index": 1,
+      "visible": true,
+      "center": [
+        0.26303597383720934,
+        0.10092659883720928,
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "visible": true,
+      "center": [
+        0.31813686708860756,
+        -0.009536053345388762,
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "visible": true,
+      "center": [
+        0.323046875,
+        -0.14308593749999998,
+        0
+      ]
+    },
+    {
+      "index": 4,
+      "visible": true,
+      "center": [
+        0.24460937500000002,
+        -0.31304687499999995,
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "visible": true,
+      "center": [
+        0.10420048701298701,
+        -0.42989042207792205,
+        0
+      ]
+    },
+    {
+      "index": 6,
+      "visible": false,
+      "center": [
+        0.0,
+        0.0,
+        0
+      ]
+    },
+    {
+      "index": 7,
+      "visible": true,
+      "center": [
+        0.0,
+        0.0,
+        0
+      ]
+    }
+  ]
+}

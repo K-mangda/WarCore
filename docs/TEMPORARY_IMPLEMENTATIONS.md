@@ -71,3 +71,23 @@ Validation: build, combat including empty-space/facing/cadence regressions, and 
 Reduced Sword visual scale to0.55 of the extracted size:10.7 ->5.885 web units. This is a requested visual override in combat/Balance.ts, not an edit to original particle metadata. Hit range/damage and effect anchor remain unchanged.
 
 Reduced player horizontal movement cap by30%:10 ->7m/s, using playtestMovement.speedMultiplier0.7 in player/Physics.ts. Both grounded movement and air acceleration use the reduced base cap; existing momentum preservation still applies. Jump impulse/gravity are unchanged. These are user-requested playtest adjustments, not claims about native balance.
+
+## Sword quantity and pose correction — 2026-11-12
+
+Removed invented60degree side fan and shared hit history across quantity. Quantity now produces temporal forward swings with independent hit histories. Web burst spacing=max(source minBurstInterval0.1,source burstTime0.5/quantity) is a provisional interpretation, NOT a verified native formula. End cooldown still uses the web upgrade-controlled attackInterval rather than claiming native timing parity. Pause freezes a pending burst; reset clears it.
+
+Changed visual origin to source spawnOffset0.5Y/2.5forward. Composed source particle localX90/Y90/Z15 with Unity-to-Three handedness conversion and projectile facing instead of forcing one atlas edge onto the forward axis for every frame. Initial local-to-world composition is tested mathematically, but exact native runtime transforms/appearance remain unverified. User-requested visual scale0.55 and speed0.7 remain intact.
+
+Future weapon investigation requirements are recorded in WEAPON_BEHAVIOR.md and .cursor/rules/weapon-behavior.mdc. No universal quantity pattern should be assumed for the other weapons.
+
+### Follow-up: exact burst formula recovered
+
+Focused static native disassembly resolved GetBurstInterval0x434840, StartAttackNoCoroutine0x450C30 and FixedUpdateAttack0x450150. AttackTiming.ts now uses max(burstTime/quantity/AttackSpeed,minBurstInterval/AttackSpeed,fixedStep) for a positive burstTime. First swing is immediate on the next fixedtick; later swings discard elapsed remainder and spawn at most once per tick. The earlier base-state spacing approximation is superseded. Web haste -> AttackSpeed mapping, end cooldown, full damage/trajectory and other weapons' policies remain incomplete. Details: WEAPON_BEHAVIOR.md.
+
+## Full-frame Sword alignment and sound integration — 2026-11-12
+
+User screenshot showed lateral drift still present. The original atlas frames have different alpha-weighted visible centers inside their transparent tiles. New derived frame-alignment.json records those centers; tools/build_sword_frames.py computes them without editing the source PNG. SwordView subtracts the transformed/scaled per-frame center so visible pixels remain at the forward spawn anchor throughout the animation. This is an explicit web alignment correction, not a claim that native Unity changes pivots the same way. Source animation/color/size override remain active. Empty atlas frames are hidden.
+
+The earlier .1s hard repeat gate on SwordSwing is removed; sequential swing events can each play. Audio preloads encoded bytes, tracks per-event voices, prioritizes sword/hurt/level/death over pickups/UI under the10voice cap, and stops stale gameplay sounds on pause/reset while preserving UI/level/death notifications. Voice priorities and sampling remain web policies; native filter attenuation/mixer/spatial routing and impact variants remain unverified. The first gesture may still occur before decode completes; stale gameplay events are not replayed late.
+
+Integrated checks cover quantity repeats and repeat hits, recovered burst timing, every visible atlas-frame center across multiple facing directions, and audio event dispatch/priorities/pause/mute/cleanup. The audio test uses a mock context; it does not claim to verify listening or perceived loudness. Browser load/start/pause were exercised; the pause overlay obscures the effect and no exact rendered comparison with native gameplay is claimed.

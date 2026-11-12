@@ -1,3 +1,4 @@
+import {burstInterval} from './AttackTiming';
 import {Vector3} from 'three';
 import {Swarm,type Enemy} from '../enemies/Swarm';
 import {balance} from './Balance';
@@ -12,11 +13,11 @@ export interface RunSnapshot {weapon:Weapon;health:number;maxHealth:number;level
 export const initialRun:RunSnapshot={weapon:'bolt',health:balance.maxHealth,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:5,kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.attackInterval,projectiles:1};
 export class Run {
   readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];
-  private state:RunSnapshot={...initialRun};private spawnClock=0;private attackClock=0;private hurtClock=0;private started=false;
+  private state:RunSnapshot={...initialRun};private spawnClock=0;private attackClock=0;private hurtClock=0;private started=false;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;
   constructor(private ground:(x:number,z:number)=>number,private visible:(point:Vector3)=>boolean,private random:()=>number=Math.random,private sound:(event:RunEvent)=>void=()=>{}){}
   get blocked(){return this.state.dead||this.state.pendingUpgrades>0;}
   snapshot():RunSnapshot{return {...this.state,enemyCount:this.swarm.enemies.length};}
-  reset(){this.state={...initialRun,weapon:this.state.weapon};this.spawnClock=0;this.attackClock=0;this.hurtClock=0;this.started=false;this.swarm.clear();this.bolts.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;}
+  reset(){this.state={...initialRun,weapon:this.state.weapon};this.spawnClock=0;this.attackClock=0;this.hurtClock=0;this.started=false;this.swordPending=0;this.swordBurstClock=0;this.swarm.clear();this.bolts.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;}
   setWeapon(weapon:Weapon):boolean{
     if(this.state.elapsed!==0||(weapon!=='bolt'&&weapon!=='sword'))return false;
     this.state.weapon=weapon;return true;
@@ -44,12 +45,8 @@ export class Run {
     const forward=new Vector3(facing.x,0,facing.z);
     if(forward.lengthSq()<.0001)forward.set(0,0,-1);
     forward.normalize();
-    // Multiple sectors share hit history, so one attack cannot damage the same enemy twice.
-    const hits=new Set<number>();
-    for(let i=0;i<this.state.projectiles&&this.slashes.length<balance.maxSlashes;i++){
-      const angle=(i-(this.state.projectiles-1)/2)*balance.swordSpread;
-      this.slashes.push({position:player.clone().add(new Vector3(0,.8,0)),direction:forward.clone().applyAxisAngle(new Vector3(0,1,0),angle),life:balance.swordVisualDuration,duration:balance.swordVisualDuration,damage:this.state.damage,hits});
-    }
+    // Each temporal attack owns its hit history; extra quantity can hit again.
+    this.slashes.push({position:player.clone().add(new Vector3(0,.5,0)),direction:forward,life:balance.swordVisualDuration,duration:balance.swordVisualDuration,damage:this.state.damage,hits:new Set<number>()});
     this.sound('sword');return true;
   }
   private applyHit(enemy:Enemy,damage:number,direction:Vector3){
@@ -78,7 +75,20 @@ export class Run {
     if(this.spawnClock<=0){this.swarm.spawn(player,this.ground,this.visible,this.random);this.spawnClock=balance.spawnInterval;}
     this.swarm.step(dt,player,this.ground);
     this.attackClock=Math.max(0,this.attackClock-dt);
-    if(this.attackClock===0&&(this.state.weapon==='sword'?this.swing(player,facing):this.fire(player)))this.attackClock=this.state.attackInterval;
+    if(this.state.weapon==='sword'){
+      if(this.swordPending===0&&this.attackClock===0){
+        this.swordPending=this.state.projectiles;this.swordBurstClock=0;
+        // Native interval formula; web haste maps to an effective AttackSpeed
+        // multiplier while the full native player-stat system remains incomplete.
+        const attackSpeed=balance.attackInterval/this.state.attackInterval;
+        this.swordBurstInterval=burstInterval(balance.swordBurstTime,balance.swordMinBurstInterval,this.swordPending,attackSpeed,dt);
+      }
+      this.swordBurstClock=Math.max(0,this.swordBurstClock-dt);
+      if(this.swordPending>0&&this.swordBurstClock===0&&this.swing(player,facing)){
+        this.swordPending--;this.swordBurstClock=this.swordBurstInterval;
+        if(this.swordPending===0)this.attackClock=this.state.attackInterval;
+      }
+    }else if(this.attackClock===0&&this.fire(player))this.attackClock=this.state.attackInterval;
     for(let i=this.slashes.length-1;i>=0;i--){
       const slash=this.slashes[i];
       for(const enemy of [...this.swarm.enemies]){

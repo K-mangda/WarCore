@@ -7,7 +7,7 @@ import './ui/combat.css';
 const upgrades:{id:Upgrade;icon:string;name:string;description:string}[]=[
   {id:'damage',icon:'DamageTome',name:'POWER',description:'+5 attack damage'},
   {id:'haste',icon:'CooldownTome',name:'HASTE',description:'15% shorter attack cooldown'},
-  {id:'projectiles',icon:'QuantityTome',name:'MULTISHOT',description:'+1 bolt or slash (up to 8)'},
+  {id:'projectiles',icon:'QuantityTome',name:'QUANTITY',description:'+1 attack per cycle (up to 8)'},
 ];
 function App(){
   const host=useRef<HTMLDivElement>(null),engine=useRef<Engine|null>(null);

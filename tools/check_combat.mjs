@@ -4,7 +4,7 @@ import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 import {Vector3} from 'three';
-for(const name of ['combat/Run','combat/Balance','enemies/Swarm']){
+for(const name of ['combat/Run','combat/Balance','combat/AttackTiming','enemies/Swarm']){
   const destination=resolve('.local-evidence/combat-check',name+'.js');mkdirSync(dirname(destination),{recursive:true});
   const code=ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'");writeFileSync(destination,code);
 }
@@ -40,8 +40,11 @@ const slashLife=sword.slashes[0].life;sword.step(.1,player);assert.equal(sword.s
 sword.reset();assert.equal(sword.snapshot().weapon,'sword');assert.equal(sword.slashes.length,0);assert.equal(sword.snapshot().elapsed,0);assert.equal(sword.setWeapon('bolt'),true);
 const multi=new Run(()=>0,()=>true,random);multi.setWeapon('sword');for(let i=0;i<5;i++)multi.gems.push({position:player.clone()});multi.step(.02,player);multi.choose('projectiles');
 for(let i=0;i<44;i++)multi.step(.02,player);
-const shared=enemy(1004,0,-2);multi.swarm.enemies.push(shared);multi.step(.02,player);assert.equal(multi.slashes.length,2);assert.equal(shared.health,90,'Overlapping multishot sectors share one hit per attack');
-console.log('Sword checks passed: sector, range, single-hit window, bolt isolation, selection, pause, reset and overlapping sectors.');
+const shared=enemy(1004,0,-2);multi.swarm.enemies.push(shared);multi.step(.02,player);assert.equal(multi.slashes.length,1,'Quantity must not create a simultaneous side fan');assert.equal(shared.health,90);
+for(let i=0;i<14;i++)multi.step(.02,player);
+assert.equal(shared.health,80,'A later slash in the burst must be able to hit the same enemy again');
+assert.ok(multi.slashes.every(slash=>slash.direction.equals(new Vector3(0,0,-1))),'Extra quantity must preserve forward direction');
+console.log('Sword checks passed: sector, range, single-hit window, bolt isolation, selection, pause, reset and sequential repeat hits.');
 
 const emptySword=new Run(()=>0,()=>true,random);emptySword.setWeapon('sword');
 emptySword.step(.02,player,new Vector3(1,0,0));
@@ -52,3 +55,10 @@ emptySword.step(.02,player,new Vector3(1,0,0));assert.equal(sideTarget.health,10
 emptySword.swarm.clear();for(let i=0;i<44;i++)emptySword.step(.02,player,new Vector3(1,0,0));
 assert.ok(emptySword.slashes.length>0,'Sword must repeat on cooldown without a target');
 console.log('Sword cadence checks passed: empty-space attacks, facing direction, no target steering and repeated swings.');
+
+const {burstInterval}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/AttackTiming.js')));
+assert.equal(burstInterval(.5,.1,2,1,.02),.25);
+assert.equal(burstInterval(.5,.1,2,2,.02),.125,'Attack speed scales burst spacing');
+assert.equal(burstInterval(.5,.1,100,20,.02),.02,'Native burst interval cannot be shorter than one fixed step');
+assert.equal(burstInterval(0,.1,2,1,.02),0,'Nonpositive native burstTime uses immediate policy');
+console.log('Recovered attack timing checks passed: quantity, attack speed, fixed-step floor and immediate policy.');

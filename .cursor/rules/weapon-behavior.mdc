@@ -1,0 +1,18 @@
+---
+description: Verify native identity, quantity behavior, pose and audio before implementing Megabonk weapons
+globs: "src/combat/**,src/audio/**,tools/import_*assets.py,public/weapons/**"
+alwaysApply: false
+---
+
+# Weapon behavior evidence
+
+- Read docs/WEAPON_BEHAVIOR.md before adding or changing a weapon.
+- Verify character -> WeaponData enum -> attack prefab -> projectile -> renderer/material/audio references. Sword2 and HeroSword27 are distinct.
+- Determine quantity behavior per weapon: sequential burst, simultaneous volley, angular spread or another mode. Never infer a fan from quantity alone or copy Sword rules to another weapon.
+- Separate attack cooldown, burst spacing, individual projectile lifetime and hit history. A later attack may hit again; do not share one hit set across a temporal burst without evidence.
+- Compose native local transforms/rotations with world facing and the documented handedness conversion. Test the rendered atlas frames; a vector test does not prove visual parity.
+- Preserve native metadata; put user-requested size/speed overrides in web tuning, clearly labeled.
+- Record unverified runtime formulas in docs/TEMPORARY_IMPLEMENTATIONS.md. Empty dump.cs bodies and filenames do not prove behavior.
+- Keep provisional fallback behavior explicit and per weapon; never report full native parity from file extraction alone.
+
+- Deliver a weapon change as a coherent package: attack timing/quantity, full VFX animation/pivots, sound events/variants and pause/reset lifecycle. Perform an integrated check before asking the user to test; do not offload each tiny correction to them.

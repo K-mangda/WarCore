@@ -8,3 +8,5 @@ public/models/*
 public/audio/*
 public/ui/items/*
 !**/.gitkeep
+
+__pycache__/

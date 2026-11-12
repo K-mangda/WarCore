@@ -49,6 +49,7 @@
   "audioOrigin": "Existing local Unity WAV export: C:\\Users\\Korawit\\Desktop\\WarCore\\public\\audio\\megabonk\\SwordSwing.wav; direct decode failed FmodError. Native compressed waveform not independently compared.",
   "hashes": {
     "audio/SwordSwing.wav": "77741532cef521c280887efb45b94bf4177377102a586c3fe5e10162daf27ce6",
+    "frame-alignment.json": "b4542d6dfb743741ff59d833fccd502ce48edd5bf7cd87fea3d70c23eb74f3c1",
     "metadata/audio.json": "a426cd21589b25a2be10d596be9d38e3299a0ce80d6c93c8d3db029169333bb5",
     "metadata/material.json": "17ca26a4b97d4871105aff3f47ac6965e9afa7a198694f7e793a1bbe2a33b150",
     "metadata/particles.json": "ce61cf6d2d6729af604e8491433cf859a7ecd66da4264cb77900cdb244ee9c39",

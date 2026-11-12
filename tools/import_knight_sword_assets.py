@@ -120,6 +120,9 @@ save('metadata/audio.json', {
     'unverified': 'Native RandomSfx/AudioSpamFilter algorithms unknown. Keep serialized field names despite reversed min/max values; distribution/order not inferred.',
     'exportOrigin': audio_origin, 'validation': validation,
 })
+from build_sword_frames import build as build_frame_alignment
+build_frame_alignment(out)
+
 save('provenance.json', {
     'identity': {'character': {'name': 'Knight', 'source': source(7823), 'weaponPPtrOffset': 316, 'weaponPathId': 8633}, 'weapon': {'name': 'WeaponSword', 'source': source(8633), 'enumOffset': 212, 'eWeapon': 2, 'attackPPtrOffset': 332, 'attackPathId': 4144}, 'attackComponent': {'source': source(8928), 'projectilePPtrOffset': 32, 'projectilePathId': 3436}, 'projectile': source(3436)},
     'notHeroSword': {'wrongPreviousWeaponData': 8622, 'wrongPreviousEWeapon': 27, 'wrongPreviousTexture': 930, 'wrongPreviousParticle': 7039},
