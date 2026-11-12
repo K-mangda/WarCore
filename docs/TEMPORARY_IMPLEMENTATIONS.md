@@ -49,3 +49,7 @@ Updated: 2026-11-12. This register describes the current web implementation, not
 ## Sword orientation correction — 2026-11-12
 
 SwordPose.ts now aligns the visible crescent edge (local +X of the exported X-mirrored Quad) with the actual horizontal attack direction. The previous orientation treated a different quad axis as forward, making the crescent appear at the character's side. The quad normal remains world up and the center retains the provisional 1.8m forward offset. This corrects the web axis mismatch; native placement/swing trajectory remains unverified. Run node tools/check_sword_pose.mjs for the directional regression check.
+
+## Impact audio correction — 2026-11-12
+
+Removed the provisional universal hit -> Bonk.wav mapping from both combat events and audio loading. It previously played on every successful sword/bolt hit, without verified source mapping. Sword swing still uses HeroSwordAttack.wav; projectile shot still uses its existing clip. Enemy-hit and weapon-impact audio is pending verified references from the external extraction task. The Bonk file remains preserved as an unused source asset; its presence does not justify playing it on every hit. This entry supersedes the earlier hit mapping/interval in this register.

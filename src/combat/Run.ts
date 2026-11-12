@@ -2,7 +2,7 @@ import {Vector3} from 'three';
 import {Swarm,type Enemy} from '../enemies/Swarm';
 import {balance} from './Balance';
 export type Weapon='bolt'|'sword';
-export type RunEvent='sword'|'shot'|'hit'|'xp'|'level'|'hurt'|'death';
+export type RunEvent='sword'|'shot'|'xp'|'level'|'hurt'|'death';
 export type Upgrade='damage'|'haste'|'projectiles';
 export interface Projectile {position:Vector3;velocity:Vector3;life:number;damage:number;}
 export interface Slash {position:Vector3;direction:Vector3;life:number;duration:number;damage:number;hits:Set<number>;}
@@ -52,7 +52,8 @@ export class Run {
     this.sound('sword');return true;
   }
   private applyHit(enemy:Enemy,damage:number,direction:Vector3){
-    this.sound('hit');enemy.health-=damage;enemy.flash=.15;enemy.velocity.copy(direction).normalize().multiplyScalar(5);
+    // Impact audio awaits verified weapon/enemy references; no universal Bonk.
+    enemy.health-=damage;enemy.flash=.15;enemy.velocity.copy(direction).normalize().multiplyScalar(5);
     this.hits.push({position:enemy.position.clone().add(new Vector3(0,1.5,0)),damage,life:.6});if(enemy.health<=0)this.kill(enemy);
   }
   private fire(player:Vector3){

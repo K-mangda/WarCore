@@ -1,4 +1,4 @@
-const clips={click:'MenuClick',hover:'menuMove',shot:'retro_shoot_fireball3',hit:'Bonk',xp:'Xp2',level:'Levelup3',hurt:'PlayerDamage',death:'DeathImpact',jump:'Player_Jump',land:'Player_Landing',sword:'HeroSwordAttack'} as const;
+const clips={click:'MenuClick',hover:'menuMove',shot:'retro_shoot_fireball3',xp:'Xp2',level:'Levelup3',hurt:'PlayerDamage',death:'DeathImpact',jump:'Player_Jump',land:'Player_Landing',sword:'HeroSwordAttack'} as const;
 const clipUrl=(key:Sound,file:string)=>key==='sword'?'/weapons/sword/audio/HeroSwordAttack.wav':`/game-audio/${file}.wav`;
 export type Sound=keyof typeof clips;
 /** Original WAV clips, with browser gesture unlock and bounded overlapping voices. */
@@ -25,7 +25,7 @@ export class GameAudio {
   play=(key:Sound)=>{
     const context=this.context,buffer=this.buffers.get(key);
     if(!context||!buffer||context.state!=='running'||this.muted||this.disposed)return;
-    const now=context.currentTime,interval=key==='xp'?.08:key==='hit'?.09:key==='hover'?.07:key==='sword'?.1:.12;
+    const now=context.currentTime,interval=key==='xp'?.08:key==='hover'?.07:key==='sword'?.1:.12;
     if(now-(this.last.get(key)??-Infinity)<interval||this.voices.size>=10)return;
     this.last.set(key,now);
     const voice=context.createBufferSource();voice.buffer=buffer;
