@@ -26,3 +26,18 @@ for(let i=0;i<1000&&!death.blocked;i++)death.step(.02,player);assert.equal(death
 death.reset();assert.equal(death.snapshot().health,100);assert.equal(death.snapshot().dead,false);assert.equal(death.swarm.enemies.length,0);assert.equal(death.bolts.length,0);assert.equal(death.snapshot().pendingUpgrades,0);
 const hidden=new Run(()=>0,()=>true,random);hidden.step(.02,player);assert.equal(hidden.swarm.enemies.length,0,'Spawn must reject positions visible to camera');
 console.log('Combat checks passed: auto-hit, drops, collection, queued upgrades, freeze, damage interval, death, reset and offscreen spawn.');
+
+const sword=new Run(()=>0,()=>true,random);
+assert.equal(sword.setWeapon('sword'),true);
+const enemy=(id,x,z)=>({id,position:new Vector3(x,0,z),velocity:new Vector3(),health:100,flash:0});
+const front=enemy(1001,0,-2),behind=enemy(1002,0,2),far=enemy(1003,0,-10);
+sword.swarm.enemies.push(front,behind,far);sword.step(.02,player);
+assert.equal(front.health,90,'Sword must hit its forward sector');assert.equal(behind.health,100,'Sword must not hit behind a single sector');assert.equal(far.health,100,'Sword range must be bounded');assert.equal(sword.bolts.length,0,'Sword must not fire bolts');assert.equal(sword.slashes.length,1);
+assert.equal(sword.setWeapon('bolt'),false,'Weapon changes are restricted to a fresh run');
+for(let i=0;i<5;i++)sword.step(.02,player);assert.equal(front.health,90,'A persistent swing must hit each enemy once');
+for(let i=0;i<5;i++)sword.gems.push({position:player.clone()});sword.step(.02,player);
+const slashLife=sword.slashes[0].life;sword.step(.1,player);assert.equal(sword.slashes[0].life,slashLife,'Upgrade pause must freeze slash age');
+sword.reset();assert.equal(sword.snapshot().weapon,'sword');assert.equal(sword.slashes.length,0);assert.equal(sword.snapshot().elapsed,0);assert.equal(sword.setWeapon('bolt'),true);
+const multi=new Run(()=>0,()=>true,random);multi.setWeapon('sword');for(let i=0;i<5;i++)multi.gems.push({position:player.clone()});multi.step(.02,player);multi.choose('projectiles');
+const shared=enemy(1004,0,-2);multi.swarm.enemies.push(shared);multi.step(.02,player);assert.equal(multi.slashes.length,2);assert.equal(shared.health,90,'Overlapping multishot sectors share one hit per attack');
+console.log('Sword checks passed: sector, range, single-hit window, bolt isolation, selection, pause, reset and overlapping sectors.');

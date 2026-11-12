@@ -5,13 +5,13 @@ import {initialRun,type Upgrade} from './combat/Run';
 import './ui/style.css';
 import './ui/combat.css';
 const upgrades:{id:Upgrade;icon:string;name:string;description:string}[]=[
-  {id:'damage',icon:'✦',name:'POWER',description:'+5 damage per bolt'},
-  {id:'haste',icon:'ϟ',name:'HASTE',description:'15% shorter attack cooldown'},
-  {id:'projectiles',icon:'⁂',name:'MULTISHOT',description:'+1 bolt per attack (up to 8)'},
+  {id:'damage',icon:'DamageTome',name:'POWER',description:'+5 attack damage'},
+  {id:'haste',icon:'CooldownTome',name:'HASTE',description:'15% shorter attack cooldown'},
+  {id:'projectiles',icon:'QuantityTome',name:'MULTISHOT',description:'+1 bolt or slash (up to 8)'},
 ];
 function App(){
   const host=useRef<HTMLDivElement>(null),engine=useRef<Engine|null>(null);
-  const [error,setError]=useState(''),[ready,setReady]=useState(false);
+  const [error,setError]=useState(''),[ready,setReady]=useState(false),[muted,setMuted]=useState(false);
   const [data,setData]=useState<Telemetry>({...initialRun,speed:0,fps:0,state:'Idle',jumps:0,locked:false});
   useEffect(()=>{
     if(!host.current)return;let mounted=true;
@@ -21,18 +21,19 @@ function App(){
   const time=`${Math.floor(data.elapsed/60).toString().padStart(2,'0')}:${Math.floor(data.elapsed%60).toString().padStart(2,'0')}`;
   return <main>
     <div ref={host} className="world"/><div className="vignette"/>
-    <header><div className="brand">M<span>◆</span>B<span className="brand-sub">COMBAT LAB</span></div><div className="phase"><i/> AUTO ATTACK <span>/</span> SANDBOX</div><span className="build">PROVISIONAL BALANCE · 0.2</span></header>
+    <header><img className="game-logo" src="/game-ui/MegabonkLogo.png" alt="Megabonk"/><span className="build">WEB PLAYTEST · PROVISIONAL BALANCE</span></header>
+    <button className="audio-toggle" aria-pressed={muted} onClick={()=>{engine.current?.audio.unlock();setMuted(engine.current?.audio.toggle()??false);}}>{muted?'SOUND OFF':'SOUND ON'}</button>
     <section className="run-hud" aria-label="Run status">
       <div className="run-time">{time}<small>{data.kills} KILLS · {data.enemyCount} ENEMIES</small></div>
       <div className="health"><span>HP {data.health} / {data.maxHealth}</span><div role="progressbar" aria-label="Health" aria-valuenow={data.health} aria-valuemax={data.maxHealth} aria-valuemin={0}><b style={{width:`${data.health/data.maxHealth*100}%`}}/></div></div>
       <div className="experience"><span>LEVEL {data.level} <small>{data.xp} / {data.xpNeeded} XP</small></span><div role="progressbar" aria-label="Experience" aria-valuenow={data.xp} aria-valuemax={data.xpNeeded} aria-valuemin={0}><b style={{width:`${data.xp/data.xpNeeded*100}%`}}/></div></div>
     </section>
     <div className="crosshair">+</div>
-    <aside className="weapon-status"><span>AUTO MAGIC BOLT</span><strong>{data.damage} DMG · {data.attackInterval.toFixed(2)}s · ×{data.projectiles}</strong><small>Targets nearby enemies automatically</small></aside>
+    <aside className="weapon-status"><img src={data.weapon==='sword'?'/weapons/sword/vfx/textures/HeroSword_Icon.png':'/game-ui/Firestaff.png'} alt=""/><span>{data.weapon==='sword'?'SWORD · TEST BALANCE':'AUTO MAGIC BOLT'}</span><strong>{data.damage} DMG · {data.attackInterval.toFixed(2)}s · ×{data.projectiles}</strong><small>Targets nearby enemies automatically</small></aside>
     <aside className="performance">{data.speed.toFixed(1)} m/s · {data.fps} FPS · {data.state}</aside>
-    {data.pendingUpgrades>0&&!data.dead&&<section className="upgrade-screen" role="dialog" aria-label="Choose an upgrade"><span className="eyebrow">LEVEL {data.level} · GAME PAUSED</span><h2>Choose your upgrade.</h2><p>Pick one to continue{data.pendingUpgrades>1?` · ${data.pendingUpgrades} choices remaining`:''}</p><div className="upgrade-cards">{upgrades.map(upgrade=><button key={upgrade.id} disabled={upgrade.id==='projectiles'&&data.projectiles>=8} onClick={()=>engine.current?.chooseUpgrade(upgrade.id)}><span>{upgrade.icon}</span><h3>{upgrade.name}</h3><p>{upgrade.description}</p><small>SELECT →</small></button>)}</div></section>}
+    {data.pendingUpgrades>0&&!data.dead&&<section className="upgrade-screen" role="dialog" aria-label="Choose an upgrade"><span className="eyebrow">LEVEL {data.level} · GAME PAUSED</span><h2>Level up!</h2><p>Pick one to continue{data.pendingUpgrades>1?` · ${data.pendingUpgrades} choices remaining`:''}</p><div className="upgrade-cards">{upgrades.map(upgrade=><button key={upgrade.id} disabled={upgrade.id==='projectiles'&&data.projectiles>=8} onPointerEnter={()=>engine.current?.audio.play('hover')} onClick={()=>engine.current?.chooseUpgrade(upgrade.id)}><img src={`/game-ui/${upgrade.icon}.png`} alt=""/><h3>{upgrade.name}</h3><p>{upgrade.description}</p><small>SELECT →</small></button>)}</div></section>}
     {data.dead&&<section className="start death" role="dialog" aria-label="Run ended"><span className="eyebrow">RUN ENDED</span><h2>One more run?</h2><p>{time} survived · {data.kills} kills · Level {data.level}</p><button onClick={()=>engine.current?.restart()}>PLAY AGAIN <span>↗</span></button></section>}
-    {!data.locked&&!data.dead&&data.pendingUpgrades===0&&<section className="start"><span className="eyebrow">FOX / COMBAT PLAYTEST</span><h2>{data.elapsed>0?'Take a breather.':'Keep it moving.'}</h2><p>Move, survive and collect blue XP.<br/>Attacks fire automatically. No clicking to shoot.</p><button disabled={!!error||!ready} onClick={()=>engine.current?.lock()}>{!ready?'LOADING…':data.elapsed>0?'RESUME RUN':'START RUN'} <span>↗</span></button><small>{error||'WASD move · Space jump · Drag to look · Esc pause'}</small><div className="reset"><button onClick={()=>engine.current?.reset()}>NEW RUN</button></div></section>}
+    {!data.locked&&!data.dead&&data.pendingUpgrades===0&&<section className="start"><span className="eyebrow">FOX / COMBAT PLAYTEST</span><h2>{data.elapsed>0?'Paused':'Ready?'}</h2><p>Move, survive and collect blue XP.<br/>Attacks fire automatically. No clicking to shoot.</p>{data.elapsed===0&&<div className="weapon-select" aria-label="Starting weapon"><button aria-pressed={data.weapon==='bolt'} onClick={()=>engine.current?.setWeapon('bolt')}>Magic bolt</button><button aria-pressed={data.weapon==='sword'} onClick={()=>engine.current?.setWeapon('sword')}>Sword</button></div>}<button disabled={!!error||!ready} onClick={()=>engine.current?.lock()}>{!ready?'LOADING…':data.elapsed>0?'RESUME RUN':'START RUN'} <span>↗</span></button><small>{error||'WASD move · Space jump · Drag to look · Esc pause'}</small><div className="reset"><button onClick={()=>engine.current?.reset()}>NEW RUN</button></div></section>}
     <footer><div className="controls"><span><kbd>W A S D</kbd> MOVE</span><span><kbd>SPACE</kbd> JUMP</span><span><kbd>MOUSE</kbd> LOOK</span><span><kbd>ESC</kbd> PAUSE</span></div><div className="notice">TEST ARENA · ORIGINAL MAP DEFERRED</div></footer>
   </main>;
 }

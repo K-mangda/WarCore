@@ -1,0 +1,236 @@
+{
+  "assets": [
+    {
+      "name": "alagard",
+      "file": "sharedassets0.assets",
+      "pathId": 128,
+      "type": "Font",
+      "bytes": 13544
+    },
+    {
+      "name": "NotoSansThai_Condensed-Bold",
+      "file": "sharedassets0.assets",
+      "pathId": 129,
+      "type": "Font",
+      "bytes": 47528
+    },
+    {
+      "name": "CooldownTome",
+      "file": "sharedassets1.assets",
+      "pathId": 643,
+      "type": "Texture2D",
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "DamageTome",
+      "file": "sharedassets1.assets",
+      "pathId": 792,
+      "type": "Texture2D",
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "MyButtonNew",
+      "file": "sharedassets1.assets",
+      "pathId": 991,
+      "type": "Texture2D",
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "MyButtonOverlay",
+      "file": "sharedassets1.assets",
+      "pathId": 1050,
+      "type": "Texture2D",
+      "size": [
+        64,
+        64
+      ]
+    },
+    {
+      "name": "BorderOnly",
+      "file": "sharedassets1.assets",
+      "pathId": 1145,
+      "type": "Texture2D",
+      "size": [
+        64,
+        64
+      ]
+    },
+    {
+      "name": "QuantityTome",
+      "file": "sharedassets1.assets",
+      "pathId": 1189,
+      "type": "Texture2D",
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "BorderNew",
+      "file": "sharedassets1.assets",
+      "pathId": 1200,
+      "type": "Texture2D",
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "Firestaff",
+      "file": "sharedassets1.assets",
+      "pathId": 1248,
+      "type": "Texture2D",
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "BorderWindow",
+      "file": "sharedassets1.assets",
+      "pathId": 1305,
+      "type": "Texture2D",
+      "size": [
+        64,
+        64
+      ]
+    },
+    {
+      "name": "WOOD_1A",
+      "file": "sharedassets1.assets",
+      "pathId": 1327,
+      "type": "Texture2D",
+      "size": [
+        64,
+        64
+      ]
+    },
+    {
+      "name": "icon_health",
+      "file": "sharedassets1.assets",
+      "pathId": 1333,
+      "type": "Texture2D",
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "Fox",
+      "file": "sharedassets1.assets",
+      "pathId": 1385,
+      "type": "Texture2D",
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "MegabonkLogo",
+      "file": "sharedassets1.assets",
+      "pathId": 1397,
+      "type": "Texture2D",
+      "size": [
+        1622,
+        364
+      ]
+    },
+    {
+      "name": "icon_coin",
+      "file": "sharedassets1.assets",
+      "pathId": 1408,
+      "type": "Texture2D",
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "MyButtonNew",
+      "file": "sharedassets1.assets",
+      "pathId": 2332,
+      "type": "Sprite",
+      "border": {
+        "left": 7.0,
+        "bottom": 7.0,
+        "right": 7.0,
+        "top": 7.0
+      }
+    },
+    {
+      "name": "MyButtonOverlay",
+      "file": "sharedassets1.assets",
+      "pathId": 2335,
+      "type": "Sprite",
+      "border": {
+        "left": 20.0,
+        "bottom": 20.0,
+        "right": 20.0,
+        "top": 20.0
+      }
+    },
+    {
+      "name": "BorderOnly",
+      "file": "sharedassets1.assets",
+      "pathId": 2340,
+      "type": "Sprite",
+      "border": {
+        "left": 20.0,
+        "bottom": 20.0,
+        "right": 20.0,
+        "top": 20.0
+      }
+    },
+    {
+      "name": "BorderNew",
+      "file": "sharedassets1.assets",
+      "pathId": 2342,
+      "type": "Sprite",
+      "border": {
+        "left": 10.0,
+        "bottom": 10.0,
+        "right": 10.0,
+        "top": 10.0
+      }
+    },
+    {
+      "name": "BorderWindow",
+      "file": "sharedassets1.assets",
+      "pathId": 2344,
+      "type": "Sprite",
+      "border": {
+        "left": 20.0,
+        "bottom": 20.0,
+        "right": 20.0,
+        "top": 20.0
+      }
+    }
+  ],
+  "hashes": {
+    "alagard.ttf": "12f1e58f79d18d2ef49d923d801baade892769289bfcb9444769b6a4f7847007",
+    "BorderNew.png": "173fc43e22f12af956ae088b0797a49d4be82afbddb7c9b5001196a8c7e3c3a7",
+    "BorderOnly.png": "82b4f209ea6ecc9cb3ac2f9aaf4a837c7aa7c51718f6074604d71122c20be0e8",
+    "BorderWindow.png": "e08131423a139c172e15502702cc07ccda5ca8682293db2f004db3f33c5233be",
+    "CooldownTome.png": "19adf57556fad63b076c38d5aca8fff42ac3f16494847efc34f0afbb1ae1cac5",
+    "DamageTome.png": "3dd3d75a3039dc8a2ad53312e0577facdd9cc21faa51dd12af7a9a857021cd6b",
+    "Firestaff.png": "7fd988273659490051e0db91dffb42fc72fa17c72c48270a26fa79f9713c7f8b",
+    "Fox.png": "ff9ae4355d4355d9f70ab9599598e77b7533f4014608d4332e5111f685f8e3f7",
+    "icon_coin.png": "97374fe1e09c8af900758555c260ab04261523a3df270d17c91d3c981c5a4470",
+    "icon_health.png": "aa5a903efbcab46d7ffd6d13206381bdd0e95bb6d65effd1f63c3890c3c34138",
+    "MegabonkLogo.png": "7f8463e01117d8df0b3e53f542c91dfd3f0cc716294bdddca0a881ff0015245e",
+    "MyButtonNew.png": "5a74b657ccbb1c2daa171c6adf96f02c2c1eae95f50e3b2f1eb56bdfe997d9fc",
+    "MyButtonOverlay.png": "16c33107cb17b7fa17e86ac47af4aa03e5c8fd2a00219b5f1c0b01a7312fb114",
+    "NotoSansThai_Condensed-Bold.ttf": "a683e3bc25ba5de6d1cf904437e2e63ce97f217d7fe0efb2c3933d7f9a95661d",
+    "QuantityTome.png": "58897be6e883c4a6939da175d54eb934c7626928d984a17a2e8843ea37ed932f",
+    "WOOD_1A.png": "bf8ee791d3e02f05df0afd527d3fe90ade83906e4c7bb2180b851ecd0c095d26"
+  }
+}

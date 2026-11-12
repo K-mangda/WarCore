@@ -1,0 +1,86 @@
+{
+  "sounds": [
+    {
+      "name": "MenuClick",
+      "duration": 0.6704761904761904,
+      "rate": 44100,
+      "channels": 1,
+      "source": "Existing Unity AudioClip WAV export"
+    },
+    {
+      "name": "menuMove",
+      "duration": 0.03929705215419501,
+      "rate": 44100,
+      "channels": 1,
+      "source": "Existing Unity AudioClip WAV export"
+    },
+    {
+      "name": "retro_shoot_fireball3",
+      "duration": 0.4806458333333333,
+      "rate": 48000,
+      "channels": 2,
+      "source": "Existing Unity AudioClip WAV export"
+    },
+    {
+      "name": "Xp2",
+      "duration": 0.3500453514739229,
+      "rate": 44100,
+      "channels": 1,
+      "source": "Existing Unity AudioClip WAV export"
+    },
+    {
+      "name": "Levelup3",
+      "duration": 2.007625,
+      "rate": 48000,
+      "channels": 2,
+      "source": "Existing Unity AudioClip WAV export"
+    },
+    {
+      "name": "PlayerDamage",
+      "duration": 0.8,
+      "rate": 48000,
+      "channels": 2,
+      "source": "Existing Unity AudioClip WAV export"
+    },
+    {
+      "name": "DeathImpact",
+      "duration": 7.905083333333334,
+      "rate": 48000,
+      "channels": 2,
+      "source": "Existing Unity AudioClip WAV export"
+    },
+    {
+      "name": "Player_Jump",
+      "duration": 0.3722916666666667,
+      "rate": 48000,
+      "channels": 2,
+      "source": "Existing Unity AudioClip WAV export"
+    },
+    {
+      "name": "Player_Landing",
+      "duration": 0.4093541666666667,
+      "rate": 48000,
+      "channels": 1,
+      "source": "Existing Unity AudioClip WAV export"
+    },
+    {
+      "name": "Bonk",
+      "duration": 0.4992290249433107,
+      "rate": 44100,
+      "channels": 1,
+      "source": "Existing Unity AudioClip WAV export"
+    }
+  ],
+  "hashes": {
+    "Bonk.wav": "e03a285ca7e1f39478ed9f1f9b5dfe2b248c78d1a5a8fef63dc3e2eea38f924a",
+    "DeathImpact.wav": "85a24f376e0a80594dbefc0479b5fb0be38bc80b6a6b8b72f7fb63d7615adf76",
+    "Levelup3.wav": "336e01e383b340784aa329fb0696c4c90a0ea1d92f1afd39fde7d0087a8b4389",
+    "MenuClick.wav": "11dfadaa8ec4fc013662db76ed965de9a1abed939c82f4954af861fd66f3aae4",
+    "menuMove.wav": "b6d6fc4d4be32d9f72df19b39c757acf93015c45fd9622674bd45822c6fe5983",
+    "PlayerDamage.wav": "e07fc1a8aa52c6436ab6618d5629bb23c9341776340c033899bd6a270653f395",
+    "Player_Jump.wav": "b77ea661c5c6f6fd4684dba49ecd5146dba21a3f664d757a4da7a5e9db9afc39",
+    "Player_Landing.wav": "6dd91fc2b6efedebb58b2e92708d8f79116622b8b9142d55232710b6f4a1bda4",
+    "retro_shoot_fireball3.wav": "cbc27e65be0f3f602bb4dab4bc27adcb0e67355370bf51016674c52dbd662c0b",
+    "Xp2.wav": "78caa9fad73ec5ed96b9c3dd3b42af83f66dde7a029ba81bb9d11227d3cabdd1"
+  }
+}

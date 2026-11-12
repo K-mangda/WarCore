@@ -1,0 +1,33 @@
+{
+  "source": {
+    "assetFile": "sharedassets1.assets",
+    "pathId": 3180,
+    "type": "GameObject"
+  },
+  "data": {
+    "m_Component": [
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 4753
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7039
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7227
+        }
+      }
+    ],
+    "m_Layer": 0,
+    "m_Name": "HeroSwordProjectileMoving",
+    "m_Tag": 0,
+    "m_IsActive": true
+  }
+}

@@ -1,3 +1,4 @@
+import {SwordView} from './SwordView';
 import * as T from 'three';
 import type {Run} from './Run';
 import {balance} from './Balance';
@@ -9,8 +10,10 @@ export class CombatView {
   private gems=new T.InstancedMesh(new T.OctahedronGeometry(.2),new T.MeshBasicMaterial({color:new T.Color().setRGB(...xpColors.low,T.SRGBColorSpace)}),balance.maxGems);
   private labels:T.Sprite[]=[];private numbers=new Map<number,T.SpriteMaterial>();
   private disposed=false;
-  constructor(private scene:T.Scene){this.bolts.count=0;this.gems.count=0;this.bolts.frustumCulled=false;this.gems.frustumCulled=false;scene.add(this.bolts,this.gems);}
+  private sword:SwordView;
+  constructor(private scene:T.Scene){this.sword=new SwordView(scene);this.bolts.count=0;this.gems.count=0;this.bolts.frustumCulled=false;this.gems.frustumCulled=false;scene.add(this.bolts,this.gems);}
   async load(){
+    await this.sword.load();
     const response=await fetch('/combat/skeleton.json');if(!response.ok)throw new Error('Skeleton visual failed to load');
     const data=await response.json() as MeshData;
     const texture=await new T.TextureLoader().loadAsync('/combat/'+encodeURIComponent(data.tex));
@@ -28,6 +31,7 @@ export class CombatView {
     material=new T.SpriteMaterial({map:new T.CanvasTexture(canvas),transparent:true,depthWrite:false});this.numbers.set(damage,material);return material;
   }
   update(run:Run,player:T.Vector3){
+    this.sword.update(run);
     const matrix=new T.Matrix4(),rotation=new T.Quaternion(),up=new T.Vector3(0,1,0),scale=new T.Vector3(1,1,1);
     if(this.enemies){this.enemies.count=run.swarm.enemies.length;run.swarm.enemies.forEach((enemy,i)=>{
       rotation.setFromAxisAngle(up,Math.atan2(player.x-enemy.position.x,player.z-enemy.position.z));matrix.compose(enemy.position,rotation,scale);this.enemies!.setMatrixAt(i,matrix);this.enemies!.setColorAt(i,new T.Color(enemy.flash>0?0xff6e55:0xffffff));
@@ -37,5 +41,5 @@ export class CombatView {
     while(this.labels.length<run.hits.length){const label=new T.Sprite(this.numberMaterial(0));label.scale.set(1.2,.6,1);this.labels.push(label);this.scene.add(label);}
     this.labels.forEach((label,i)=>{const hit=run.hits[i];label.visible=!!hit;if(hit){label.material=this.numberMaterial(hit.damage);label.position.copy(hit.position);}});
   }
-  dispose(){this.disposed=true;for(const mesh of [this.enemies,this.bolts,this.gems])if(mesh){this.scene.remove(mesh);mesh.geometry.dispose();const material=mesh.material as T.MeshLambertMaterial;material.map?.dispose();material.dispose();}for(const label of this.labels){this.scene.remove(label);}for(const material of this.numbers.values()){material.map?.dispose();material.dispose();}}
+  dispose(){this.sword.dispose();this.disposed=true;for(const mesh of [this.enemies,this.bolts,this.gems])if(mesh){this.scene.remove(mesh);mesh.geometry.dispose();const material=mesh.material as T.MeshLambertMaterial;material.map?.dispose();material.dispose();}for(const label of this.labels){this.scene.remove(label);}for(const material of this.numbers.values()){material.map?.dispose();material.dispose();}}
 }

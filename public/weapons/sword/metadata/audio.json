@@ -1,0 +1,89 @@
+{
+  "source": {
+    "assetFile": "sharedassets1.assets",
+    "pathId": 6741,
+    "type": "AudioSource"
+  },
+  "volume": 0.4000000059604645,
+  "pitch": 1.0,
+  "loop": false,
+  "audioSourcePlayOnAwake": false,
+  "mixerGroup": {
+    "m_FileID": 0,
+    "m_PathID": 3034
+  },
+  "spatialBlendCurve": {
+    "m_Curve": [
+      {
+        "time": 0.0,
+        "value": 0.5,
+        "inSlope": 0.0,
+        "outSlope": 0.0,
+        "weightedMode": 0,
+        "inWeight": 0.3333333432674408,
+        "outWeight": 0.3333333432674408
+      }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+  },
+  "randomSfx": {
+    "source": {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 9607,
+      "type": "MonoBehaviour"
+    },
+    "clipPathId": 2112,
+    "serializedFields": [
+      {
+        "nameFromDump": "maxPitch",
+        "offset": 48,
+        "value": 0.8999999761581421
+      },
+      {
+        "nameFromDump": "minPitch",
+        "offset": 52,
+        "value": 1.100000023841858
+      },
+      {
+        "nameFromDump": "randomVolume",
+        "offset": 56,
+        "value": 0.30000001192092896
+      }
+    ],
+    "playOnAwake": true,
+    "warning": "Serialized maxPitch is lower than minPitch. Preserve source labels; runtime use/order requires native method inspection. randomVolume distribution is also unverified."
+  },
+  "spamFilter": {
+    "source": {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 9591,
+      "type": "MonoBehaviour"
+    },
+    "serializedFields": [
+      {
+        "nameFromDump": "spamDelay",
+        "offset": 56,
+        "value": 0.10000000149011612
+      },
+      {
+        "nameFromDump": "minVolumeMultiplier",
+        "offset": 60,
+        "value": 0.5
+      },
+      {
+        "nameFromDump": "maxInterval",
+        "offset": 64,
+        "value": 0.4000000059604645
+      },
+      {
+        "nameFromDump": "overrideMinInterval",
+        "offset": 68,
+        "value": 0.0
+      }
+    ],
+    "warning": "Serialized values only. Native OnEnable/FindVolumeMultiplier implementation is not reconstructed; do not replace it with a guessed hard cooldown."
+  },
+  "fieldEvidence": "megabonk_decompiled/dump.cs AudioSpamFilter line329422 and RandomSfx line329663, interpreted serialized public field order; raw bytes retained alongside."
+}

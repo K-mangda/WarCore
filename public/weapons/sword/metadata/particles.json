@@ -1,0 +1,858 @@
+[
+  {
+    "source": {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 6883,
+      "type": "ParticleSystem"
+    },
+    "renderer": {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 7255,
+      "type": "ParticleSystemRenderer"
+    },
+    "fullData": "metadata/raw/6883.json",
+    "fullRendererData": "metadata/raw/7255.json",
+    "duration": 0.5,
+    "loop": false,
+    "initialModule": {
+      "enabled": true,
+      "startLifetime": {
+        "minMaxState": 0,
+        "scalar": 0.20000000298023224,
+        "minScalar": 0.4000000059604645,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startSpeed": {
+        "minMaxState": 0,
+        "scalar": 6.0,
+        "minScalar": 5.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startColor": {
+        "minMaxState": 0,
+        "minColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "maxColor": {
+          "r": 0.8679245114326477,
+          "g": 0.8679245114326477,
+          "b": 0.8679245114326477,
+          "a": 1.0
+        },
+        "maxGradient": {
+          "key0": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "key1": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "key2": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key3": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key4": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key5": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key6": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key7": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "ctime0": 0,
+          "ctime1": 65535,
+          "ctime2": 0,
+          "ctime3": 0,
+          "ctime4": 0,
+          "ctime5": 0,
+          "ctime6": 0,
+          "ctime7": 0,
+          "atime0": 0,
+          "atime1": 65535,
+          "atime2": 0,
+          "atime3": 0,
+          "atime4": 0,
+          "atime5": 0,
+          "atime6": 0,
+          "atime7": 0,
+          "m_Mode": 0,
+          "m_ColorSpace": -1,
+          "m_NumColorKeys": 2,
+          "m_NumAlphaKeys": 2
+        },
+        "minGradient": {
+          "key0": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "key1": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "key2": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key3": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key4": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key5": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key6": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key7": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "ctime0": 0,
+          "ctime1": 65535,
+          "ctime2": 0,
+          "ctime3": 0,
+          "ctime4": 0,
+          "ctime5": 0,
+          "ctime6": 0,
+          "ctime7": 0,
+          "atime0": 0,
+          "atime1": 65535,
+          "atime2": 0,
+          "atime3": 0,
+          "atime4": 0,
+          "atime5": 0,
+          "atime6": 0,
+          "atime7": 0,
+          "m_Mode": 0,
+          "m_ColorSpace": -1,
+          "m_NumColorKeys": 2,
+          "m_NumAlphaKeys": 2
+        }
+      },
+      "startSize": {
+        "minMaxState": 0,
+        "scalar": 8.0,
+        "minScalar": 1.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startSizeY": {
+        "minMaxState": 0,
+        "scalar": 8.0,
+        "minScalar": 1.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startSizeZ": {
+        "minMaxState": 0,
+        "scalar": 8.0,
+        "minScalar": 1.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startRotationX": {
+        "minMaxState": 0,
+        "scalar": 1.570796251296997,
+        "minScalar": 0.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startRotationY": {
+        "minMaxState": 0,
+        "scalar": 1.570796251296997,
+        "minScalar": 0.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startRotation": {
+        "minMaxState": 0,
+        "scalar": 0.4363323152065277,
+        "minScalar": 0.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "randomizeRotationDirection": 0.0,
+      "gravitySource": 0,
+      "maxNumParticles": 1000,
+      "customEmitterVelocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "size3D": true,
+      "rotation3D": true,
+      "gravityModifier": {
+        "minMaxState": 0,
+        "scalar": 0.0,
+        "minScalar": 0.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      }
+    },
+    "uvModule": {
+      "enabled": true,
+      "mode": 0,
+      "timeMode": 0,
+      "fps": 30.0,
+      "frameOverTime": {
+        "minMaxState": 1,
+        "scalar": 0.875,
+        "minScalar": 0.9998999834060669,
+        "maxCurve": {
+          "m_Curve": [
+            {
+              "time": 0.0,
+              "value": 0.0,
+              "inSlope": 1.0,
+              "outSlope": 1.0,
+              "weightedMode": 0,
+              "inWeight": 0.3333333432674408,
+              "outWeight": 0.3333333432674408
+            },
+            {
+              "time": 1.0,
+              "value": 1.0,
+              "inSlope": 1.0,
+              "outSlope": 1.0,
+              "weightedMode": 0,
+              "inWeight": 0.3333333432674408,
+              "outWeight": 0.3333333432674408
+            }
+          ],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startFrame": {
+        "minMaxState": 0,
+        "scalar": 0.0,
+        "minScalar": 0.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "speedRange": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "tilesX": 8,
+      "tilesY": 8,
+      "animationType": 1,
+      "rowIndex": 2,
+      "cycles": 1.0,
+      "uvChannelMask": -1,
+      "rowMode": 0,
+      "sprites": [
+        {
+          "sprite": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          }
+        }
+      ],
+      "flipU": 0.0,
+      "flipV": 0.0
+    },
+    "mesh": {
+      "name": "Quad",
+      "fileId": 3,
+      "pathId": 10210,
+      "externalAsset": "Library/unity default resources",
+      "export": "vfx/models/SlashQuad.obj",
+      "geometry": "slash-mesh.json"
+    },
+    "materialPathIds": [
+      429
+    ]
+  },
+  {
+    "source": {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 7039,
+      "type": "ParticleSystem"
+    },
+    "renderer": {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 7227,
+      "type": "ParticleSystemRenderer"
+    },
+    "fullData": "metadata/raw/7039.json",
+    "fullRendererData": "metadata/raw/7227.json",
+    "duration": 0.5,
+    "loop": false,
+    "initialModule": {
+      "enabled": true,
+      "startLifetime": {
+        "minMaxState": 0,
+        "scalar": 0.30000001192092896,
+        "minScalar": 0.4000000059604645,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startSpeed": {
+        "minMaxState": 0,
+        "scalar": 0.0,
+        "minScalar": 5.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startColor": {
+        "minMaxState": 0,
+        "minColor": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "maxColor": {
+          "r": 0.8679245114326477,
+          "g": 0.8679245114326477,
+          "b": 0.8679245114326477,
+          "a": 0.7490196228027344
+        },
+        "maxGradient": {
+          "key0": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "key1": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "key2": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key3": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key4": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key5": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key6": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key7": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "ctime0": 0,
+          "ctime1": 65535,
+          "ctime2": 0,
+          "ctime3": 0,
+          "ctime4": 0,
+          "ctime5": 0,
+          "ctime6": 0,
+          "ctime7": 0,
+          "atime0": 0,
+          "atime1": 65535,
+          "atime2": 0,
+          "atime3": 0,
+          "atime4": 0,
+          "atime5": 0,
+          "atime6": 0,
+          "atime7": 0,
+          "m_Mode": 0,
+          "m_ColorSpace": -1,
+          "m_NumColorKeys": 2,
+          "m_NumAlphaKeys": 2
+        },
+        "minGradient": {
+          "key0": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "key1": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "key2": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key3": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key4": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key5": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key6": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "key7": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 0.0
+          },
+          "ctime0": 0,
+          "ctime1": 65535,
+          "ctime2": 0,
+          "ctime3": 0,
+          "ctime4": 0,
+          "ctime5": 0,
+          "ctime6": 0,
+          "ctime7": 0,
+          "atime0": 0,
+          "atime1": 65535,
+          "atime2": 0,
+          "atime3": 0,
+          "atime4": 0,
+          "atime5": 0,
+          "atime6": 0,
+          "atime7": 0,
+          "m_Mode": 0,
+          "m_ColorSpace": -1,
+          "m_NumColorKeys": 2,
+          "m_NumAlphaKeys": 2
+        }
+      },
+      "startSize": {
+        "minMaxState": 0,
+        "scalar": 8.0,
+        "minScalar": 1.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startSizeY": {
+        "minMaxState": 0,
+        "scalar": 8.0,
+        "minScalar": 1.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startSizeZ": {
+        "minMaxState": 0,
+        "scalar": 8.0,
+        "minScalar": 1.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startRotationX": {
+        "minMaxState": 0,
+        "scalar": 1.570796251296997,
+        "minScalar": 0.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startRotationY": {
+        "minMaxState": 0,
+        "scalar": 1.570796251296997,
+        "minScalar": 0.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startRotation": {
+        "minMaxState": 0,
+        "scalar": 0.4363323152065277,
+        "minScalar": 0.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "randomizeRotationDirection": 0.0,
+      "gravitySource": 0,
+      "maxNumParticles": 1000,
+      "customEmitterVelocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "size3D": true,
+      "rotation3D": true,
+      "gravityModifier": {
+        "minMaxState": 0,
+        "scalar": 0.0,
+        "minScalar": 0.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      }
+    },
+    "uvModule": {
+      "enabled": true,
+      "mode": 0,
+      "timeMode": 0,
+      "fps": 30.0,
+      "frameOverTime": {
+        "minMaxState": 1,
+        "scalar": 0.875,
+        "minScalar": 0.9998999834060669,
+        "maxCurve": {
+          "m_Curve": [
+            {
+              "time": 0.0,
+              "value": 0.1846153885126114,
+              "inSlope": 0.29230761528015137,
+              "outSlope": 0.29230761528015137,
+              "weightedMode": 0,
+              "inWeight": 0.3333333432674408,
+              "outWeight": 0.3333333432674408
+            },
+            {
+              "time": 1.0,
+              "value": 0.47692298889160156,
+              "inSlope": 0.29230761528015137,
+              "outSlope": 0.29230761528015137,
+              "weightedMode": 0,
+              "inWeight": 0.3333333432674408,
+              "outWeight": 0.3333333432674408
+            }
+          ],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "startFrame": {
+        "minMaxState": 0,
+        "scalar": 0.0,
+        "minScalar": 0.0,
+        "maxCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        },
+        "minCurve": {
+          "m_Curve": [],
+          "m_PreInfinity": 2,
+          "m_PostInfinity": 2,
+          "m_RotationOrder": 4
+        }
+      },
+      "speedRange": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "tilesX": 8,
+      "tilesY": 8,
+      "animationType": 1,
+      "rowIndex": 2,
+      "cycles": 1.0,
+      "uvChannelMask": -1,
+      "rowMode": 0,
+      "sprites": [
+        {
+          "sprite": {
+            "m_FileID": 0,
+            "m_PathID": 0
+          }
+        }
+      ],
+      "flipU": 0.0,
+      "flipV": 0.0
+    },
+    "mesh": {
+      "name": "Quad",
+      "fileId": 3,
+      "pathId": 10210,
+      "externalAsset": "Library/unity default resources",
+      "export": "vfx/models/SlashQuad.obj",
+      "geometry": "slash-mesh.json"
+    },
+    "materialPathIds": [
+      429
+    ]
+  }
+]

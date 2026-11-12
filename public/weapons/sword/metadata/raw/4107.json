@@ -1,0 +1,69 @@
+{
+  "source": {
+    "assetFile": "sharedassets1.assets",
+    "pathId": 4107,
+    "type": "GameObject"
+  },
+  "data": {
+    "m_Component": [
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 5162
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 6883
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7255
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 6741
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 9607
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 8953
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 9591
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 9221
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 8870
+        }
+      }
+    ],
+    "m_Layer": 0,
+    "m_Name": "HeroSwordProjectile",
+    "m_Tag": 0,
+    "m_IsActive": true
+  }
+}

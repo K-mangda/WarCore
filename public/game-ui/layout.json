@@ -1,0 +1,734 @@
+{
+  "source": "level2",
+  "records": [
+    {
+      "name": "UpgradeButton (3)",
+      "path": "GameUI/GameUI/EncounterWindows/ItemPickWindow/W_Offers/WindowLayers/Content/UpgradeButton (3)",
+      "gameObjectId": 2925,
+      "transformId": 10823,
+      "active": false,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 375.0,
+        "y": -580.0
+      },
+      "sizeDelta": {
+        "x": 630.0,
+        "y": 150.0
+      }
+    },
+    {
+      "name": "UpgradeButton",
+      "path": "GameUI/GameUI/EncounterWindows/LevelupScreen/New/W_Offers/WindowLayers/Content/UpgradeButton",
+      "gameObjectId": 2857,
+      "transformId": 10856,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 375.0,
+        "y": -136.0
+      },
+      "sizeDelta": {
+        "x": 630.0,
+        "y": 150.0
+      }
+    },
+    {
+      "name": "UpgradeButton (1)",
+      "path": "GameUI/GameUI/EncounterWindows/ItemPickWindow/W_Offers/WindowLayers/Content/UpgradeButton (1)",
+      "gameObjectId": 2750,
+      "transformId": 10893,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 375.0,
+        "y": -292.5
+      },
+      "sizeDelta": {
+        "x": 630.0,
+        "y": 150.0
+      }
+    },
+    {
+      "name": "Timer",
+      "path": "GameUI/GameUI/Debug/EnemyInformation/EnemyScaling/ScalingEntry (5)/RawImage/Portions/Timer",
+      "gameObjectId": 2003,
+      "transformId": 10894,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 0.5
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 0.5
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "sizeDelta": {
+        "x": 100.0,
+        "y": 20.0
+      }
+    },
+    {
+      "name": "HUD",
+      "path": "GameUI/GameUI/HUD",
+      "gameObjectId": 2081,
+      "transformId": 10913,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "anchorMax": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "sizeDelta": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "name": "Timer",
+      "path": "GameUI/GameUI/HUD/Top/KillsAndGold/Timer",
+      "gameObjectId": 2581,
+      "transformId": 10945,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "sizeDelta": {
+        "x": 155.0,
+        "y": 30.0
+      }
+    },
+    {
+      "name": "UpgradeButton",
+      "path": "GameUI/GameUI/EncounterWindows/ItemPickWindow/W_Offers/WindowLayers/Content/UpgradeButton",
+      "gameObjectId": 2666,
+      "transformId": 10951,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 375.0,
+        "y": -122.5
+      },
+      "sizeDelta": {
+        "x": 630.0,
+        "y": 150.0
+      }
+    },
+    {
+      "name": "Timer",
+      "path": "GameUI/GameUI/Debug/EnemyInformation/EnemyScaling/ScalingEntry (3)/RawImage/Portions/Timer",
+      "gameObjectId": 2268,
+      "transformId": 10954,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 0.5
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 0.5
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "sizeDelta": {
+        "x": 100.0,
+        "y": 20.0
+      }
+    },
+    {
+      "name": "ItemsContainerWeapons",
+      "path": "GameUI/GameUI/EncounterWindows/InventoryOverlay/W_Inventory/Shadow/Border/Background/WindowLayers/Content/ItemsContainerWeapons",
+      "gameObjectId": 2691,
+      "transformId": 10955,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 255.0,
+        "y": -50.5
+      },
+      "sizeDelta": {
+        "x": 450.0,
+        "y": 0.0
+      }
+    },
+    {
+      "name": "ItemsContainerTomes",
+      "path": "GameUI/GameUI/EncounterWindows/InventoryOverlay/W_Inventory/Shadow/Border/Background/WindowLayers/Content/ItemsContainerTomes",
+      "gameObjectId": 1567,
+      "transformId": 11033,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 255.0,
+        "y": -131.0
+      },
+      "sizeDelta": {
+        "x": 450.0,
+        "y": 0.0
+      }
+    },
+    {
+      "name": "T_Xp",
+      "path": "GameUI/GameUI/HUD/T_Xp",
+      "gameObjectId": 2337,
+      "transformId": 11035,
+      "active": false,
+      "anchorMin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "anchorMax": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 62.0,
+        "y": 31.0
+      },
+      "sizeDelta": {
+        "x": 200.0,
+        "y": 50.0
+      }
+    },
+    {
+      "name": "ItemsContainerWeapons",
+      "path": "GameUI/GameUI/DeathScreen/StatsWindows/W_Stats/WindowLayers/Content/Inventory/ItemsContainerWeapons",
+      "gameObjectId": 2014,
+      "transformId": 11055,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "sizeDelta": {
+        "x": 0.0,
+        "y": 100.0
+      }
+    },
+    {
+      "name": "PauseUI",
+      "path": "GameUI/PauseUI",
+      "gameObjectId": 2819,
+      "transformId": 11074,
+      "active": false,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "anchorMax": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "sizeDelta": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "name": "t_Timer_Stage",
+      "path": "GameUI/GameUI/HUD/Top/t_Timer_Stage",
+      "gameObjectId": 1667,
+      "transformId": 11108,
+      "active": true,
+      "anchorMin": {
+        "x": 0.5,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.5,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 1.0
+      },
+      "position": {
+        "x": 0.0,
+        "y": -40.0
+      },
+      "sizeDelta": {
+        "x": 200.0,
+        "y": 50.0
+      }
+    },
+    {
+      "name": "UpgradeButton (1)",
+      "path": "GameUI/GameUI/EncounterWindows/LevelupScreen/New/W_Offers/WindowLayers/Content/UpgradeButton (1)",
+      "gameObjectId": 1744,
+      "transformId": 11460,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 375.0,
+        "y": -306.0
+      },
+      "sizeDelta": {
+        "x": 630.0,
+        "y": 150.0
+      }
+    },
+    {
+      "name": "ItemsContainerTomes",
+      "path": "GameUI/PauseUI/Main/Inventory/W_Inventory/Shadow/Border/Background/WindowLayers/Content/ItemsContainerTomes",
+      "gameObjectId": 3148,
+      "transformId": 11469,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 240.0,
+        "y": -15.0
+      },
+      "sizeDelta": {
+        "x": 450.0,
+        "y": 0.0
+      }
+    },
+    {
+      "name": "Weapons",
+      "path": "GameUI/GameUI/HUD/Top/Inventory/Weapons",
+      "gameObjectId": 1393,
+      "transformId": 11566,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 245.0,
+        "y": -75.0
+      },
+      "sizeDelta": {
+        "x": 450.0,
+        "y": 0.0
+      }
+    },
+    {
+      "name": "XpBarOuter",
+      "path": "GameUI/GameUI/HUD/Top/XpBarOuter",
+      "gameObjectId": 3470,
+      "transformId": 11571,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 1.0
+      },
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "sizeDelta": {
+        "x": 0.0,
+        "y": 30.0
+      }
+    },
+    {
+      "name": "UpgradeButton (3)",
+      "path": "GameUI/GameUI/EncounterWindows/LevelupScreen/New/W_Offers/WindowLayers/Content/UpgradeButton (3)",
+      "gameObjectId": 1622,
+      "transformId": 11600,
+      "active": false,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 375.0,
+        "y": -646.0
+      },
+      "sizeDelta": {
+        "x": 630.0,
+        "y": 150.0
+      }
+    },
+    {
+      "name": "XpBar",
+      "path": "GameUI/GameUI/HUD/Top/XpBarOuter/XpBar",
+      "gameObjectId": 1319,
+      "transformId": 11654,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "anchorMax": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0.0,
+        "y": -0.043369293212890625
+      },
+      "sizeDelta": {
+        "x": -6.239180564880371,
+        "y": -6.086736679077148
+      }
+    },
+    {
+      "name": "Tomes",
+      "path": "GameUI/GameUI/HUD/Top/Inventory/Tomes",
+      "gameObjectId": 3098,
+      "transformId": 11833,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 245.0,
+        "y": -85.0
+      },
+      "sizeDelta": {
+        "x": 450.0,
+        "y": 0.0
+      }
+    },
+    {
+      "name": "ItemsContainerWeapons",
+      "path": "GameUI/PauseUI/Main/Inventory/W_Inventory/Shadow/Border/Background/WindowLayers/Content/ItemsContainerWeapons",
+      "gameObjectId": 2787,
+      "transformId": 11836,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 240.0,
+        "y": -5.0
+      },
+      "sizeDelta": {
+        "x": 450.0,
+        "y": 0.0
+      }
+    },
+    {
+      "name": "UpgradeButton (2)",
+      "path": "GameUI/GameUI/EncounterWindows/LevelupScreen/New/W_Offers/WindowLayers/Content/UpgradeButton (2)",
+      "gameObjectId": 2272,
+      "transformId": 11846,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 375.0,
+        "y": -476.0
+      },
+      "sizeDelta": {
+        "x": 630.0,
+        "y": 150.0
+      }
+    },
+    {
+      "name": "UpgradeButton (2)",
+      "path": "GameUI/GameUI/EncounterWindows/ItemPickWindow/W_Offers/WindowLayers/Content/UpgradeButton (2)",
+      "gameObjectId": 2184,
+      "transformId": 11877,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 375.0,
+        "y": -462.5
+      },
+      "sizeDelta": {
+        "x": 630.0,
+        "y": 150.0
+      }
+    },
+    {
+      "name": "t_Timer_Run",
+      "path": "GameUI/GameUI/HUD/Top/KillsAndGold/Timer/t_Timer_Run",
+      "gameObjectId": 1416,
+      "transformId": 12038,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 1.0
+      },
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "sizeDelta": {
+        "x": 157.10000610351562,
+        "y": 50.0
+      }
+    },
+    {
+      "name": "Upgrades",
+      "path": "GameUI/GameUI/EncounterWindows/EncounterWindow/Window/Upgrades",
+      "gameObjectId": 1375,
+      "transformId": 12090,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "position": {
+        "x": 375.0,
+        "y": -176.25999450683594
+      },
+      "sizeDelta": {
+        "x": 640.0,
+        "y": 100.0
+      }
+    },
+    {
+      "name": "Timer",
+      "path": "GameUI/GameUI/Debug/EnemyInformation/EnemyScaling/ScalingEntry (4)/RawImage/Portions/Timer",
+      "gameObjectId": 2992,
+      "transformId": 12115,
+      "active": true,
+      "anchorMin": {
+        "x": 0.0,
+        "y": 0.5
+      },
+      "anchorMax": {
+        "x": 0.0,
+        "y": 0.5
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.5
+      },
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "sizeDelta": {
+        "x": 100.0,
+        "y": 20.0
+      }
+    }
+  ]
+}

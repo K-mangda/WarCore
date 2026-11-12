@@ -1,19 +1,26 @@
 import {Vector3} from 'three';
 import {Swarm,type Enemy} from '../enemies/Swarm';
 import {balance} from './Balance';
+export type Weapon='bolt'|'sword';
+export type RunEvent='sword'|'shot'|'hit'|'xp'|'level'|'hurt'|'death';
 export type Upgrade='damage'|'haste'|'projectiles';
 export interface Projectile {position:Vector3;velocity:Vector3;life:number;damage:number;}
+export interface Slash {position:Vector3;direction:Vector3;life:number;duration:number;damage:number;hits:Set<number>;}
 export interface Gem {position:Vector3;}
 export interface Hit {position:Vector3;damage:number;life:number;}
-export interface RunSnapshot {health:number;maxHealth:number;level:number;xp:number;xpNeeded:number;kills:number;elapsed:number;enemyCount:number;pendingUpgrades:number;dead:boolean;damage:number;attackInterval:number;projectiles:number;}
-export const initialRun:RunSnapshot={health:balance.maxHealth,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:5,kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.attackInterval,projectiles:1};
+export interface RunSnapshot {weapon:Weapon;health:number;maxHealth:number;level:number;xp:number;xpNeeded:number;kills:number;elapsed:number;enemyCount:number;pendingUpgrades:number;dead:boolean;damage:number;attackInterval:number;projectiles:number;}
+export const initialRun:RunSnapshot={weapon:'bolt',health:balance.maxHealth,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:5,kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.attackInterval,projectiles:1};
 export class Run {
-  readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];
+  readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];
   private state:RunSnapshot={...initialRun};private spawnClock=0;private attackClock=0;private hurtClock=0;private started=false;
-  constructor(private ground:(x:number,z:number)=>number,private visible:(point:Vector3)=>boolean,private random:()=>number=Math.random){}
+  constructor(private ground:(x:number,z:number)=>number,private visible:(point:Vector3)=>boolean,private random:()=>number=Math.random,private sound:(event:RunEvent)=>void=()=>{}){}
   get blocked(){return this.state.dead||this.state.pendingUpgrades>0;}
   snapshot():RunSnapshot{return {...this.state,enemyCount:this.swarm.enemies.length};}
-  reset(){this.state={...initialRun};this.spawnClock=0;this.attackClock=0;this.hurtClock=0;this.started=false;this.swarm.clear();this.bolts.length=0;this.gems.length=0;this.hits.length=0;}
+  reset(){this.state={...initialRun,weapon:this.state.weapon};this.spawnClock=0;this.attackClock=0;this.hurtClock=0;this.started=false;this.swarm.clear();this.bolts.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;}
+  setWeapon(weapon:Weapon):boolean{
+    if(this.state.elapsed!==0||(weapon!=='bolt'&&weapon!=='sword'))return false;
+    this.state.weapon=weapon;return true;
+  }
   choose(upgrade:Upgrade):boolean{
     if(this.state.pendingUpgrades<=0||this.state.dead)return false;
     if(upgrade==='damage')this.state.damage+=5;
@@ -28,8 +35,25 @@ export class Run {
     else this.gainXp(); // Saturation must not silently lose progression.
   }
   private gainXp(){
-    this.state.xp++;
-    while(this.state.xp>=this.state.xpNeeded){this.state.xp-=this.state.xpNeeded;this.state.level++;this.state.xpNeeded=5+(this.state.level-1)*3;this.state.pendingUpgrades++;}
+    this.state.xp++;this.sound('xp');
+    while(this.state.xp>=this.state.xpNeeded){this.state.xp-=this.state.xpNeeded;this.state.level++;this.state.xpNeeded=5+(this.state.level-1)*3;this.state.pendingUpgrades++;this.sound('level');}
+  }
+  /** Sandbox melee sector; native swing trajectory and hit timing are not reconstructed. */
+  private swing(player:Vector3){
+    const target=this.swarm.enemies.filter(enemy=>enemy.position.distanceTo(player)<=balance.swordRange).sort((a,b)=>a.position.distanceToSquared(player)-b.position.distanceToSquared(player))[0];
+    if(!target||this.slashes.length>=balance.maxSlashes)return false;
+    const forward=target.position.clone().sub(player);forward.y=0;if(forward.lengthSq()<.0001)forward.set(0,0,-1);forward.normalize();
+    // Multiple sectors share hit history, so one attack cannot damage the same enemy twice.
+    const hits=new Set<number>();
+    for(let i=0;i<this.state.projectiles&&this.slashes.length<balance.maxSlashes;i++){
+      const angle=(i-(this.state.projectiles-1)/2)*balance.swordSpread;
+      this.slashes.push({position:player.clone().add(new Vector3(0,.8,0)),direction:forward.clone().applyAxisAngle(new Vector3(0,1,0),angle),life:balance.swordVisualDuration,duration:balance.swordVisualDuration,damage:this.state.damage,hits});
+    }
+    this.sound('sword');return true;
+  }
+  private applyHit(enemy:Enemy,damage:number,direction:Vector3){
+    this.sound('hit');enemy.health-=damage;enemy.flash=.15;enemy.velocity.copy(direction).normalize().multiplyScalar(5);
+    this.hits.push({position:enemy.position.clone().add(new Vector3(0,1.5,0)),damage,life:.6});if(enemy.health<=0)this.kill(enemy);
   }
   private fire(player:Vector3){
     const origin=player.clone().add(new Vector3(0,1,0));
@@ -42,7 +66,7 @@ export class Run {
       const start=origin.clone().add(new Vector3((i-(this.state.projectiles-1)/2)*.18,0,0));
       this.bolts.push({position:start,velocity:direction.multiplyScalar(balance.projectileSpeed),life:balance.projectileLifetime,damage:this.state.damage});
     }
-    return true;
+    this.sound('shot');return true;
   }
   step(dt:number,player:Vector3){
     if(this.blocked)return;
@@ -52,7 +76,20 @@ export class Run {
     if(this.spawnClock<=0){this.swarm.spawn(player,this.ground,this.visible,this.random);this.spawnClock=balance.spawnInterval;}
     this.swarm.step(dt,player,this.ground);
     this.attackClock=Math.max(0,this.attackClock-dt);
-    if(this.attackClock===0&&this.fire(player))this.attackClock=this.state.attackInterval;
+    if(this.attackClock===0&&(this.state.weapon==='sword'?this.swing(player):this.fire(player)))this.attackClock=this.state.attackInterval;
+    for(let i=this.slashes.length-1;i>=0;i--){
+      const slash=this.slashes[i];
+      for(const enemy of [...this.swarm.enemies]){
+        if(slash.hits.has(enemy.id))continue;
+        const offset=enemy.position.clone().add(new Vector3(0,.7,0)).sub(slash.position);
+        if(Math.abs(offset.y)>balance.swordHeightTolerance)continue;
+        offset.y=0;
+        if(offset.length()<=balance.swordRange&&(offset.lengthSq()<.0001||offset.normalize().dot(slash.direction)>=Math.cos(balance.swordHalfAngle))){
+          slash.hits.add(enemy.id);this.applyHit(enemy,slash.damage,slash.direction);
+        }
+      }
+      slash.life-=dt;if(slash.life<=0)this.slashes.splice(i,1);
+    }
     for(let i=this.bolts.length-1;i>=0;i--){
       const bolt=this.bolts[i],previous=bolt.position.clone();bolt.position.addScaledVector(bolt.velocity,dt);bolt.life-=dt;
       const segment=bolt.position.clone().sub(previous);const lengthSq=segment.lengthSq();
@@ -62,7 +99,7 @@ export class Run {
         const fraction=lengthSq?Math.max(0,Math.min(1,center.clone().sub(previous).dot(segment)/lengthSq)):0;
         if(center.distanceToSquared(previous.clone().addScaledVector(segment,fraction))<.7*.7&&fraction<first){target=enemy;first=fraction;}
       }
-      if(target){target.health-=bolt.damage;target.flash=.15;target.velocity.copy(bolt.velocity).normalize().multiplyScalar(5);this.hits.push({position:target.position.clone().add(new Vector3(0,1.5,0)),damage:bolt.damage,life:.6});if(target.health<=0)this.kill(target);bolt.life=0;}
+      if(target){this.applyHit(target,bolt.damage,bolt.velocity);bolt.life=0;}
       if(bolt.life<=0)this.bolts.splice(i,1);
     }
     for(let i=this.gems.length-1;i>=0;i--){
@@ -73,8 +110,8 @@ export class Run {
     for(let i=this.hits.length-1;i>=0;i--){const hit=this.hits[i];hit.life-=dt;hit.position.y+=dt;if(hit.life<=0)this.hits.splice(i,1);}
     if(this.hits.length>60)this.hits.splice(0,this.hits.length-60);
     if(this.hurtClock===0&&this.swarm.enemies.some(enemy=>enemy.position.distanceTo(player)<1.1)){
-      this.state.health=Math.max(0,this.state.health-balance.contactDamage);this.hurtClock=balance.contactInterval;
-      if(this.state.health===0)this.state.dead=true;
+      this.sound('hurt');this.state.health=Math.max(0,this.state.health-balance.contactDamage);this.hurtClock=balance.contactInterval;
+      if(this.state.health===0){this.state.dead=true;this.sound('death');}
     }
   }
 }

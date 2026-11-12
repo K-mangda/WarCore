@@ -11,3 +11,7 @@ Enter sandbox to play. Mouse capture is optional; if your browser denies it, hol
 Fox uses the extracted default texture, skeleton and original Idle/Run/Jump/Falling clips; see [Fox asset provenance](docs/FOX_ASSETS.md). The map remains the placeholder test arena pending a faithful map implementation. Rebuild Fox assets locally with `python tools/export_fox_rig.py`; run `node tools/check_fox.mjs` to verify skin/clip data. Raw source game archives and binaries remain local.
 
 Evidence and missing systems: [master spec](docs/MEGABONK_MASTER_SPEC.md), [parity ledger](docs/PARITY_MATRIX.md). Extract local enum declarations with `python tools/extract_spec.py`.
+
+Temporary behavior and unverified tuning are tracked in [the temporary implementation register](docs/TEMPORARY_IMPLEMENTATIONS.md), including audio clip mapping, overlap limits, combat, movement, camera, map and UI.
+
+Sword is now selectable before starting a fresh run. Its original sound/icon/atlas and source Quad are imported with corrected metadata; melee rules and VFX shader/placement remain provisional. See [sword handoff review](docs/SWORD_ASSET_REVIEW.md) and [temporary settings](docs/TEMPORARY_IMPLEMENTATIONS.md). Rebuild source exports with `python tools/import_sword_assets.py` (requires the installed local game and the external extraction package).

@@ -1,0 +1,70 @@
+{
+  "sourceGameData": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Megabonk\\Megabonk_Data",
+  "unityVersion": "2023.2.22f1",
+  "unityPyVersion": "1.25.4",
+  "directExports": [
+    {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 615,
+      "type": "Texture2D"
+    },
+    {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 930,
+      "type": "Texture2D"
+    },
+    {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 1853,
+      "type": "Mesh"
+    }
+  ],
+  "convertedGlb": {
+    "copiedFrom": "C:\\Users\\Korawit\\Desktop\\megabonk_extracted_assets\\weapons\\sword\\vfx\\models\\Sword.glb",
+    "note": "Package Blender OBJ conversion; geometry only, no native material/rig. Original orientation not runtime-verified."
+  },
+  "copiedWav": {
+    "copiedFrom": "C:\\Users\\Korawit\\Desktop\\megabonk_extracted_assets\\weapons\\sword\\audio\\HeroSwordAttack.wav",
+    "claimedUnitySource": {
+      "assetFile": "sharedassets1.assets",
+      "pathId": 2112,
+      "type": "AudioClip"
+    },
+    "verifiedClipName": "HeroSwordAttack",
+    "note": "Validated existing decoded WAV; local UnityPy direct sample decode fails FMOD FORMAT. Waveform not independently compared with native compressed bytes."
+  },
+  "audioValidation": {
+    "channels": 2,
+    "sampleWidth": 2,
+    "rate": 48000,
+    "frames": 19680
+  },
+  "hashes": {
+    "audio/HeroSwordAttack.wav": "d69fb2ff7444a8544ab3f5b36f1799c6d6fce71eb9bec03267ca23550f26f1ae",
+    "metadata/audio.json": "84440eb263af628f89b6a63281acec6d8e62999c2fc13b5634551d87f7e6794a",
+    "metadata/material.json": "7afe5e8befb7e1dc6a1deb50c8caa67c3baef36c854cb0e57b5f59996fb6e68d",
+    "metadata/particles.json": "4e7eb0190bfc2f8ef8c0bf0e16b21bf99242ac97343108f8eabcc5bb8e99f442",
+    "metadata/raw/3180.json": "c3be07da8ab555bd713a6af7d2da5245cc3e8a9f9387490db2328fe9f537e43e",
+    "metadata/raw/4107.json": "1fe88dd5c2a4f6bd7bec6b479627c8a84296748a86cb87edd2230a7ca54d4ac9",
+    "metadata/raw/429.json": "a7596d9bf7602040e9e5537523fe065b6e237dbfcf5c761048cbd147a483eeb2",
+    "metadata/raw/4753.json": "328f9130be5f64b1958035dccb586a1d36347c35739b8937bf2ee07ad9373066",
+    "metadata/raw/5162.json": "c5d42e8cb4daf11e987c4ff344ae3f02a8195c53ad1664343555d79d8498b1ef",
+    "metadata/raw/6741.json": "10da5b7008cb04086b0b83e55820a10608a77b4cc3ac92ec477deb00cb04f5e9",
+    "metadata/raw/6883.json": "07a7d744c3aa2c137ec171b03cc5737a239bdc5f3e2f5b29d3a3f13ab5f26471",
+    "metadata/raw/7039.json": "6d014e66f3131a5c3465ad9e8854abbe48464b419ec085178d75743d07ca0e99",
+    "metadata/raw/7227.json": "fb3026fb6572dca35c7c6f775aeb2015e59c88082eb35d10d0d5188491382d5b",
+    "metadata/raw/7255.json": "d226e331d0e76cd65df66a319487923aca8808771001cf40db7b5968733d9392",
+    "metadata/raw/9591.json": "6422c4e0ef5e9d167b435e460fa8f4cd00734107e222629daeb1bf96d1f6332f",
+    "metadata/raw/9607.json": "46ff15129c9816add3b00525ff78035c22ee63c4c63811b82025bcefb17d0f5f",
+    "slash-mesh.json": "57b90dd4bb4e4d9975766eacb5df69c70764e2cb2afa5937ced449f63eda5d3d",
+    "vfx/models/SlashQuad.obj": "f372c1d472f6d00638d7335248a96c5f555a987f11a5359bd6a39d48708db97d",
+    "vfx/models/Sword.glb": "f20668df52a3bc43fd79b8206f194239ec9a9b4685c55b943305cfd269b70597",
+    "vfx/models/Sword.obj": "ee632cfd8bc0ad5db6d949f2c7e9f0869fce49bd41d775a1accb71b4e391e1aa",
+    "vfx/textures/atlas03_Custom.png": "77de31929c18c750a9e8a5bfa493b0d9c3f28ee2d0da31494a88962fd3925266",
+    "vfx/textures/HeroSword_Icon.png": "5c012576d6555b034e83a0909b00fbae13c547dd988f050f940ef5840042310a"
+  },
+  "limitations": [
+    "Native weapon motion, hit detection, shader pass state and audio runtime algorithm are not reconstructed.",
+    "Raw particle modules and native renderer Quad are now retained; Three.js simulation remains a separate implementation task."
+  ]
+}
