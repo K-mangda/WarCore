@@ -26,3 +26,7 @@ Unity has no website CSS to extract. Texture/sprite/font exports can supply auth
 ## Local run
 
 Strict TypeScript and production Vite build passed. Port 5173 belongs to an existing ONE SIAM backoffice instance; this project's dev server uses `npm run dev -- --port 5174` without stopping that process. No browser interaction or FPS acceptance is claimed.
+
+## Embedded browser entry fix
+
+Observed WrongDocumentError on requestPointerLock in the in-app browser. Previously this prevented the simulation and keyboard input from starting. Gameplay now has its own active state, catches rejected pointer-lock requests, and offers drag-to-look fallback. Browser verification: entry overlay dismissed and Space increased jump count to 001. Rendering FPS fluctuated; 60+ FPS remains unverified.
