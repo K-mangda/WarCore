@@ -23,3 +23,6 @@ export function jumpDelta(normal: {x:number;y:number;z:number}, stat: number) {
     y:stat*(physics.jumpUpMultiplier+normal.y*physics.jumpNormalMultiplier),
     z:normal.z*stat*physics.jumpNormalMultiplier};
 }
+
+// User-requested web playtest tuning; keep extracted source constants above intact.
+export const playtestMovement={speedMultiplier:.7} as const;

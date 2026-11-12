@@ -3,7 +3,7 @@ import { EMovementState, movementValues as values } from '../types/movement';
 import { heightAt } from '../environment/forest/Sandbox';
 import type { Input } from '../core/Input';
 import { Slide } from './Slide';
-import { physics, jumpDelta, slideStartDelta } from './Physics';
+import { physics, playtestMovement, jumpDelta, slideStartDelta } from './Physics';
 export class Motor {
   slideEnabled=false;
   private slideState = new Slide();
@@ -47,7 +47,8 @@ export class Motor {
     if(wish.lengthSq()>0 && !slide) {
       const acceleration=values.moveSpeed*dt*(this.grounded?1:.06);
       this.velocity.addScaledVector(wish,acceleration);
-      const cap=this.grounded?values.maxRunSpeed*(crouch?.5:1):Math.max(values.maxRunSpeed,before);
+      const maxSpeed=values.maxRunSpeed*playtestMovement.speedMultiplier;
+      const cap=this.grounded?maxSpeed*(crouch?.5:1):Math.max(maxSpeed,before);
       const s=this.speed; if(s>cap) { this.velocity.x*=cap/s; this.velocity.z*=cap/s; }
     }
     if(this.grounded && slide) {

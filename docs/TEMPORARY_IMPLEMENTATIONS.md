@@ -65,3 +65,9 @@ The playable Sword now loads public/weapons/knight-sword, exported with tools/im
 Sword now swings on cooldown even in empty space and never acquires an enemy to determine its direction. This corrects the user's reported automatic behavior. The web chooses facing from camera yaw, and range4m,120degree sector,0.3s hit window,multishot spread,1.8m forward anchor and attack cooldown remain provisional. Source visual lifetime0.15s is kept separate from the provisional0.3s damage window. Full native trajectory and timing have not been reconstructed.
 
 Validation: build, combat including empty-space/facing/cadence regressions, and sword-pose checks pass. Browser loaded the corrected asset set and completed a run. Automated screenshots did not isolate the short slash reliably; no exact screenshot or audio comparison with native gameplay is claimed.
+
+## User-requested size/speed tuning — 2026-11-12
+
+Reduced Sword visual scale to0.55 of the extracted size:10.7 ->5.885 web units. This is a requested visual override in combat/Balance.ts, not an edit to original particle metadata. Hit range/damage and effect anchor remain unchanged.
+
+Reduced player horizontal movement cap by30%:10 ->7m/s, using playtestMovement.speedMultiplier0.7 in player/Physics.ts. Both grounded movement and air acceleration use the reduced base cap; existing momentum preservation still applies. Jump impulse/gravity are unchanged. These are user-requested playtest adjustments, not claims about native balance.

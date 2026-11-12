@@ -1,3 +1,4 @@
+import {balance} from './Balance';
 import {placeSwordSlash} from './SwordPose';
 import * as T from 'three';
 import type {Run} from './Run';
@@ -47,7 +48,7 @@ export class SwordView {
       mesh.material.opacity=start.a+(end.a-start.a)*age;
       placeSwordSlash(mesh,slash.position,slash.direction);
       mesh.position.addScaledVector(slash.direction,p.initialModule.startSpeed.scalar*elapsed);
-      mesh.scale.setScalar(p.initialModule.startSize.scalar);
+      mesh.scale.setScalar(p.initialModule.startSize.scalar*balance.swordVisualScale);
     });
   }
   dispose(){this.disposed=true;for(const mesh of this.meshes){this.scene.remove(mesh);mesh.material.map?.dispose();mesh.material.dispose();}this.geometry?.dispose();this.atlas?.dispose();}
