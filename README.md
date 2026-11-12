@@ -2,7 +2,7 @@
 
 Current movement evidence and revised implementation order: [movement rebuild](docs/MOVEMENT_REBUILD.md). It supersedes earlier provisional movement notes where they conflict. Run `node tools/check_slide.mjs` and `node tools/check_motor.mjs` for motor regression checks.
 
-Experimental Phase 0–1 web reimplementation using React, Three.js, strict TypeScript and Vite. No combat is implemented. Native behavior parity is **not verified**.
+Experimental web reimplementation using React, Three.js, strict TypeScript and Vite. The first automatic-combat/XP loop is now playable; its balance is provisional. Native behavior parity is **not verified**. See [combat loop scope](docs/COMBAT_LOOP.md).
 
 Run `npm install`, then `npm run dev`. Open http://localhost:5173. `npm run build` checks types and creates the production bundle.
 

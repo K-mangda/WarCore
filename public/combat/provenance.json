@@ -1,0 +1,11 @@
+{
+  "source": "Existing local WarCore Unity export, enemy_skeleton",
+  "rig": false,
+  "texture": "FBX_Skeleton 1_Color_Normal.png",
+  "nativeMaterialVerified": false,
+  "note": "Static visual reused; combat balance and behavior are provisional.",
+  "sha256": {
+    "skeleton.json": "4205fb8ae9f380104de963100ee0a118adebf74d7515ad503143bc13dc59303b",
+    "FBX_Skeleton 1_Color_Normal.png": "869b658165b7dfa3abe4c6c5ec03cb27e2f71385c0cbec05e6d7e9373670c04d"
+  }
+}

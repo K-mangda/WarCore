@@ -1,15 +1,39 @@
-import { useEffect,useRef,useState } from 'react';
-import { createRoot } from 'react-dom/client';
-import { Engine,type Telemetry } from './core/Engine';
+import {useEffect,useRef,useState} from 'react';
+import {createRoot} from 'react-dom/client';
+import {Engine,type Telemetry} from './core/Engine';
+import {initialRun,type Upgrade} from './combat/Run';
 import './ui/style.css';
+import './ui/combat.css';
+const upgrades:{id:Upgrade;icon:string;name:string;description:string}[]=[
+  {id:'damage',icon:'✦',name:'POWER',description:'+5 damage per bolt'},
+  {id:'haste',icon:'ϟ',name:'HASTE',description:'15% shorter attack cooldown'},
+  {id:'projectiles',icon:'⁂',name:'MULTISHOT',description:'+1 bolt per attack (up to 8)'},
+];
 function App(){
-  const host=useRef<HTMLDivElement>(null);const engine=useRef<Engine|null>(null);const [error,setError]=useState('');const [ready,setReady]=useState(false);const [data,setData]=useState<Telemetry>({speed:0,fps:0,state:'Idle',jumps:0,locked:false});
-  useEffect(()=>{if(!host.current)return;let mounted=true;try{engine.current=new Engine(host.current,setData);void engine.current.ready.then(()=>{if(mounted)setReady(true);}).catch(e=>{if(mounted)setError(String(e));});}catch(e){setError(String(e));}return()=>{mounted=false;engine.current?.dispose();};},[]);
-  return <main><div ref={host} className="world"/><div className="vignette"/><header><a className="brand" href="#">M<span>◆</span>B<span className="brand-sub">MOVEMENT LAB</span></a><div className="phase"><i/> PHASE 01 <span>/</span> MOVEMENT SANDBOX</div><span className="build">EXPERIMENTAL BUILD · 0.1</span></header>
-    <aside className="location"><span className="eyebrow">TEST ENVIRONMENT / 001</span><h1>The proving<br/>grounds<span>.</span></h1><p>Find your momentum.</p><div className="tags"><span>40° SLOPE</span><span>OPEN TERRAIN</span></div></aside>
-    <div className="crosshair">+</div>{data.locked&&<div className="look-hint">WASD MOVE · SPACE JUMP · DRAG TO LOOK · ESC PAUSE</div>}<div className="speedlines" style={{opacity:data.locked?Math.min(1,Math.max(0,(data.speed-12)/18)):0}}>{Array.from({length:18},(_,i)=><i key={i} style={{transform:`rotate(${i*20}deg)`}}/>)}</div>
-    <aside className="telemetry"><div className="eyebrow">LIVE TELEMETRY <i/></div><div className="velocity">{data.speed.toFixed(1)}<small>m/s</small></div><div className="meter"><b style={{width:`${Math.min(data.speed/50,1)*100}%`}}/></div><dl><dt>MOVEMENT</dt><dd>{data.state.toUpperCase()}</dd><dt>RENDER</dt><dd>{data.fps} FPS</dd><dt>JUMPS</dt><dd>{String(data.jumps).padStart(3,'0')}</dd></dl></aside>
-    {!data.locked&&<section className="start"><span className="eyebrow">FOX / MOVEMENT PLAYTEST</span><h2>Keep it moving.</h2><p>Fox base skin · Original rig and animations.<br/>Movement sandbox · Original map pending.</p><button disabled={!!error||!ready} onClick={()=>engine.current?.lock()}>{ready?'ENTER SANDBOX':'LOADING FOX…'} <span>↗</span></button><small>{error||'Click to play · Drag to look if mouse capture is unavailable'}</small><div className="reset"><button onClick={()=>engine.current?.reset()}>RESET FLAT</button><button onClick={()=>engine.current?.reset(true)}>START AT SUMMIT</button></div></section>}
-    <footer><div className="controls"><span><kbd>W A S D</kbd> MOVE</span><span><kbd>SPACE</kbd> JUMP / BHOP</span><span><kbd>MOUSE</kbd> LOOK</span><span><kbd>ESC</kbd> PAUSE</span></div><div className="notice">PROTOTYPE GEOMETRY · PARITY UNDER REVIEW</div></footer></main>;
+  const host=useRef<HTMLDivElement>(null),engine=useRef<Engine|null>(null);
+  const [error,setError]=useState(''),[ready,setReady]=useState(false);
+  const [data,setData]=useState<Telemetry>({...initialRun,speed:0,fps:0,state:'Idle',jumps:0,locked:false});
+  useEffect(()=>{
+    if(!host.current)return;let mounted=true;
+    try{engine.current=new Engine(host.current,setData);void engine.current.ready.then(()=>{if(mounted)setReady(true);}).catch(e=>{if(mounted)setError(String(e));});}catch(e){setError(String(e));}
+    return()=>{mounted=false;engine.current?.dispose();};
+  },[]);
+  const time=`${Math.floor(data.elapsed/60).toString().padStart(2,'0')}:${Math.floor(data.elapsed%60).toString().padStart(2,'0')}`;
+  return <main>
+    <div ref={host} className="world"/><div className="vignette"/>
+    <header><div className="brand">M<span>◆</span>B<span className="brand-sub">COMBAT LAB</span></div><div className="phase"><i/> AUTO ATTACK <span>/</span> SANDBOX</div><span className="build">PROVISIONAL BALANCE · 0.2</span></header>
+    <section className="run-hud" aria-label="Run status">
+      <div className="run-time">{time}<small>{data.kills} KILLS · {data.enemyCount} ENEMIES</small></div>
+      <div className="health"><span>HP {data.health} / {data.maxHealth}</span><div role="progressbar" aria-label="Health" aria-valuenow={data.health} aria-valuemax={data.maxHealth} aria-valuemin={0}><b style={{width:`${data.health/data.maxHealth*100}%`}}/></div></div>
+      <div className="experience"><span>LEVEL {data.level} <small>{data.xp} / {data.xpNeeded} XP</small></span><div role="progressbar" aria-label="Experience" aria-valuenow={data.xp} aria-valuemax={data.xpNeeded} aria-valuemin={0}><b style={{width:`${data.xp/data.xpNeeded*100}%`}}/></div></div>
+    </section>
+    <div className="crosshair">+</div>
+    <aside className="weapon-status"><span>AUTO MAGIC BOLT</span><strong>{data.damage} DMG · {data.attackInterval.toFixed(2)}s · ×{data.projectiles}</strong><small>Targets nearby enemies automatically</small></aside>
+    <aside className="performance">{data.speed.toFixed(1)} m/s · {data.fps} FPS · {data.state}</aside>
+    {data.pendingUpgrades>0&&!data.dead&&<section className="upgrade-screen" role="dialog" aria-label="Choose an upgrade"><span className="eyebrow">LEVEL {data.level} · GAME PAUSED</span><h2>Choose your upgrade.</h2><p>Pick one to continue{data.pendingUpgrades>1?` · ${data.pendingUpgrades} choices remaining`:''}</p><div className="upgrade-cards">{upgrades.map(upgrade=><button key={upgrade.id} disabled={upgrade.id==='projectiles'&&data.projectiles>=8} onClick={()=>engine.current?.chooseUpgrade(upgrade.id)}><span>{upgrade.icon}</span><h3>{upgrade.name}</h3><p>{upgrade.description}</p><small>SELECT →</small></button>)}</div></section>}
+    {data.dead&&<section className="start death" role="dialog" aria-label="Run ended"><span className="eyebrow">RUN ENDED</span><h2>One more run?</h2><p>{time} survived · {data.kills} kills · Level {data.level}</p><button onClick={()=>engine.current?.restart()}>PLAY AGAIN <span>↗</span></button></section>}
+    {!data.locked&&!data.dead&&data.pendingUpgrades===0&&<section className="start"><span className="eyebrow">FOX / COMBAT PLAYTEST</span><h2>{data.elapsed>0?'Take a breather.':'Keep it moving.'}</h2><p>Move, survive and collect blue XP.<br/>Attacks fire automatically. No clicking to shoot.</p><button disabled={!!error||!ready} onClick={()=>engine.current?.lock()}>{!ready?'LOADING…':data.elapsed>0?'RESUME RUN':'START RUN'} <span>↗</span></button><small>{error||'WASD move · Space jump · Drag to look · Esc pause'}</small><div className="reset"><button onClick={()=>engine.current?.reset()}>NEW RUN</button></div></section>}
+    <footer><div className="controls"><span><kbd>W A S D</kbd> MOVE</span><span><kbd>SPACE</kbd> JUMP</span><span><kbd>MOUSE</kbd> LOOK</span><span><kbd>ESC</kbd> PAUSE</span></div><div className="notice">TEST ARENA · ORIGINAL MAP DEFERRED</div></footer>
+  </main>;
 }
 createRoot(document.getElementById('root')!).render(<App/>);
