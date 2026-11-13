@@ -458,3 +458,8 @@ Corrected selection-only Fox yaw by 180 degrees so its front faces the camera. P
 ## Upgrade Offers reference layout and animated spectrum - 2026-11-14
 
 Replaced the old three-across wood cards with reference-shaped Inventory / vertical Upgrade Offers / Stats columns. Inventory separates Weapons/Tomes/Items and uses actual ownership; items unavailable, no guessed capacities/weapon levels. Shared PlayerStats preserves Pause's real values/bonuses. Offer choices still use the existing three Tome effects, current->next values, caps, keyboard preference and queued-upgrade pause/resume. Added a decorative six-color continuously looping top stripe while the modal is open (4s web tuning; reduced-motion static). Banish/Skip/Refresh are explicitly disabled pending native rules, with no made-up charge counts. UPGRADE_SCREEN_REFERENCE.md records the large missing-data scope and links the broader extraction backlog. No new attacks/items/stat formulas/audio rules or phase transition. Build and existing combat/resume/controls/panel/package checks; user handles visual feel.
+
+
+## Removed pickup glow - 2026-11-14
+
+User requested no money or EXP glow. Removed the additive EXP halo batch/material and Gold halo sprite/generated texture; reset EXP's extra brightness multiplier to 1. Actual atlas art, tier tints, size/rotation, gold arc/shrink, pickups, sound and LEVEL UP effects are preserved. Shared renderers apply this to gameplay and Lab. Supersedes earlier glow tuning; no source asset edits or phase change. Build and existing progression/effects checks; user handles appearance.

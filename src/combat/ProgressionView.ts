@@ -9,14 +9,6 @@ export class ProgressionView {
  private data?:Data;private textures=new Map<string,T.Texture>();private coins=new Map<Gem,T.Sprite>();
  private effects:{sprite:T.Sprite;age:number;life:number;velocity:T.Vector3;kind:string}[]=[];
  private cameraRotation=new T.Quaternion();
- private goldGlow=(()=>{
-  const size=32,pixels=new Uint8Array(size*size*4);
-  for(let y=0;y<size;y++)for(let x=0;x<size;x++){
-   const i=(y*size+x)*4,r=Math.hypot((x+.5-size/2)/(size/2),(y+.5-size/2)/(size/2));
-   pixels[i]=255;pixels[i+1]=255;pixels[i+2]=255;pixels[i+3]=Math.round(Math.max(0,1-r)**2*255);
-  }
-  const texture=new T.DataTexture(pixels,size,size);texture.magFilter=T.LinearFilter;texture.minFilter=T.LinearFilter;texture.needsUpdate=true;return texture;
- })();
  private level=1;private previous=0;private disposed=false;
  constructor(private scene:T.Scene){
   // Sprite onBeforeRender supplies the actual rendering camera in game and Lab.
@@ -27,10 +19,7 @@ export class ProgressionView {
  }
  private sprite(kind:string){
   const texture=this.textures.get(kind)?.clone();if(!texture)return;
-  texture.needsUpdate=true;const sprite=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));sprite.onBeforeRender=(_renderer,_scene,camera)=>{this.cameraRotation.copy(camera.quaternion);};if(kind==='gold'){
-   const halo=new T.Sprite(new T.SpriteMaterial({map:this.goldGlow,color:0xffd45b,opacity:.22,transparent:true,depthWrite:false,blending:T.AdditiveBlending,toneMapped:false}));
-   halo.scale.setScalar(2.6);halo.renderOrder=1;sprite.renderOrder=2;sprite.add(halo);
-  }
+  texture.needsUpdate=true;const sprite=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));sprite.onBeforeRender=(_renderer,_scene,camera)=>{this.cameraRotation.copy(camera.quaternion);};
   this.scene.add(sprite);return sprite;
  }
  private frame(sprite:T.Sprite,kind:string,age:number){
@@ -96,5 +85,5 @@ export class ProgressionView {
    this.frame(e.sprite,e.kind,e.age);}
  }
  clear(){this.level=1;this.previous=0;for(const sprite of this.coins.values())this.remove(sprite);this.coins.clear();for(const e of this.effects)this.remove(e.sprite);this.effects=[];}
- dispose(){this.disposed=true;this.clear();for(const texture of this.textures.values())texture.dispose();this.textures.clear();this.goldGlow.dispose();}
+ dispose(){this.disposed=true;this.clear();for(const texture of this.textures.values())texture.dispose();this.textures.clear();}
 }
