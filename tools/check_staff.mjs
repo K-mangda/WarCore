@@ -22,8 +22,8 @@ const count=()=>[...view.batches.values()].reduce((n,b)=>n+b.particles.length,0)
 for(let i=0;i<30;i++)view.update(run,0);assert.equal(count(),initial,'Paused rendering must not repeat zero-time bursts');
 for(let i=0;i<200;i++){run.step(.02,new T.Vector3());view.update(run,.02);assert.ok(count()<=2400,'Particle count must stay bounded');}
 run.reset();view.update(run,0);assert.equal(count(),0,'Reset must remove old particles and trails');
-run.swarm.enemies.push({id:2,position:new T.Vector3(0,0,-30),velocity:new T.Vector3(),health:100,flash:0});
-for(let i=0;i<40;i++){run.step(.02,new T.Vector3());view.update(run,.02);}
+run.swarm.enemies.push({id:2,position:new T.Vector3(0,0,-23),velocity:new T.Vector3(),health:100,flash:0});
+for(let i=0;i<25;i++){run.step(.02,new T.Vector3());view.update(run,.02);}
 const coreId=manifest.phases.projectile.particles.find(p=>p.name==='FireballProjectile').pathId;
 assert.ok(view.batches.get(coreId).particles.length>0,'Native looping core must remain visible during long flight');
 run.reset();view.update(run,0);
@@ -42,6 +42,7 @@ const startPosition=text.sprite.position.clone();for(let i=0;i<10;i++)progressio
 assert.equal(text.age,0,'Paused rendering must not age the LEVEL UP effect');assert.ok(text.sprite.position.equals(startPosition));
 progression.update(fixture,new T.Vector3(),.14);assert.ok(text.sprite.scale.x>startScale,'Text must grow from small');
 const side=Math.sign(text.sprite.position.x);progression.update(fixture,new T.Vector3(),.2);assert.equal(Math.sign(text.sprite.position.x),side,'Sway must stay on its one chosen side');
+const shifted=new T.Vector3(3,2,0);progression.update(fixture,shifted,0);assert.ok(Math.abs(text.sprite.position.x-3)<.1,'LEVEL UP stays over a moving player');assert.ok(text.sprite.position.y>3.8,'LEVEL UP follows player height');
 const fullScale=text.sprite.scale.x;progression.update(fixture,new T.Vector3(),.4);assert.ok(text.sprite.scale.x<fullScale,'Text shrinks before expiry');
 progression.update(fixture,new T.Vector3(),.1);assert.equal(progression.effects.length,0);progression.dispose();
 console.log('Level-up effect checks passed: zero-delta pause, small start, single-sided sway, shrink and expiry.');

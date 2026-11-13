@@ -241,3 +241,10 @@ Gold already spawned on every enemy death and used the shared Lab renderer. It o
 ## LEVEL UP lower head anchor and horizontal squeeze - 2026-11-13
 
 User refined placement/end motion: text anchor2.5 ->1.85m above player ground origin, near the character head. After its single-sided sway, the last0.16s compresses horizontal width quadratically to zero while retaining height/opacity, then removes the sprite at expiry. This replaces uniform shrink/fade; opening pop, color and strict pause behavior remain. Shared game/Lab web tuning; automatic delivery applies.
+
+
+## Follow moving player with LEVEL UP; shorter staff and smaller gold - 2026-11-13
+
+User reported game/Lab mismatch: LEVEL UP text retained its original world anchor while the player could move/fall away, unlike the stationary Lab. Text now follows current player position plus1.85Y and its existing animated rise/sway; pause still freezes its age. Burst particles now use the previously omitted native blue startColor instead of white. Burst lifetime remains the source0.2..0.4s, shorter than text0.8s, so a late screenshot may show only text. No claim of exact native parity.
+
+Further requested tuning: Firestaff target range32 ->24m (25% shorter), Gold visual scale0.32 ->0.256 (20% smaller), Silver/EXP sizes unchanged. Long-flight renderer fixture is within the new acquisition range. Automatic delivery applies.
