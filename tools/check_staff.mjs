@@ -22,7 +22,7 @@ const count=()=>[...view.batches.values()].reduce((n,b)=>n+b.particles.length,0)
 for(let i=0;i<30;i++)view.update(run,0);assert.equal(count(),initial,'Paused rendering must not repeat zero-time bursts');
 for(let i=0;i<200;i++){run.step(.02,new T.Vector3());view.update(run,.02);assert.ok(count()<=2400,'Particle count must stay bounded');}
 run.reset();view.update(run,0);assert.equal(count(),0,'Reset must remove old particles and trails');
-run.swarm.enemies.push({id:2,position:new T.Vector3(0,0,-23),velocity:new T.Vector3(),health:100,flash:0});
+run.swarm.enemies.push({id:2,position:new T.Vector3(0,0,-18),velocity:new T.Vector3(),health:100,flash:0});
 for(let i=0;i<25;i++){run.step(.02,new T.Vector3());view.update(run,.02);}
 const coreId=manifest.phases.projectile.particles.find(p=>p.name==='FireballProjectile').pathId;
 assert.ok(view.batches.get(coreId).particles.length>0,'Native looping core must remain visible during long flight');
