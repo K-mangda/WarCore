@@ -19,7 +19,7 @@ export class Engine {
   private run=new Run(heightAt,point=>{const projected=point.project(this.camera);return projected.z>=-1&&projected.z<=1&&Math.abs(projected.x)<1.2&&Math.abs(projected.y)<1.2;},Math.random,event=>this.audio.play(event));
   private combatView:CombatView;
   private disposed=false;
-  private active=false;
+  private active=false;private inLab=false;
   private hadLock=false;
   private renderer:T.WebGLRenderer; private scene=new T.Scene(); private camera=new T.PerspectiveCamera(75,1,.05,250); private motor=new Motor(); private input:Input; private orbit:Orbit; private terrain:T.Mesh; private effects:Effects; private frame=0; private previous=0; private accumulator=0; private frames=0; private fps=0; private sample=0;
   constructor(private host:HTMLElement,private report:(data:Telemetry)=>void) {
@@ -44,8 +44,9 @@ export class Engine {
   };
   private pause=()=>{this.audio.stopGameplay();this.active=false;this.input.clear();if(document.pointerLockElement===this.renderer.domElement)document.exitPointerLock();};
   private lockChanged=()=>{const locked=document.pointerLockElement===this.renderer.domElement;if(this.hadLock&&!locked)this.pause();this.hadLock=locked;};
-  pauseForLab=()=>{this.pause();this.emit();};
-  reset=(top=false)=>{this.audio.stopGameplay();this.motor.reset(top);this.run.reset();this.emit();};
+  pauseForLab=()=>{this.inLab=true;this.audio.stopProgression();this.pause();this.emit();};
+  resumeFromLab=()=>{this.inLab=false;};
+  reset=(top=false)=>{this.audio.stopProgression();this.audio.stopGameplay();this.motor.reset(top);this.run.reset();this.emit();};
   setWeapon=(weapon:Weapon)=>{if(this.active)return;this.run.setWeapon(weapon);this.emit();};
   restart=()=>{this.reset();this.lock();};
   chooseUpgrade=(upgrade:Upgrade)=>{this.audio.play('click');if(this.run.choose(upgrade)&&!this.run.blocked)this.lock();this.emit();};
@@ -60,7 +61,8 @@ export class Engine {
     else this.accumulator=0;
     const slide=this.motor.state===EMovementState.Sliding;
     this.fox.update(this.motor.position,this.orbit.yaw,this.motor.speed,this.motor.grounded,this.motor.velocity.y,locked?dt:0);
-    this.combatView.update(this.run,this.motor.position);
+    this.combatView.update(this.run,this.motor.position,this.run.snapshot().pendingUpgrades>0||locked?dt:0);
+    this.audio.setLevelModal(!this.inLab&&this.run.snapshot().pendingUpgrades>0);
     this.orbit.update(this.motor.position,this.terrain);this.effects.update(locked?dt:0,this.motor.position,locked&&slide,this.motor.speed);this.renderer.render(this.scene,this.camera);
     this.frames++;this.sample+=wallDelta;if(this.sample>=.2){this.fps=Math.round(this.frames/this.sample);this.frames=0;this.sample=0;this.emit();}
     this.frame=requestAnimationFrame(this.tick);

@@ -8,7 +8,7 @@ globalThis.fetch=async url=>({ok:true,arrayBuffer:async()=>new TextEncoder().enc
 globalThis.AudioContext=class{
  currentTime=1;state='running';destination={};constructor(){context=this;}
  createGain(){return {gain:{value:1},connect(){},disconnect(){}};}
- createBufferSource(){return {buffer:null,playbackRate:{value:1},onended:null,stopped:false,connect(){},disconnect(){},start(){started.push(this);},stop(){this.stopped=true;}};}
+ createBufferSource(){return {buffer:null,playbackRate:{value:1},onended:null,stopped:false,connect(node){this.output=node;},disconnect(){},start(){started.push(this);},stop(when){if(when===undefined)this.stopped=true;else this.stopAt=when;}};}
  async decodeAudioData(data){return {label:new TextDecoder().decode(data)};}
  async resume(){} async close(){this.state='closed';}
 };
@@ -21,7 +21,7 @@ assert.equal(started.filter(v=>v.buffer.label.includes('SwordSwing')).length,2,'
 for(let i=0;i<20;i++){context.currentTime+=.09;audio.play('xp');}
 audio.play('level');audio.play('death');
 assert.ok(started.filter(v=>!v.stopped).length<=10,'Voice count must stay bounded');
-const alerts=started.filter(v=>/DeathImpact|Levelup3/.test(v.buffer.label));assert.equal(alerts.length,2,'Important notifications must survive pickup crowding');
+const alerts=started.filter(v=>/DeathImpact|LevelupAfter/.test(v.buffer.label));assert.equal(alerts.length,2,'Important notifications must survive pickup crowding');
 audio.play('shot');audio.play('staffImpact');audio.play('staffHit');
 assert.ok(started.some(v=>v.buffer.label.includes('weapons/staff/audio/retro_shoot_fireball3.wav')),'Firestaff shot must use verified media');
 assert.ok(started.some(v=>v.buffer.label.includes('weapons/staff/audio/retro_explosion_')),'Impact must have its own explosion clip');
@@ -29,5 +29,14 @@ assert.ok(started.some(v=>v.buffer.label.includes('weapons/staff/audio/Hit2.wav'
 audio.stopGameplay();assert.ok(alerts.every(v=>!v.stopped),'Pause must preserve level/death notifications');
 assert.ok(started.filter(v=>/SwordSwing|Xp2|retro_shoot|retro_explosion|Hit2/.test(v.buffer.label)).every(v=>v.stopped),'Pause must stop stale run sounds');
 const count=started.length;audio.toggle();audio.play('sword');assert.equal(started.length,count,'Mute must prevent new audible voices');
+audio.toggle();context.currentTime+=3;
+for(let i=0;i<60;i++){context.currentTime+=.001;audio.play('xp');}
+const xp=started.filter(v=>v.buffer.label.includes('Xp2')).at(-1);
+assert.equal(xp.playbackRate.value,1.8,'Rapid collection raises pitch to the reported ceiling');assert.equal(xp.output.gain.value,.22);
+context.currentTime+=3;audio.play('xp');assert.equal(started.at(-1).playbackRate.value,.8,'Pitch window must expire');
+audio.play('gold');assert.equal(started.at(-1).playbackRate.value,.92);assert.equal(started.at(-1).output.gain.value,.26);
+audio.setLevelModal(true);const loop=started.find(v=>v.loop&&!v.stopped);assert.ok(loop?.buffer.label.includes('LevelupAmbience'));
+const voices=started.length;audio.setLevelModal(true);assert.equal(started.length,voices,'Modal reconciliation must not duplicate ambience');
+audio.setLevelModal(false);assert.equal(loop.stopped,true,'Closing the modal stops ambience');
 audio.dispose();assert.ok(started.every(v=>v.stopped),'Dispose must stop every remaining voice');
 console.log('Audio event checks passed: consecutive swings, bounded priorities, pause notifications, mute and cleanup. Mock audio does not verify waveform or perceived loudness.');

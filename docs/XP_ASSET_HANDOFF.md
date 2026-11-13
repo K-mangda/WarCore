@@ -25,3 +25,8 @@ Investigate only EXP pickup behavior and remaining dependencies in the installed
 4. Return a manifest, raw dependencies, readable behavior summary and UNVERIFIED.md. Label verified serialized values separately from inferred runtime behavior. Do not mark trigger_verified based solely on a filename/category label.
 
 Separately catalog missing coin-drop/collect and level-up VFX dependency chains (prefab -> children/subemitters -> material/shader -> textures, plus audio triggers). Existing Levelup3/4/After/Ambience and coin WAV files are available; prioritize missing visual chains and when each sound actually plays.
+
+
+## Follow-up integration — 2026-11-13
+
+See PROGRESSION_IMPLEMENTATION.md for the implemented EXP value/tier/stack/attraction, currency, level-up and Lab changes. Earlier descriptions of low-tier-only collection and constant10m/s attraction are superseded. The external report contains incorrect currency component and text texture IDs; direct native reference traversal corrected them. Runtime disassembly conclusions remain attributed to the external report. Formula/drop-rate/shader gaps are explicitly retained in the new document.

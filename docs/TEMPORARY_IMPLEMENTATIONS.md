@@ -128,3 +128,10 @@ User playtest reported oversized hits. Firestaff swept collision threshold reduc
 ## Native EXP atlas integration — 2026-11-13
 
 Replaced octahedron placeholder with the native XpPickup billboard atlas chain, shared by game and EXP Lab. See XP_ASSET_HANDOFF.md for exact IDs, reproduction and missing-evidence prompt. Source size/color/frames are used; custom glow, runtime tier/particle updates and native movement remain incomplete. Existing collection mechanics and Xp2 event retained. No speculative new spawn/attraction sound or VFX added. Local only, no push/deploy.
+
+
+## EXP, currency and level-up integration - 2026-11-13
+
+See PROGRESSION_IMPLEMENTATION.md for source corrections and remaining approximations. This supersedes the earlier low-tier-only/constant-speed EXP and Levelup3 in-run mapping. EXP now retains values, tier colors/scales, stacking and accelerating attraction from the external report. Currency uses native atlas art with separate sounds and HUD balances. Level-up uses LevelupAfter, Levelup4 and LevelupAmbience with loop cleanup, plus native burst/text art. Incorrect currency IDs and text texture claims in the report were corrected by direct reference traversal; native disassembly was not independently repeated.
+
+XP threshold5+3 and three upgrade choices remain provisional. For sandbox playtesting every5th kill drops1 gold and every12th drops1 silver; native probabilities and values remain unknown. Activation radius5m, target+.35Y, omission of random spawn offset, money cap/merging, level burst directions/text placement and custom shader rendering remain web approximations. No boss/chest orb, echo generation, XP damage proc or persistent economy is claimed. Source rows/modules/hashes are saved in public/progression. Build/combat/staff/mock-audio checks passed; visual/audio/gameplay testing is left to the user. Local only; no push/deploy.

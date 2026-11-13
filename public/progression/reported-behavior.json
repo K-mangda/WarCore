@@ -1,0 +1,411 @@
+{
+  "schemaVersion": "2.0.0",
+  "dataset": "Megabonk Pickups & Progression Systems",
+  "unityVersion": "2023.2.22f1",
+  "status": "verified_disassembly_and_serialized",
+  "entities": {
+    "XpPickup": {
+      "gameObject": {
+        "sourceFile": "sharedassets2.assets",
+        "pathId": 872,
+        "name": "XpPickup"
+      },
+      "transform": {
+        "pathId": 1472,
+        "localPosition": [
+          -66.0,
+          10.0,
+          4.0
+        ],
+        "localScale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "sphereCollider": {
+        "pathId": 2108,
+        "radius": 0.5,
+        "isTrigger": true,
+        "center": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "particleSystem": {
+        "pathId": 2314,
+        "startLifetime": 0.5,
+        "startSize": 1.0,
+        "maxNumParticles": 1,
+        "startSpeed": 0.0,
+        "textureSheetAnimation": {
+          "tilesX": 32,
+          "tilesY": 16,
+          "rowIndex": 12,
+          "frameOverTimeScalar": 0.21875,
+          "columns": "0..6 (7 frames)",
+          "fps": 30.0,
+          "cycles": 1.0
+        }
+      },
+      "particleRenderer": {
+        "pathId": 2588,
+        "material": {
+          "sourceFile": "sharedassets1.assets",
+          "pathId": 424,
+          "name": "Atlas02"
+        },
+        "texture": {
+          "sourceFile": "sharedassets1.assets",
+          "pathId": 545,
+          "name": "atlas02Custom"
+        }
+      },
+      "xpVisuals": {
+        "pathId": 3096,
+        "monoScript": {
+          "sourceFile": "globalgamemanagers.assets",
+          "pathId": 647,
+          "className": "XpVisuals",
+          "typeDef": 5374
+        },
+        "colors": {
+          "c_low": [
+            0.4392157,
+            0.7686275,
+            1.0,
+            1.0
+          ],
+          "c_mid": [
+            1.0,
+            0.972549,
+            0.3843137,
+            1.0
+          ],
+          "c_high": [
+            1.0,
+            0.3443396,
+            0.362659,
+            1.0
+          ],
+          "c_echo": [
+            0.9154029,
+            0.5235849,
+            1.0,
+            1.0
+          ]
+        },
+        "tierScales": {
+          "low": {
+            "maxValue": 9,
+            "scale": 1.0,
+            "color": "c_low"
+          },
+          "mid": {
+            "minValue": 10,
+            "maxValue": 49,
+            "scale": 1.25,
+            "color": "c_mid"
+          },
+          "high": {
+            "minValue": 50,
+            "scale": 1.5,
+            "color": "c_high"
+          },
+          "echo": {
+            "scale": 1.0,
+            "color": "c_echo"
+          }
+        },
+        "disassembly": {
+          "GetXpTierRVA": "0x3d3ff0",
+          "OnValueUpdatedRVA": "0x3d4110",
+          "SetEchoXpRVA": "0x3d4370"
+        }
+      },
+      "pickup": {
+        "pathId": 3389,
+        "monoScript": {
+          "sourceFile": "globalgamemanagers.assets",
+          "pathId": 1443,
+          "className": "Pickup",
+          "typeDef": 4794
+        },
+        "serializedFields": {
+          "ePickup": 0,
+          "floatOffset": 0.4,
+          "floatSpeed": 0.25,
+          "floatRotationSpeed": 100.0,
+          "animateRotation": false,
+          "animatePosition": false
+        },
+        "kinematics": {
+          "farStage": {
+            "minDistance": 10.0,
+            "targetSpeed": 150.0,
+            "lerpRate": 4.0
+          },
+          "nearStage": {
+            "maxDistance": 10.0,
+            "targetSpeed": 50.0,
+            "lerpRate": 2.5
+          },
+          "collectRange": {
+            "highSpeedThreshold": 50.0,
+            "highSpeedRange": 1.0,
+            "normalSpeedRange": 0.5
+          }
+        },
+        "disassembly": {
+          "FixedUpdateRVA": "0x4d70b0",
+          "UpdateRVA": "0x4d7800",
+          "ApplyPickupRVA": "0x4d6c50"
+        }
+      },
+      "xpDamager": {
+        "pathId": 3457,
+        "monoScript": {
+          "sourceFile": "globalgamemanagers.assets",
+          "pathId": 532,
+          "className": "XpDamager",
+          "typeDef": 4800
+        }
+      },
+      "audio": {
+        "clipName": "Xp2",
+        "sourceFile": "level2",
+        "audioSourcePathId": 8896,
+        "baseVolume": 0.22,
+        "dynamicPitch": {
+          "enabled": true,
+          "timeWindow": 2.0,
+          "minPickups": 20,
+          "maxPickups": 60,
+          "minPitch": 0.8,
+          "maxPitch": 1.8,
+          "formula": "0.8 + 1.0 * clamp01((count - 20) / 40)"
+        },
+        "disassembly": {
+          "PlayXpRVA": "0x34c2e0",
+          "AudioUpdateRVA": "0x34c570"
+        }
+      },
+      "managerRules": {
+        "maxObjects": 300,
+        "combineThreshold": 500,
+        "dynamicStackRadius": "lerp(0.5, 8.0, clamp01(gameTime / 900.0))",
+        "spawnHeightOffset": "Vector3.up * 2 + Random.insideUnitCircle",
+        "physicsOnSpawn": "None (Stationary hovered, no Rigidbody/bounce)",
+        "disassembly": {
+          "SpawnPickupRVA": "0x4df090",
+          "CombineOldestRVA": "0x445590",
+          "PickupManagerCctorRVA": "0x4df2f0",
+          "SlowUpdateRVA": "0x4dee20"
+        }
+      }
+    },
+    "MoneyFlying": {
+      "gameObject": {
+        "sourceFile": "sharedassets2.assets",
+        "pathId": 899,
+        "name": "MoneyFlying"
+      },
+      "transform": {
+        "pathId": 1499
+      },
+      "particleSystem": {
+        "pathId": 2341,
+        "startLifetime": 0.5,
+        "startSize": 1.0,
+        "maxNumParticles": 1,
+        "startSpeed": 0.0,
+        "textureSheetAnimation": {
+          "tilesX": 32,
+          "tilesY": 16,
+          "rowIndex": 7,
+          "frameOverTimeScalar": 0.34375,
+          "columns": "0..10 (11 frames)",
+          "fps": 30.0,
+          "cycles": 1.0
+        }
+      },
+      "particleRenderer": {
+        "pathId": 2615,
+        "material": {
+          "sourceFile": "sharedassets1.assets",
+          "pathId": 424,
+          "name": "Atlas02"
+        },
+        "texture": {
+          "sourceFile": "sharedassets1.assets",
+          "pathId": 545,
+          "name": "atlas02Custom"
+        }
+      },
+      "pickup": {
+        "pathId": 3416,
+        "ePickup": 1
+      },
+      "audio": {
+        "clipName": "gold",
+        "volume": 0.26,
+        "pitch": 0.92,
+        "playFunctionRVA": "0x34b920"
+      }
+    },
+    "SilverFlying": {
+      "gameObject": {
+        "sourceFile": "sharedassets2.assets",
+        "pathId": 965,
+        "name": "SilverFlying"
+      },
+      "transform": {
+        "pathId": 1565
+      },
+      "particleSystem": {
+        "pathId": 2407,
+        "startLifetime": 0.5,
+        "startSize": 1.5,
+        "maxNumParticles": 1,
+        "startSpeed": 0.0,
+        "textureSheetAnimation": {
+          "tilesX": 32,
+          "tilesY": 16,
+          "rowIndex": 7,
+          "frameOverTimeScalar": 0.3125,
+          "columns": "0..9 (10 frames)",
+          "fps": 30.0,
+          "cycles": 1.0
+        }
+      },
+      "particleRenderer": {
+        "pathId": 2681,
+        "material": {
+          "sourceFile": "sharedassets1.assets",
+          "pathId": 424,
+          "name": "Atlas02"
+        },
+        "texture": {
+          "sourceFile": "sharedassets1.assets",
+          "pathId": 545,
+          "name": "atlas02Custom"
+        }
+      },
+      "pickup": {
+        "pathId": 3482,
+        "ePickup": 2
+      },
+      "audio": {
+        "clipName": "Silver",
+        "volume": 0.45,
+        "pitch": 1.0,
+        "playFunctionRVA": "0x34bc40"
+      }
+    },
+    "LevelUpProgression": {
+      "playerWorldBurst": {
+        "sourceFile": "level2",
+        "triggerRVA": "0x4b5f20 (MyPlayerOnLevelUp)",
+        "visualEffect": {
+          "gameObject": 2967,
+          "name": "LevelupEffect",
+          "particleSystem": 9162,
+          "renderer": 9328,
+          "material": {
+            "sourceFile": "sharedassets1.assets",
+            "pathId": 428,
+            "name": "Atlas03Glow",
+            "extraGlow": 3.0
+          },
+          "texture": {
+            "sourceFile": "sharedassets1.assets",
+            "pathId": 551,
+            "name": "atlas03"
+          },
+          "textureSheetAnimation": {
+            "tilesX": 8,
+            "tilesY": 32,
+            "rowIndex": 16,
+            "frames": 8,
+            "speedRange": [
+              7.0,
+              12.0
+            ],
+            "lifetimeRange": [
+              0.2,
+              0.4
+            ]
+          }
+        },
+        "visualText": {
+          "gameObject": 2953,
+          "name": "LevelUpText",
+          "particleSystem": 9076,
+          "renderer": 9389,
+          "material": {
+            "sourceFile": "sharedassets1.assets",
+            "pathId": 90,
+            "name": "Atlas_EmojisGlow"
+          },
+          "texture": {
+            "sourceFile": "sharedassets1.assets",
+            "pathId": 553,
+            "name": "icon_question"
+          },
+          "textureSheetAnimation": {
+            "tilesX": 8,
+            "tilesY": 16,
+            "rowIndex": 9,
+            "column": 6,
+            "startLifetime": 0.8,
+            "startSize": 1.5
+          }
+        },
+        "audio": {
+          "audioSourcePathId": 8892,
+          "clipName": "LevelupAfter",
+          "volume": 0.6,
+          "pitch": 1.0,
+          "autoStopSeconds": 2.0
+        }
+      },
+      "cardSelectionModal": {
+        "sourceFile": "level2",
+        "screen": "LevelupScreen",
+        "modalOpenAudio": {
+          "audioSourcePathId": 8838,
+          "clipName": "Levelup4",
+          "volume": 0.3,
+          "pitch": 1.0
+        },
+        "ambientAudio": {
+          "clipName": "LevelupAmbience",
+          "volume": 0.35,
+          "pitch": 1.0,
+          "loop": true
+        }
+      },
+      "clarifiedSoundReclassifications": {
+        "Levelup3": {
+          "originalAssumption": "In-run player level-up sound",
+          "verifiedReality": "Stage victory and new record fanfare",
+          "callSites": [
+            {
+              "component": "NewRecordUi",
+              "audioSourcePathId": 8824,
+              "volume": 0.55,
+              "pitch": 1.0
+            },
+            {
+              "component": "TierVictoryScreen",
+              "audioSourcePathId": 8861,
+              "volume": 0.55,
+              "pitch": 1.0
+            }
+          ]
+        }
+      }
+    }
+  }
+}

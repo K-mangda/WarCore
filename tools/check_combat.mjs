@@ -4,7 +4,7 @@ import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 import {Vector3} from 'three';
-for(const name of ['combat/Run','combat/Balance','combat/AttackTiming','enemies/Swarm']){
+for(const name of ['combat/Run','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm']){
   const destination=resolve('.local-evidence/combat-check',name+'.js');mkdirSync(dirname(destination),{recursive:true});
   const code=ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'");writeFileSync(destination,code);
 }
@@ -13,8 +13,9 @@ const player=new Vector3();let seed=1;const random=()=>((seed=Math.imul(seed,166
 const create=()=>new Run(()=>0,()=>false,random);
 const run=create();
 run.swarm.enemies.push({id:999,position:new Vector3(0,0,-5),velocity:new Vector3(),health:10,flash:0});
-run.step(.5,player);assert.equal(run.snapshot().kills,1,'Automatic attack must hit a target crossed between frames');assert.equal(run.gems.length,1,'A killed enemy must drop XP');
-run.gems[0].position.copy(player);run.step(.02,player);assert.equal(run.snapshot().xp,1,'Near XP must be collected');
+run.step(.5,player);assert.equal(run.snapshot().kills,1,'Automatic attack must hit a target crossed between frames');assert.equal(run.gems.reduce((n,p)=>n+(p.value??1),0)+run.snapshot().xp,1,'A killed enemy must preserve its XP, including immediate attraction');
+run.gems.push({position:player.clone()});
+run.gems[0].position.copy(player);run.step(.02,player);assert.equal(run.snapshot().xp,2,'Near XP must be collected');
 const upgradeRun=create();for(let i=0;i<13;i++)upgradeRun.gems.push({position:player.clone()});upgradeRun.step(.02,player);
 assert.equal(upgradeRun.snapshot().level,3);assert.equal(upgradeRun.snapshot().pendingUpgrades,2,'Multiple earned levels must preserve both choices');
 const time=upgradeRun.snapshot().elapsed;const before=upgradeRun.swarm.enemies[0].position.clone();upgradeRun.step(10,player);
@@ -75,3 +76,19 @@ for(let i=0;i<5;i++)emptyStaff.gems.push({position:player.clone()});emptyStaff.s
 emptyStaff.swarm.enemies.push(enemy(2100,0,-12));emptyStaff.step(.02,player);assert.equal(emptyStaff.bolts.length,1,'Quantity must not create a simultaneous spread');
 for(let i=0;i<25;i++)emptyStaff.step(.02,player);assert.equal(staffEvents.filter(e=>e==='shot').length,3,'Quantity2 must produce two timed shots');
 console.log('Firestaff checks passed: targeted burst, source phase events, bounded explosion damage, no-target silence and reset.');
+
+const pickups=new Run(()=>0,()=>true,()=>.5);
+for(let i=0;i<350;i++)pickups.spawnPickup('xp',new Vector3(i*20,0,0));
+assert.equal(pickups.gems.length,300,'XP cap must combine rather than grant XP early');
+assert.equal(pickups.gems.reduce((sum,p)=>sum+(p.value??1),0),350,'Combining must conserve value');
+assert.equal(pickups.snapshot().xp,0,'Uncollected XP must remain in world');
+pickups.reset();pickups.spawnPickup('xp',new Vector3(0,0,-3),9);pickups.spawnPickup('xp',new Vector3(0,0,-3),1);
+assert.equal(pickups.gems.length,1);assert.equal(pickups.gems[0].value,10);
+pickups.reset();pickups.gems.push({kind:'gold',position:player.clone(),value:3},{kind:'silver',position:player.clone(),value:2});pickups.step(.02,player);
+assert.equal(pickups.snapshot().gold,3);assert.equal(pickups.snapshot().silver,2);assert.equal(pickups.snapshot().xp,0);
+pickups.reset();assert.equal(pickups.snapshot().gold,0);assert.equal(pickups.snapshot().silver,0);
+const {movePickup,xpAppearance}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Pickups.js')));
+assert.equal(xpAppearance(9).tier,'low');assert.equal(xpAppearance(10).scale,1.25);assert.equal(xpAppearance(50).scale,1.5);assert.equal(xpAppearance(100,true).tier,'echo');
+const magnet={position:new Vector3(0,0,-4)};movePickup(magnet,player,.02,5);assert.ok(magnet.speed>0);magnet.position.z=-20;movePickup(magnet,player,.02,5);assert.equal(magnet.following,true,'Attraction remains latched after leaving radius');
+assert.equal(movePickup({position:new Vector3(0,0,-1),following:true,speed:150},player,.1,5),true,'Fast pickups must not overshoot the player');
+console.log('Progression checks passed: stacking, conservation, tiers, attraction, money and reset.');

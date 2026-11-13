@@ -1,17 +1,18 @@
+import {movePickup,type Pickup,type PickupKind} from './Pickups';
 import {burstInterval} from './AttackTiming';
 import {Vector3} from 'three';
 import {Swarm,type Enemy} from '../enemies/Swarm';
 import {balance} from './Balance';
 export type Weapon='bolt'|'sword';
-export type RunEvent='sword'|'shot'|'staffImpact'|'staffHit'|'xp'|'level'|'hurt'|'death';
+export type RunEvent='sword'|'shot'|'staffImpact'|'staffHit'|'xp'|'gold'|'silver'|'level'|'hurt'|'death';
 export type Upgrade='damage'|'haste'|'projectiles';
 export interface Projectile {position:Vector3;velocity:Vector3;life:number;damage:number;}
 export interface StaffEffect {kind:'muzzle'|'impact'|'hit';position:Vector3;direction:Vector3;life:number;duration:number;}
 export interface Slash {position:Vector3;direction:Vector3;life:number;duration:number;damage:number;hits:Set<number>;}
-export interface Gem {position:Vector3;}
+export interface Gem extends Pickup {}
 export interface Hit {position:Vector3;damage:number;life:number;}
-export interface RunSnapshot {weapon:Weapon;health:number;maxHealth:number;level:number;xp:number;xpNeeded:number;kills:number;elapsed:number;enemyCount:number;pendingUpgrades:number;dead:boolean;damage:number;attackInterval:number;projectiles:number;}
-export const initialRun:RunSnapshot={weapon:'bolt',health:balance.maxHealth,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:5,kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1};
+export interface RunSnapshot {weapon:Weapon;gold:number;silver:number;health:number;maxHealth:number;level:number;xp:number;xpNeeded:number;kills:number;elapsed:number;enemyCount:number;pendingUpgrades:number;dead:boolean;damage:number;attackInterval:number;projectiles:number;}
+export const initialRun:RunSnapshot={weapon:'bolt',gold:0,silver:0,health:balance.maxHealth,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:5,kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1};
 export class Run {
   readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly staffEffects:StaffEffect[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];
   private state:RunSnapshot={...initialRun};private spawnClock=0;private attackClock=0;private hurtClock=0;private started=false;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
@@ -33,11 +34,24 @@ export class Run {
   private kill(enemy:Enemy){
     const index=this.swarm.enemies.indexOf(enemy);if(index<0)return;
     this.swarm.enemies.splice(index,1);this.state.kills++;
-    if(this.gems.length<balance.maxGems)this.gems.push({position:enemy.position.clone().add(new Vector3(0,.35,0))});
-    else this.gainXp(); // Saturation must not silently lose progression.
+    this.spawnPickup('xp',enemy.position);
+    // Explicit sandbox drop schedule, not a recovered native probability table.
+    if(this.state.kills%5===0)this.spawnPickup('gold',enemy.position);
+    if(this.state.kills%12===0)this.spawnPickup('silver',enemy.position);
   }
-  private gainXp(){
-    this.state.xp++;this.sound('xp');
+  spawnPickup(kind:PickupKind,position:Vector3,value=1,echo=false){
+    if(!Number.isFinite(value)||value<=0)return;
+    const spot=position.clone();spot.y=this.ground(spot.x,spot.z)+2;
+    const radius=.5+7.5*Math.min(1,this.state.elapsed/900);
+    const existing=kind==='xp'?this.gems.find(p=>(p.kind??'xp')==='xp'&&!p.following&&!!p.echo===echo&&(p.value??1)<500&&p.position.distanceToSquared(spot)<=radius*radius):undefined;
+    if(existing){existing.value=(existing.value??1)+value;if(existing.value>=500){this.gems.splice(this.gems.indexOf(existing),1);this.gems.push(existing);}return;}
+    if(kind!=='xp'&&this.gems.filter(p=>p.kind===kind).length>=100){const first=this.gems.find(p=>p.kind===kind)!;first.value=(first.value??1)+value;return;}
+    this.gems.push({kind,position:spot,value,echo,speed:0});
+    const xp=this.gems.filter(p=>(p.kind??'xp')==='xp');
+    if(xp.length>300){const oldest=xp[0],next=xp[1];next.value=(next.value??1)+(oldest.value??1);this.gems.splice(this.gems.indexOf(oldest),1);}
+  }
+  private gainXp(value=1){
+    this.state.xp+=value;this.sound('xp');
     while(this.state.xp>=this.state.xpNeeded){this.state.xp-=this.state.xpNeeded;this.state.level++;this.state.xpNeeded=5+(this.state.level-1)*3;this.state.pendingUpgrades++;this.sound('level');}
   }
   /** Sandbox melee sector; native swing trajectory and hit timing are not reconstructed. */
@@ -137,9 +151,12 @@ export class Run {
     }
     if(this.staffEffects.length>128)this.staffEffects.splice(0,this.staffEffects.length-128);
     for(let i=this.gems.length-1;i>=0;i--){
-      const gem=this.gems[i],target=player.clone().add(new Vector3(0,.35,0)),distance=gem.position.distanceTo(target);
-      if(distance<balance.pickupRadius){this.gems.splice(i,1);this.gainXp();}
-      else if(distance<balance.magnetRadius)gem.position.addScaledVector(target.sub(gem.position).normalize(),Math.min(distance,10*dt));
+      const gem=this.gems[i];
+      if(movePickup(gem,player.clone().add(new Vector3(0,.35,0)),dt,balance.magnetRadius)){
+        this.gems.splice(i,1);const kind=gem.kind??'xp';
+        if(kind==='xp')this.gainXp(gem.value??1);
+        else{this.state[kind]+=gem.value??1;this.sound(kind);}
+      }
     }
     for(let i=this.hits.length-1;i>=0;i--){const hit=this.hits[i];hit.life-=dt;hit.position.y+=dt;if(hit.life<=0)this.hits.splice(i,1);}
     if(this.hits.length>60)this.hits.splice(0,this.hits.length-60);

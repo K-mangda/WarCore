@@ -1,0 +1,26 @@
+{
+  "sourceHashes": {
+    "sharedassets1.assets": "64c5156116e20fe645acc133bfae7ab1fdd3a7bbc99f915559efc0640be0349a",
+    "sharedassets2.assets": "cb59b62352b2ed5654fc1f1df451cf8f221c260627df6ee5feb7fcedac71cfa9",
+    "level2": "853ee36652352d3245f335d498a2c70ff9fe3e0380e14991a83fd65c847d48d6"
+  },
+  "audioHashes": {
+    "gold": "acd99cbb4a82d4ac0224cc3dbc3ff6150a5ba8c574c31f7b09b720c1fb28de7d",
+    "Silver": "717352b971b939582dec0b84a2b5cf4eebe0330d1ce31755530ec3c6a5cdbf34",
+    "Levelup4": "4372dbb387fbf583a28ead7675f64e25d939c4dc39f46674f59ec157e2d6e6e4",
+    "LevelupAfter": "379141f68be63d0296ced6fb8ed54d90246f05abce09f1fc788b576013a171fd",
+    "LevelupAmbience": "46e24952fed33d15ed324c9a54e499d9f453131fa646d3679c0b51b3bcb98212"
+  },
+  "outputHashes": {
+    "burst-source.json": "b2ed8e48da0383c27f5f826f9a0e73a07d5ed4a79bc959a3aae4c55f41f8631e",
+    "burst.png": "f06c87ef9466c681c4d0e336abcf5f3ded143ae8cbe82ab0fef5b8910df3cba5",
+    "gold-source.json": "bcf6df32776a0040552b832d7faf3f991c59693f508cf12c1ca97f9a5dd423ea",
+    "gold.png": "7ad98d7fc41914a3632d6a33412b03ee7132a1df6bf6ae1b6b6ab1a17cc1970e",
+    "manifest.json": "ba5882f304246b2677cdcc6a541054e065ae023587d6192f254ee038081a2210",
+    "reported-behavior.json": "60cb1697a68e9ab998c16dade24aa08b21ab90e5e7ed1e124c362c077318fe9a",
+    "silver-source.json": "d2eb1c3de9f726d3105684ef365dd50a76c20a7b601f0f8f70bb50f8dc038cfe",
+    "silver.png": "7ad98d7fc41914a3632d6a33412b03ee7132a1df6bf6ae1b6b6ab1a17cc1970e",
+    "text-source.json": "1f56b7b4842ad4ce645021ad61dac9419174a18548a7ee56af62cd5ca0361bb7",
+    "text.png": "1953ecf79a97262a1e41f42d15a728dee3461c300b55244b297779237b503411"
+  }
+}
