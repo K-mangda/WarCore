@@ -23,3 +23,5 @@ Before implementing another weapon, follow [weapon behavior checks](docs/WEAPON_
 The LAB button opens the Sword room over the paused game; BACK TO GAME preserves the game instance. Direct room: /lab.html. It uses the same SwordView, audio player and native Press Start 2P damage glyph renderer as gameplay. Frame/facing controls, attack+sound playback and a damage-number sample are available. The production build includes both game and Lab pages.
 
 Git-based deployment setup is documented in [deployment](docs/DEPLOYMENT.md). GitHub Actions deploys the current test branch to Pages, with base-aware asset paths and a packaged game/Lab check. The latest external extraction catalog has a separate [handoff review](docs/LATEST_EXTRACTION_REVIEW.md); it has not been blindly imported.
+
+Local Firestaff integration status, changed files, source evidence and remaining approximations are in [Firestaff implementation review](docs/FIRESTAFF_IMPLEMENTATION.md). Use the Lab Weapon selector to inspect Sword or Firestaff; both share the actual game renderers/audio.

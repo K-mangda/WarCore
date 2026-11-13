@@ -1,0 +1,48 @@
+{
+  "source": "sharedassets2.assets",
+  "prefab": 872,
+  "particle": 2314,
+  "renderer": 2588,
+  "material": {
+    "file": "sharedassets1.assets",
+    "pathId": 424
+  },
+  "texture": {
+    "pathId": 545,
+    "name": "atlas02Custom"
+  },
+  "frames": 7,
+  "duration": 0.5,
+  "size": 1.0,
+  "colors": {
+    "low": [
+      0.43921568989753723,
+      0.7686274647712708,
+      1.0,
+      1.0
+    ],
+    "medium": [
+      1.0,
+      0.9725490212440491,
+      0.3843137323856354,
+      1.0
+    ],
+    "high": [
+      1.0,
+      0.34433960914611816,
+      0.36265894770622253,
+      1.0
+    ],
+    "echo": [
+      0.9154030084609985,
+      0.5235849022865295,
+      1.0,
+      1.0
+    ]
+  },
+  "sampling": "Source row12, columns0..6; Unity atlas top-row convention.",
+  "limitations": [
+    "Native shader extra glow not reconstructed",
+    "Drop/attraction behavior remains sandbox tuning"
+  ]
+}

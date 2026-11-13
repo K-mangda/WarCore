@@ -1,0 +1,31 @@
+{
+  "pathId": 4294,
+  "assetFile": "sharedassets1.assets",
+  "type": "GameObject",
+  "data": {
+    "m_Component": [
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 5574
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 6903
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7361
+        }
+      }
+    ],
+    "m_Layer": 0,
+    "m_Name": "Fire",
+    "m_Tag": 0,
+    "m_IsActive": true
+  }
+}

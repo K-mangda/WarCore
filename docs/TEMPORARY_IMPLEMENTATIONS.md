@@ -109,3 +109,22 @@ DamageNumbers.ts rasterizes original alpha-channel SDF digits with foreground th
 Added playtestMovement.airTimeScale0.8. Vertical jump impulse is multiplied by0.8 and airborne gravity by0.8 squared, extending flight roughly25% while retaining approximately the prior jump height (small fixed-step differences remain). Both ascent and descent slow down; walk/run speed override0.7 stays separate. Jump/fall animation actions use matching0.8 playback speed; idle/run animation and combat timing are not globally slowed.
 
 Original physics constants, source clips and jumpDelta() are retained. This is user-requested feel tuning, not a newly recovered native formula. Jump and landing sounds still trigger on actual motor transitions, so the landing sound follows the later contact; original sound pitch/duration is not stretched. The regression check verifies approximate height/longer flight and queued input still surviving the slower landing.
+
+## Local Firestaff integration — 2026-11-13
+
+See FIRESTAFF_IMPLEMENTATION.md for the full file list, source evidence, integrated checks and limitations. Firestaff now uses native layered VFX, shot/explosion/Hit2 media, enemy-targeted temporal quantity, baseline explosion damage and shared Lab playback. It remains a bounded Three.js subset of Unity's particle/shader behavior; native postprocessing, spatial audio, filter/random distributions, full target visibility, movement and upgrade/proc behavior are not fully ported. Existing projectile speed/lifetime/collider tuning remains provisional. No push/deploy was performed for this change.
+
+
+## Compact Firestaff visuals — 2026-11-13
+
+User-requested web tuning: impact and generic hit particle scale is 0.5 of the previous rendering; projectile/trail and muzzle scale is 0.8. Original particle layers, emission counts, timing, sound events and gameplay explosion radius remain unchanged. These are visual overrides, not recovered native scale corrections. Atlas sampling uses a half-texel inset and linear filtering without mipmaps to avoid adjacent-frame bleeding; original low-resolution source artwork remains unchanged. Build validation only; perceived size and sharpness await user playtesting. Local only, no push/deploy.
+
+
+## Compact Firestaff hit area and automatic Lab dummy � 2026-11-13
+
+User playtest reported oversized hits. Firestaff swept collision threshold reduced from 0.7m to 0.45m; explosion damage radius reduced from serialized 5m to a provisional 1.5m web override. Visual scales and sound events remain as previously tuned. Lab dummy is now automatically visible in both weapon rooms, at 2.5m for Sword and 6m for Firestaff; Sword room remains a visual timeline preview, not a full damage simulation.
+
+
+## Native EXP atlas integration — 2026-11-13
+
+Replaced octahedron placeholder with the native XpPickup billboard atlas chain, shared by game and EXP Lab. See XP_ASSET_HANDOFF.md for exact IDs, reproduction and missing-evidence prompt. Source size/color/frames are used; custom glow, runtime tier/particle updates and native movement remain incomplete. Existing collection mechanics and Xp2 event retained. No speculative new spawn/attraction sound or VFX added. Local only, no push/deploy.

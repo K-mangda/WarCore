@@ -1,0 +1,55 @@
+{
+  "pathId": 3316,
+  "assetFile": "sharedassets1.assets",
+  "type": "GameObject",
+  "data": {
+    "m_Component": [
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 5390
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7003
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7193
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 9012
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 9246
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 6639
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 9143
+        }
+      }
+    ],
+    "m_Layer": 0,
+    "m_Name": "FireballMuzzle",
+    "m_Tag": 0,
+    "m_IsActive": true
+  }
+}

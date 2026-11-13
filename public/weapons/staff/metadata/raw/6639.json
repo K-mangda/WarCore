@@ -1,0 +1,113 @@
+{
+  "pathId": 6639,
+  "assetFile": "sharedassets1.assets",
+  "type": "AudioSource",
+  "data": {
+    "m_GameObject": {
+      "m_FileID": 0,
+      "m_PathID": 3316
+    },
+    "m_Enabled": 0,
+    "OutputAudioMixerGroup": {
+      "m_FileID": 0,
+      "m_PathID": 3034
+    },
+    "m_audioClip": {
+      "m_FileID": 0,
+      "m_PathID": 0
+    },
+    "m_Resource": {
+      "m_FileID": 0,
+      "m_PathID": 0
+    },
+    "m_PlayOnAwake": true,
+    "m_Volume": 0.6499999761581421,
+    "m_Pitch": 1.0,
+    "Loop": false,
+    "Mute": false,
+    "Spatialize": false,
+    "SpatializePostEffects": false,
+    "Priority": 128,
+    "DopplerLevel": 0.0,
+    "MinDistance": 15.0,
+    "MaxDistance": 500.0,
+    "Pan2D": 0.0,
+    "rolloffMode": 0,
+    "BypassEffects": false,
+    "BypassListenerEffects": false,
+    "BypassReverbZones": false,
+    "rolloffCustomCurve": {
+      "m_Curve": [
+        {
+          "time": 0.0,
+          "value": 1.0,
+          "inSlope": 0.0,
+          "outSlope": 0.0,
+          "weightedMode": 0,
+          "inWeight": 0.3333333432674408,
+          "outWeight": 0.3333333432674408
+        },
+        {
+          "time": 1.0,
+          "value": 0.0,
+          "inSlope": 0.0,
+          "outSlope": 0.0,
+          "weightedMode": 0,
+          "inWeight": 0.3333333432674408,
+          "outWeight": 0.3333333432674408
+        }
+      ],
+      "m_PreInfinity": 2,
+      "m_PostInfinity": 2,
+      "m_RotationOrder": 4
+    },
+    "panLevelCustomCurve": {
+      "m_Curve": [
+        {
+          "time": 0.0,
+          "value": 0.6000000238418579,
+          "inSlope": 0.0,
+          "outSlope": 0.0,
+          "weightedMode": 0,
+          "inWeight": 0.3333333432674408,
+          "outWeight": 0.3333333432674408
+        }
+      ],
+      "m_PreInfinity": 2,
+      "m_PostInfinity": 2,
+      "m_RotationOrder": 4
+    },
+    "spreadCustomCurve": {
+      "m_Curve": [
+        {
+          "time": 0.0,
+          "value": 0.0,
+          "inSlope": 0.0,
+          "outSlope": 0.0,
+          "weightedMode": 0,
+          "inWeight": 0.3333333432674408,
+          "outWeight": 0.3333333432674408
+        }
+      ],
+      "m_PreInfinity": 2,
+      "m_PostInfinity": 2,
+      "m_RotationOrder": 4
+    },
+    "reverbZoneMixCustomCurve": {
+      "m_Curve": [
+        {
+          "time": 0.0,
+          "value": 1.0,
+          "inSlope": 0.0,
+          "outSlope": 0.0,
+          "weightedMode": 0,
+          "inWeight": 0.3333333432674408,
+          "outWeight": 0.3333333432674408
+        }
+      ],
+      "m_PreInfinity": 2,
+      "m_PostInfinity": 2,
+      "m_RotationOrder": 4
+    }
+  }
+}

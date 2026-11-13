@@ -1,0 +1,31 @@
+{
+  "pathId": 3751,
+  "assetFile": "sharedassets1.assets",
+  "type": "GameObject",
+  "data": {
+    "m_Component": [
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 4656
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7001
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7373
+        }
+      }
+    ],
+    "m_Layer": 0,
+    "m_Name": "Sparks",
+    "m_Tag": 0,
+    "m_IsActive": true
+  }
+}

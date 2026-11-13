@@ -1,0 +1,31 @@
+{
+  "pathId": 4343,
+  "assetFile": "sharedassets1.assets",
+  "type": "GameObject",
+  "data": {
+    "m_Component": [
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 5521
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7063
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7363
+        }
+      }
+    ],
+    "m_Layer": 0,
+    "m_Name": "SmokeTrail",
+    "m_Tag": 0,
+    "m_IsActive": true
+  }
+}

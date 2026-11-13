@@ -1,0 +1,61 @@
+{
+  "pathId": 3784,
+  "assetFile": "sharedassets1.assets",
+  "type": "GameObject",
+  "data": {
+    "m_Component": [
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 4742
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 6859
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7448
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 6672
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 9501
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 8857
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 9165
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 8994
+        }
+      }
+    ],
+    "m_Layer": 0,
+    "m_Name": "FireballExplosion",
+    "m_Tag": 0,
+    "m_IsActive": true
+  }
+}

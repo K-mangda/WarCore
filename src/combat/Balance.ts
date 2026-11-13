@@ -7,5 +7,9 @@ export const balance={
   // User-requested smaller web slash; does not modify extracted particle data.
   swordVisualScale:.55,
   swordRange:4,swordHalfAngle:Math.PI/3,swordBurstTime:.5,swordMinBurstInterval:.1,swordHeightTolerance:1.5,swordVisualDuration:.3,maxSlashes:32,
+  // Verified FireStaff WeaponData burst settings; projectile motion remains web tuning.
+  // User-requested visual tuning only; native layers and damage radius are retained.
+  staffImpactVisualScale:.5,staffProjectileVisualScale:.8,
+  staffBurstTime:1,staffMinBurstInterval:.15,staffEndCooldown:.5,staffTargetRange:40,staffExplosionRadius:1.5,staffCollisionRadius:.45,
   pickupRadius:1.4,magnetRadius:5,maxProjectiles:160,maxGems:400,
 } as const;

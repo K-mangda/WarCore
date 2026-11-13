@@ -22,8 +22,12 @@ for(let i=0;i<20;i++){context.currentTime+=.09;audio.play('xp');}
 audio.play('level');audio.play('death');
 assert.ok(started.filter(v=>!v.stopped).length<=10,'Voice count must stay bounded');
 const alerts=started.filter(v=>/DeathImpact|Levelup3/.test(v.buffer.label));assert.equal(alerts.length,2,'Important notifications must survive pickup crowding');
+audio.play('shot');audio.play('staffImpact');audio.play('staffHit');
+assert.ok(started.some(v=>v.buffer.label.includes('weapons/staff/audio/retro_shoot_fireball3.wav')),'Firestaff shot must use verified media');
+assert.ok(started.some(v=>v.buffer.label.includes('weapons/staff/audio/retro_explosion_')),'Impact must have its own explosion clip');
+assert.ok(started.some(v=>v.buffer.label.includes('weapons/staff/audio/Hit2.wav')),'Hit feedback must use Hit2 rather than Bonk');
 audio.stopGameplay();assert.ok(alerts.every(v=>!v.stopped),'Pause must preserve level/death notifications');
-assert.ok(started.filter(v=>/SwordSwing|Xp2/.test(v.buffer.label)).every(v=>v.stopped),'Pause must stop stale run sounds');
+assert.ok(started.filter(v=>/SwordSwing|Xp2|retro_shoot|retro_explosion|Hit2/.test(v.buffer.label)).every(v=>v.stopped),'Pause must stop stale run sounds');
 const count=started.length;audio.toggle();audio.play('sword');assert.equal(started.length,count,'Mute must prevent new audible voices');
 audio.dispose();assert.ok(started.every(v=>v.stopped),'Dispose must stop every remaining voice');
 console.log('Audio event checks passed: consecutive swings, bounded priorities, pause notifications, mute and cleanup. Mock audio does not verify waveform or perceived loudness.');

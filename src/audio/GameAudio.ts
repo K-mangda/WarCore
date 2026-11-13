@@ -1,10 +1,10 @@
 import {assetUrl} from '../core/assetUrl';
-const clips={click:'MenuClick',hover:'menuMove',shot:'retro_shoot_fireball3',xp:'Xp2',level:'Levelup3',hurt:'PlayerDamage',death:'DeathImpact',jump:'Player_Jump',land:'Player_Landing',sword:'SwordSwing'} as const;
-const clipUrl=(key:Sound,file:string)=>assetUrl(key==='sword'?'weapons/knight-sword/audio/SwordSwing.wav':`game-audio/${file}.wav`);
+const clips={click:'MenuClick',hover:'menuMove',shot:'retro_shoot_fireball3',xp:'Xp2',level:'Levelup3',hurt:'PlayerDamage',death:'DeathImpact',jump:'Player_Jump',land:'Player_Landing',sword:'SwordSwing',staffImpact:'retro_explosion_fireball1',staffImpactAlt:'retro_explosion_fireball3',staffHit:'Hit2'} as const;
+const clipUrl=(key:Sound,file:string)=>assetUrl(key==='sword'?'weapons/knight-sword/audio/SwordSwing.wav':key==='shot'||key.startsWith('staff')?`weapons/staff/audio/${file}.wav`:`game-audio/${file}.wav`);
 export type Sound=keyof typeof clips;
 interface Voice {key:Sound;source:AudioBufferSourceNode;gain:GainNode;priority:number;}
-const gameplaySounds=new Set<Sound>(['shot','sword','xp','hurt','jump','land']);
-const priority=(key:Sound)=>key==='death'||key==='level'||key==='hurt'?3:key==='sword'?2:key==='shot'?1:0;
+const gameplaySounds=new Set<Sound>(['shot','sword','staffImpact','staffImpactAlt','staffHit','xp','hurt','jump','land']);
+const priority=(key:Sound)=>key==='death'||key==='level'||key==='hurt'?3:key==='sword'||key.startsWith('staff')?2:key==='shot'?1:0;
 /** Original WAV clips. Browser unlock, voice priorities and repeat guards are web policies. */
 export class GameAudio {
   private context?:AudioContext;
@@ -49,13 +49,14 @@ export class GameAudio {
     voice.source.disconnect();voice.gain.disconnect();
   }
   play=(key:Sound)=>{
+    if(key==='staffImpact'&&Math.random()<.5)key='staffImpactAlt';
     const context=this.context,buffer=this.buffers.get(key);
     if(!context||!buffer||context.state!=='running'||this.muted||this.disposed)return;
     const now=context.currentTime;
     // A swing event corresponds to one attack instance. Do not drop fast swings
     // behind the former invented .1s hard cooldown. Native spam attenuation is
     // not yet reconstructed; other repeat guards remain provisional web tuning.
-    const interval=key==='sword'?0:key==='xp'?.08:key==='hover'?.07:.12;
+    const interval=key==='sword'||key==='shot'||key.startsWith('staff')?0:key==='xp'?.08:key==='hover'?.07:.12;
     if(now-(this.last.get(key)??-Infinity)<interval)return;
     const importance=priority(key);
     if(this.voices.size>=10){
@@ -66,10 +67,12 @@ export class GameAudio {
     }
     this.last.set(key,now);
     const source=context.createBufferSource();source.buffer=buffer;
-    const gain=context.createGain();gain.gain.value=key==='sword'?.4:1;
+    const gain=context.createGain();gain.gain.value=key==='sword'||key==='staffImpact'||key==='staffImpactAlt'?.4:key==='shot'?.7:key==='staffHit'?.12:1;
     // Source SwordSwing endpoints are .9/1.1 and volume .4. Uniform pitch
     // sampling is provisional; native random-volume distribution is unknown.
-    if(key==='sword')source.playbackRate.value=.9+Math.random()*.2;
+    if(key==='sword'||key==='staffImpact'||key==='staffImpactAlt')source.playbackRate.value=.9+Math.random()*.2;
+    if(key==='shot')source.playbackRate.value=.94+Math.random()*.12;
+    if(key==='staffHit')source.playbackRate.value=.9+Math.random()*.3;
     source.connect(gain);gain.connect(this.gain!);
     const voice:Voice={key,source,gain,priority:importance};this.voices.add(voice);
     source.onended=()=>this.release(voice);source.start();

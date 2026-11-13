@@ -1,0 +1,31 @@
+{
+  "pathId": 3735,
+  "assetFile": "sharedassets1.assets",
+  "type": "GameObject",
+  "data": {
+    "m_Component": [
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 5736
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 6946
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7388
+        }
+      }
+    ],
+    "m_Layer": 0,
+    "m_Name": "SparkTrail",
+    "m_Tag": 0,
+    "m_IsActive": true
+  }
+}

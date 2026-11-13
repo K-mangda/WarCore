@@ -15,4 +15,4 @@ alwaysApply: false
 - Record unverified runtime formulas in docs/TEMPORARY_IMPLEMENTATIONS.md. Empty dump.cs bodies and filenames do not prove behavior.
 - Keep provisional fallback behavior explicit and per weapon; never report full native parity from file extraction alone.
 
-- Deliver a weapon change as a coherent package: attack timing/quantity, full VFX animation/pivots, sound events/variants and pause/reset lifecycle. Perform an integrated check before asking the user to test; do not offload each tiny correction to them.
+- Deliver weapon changes coherently: attack timing/quantity, VFX, audio and lifecycle. User preference (2026-11-13): the user will perform gameplay/visual/audio feel tests. Default to build/type checking and only necessary focused logic checks. Avoid repeated browser sessions, screenshots or broad test rounds unless a concrete issue requires them or the user asks. Provide a short manual test list and keep work local until push/deploy is authorized.

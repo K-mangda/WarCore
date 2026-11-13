@@ -3,24 +3,25 @@ import {Vector3} from 'three';
 import {Swarm,type Enemy} from '../enemies/Swarm';
 import {balance} from './Balance';
 export type Weapon='bolt'|'sword';
-export type RunEvent='sword'|'shot'|'xp'|'level'|'hurt'|'death';
+export type RunEvent='sword'|'shot'|'staffImpact'|'staffHit'|'xp'|'level'|'hurt'|'death';
 export type Upgrade='damage'|'haste'|'projectiles';
 export interface Projectile {position:Vector3;velocity:Vector3;life:number;damage:number;}
+export interface StaffEffect {kind:'muzzle'|'impact'|'hit';position:Vector3;direction:Vector3;life:number;duration:number;}
 export interface Slash {position:Vector3;direction:Vector3;life:number;duration:number;damage:number;hits:Set<number>;}
 export interface Gem {position:Vector3;}
 export interface Hit {position:Vector3;damage:number;life:number;}
 export interface RunSnapshot {weapon:Weapon;health:number;maxHealth:number;level:number;xp:number;xpNeeded:number;kills:number;elapsed:number;enemyCount:number;pendingUpgrades:number;dead:boolean;damage:number;attackInterval:number;projectiles:number;}
-export const initialRun:RunSnapshot={weapon:'bolt',health:balance.maxHealth,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:5,kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.attackInterval,projectiles:1};
+export const initialRun:RunSnapshot={weapon:'bolt',health:balance.maxHealth,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:5,kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1};
 export class Run {
-  readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];
-  private state:RunSnapshot={...initialRun};private spawnClock=0;private attackClock=0;private hurtClock=0;private started=false;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;
+  readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly staffEffects:StaffEffect[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];
+  private state:RunSnapshot={...initialRun};private spawnClock=0;private attackClock=0;private hurtClock=0;private started=false;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
   constructor(private ground:(x:number,z:number)=>number,private visible:(point:Vector3)=>boolean,private random:()=>number=Math.random,private sound:(event:RunEvent)=>void=()=>{}){}
   get blocked(){return this.state.dead||this.state.pendingUpgrades>0;}
   snapshot():RunSnapshot{return {...this.state,enemyCount:this.swarm.enemies.length};}
-  reset(){this.state={...initialRun,weapon:this.state.weapon};this.spawnClock=0;this.attackClock=0;this.hurtClock=0;this.started=false;this.swordPending=0;this.swordBurstClock=0;this.swarm.clear();this.bolts.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;}
+  reset(){this.state={...initialRun,weapon:this.state.weapon,attackInterval:this.state.weapon==='sword'?balance.attackInterval:balance.staffEndCooldown};this.spawnClock=0;this.attackClock=0;this.hurtClock=0;this.started=false;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;}
   setWeapon(weapon:Weapon):boolean{
     if(this.state.elapsed!==0||(weapon!=='bolt'&&weapon!=='sword'))return false;
-    this.state.weapon=weapon;return true;
+    this.state.weapon=weapon;this.state.attackInterval=weapon==='sword'?balance.attackInterval:balance.staffEndCooldown;return true;
   }
   choose(upgrade:Upgrade):boolean{
     if(this.state.pendingUpgrades<=0||this.state.dead)return false;
@@ -56,19 +57,20 @@ export class Run {
   }
   private fire(player:Vector3){
     const origin=player.clone().add(new Vector3(0,1,0));
-    const targets=this.swarm.enemies.filter(enemy=>enemy.position.clone().add(new Vector3(0,.7,0)).distanceTo(origin)<=balance.attackRange).sort((a,b)=>a.position.distanceToSquared(origin)-b.position.distanceToSquared(origin));
+    const targets=this.swarm.enemies.filter(enemy=>enemy.position.clone().add(new Vector3(0,.7,0)).distanceTo(origin)<=balance.staffTargetRange).sort((a,b)=>a.position.distanceToSquared(origin)-b.position.distanceToSquared(origin));
     if(!targets.length)return false;
-    for(let i=0;i<this.state.projectiles&&this.bolts.length<balance.maxProjectiles;i++){
-      const target=targets[i%targets.length];
-      const direction=target.position.clone().add(new Vector3(0,.7,0)).sub(origin).normalize();
-      // Multiple bolts are timed together; distribute their origins to remain visible.
-      const start=origin.clone().add(new Vector3((i-(this.state.projectiles-1)/2)*.18,0,0));
-      this.bolts.push({position:start,velocity:direction.multiplyScalar(balance.projectileSpeed),life:balance.projectileLifetime,damage:this.state.damage});
-    }
+    if(this.bolts.length>=balance.maxProjectiles)return false;
+    const target=targets[0];
+    const direction=target.position.clone().add(new Vector3(0,.7,0)).sub(origin).normalize();
+    // Native TryInit targets an enemy, then applies forward spawnOffset.z=1.
+    const start=origin.clone().addScaledVector(direction,1);
+    this.staffEffects.push({kind:'muzzle',position:start.clone(),direction:direction.clone(),life:2,duration:2});
+    this.bolts.push({position:start,velocity:direction.clone().multiplyScalar(balance.projectileSpeed),life:balance.projectileLifetime,damage:this.state.damage});
     this.sound('shot');return true;
   }
   step(dt:number,player:Vector3,facing=new Vector3(0,0,-1)){
     if(this.blocked)return;
+    for(let i=this.staffEffects.length-1;i>=0;i--){this.staffEffects[i].life-=dt;if(this.staffEffects[i].life<=0)this.staffEffects.splice(i,1);}
     this.state.elapsed+=dt;this.hurtClock=Math.max(0,this.hurtClock-dt);
     if(!this.started){for(let i=0;i<balance.initialEnemies;i++)this.swarm.spawn(player,this.ground,this.visible,this.random);this.started=true;}
     this.spawnClock-=dt;
@@ -88,7 +90,16 @@ export class Run {
         this.swordPending--;this.swordBurstClock=this.swordBurstInterval;
         if(this.swordPending===0)this.attackClock=this.state.attackInterval;
       }
-    }else if(this.attackClock===0&&this.fire(player))this.attackClock=this.state.attackInterval;
+    }else{
+      const speed=balance.staffEndCooldown/this.state.attackInterval;
+      if(this.staffPending===0&&this.attackClock===0){this.staffPending=this.state.projectiles;this.staffClock=0;this.staffInterval=burstInterval(balance.staffBurstTime,balance.staffMinBurstInterval,this.staffPending,speed,dt);}
+      this.staffClock=Math.max(0,this.staffClock-dt);
+      if(this.staffPending>0&&this.staffClock===0){
+        // Failed native TryInit means no projectile/muzzle/sound without a target.
+        const fired=this.fire(player);this.staffPending--;this.staffClock=this.staffInterval;
+        if(this.staffPending===0)this.attackClock=fired?balance.staffEndCooldown/speed:0;
+      }
+    }
     for(let i=this.slashes.length-1;i>=0;i--){
       const slash=this.slashes[i];
       for(const enemy of [...this.swarm.enemies]){
@@ -109,11 +120,22 @@ export class Run {
       for(const enemy of this.swarm.enemies){
         const center=enemy.position.clone().add(new Vector3(0,.7,0));
         const fraction=lengthSq?Math.max(0,Math.min(1,center.clone().sub(previous).dot(segment)/lengthSq)):0;
-        if(center.distanceToSquared(previous.clone().addScaledVector(segment,fraction))<.7*.7&&fraction<first){target=enemy;first=fraction;}
+        if(center.distanceToSquared(previous.clone().addScaledVector(segment,fraction))<balance.staffCollisionRadius**2&&fraction<first){target=enemy;first=fraction;}
       }
-      if(target){this.applyHit(target,bolt.damage,bolt.velocity);bolt.life=0;}
+      if(target){
+        const impact=previous.clone().addScaledVector(segment,first),direction=bolt.velocity.clone().normalize();
+        this.staffEffects.push({kind:'impact',position:impact.clone(),direction,life:2,duration:2},{kind:'hit',position:impact,direction:direction.clone(),life:2,duration:2});
+        this.sound('staffImpact');this.sound('staffHit');
+        // Compact web hit area requested by the user; native serialized radius is 5.
+        for(const enemy of [...this.swarm.enemies]){
+          const center=enemy.position.clone().add(new Vector3(0,.7,0));
+          if(center.distanceToSquared(impact)<=balance.staffExplosionRadius**2)this.applyHit(enemy,bolt.damage,center.sub(impact));
+        }
+        bolt.life=0;
+      }
       if(bolt.life<=0)this.bolts.splice(i,1);
     }
+    if(this.staffEffects.length>128)this.staffEffects.splice(0,this.staffEffects.length-128);
     for(let i=this.gems.length-1;i>=0;i--){
       const gem=this.gems[i],target=player.clone().add(new Vector3(0,.35,0)),distance=gem.position.distanceTo(target);
       if(distance<balance.pickupRadius){this.gems.splice(i,1);this.gainXp();}

@@ -1,0 +1,55 @@
+{
+  "pathId": 3790,
+  "assetFile": "sharedassets1.assets",
+  "type": "GameObject",
+  "data": {
+    "m_Component": [
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 4891
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7145
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7247
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 6675
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 9572
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 9104
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 8913
+        }
+      }
+    ],
+    "m_Layer": 0,
+    "m_Name": "GeneralProjectileHit",
+    "m_Tag": 0,
+    "m_IsActive": true
+  }
+}

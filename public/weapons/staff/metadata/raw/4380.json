@@ -1,0 +1,31 @@
+{
+  "pathId": 4380,
+  "assetFile": "sharedassets1.assets",
+  "type": "GameObject",
+  "data": {
+    "m_Component": [
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 5495
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7059
+        }
+      },
+      {
+        "component": {
+          "m_FileID": 0,
+          "m_PathID": 7256
+        }
+      }
+    ],
+    "m_Layer": 0,
+    "m_Name": "FireTrail",
+    "m_Tag": 0,
+    "m_IsActive": true
+  }
+}

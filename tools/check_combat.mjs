@@ -62,3 +62,16 @@ assert.equal(burstInterval(.5,.1,2,2,.02),.125,'Attack speed scales burst spacin
 assert.equal(burstInterval(.5,.1,100,20,.02),.02,'Native burst interval cannot be shorter than one fixed step');
 assert.equal(burstInterval(0,.1,2,1,.02),0,'Nonpositive native burstTime uses immediate policy');
 console.log('Recovered attack timing checks passed: quantity, attack speed, fixed-step floor and immediate policy.');
+
+const staffEvents=[];const staff=new Run(()=>0,()=>true,random,event=>staffEvents.push(event));
+const primary=enemy(2001,0,-5),nearby=enemy(2002,1,-5),outside=enemy(2003,2,-5);staff.swarm.enemies.push(primary,nearby,outside);
+staff.step(.25,player);
+assert.equal(primary.health,90);assert.equal(nearby.health,90,'Firestaff explosion must damage nearby enemies');assert.equal(outside.health,100,'Explosion range must be bounded');
+assert.ok(staff.staffEffects.some(effect=>effect.kind==='muzzle'));assert.ok(staff.staffEffects.some(effect=>effect.kind==='impact'));assert.ok(staff.staffEffects.some(effect=>effect.kind==='hit'));
+assert.equal(staffEvents.filter(e=>e==='shot').length,1);assert.equal(staffEvents.filter(e=>e==='staffImpact').length,1);assert.equal(staffEvents.filter(e=>e==='staffHit').length,1);
+staff.reset();assert.equal(staff.staffEffects.length,0,'Reset must clear all Firestaff phases');
+const emptyStaff=new Run(()=>0,()=>true,random,event=>staffEvents.push(event));const eventCount=staffEvents.length;emptyStaff.step(.02,player);assert.equal(emptyStaff.bolts.length,0);assert.equal(staffEvents.length,eventCount,'No-target TryInit must not make a phantom shot sound');
+for(let i=0;i<5;i++)emptyStaff.gems.push({position:player.clone()});emptyStaff.step(.02,player);emptyStaff.choose('projectiles');
+emptyStaff.swarm.enemies.push(enemy(2100,0,-12));emptyStaff.step(.02,player);assert.equal(emptyStaff.bolts.length,1,'Quantity must not create a simultaneous spread');
+for(let i=0;i<25;i++)emptyStaff.step(.02,player);assert.equal(staffEvents.filter(e=>e==='shot').length,3,'Quantity2 must produce two timed shots');
+console.log('Firestaff checks passed: targeted burst, source phase events, bounded explosion damage, no-target silence and reset.');
