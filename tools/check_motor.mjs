@@ -17,13 +17,13 @@ assert.ok(motor.speed>13.7&&motor.speed<14.1,`Slide start must boost 10 m/s once
 let maxSpeed=motor.speed;for(let i=0;i<15;i++){motor.step(dt,input,0);maxSpeed=Math.max(maxSpeed,motor.speed);}
 assert.ok(maxSpeed<14.1,'Holding slide must not repeat its start force');
 motor.reset();input.keys.clear();input.jumpTicks=4;motor.step(dt,input,0);
-const expectedVelocity=14*playtestMovement.airTimeScale+(physics.gravity-physics.extraGravity)*playtestMovement.airTimeScale**2*dt;
+const expectedVelocity=14*playtestMovement.airTimeScale*Math.sqrt(playtestMovement.jumpHeightMultiplier)+(physics.gravity-physics.extraGravity)*playtestMovement.airTimeScale**2*dt;
 assert.ok(Math.abs(motor.velocity.y-expectedVelocity)<.01,'Time-stretched jump must scale impulse and gravity together');
 input.jumpTicks=0;let apex=motor.position.y,flightTime=dt;
 for(let i=0;i<80;i++){const airborne=!motor.grounded;motor.step(dt,input,0);if(airborne)flightTime+=dt;apex=Math.max(apex,motor.position.y);}
-assert.ok(apex>2.8&&apex<3.3,`Expected height from extracted impulse/gravity, got ${apex}`);
+assert.ok(apex>2.8*playtestMovement.jumpHeightMultiplier&&apex<3.3*playtestMovement.jumpHeightMultiplier,`Expected height from extracted impulse/gravity, got ${apex}`);
 assert.equal(motor.grounded,true,'Jump must return to ground');
-assert.ok(flightTime>1.08*.8/playtestMovement.airTimeScale&&flightTime<1.2*.8/playtestMovement.airTimeScale,`Slower jump should keep height but extend flight: ${flightTime}`);
+assert.ok(flightTime>1.08*.8/playtestMovement.airTimeScale*Math.sqrt(playtestMovement.jumpHeightMultiplier)&&flightTime<1.2*.8/playtestMovement.airTimeScale*Math.sqrt(playtestMovement.jumpHeightMultiplier),`Slower jump should respect configured height and flight duration: ${flightTime}`);
 assert.equal(motor.jumps,1);
 // A queued press just before contact must survive to the next physics tick.
 motor.reset();motor.position.y=.05;motor.grounded=false;motor.velocity.y=-2;

@@ -43,7 +43,7 @@ export class CombatView {
         rotation.setFromAxisAngle(up,Math.atan2(player.x-enemy.position.x,player.z-enemy.position.z));matrix.compose(enemy.position,rotation,scale);this.enemies!.setMatrixAt(i,matrix);flash.setX(i,enemy.flash>0?1:0);dissolve.setX(i,0);
       });
       run.remains.forEach((enemy,index)=>{
-        const i=run.swarm.enemies.length+index;rotation.setFromAxisAngle(up,enemy.heading);matrix.compose(enemy.position,rotation,scale);this.enemies!.setMatrixAt(i,matrix);flash.setX(i,enemy.duration-enemy.life<.08?1:0);dissolve.setX(i,1-enemy.life/enemy.duration);
+        const i=run.swarm.enemies.length+index;rotation.setFromAxisAngle(up,enemy.heading);matrix.compose(enemy.position,rotation,scale);this.enemies!.setMatrixAt(i,matrix);flash.setX(i,1);dissolve.setX(i,1-enemy.life/enemy.duration);
       });
       flash.needsUpdate=true;dissolve.needsUpdate=true;this.enemies.instanceMatrix.needsUpdate=true;
     }

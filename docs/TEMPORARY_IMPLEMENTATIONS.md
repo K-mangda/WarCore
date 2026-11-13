@@ -177,3 +177,33 @@ Build, combat, staff and mock-audio checks required; user handles visual/audio v
 ## Automatic Lab dummy damage numbers - 2026-11-13
 
 Sword Lab now uses the same anchored-dummy Run simulation as Firestaff rather than manually injecting a visual slash. Both weapon rooms automatically display actual Run.hits damage values at the hit positions, with rise/fade matching hit lifetimes. Playback emits the real swing/hit events; timeline scrubbing stays silent. Sword timeline extends to0.8s so impact numbers can rise and expire. The optional damage-sample button is retained as a separate font preview. Material clones for per-label opacity are reused/disposed without disposing shared font textures. No invented random damage values or extra duplicate audio is used. User requested pushing this update together with the combat feedback changes.
+
+
+## Categorized Lab tabs - 2026-11-13
+
+Lab now groups rooms into Weapons (Sword/Firestaff), Pickups (EXP/Gold/Silver) and Effects (Level up). Tabs expose tablist/tab/tabpanel semantics, selected state and Left/Right/Home/End keyboard navigation. Each category remembers its last selected room. Switching tabs stops previous playback/audio and resets the preview; existing weapon query links select the correct category. Preview time, facing and playback controls remain shared. Tabs enable after asset loading so an early switch cannot render unloaded fonts. No gameplay or asset changes. Build validation; no push/deploy in this change.
+
+
+## Quick user-directed LEVEL UP tuning - 2026-11-13
+
+User requested iterative size tuning without extensive comparison. LevelUpText scale is0.6 of serialized1.5 (web0.9). Its previously ignored source ColorModule gold/orange gradient now tints the text over its lifetime instead of leaving it white. No new UI sound mapping is guessed: current MenuClick/menuMove mapping remains pending event evidence/user direction. Existing gold drop path remains1 gold per5 sandbox kills (silver separately per12); this is not a recovered native loot table. No push/deploy.
+
+
+## User-directed gold drop adjustment - 2026-11-13
+
+Every sandbox enemy now drops1 gold on death, replacing the prior every5th-kill schedule at the user request. The amount1 remains provisional. Silver retains its existing temporary every12th-kill schedule because the native condition is still unknown; this is not a verified native drop rule. Pickup counters were also moved30 screen pixels farther right (55 ->85px offset). No push/deploy.
+
+
+## Gold atlas frame bounds and white death silhouette - 2026-11-13
+
+User close-up confirms a white silhouette throughout enemy dissolution. Corpses now retain the white material override for the entire0.45s web dissolve rather than only its first0.08s. Inspected public/progression/gold.png: native coin frames are present in the atlas row, tinted by source gold color at render time. Gold/Silver animation now loops within ceil(frameOverTime*tilesX) active frames (11/10), avoiding the prior lifetime-end hold on the first out-of-range atlas cell. Loop scheduling remains web tuning. No replacement/generated coin art; no push/deploy.
+
+
+## Lower/slower jump and further walking tuning - 2026-11-13
+
+User requested lower jump plus slower walking/ascent/descent. speedMultiplier0.63 ->0.57 (6.3 ->5.7m/s); airTimeScale0.7 ->0.6 also slows airborne animation. New jumpHeightMultiplier0.85 scales vertical launch impulse by sqrt(0.85), separately from the existing air-time multiplier. Gravity retains airTimeScale squared. Nominal apex is15% lower; nominal flight about8% longer than previous0.7 tuning. Source jump stat/physics constants remain intact. Motor regression expected impulse, height and duration now account for both independent settings. No push/deploy.
+
+
+## Delivery preference update - 2026-11-13
+
+User explicitly requested automatic commit/push for completed checked changes, and notification before any phase transition. This supersedes earlier per-change local-only delivery defaults; explicit later wait/no-push instructions still override it. Maintained skill: skills/warcore-development/SKILL.md, installed under the user Codex skills folder. Existing GitHub Pages workflow is part of the authorized push path. No phase transition is performed by this preference update.

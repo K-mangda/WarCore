@@ -70,10 +70,38 @@ function halt(){ticket++;cancelAnimationFrame(animation);audible=false;audio.sto
 frame.addEventListener('input',()=>{halt();inspect();});rotate.addEventListener('input',()=>{halt();inspect();});
 function selectRoom(){
  frame.max=weapon.value==='sword'?'.8':pickupRoom()?'2':'1.5';frame.value=weapon.value==='sword'?'.01':'.08';
- document.getElementById('room-title')!.textContent=`WEAPON LAB · ${weapon.value==='sword'?'SWORD':pickupRoom()?weapon.value.toUpperCase():'FIRESTAFF'}`;inspect();
+ document.getElementById('room-title')!.textContent=`WARCORE LAB · ${weapon.value==='sword'?'SWORD':pickupRoom()?weapon.value.toUpperCase():'FIRESTAFF'}`;inspect();
 }
-const requestedRoom=new URLSearchParams(location.search).get('weapon');if(requestedRoom&&['bolt','xp','gold','silver','level'].includes(requestedRoom))weapon.value=requestedRoom;
-weapon.addEventListener('change',()=>{halt();selectRoom();});
+const categories={
+ weapons:[['sword','Sword'],['bolt','Firestaff']],
+ pickups:[['xp','EXP tiers'],['gold','Gold'],['silver','Silver']],
+ effects:[['level','Level up']],
+} as const;
+type Category=keyof typeof categories;
+const tabs=Array.from(document.querySelectorAll<HTMLButtonElement>('[data-category]'));
+const lastRoom:Record<Category,string>={weapons:'sword',pickups:'xp',effects:'level'};
+let currentCategory:Category='weapons';
+function openCategory(category:Category,room=lastRoom[category],preview=true){
+ currentCategory=category;
+ const rooms=categories[category];weapon.replaceChildren(...rooms.map(([value,text])=>new Option(text,value)));
+ weapon.value=rooms.some(([value])=>value===room)?room:rooms[0][0];lastRoom[category]=weapon.value;
+ for(const tab of tabs){const active=tab.dataset.category===category;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;}
+ document.getElementById('lab-room-panel')!.setAttribute('aria-labelledby','tab-'+category);
+ if(preview){halt();if(label)label.visible=false;selectRoom();}
+}
+for(const [index,tab] of tabs.entries()){
+ tab.addEventListener('click',()=>openCategory(tab.dataset.category as Category));
+ tab.addEventListener('keydown',event=>{
+  let next=index;
+  if(event.key==='ArrowRight')next=(index+1)%tabs.length;else if(event.key==='ArrowLeft')next=(index+tabs.length-1)%tabs.length;
+  else if(event.key==='Home')next=0;else if(event.key==='End')next=tabs.length-1;else return;
+  event.preventDefault();tabs[next].focus();openCategory(tabs[next].dataset.category as Category);
+ });
+}
+const requestedRoom=new URLSearchParams(location.search).get('weapon');
+const initialCategory=(Object.keys(categories) as Category[]).find(key=>categories[key].some(([room])=>room===requestedRoom))??'weapons';
+openCategory(initialCategory,requestedRoom??lastRoom[initialCategory],false);
+weapon.addEventListener('change',()=>{lastRoom[currentCategory]=weapon.value;halt();if(label)label.visible=false;selectRoom();});
 const resize=new ResizeObserver(()=>{const width=host.clientWidth,height=host.clientHeight;renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();paint();});resize.observe(host);
 play.addEventListener('click',async()=>{
  halt();const request=ticket;play.disabled=true;await audio.prepare();play.disabled=false;if(disposed||request!==ticket)return;
@@ -93,5 +121,5 @@ window.addEventListener('pagehide',()=>{disposed=true;halt();resize.disconnect()
 try{
  await Promise.all([fox.load(),sword.load(),staff.load(),xpView.load(),progression.load(),pickupNumbers.load(),numbers.load()]);
  label=new T.Sprite(numbers.material(10));label.position.set(0,2.15,-1.5);label.scale.set(1.2,.75,1);label.visible=false;scene.add(label);
- play.disabled=false;stop.disabled=false;damage.disabled=false;selectRoom();document.getElementById('ready')!.textContent='Ready';
+ play.disabled=false;stop.disabled=false;damage.disabled=false;for(const tab of tabs)tab.disabled=false;selectRoom();document.getElementById('ready')!.textContent='Ready';
 }catch(error){document.getElementById('ready')!.textContent=`Could not load Lab: ${String(error)}`;}

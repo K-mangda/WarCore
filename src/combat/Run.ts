@@ -39,8 +39,9 @@ export class Run {
     this.remains.push({position:enemy.position.clone(),heading:Math.atan2(-enemy.velocity.x,-enemy.velocity.z),life:balance.enemyDissolveDuration,duration:balance.enemyDissolveDuration});
     if(this.remains.length>balance.maxEnemies)this.remains.shift();
     this.spawnPickup('xp',enemy.position);
-    // Explicit sandbox drop schedule, not a recovered native probability table.
-    if(this.state.kills%5===0)this.spawnPickup('gold',enemy.position);
+    // User playtest rule: every enemy drops one gold; native value remains unverified.
+    this.spawnPickup('gold',enemy.position);
+    // Silver schedule remains provisional until its native condition is known.
     if(this.state.kills%12===0)this.spawnPickup('silver',enemy.position);
   }
   spawnPickup(kind:PickupKind,position:Vector3,value=1,echo=false){

@@ -35,7 +35,7 @@ export class PickupNumbers {
   this.camera.updateMatrixWorld();const anchor=player.clone().add(new T.Vector3(0,1.5,0)).project(this.camera);
   this.root.visible=anchor.z>=-1&&anchor.z<=1;
   const halfHeight=Math.tan(T.MathUtils.degToRad(this.camera.fov/2)),pixel=2*halfHeight/height;
-  this.root.position.set(T.MathUtils.clamp(anchor.x+110/width,-.7,.7)*halfHeight*this.camera.aspect,T.MathUtils.clamp(anchor.y+48/height,-.7,.7)*halfHeight,-1);
+  this.root.position.set(T.MathUtils.clamp(anchor.x+170/width,-.7,.7)*halfHeight*this.camera.aspect,T.MathUtils.clamp(anchor.y+48/height,-.7,.7)*halfHeight,-1);
   for(const [kind,counter] of this.counters){
    const sprite=counter.sprite;if(!sprite)continue;sprite.visible=counter.idle<1.4;
    sprite.material.opacity=T.MathUtils.clamp((1.4-counter.idle)/.3,0,1);

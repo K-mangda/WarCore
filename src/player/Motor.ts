@@ -38,7 +38,7 @@ export class Motor {
       if(!this.grounded)this.aerialJumps--;
       this.velocity.y=Math.max(0,this.velocity.y);
       const impulse=jumpDelta(normal,this.jumpStat);
-      this.velocity.add(new Vector3(impulse.x,impulse.y*playtestMovement.airTimeScale,impulse.z));
+      this.velocity.add(new Vector3(impulse.x,impulse.y*playtestMovement.airTimeScale*Math.sqrt(playtestMovement.jumpHeightMultiplier),impulse.z));
       this.jumpCooldown=physics.jumpCooldown;
       this.grounded=false; this.jumps++;
     }

@@ -20,8 +20,16 @@ export class ProgressionView {
  private frame(sprite:T.Sprite,kind:string,age:number){
   const source=this.data!.sprites[kind],p=source.particle,uv=p.UVModule,initial=p.InitialModule;
   const count=source.frames,start=Math.floor(uv.startFrame.scalar*count),frame=Math.min(count-1,start+Math.floor(Math.min(1,age/initial.startLifetime.scalar)*uv.frameOverTime.scalar*count));
-  sprite.material.map!.repeat.set(1/count,1);sprite.material.map!.offset.set(frame/count,0);
-  sprite.scale.setScalar(kind==='gold'||kind==='silver'?xpVisual.scale:initial.startSize.scalar);
+  const coin=kind==='gold'||kind==='silver',activeFrames=Math.max(1,Math.ceil(uv.frameOverTime.scalar*count));
+  const selectedFrame=coin?start+Math.floor(age/initial.startLifetime.scalar*activeFrames)%activeFrames:frame;
+  sprite.material.map!.repeat.set(1/count,1);sprite.material.map!.offset.set(selectedFrame/count,0);
+  sprite.scale.setScalar(kind==='gold'||kind==='silver'?xpVisual.scale:initial.startSize.scalar*(kind==='text'?.6:1));
+  if(kind==='text'){
+   const g=p.ColorModule.gradient.maxGradient,a=g.key0,b=g.key1;
+   const t=T.MathUtils.clamp(age/initial.startLifetime.scalar/(g.ctime1/65535),0,1);
+   sprite.material.color.setRGB(a.r+(b.r-a.r)*t,a.g+(b.g-a.g)*t,a.b+(b.b-a.b)*t,T.SRGBColorSpace);
+   sprite.material.toneMapped=false;
+  }
   if(kind==='gold'||kind==='silver'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a;sprite.material.toneMapped=false;}
  }
  burst(player:T.Vector3){
