@@ -299,3 +299,8 @@ User authorized using existing enemy assets after phase/scope notification. Dire
 ## Further slower Gold attraction - 2026-11-13
 
 User requested slower Gold flight again. Gold Bezier progress multiplier0.75 ->0.60 (20% slower progress than previous tuning). Arc shape, automatic collection, glow/shrink, EXP/Silver and awards remain unchanged. User-directed feel tuning; automatic delivery applies.
+
+
+## Lower LEVEL UP position by40% - 2026-11-13
+
+User reported the level-up sign sits too high. Reduced its vertical player-relative anchor1.85 ->1.11m (40% lower offset), both initial spawn and player-follow updates. Text size, rise/sway and collapse timing remain unchanged. Shared game/Lab tuning; automatic delivery applies.
