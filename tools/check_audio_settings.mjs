@@ -6,7 +6,7 @@ import ts from 'typescript';
 import React from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 const folder=resolve('.local-evidence/audio-settings-check');
-for(const [name,extension] of [['audio/AudioPreferences','ts'],['audio/GameAudio','ts'],['core/assetUrl','ts'],['ui/AudioSettings','tsx'],['ui/ControlSettings','tsx'],['core/ControlPreferences','ts']]){
+for(const [name,extension] of [['audio/AudioPreferences','ts'],['audio/GameAudio','ts'],['core/assetUrl','ts'],['ui/AudioSettings','tsx'],['ui/ControlSettings','tsx'],['core/ControlPreferences','ts'],['ui/VideoSettings','tsx'],['core/VideoPreferences','ts']]){
  const path=resolve(folder,name+'.js');mkdirSync(dirname(path),{recursive:true});
  const code=ts.transpileModule(readFileSync(`src/${name}.${extension}`,'utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'").replace(/import ['"]\.\/audio-settings\.css['"];?/,'');writeFileSync(path,code);
 }

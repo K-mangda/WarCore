@@ -28,6 +28,7 @@ jobs:
           node tools/check_render_cost.mjs
           node tools/check_resume.mjs
           node tools/check_controls.mjs
+          node tools/check_video.mjs
       - name: Build game and Lab for repository hosting
         run: npm run build -- --base=/${{ github.event.repository.name }}/
       - name: Validate packaged paths
