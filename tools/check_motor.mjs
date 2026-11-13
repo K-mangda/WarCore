@@ -23,7 +23,7 @@ input.jumpTicks=0;let apex=motor.position.y,flightTime=dt;
 for(let i=0;i<80;i++){const airborne=!motor.grounded;motor.step(dt,input,0);if(airborne)flightTime+=dt;apex=Math.max(apex,motor.position.y);}
 assert.ok(apex>2.8&&apex<3.3,`Expected height from extracted impulse/gravity, got ${apex}`);
 assert.equal(motor.grounded,true,'Jump must return to ground');
-assert.ok(flightTime>1.08&&flightTime<1.2,`Slower jump should keep height but extend flight: ${flightTime}`);
+assert.ok(flightTime>1.08*.8/playtestMovement.airTimeScale&&flightTime<1.2*.8/playtestMovement.airTimeScale,`Slower jump should keep height but extend flight: ${flightTime}`);
 assert.equal(motor.jumps,1);
 // A queued press just before contact must survive to the next physics tick.
 motor.reset();motor.position.y=.05;motor.grounded=false;motor.velocity.y=-2;

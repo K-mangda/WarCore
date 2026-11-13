@@ -147,3 +147,8 @@ Run now records actual awarded XP, aggregating collections within one fixed tick
 ## User-requested smaller, low-hover rotating EXP - 2026-11-13
 
 Reduced xpVisual.scale0.42 to0.35 (about17% smaller). EXP spawn elevation now uses balance.xpHoverHeight0.35 above sampled ground instead of the externally reported2m offset; currency height is unchanged. EXP Lab uses the same hover setting. These are explicit user playtest overrides. XpView now loops the native seven-frame crystal turn every0.5s instead of holding the last frame, so crystals keep rotating while waiting and following. Simulation elapsed time still freezes animation on pause. Continuous looping is a user-requested interpretation, not independently recovered ring-buffer behavior. Existing glow, tier ratios, collection numbers and sounds remain. No push/deploy.
+
+
+## Further user-requested slower movement and jump - 2026-11-13
+
+playtestMovement.speedMultiplier0.7 ->0.63 lowers walking/running and airborne movement cap from7 to6.3m/s (10% slower than the previous playtest). airTimeScale0.8 ->0.7 further slows ascent/descent and jump/fall animation, extending nominal flight by about14% relative to the previous version while retaining approximately the same apex. Existing motor scales vertical impulse by airTimeScale and gravity by its square; Fox airborne animation uses the same factor. Grounded animation, combat and source physics constants remain unchanged. Motor regression checks use the configured time scale for flight duration bounds. This is requested feel tuning, not recovered native balance. User authorized pushing this update.
