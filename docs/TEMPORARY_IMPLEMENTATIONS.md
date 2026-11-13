@@ -207,3 +207,8 @@ User requested lower jump plus slower walking/ascent/descent. speedMultiplier0.6
 ## Delivery preference update - 2026-11-13
 
 User explicitly requested automatic commit/push for completed checked changes, and notification before any phase transition. This supersedes earlier per-change local-only delivery defaults; explicit later wait/no-push instructions still override it. Maintained skill: skills/warcore-development/SKILL.md, installed under the user Codex skills folder. Existing GitHub Pages workflow is part of the authorized push path. No phase transition is performed by this preference update.
+
+
+## LEVEL UP small pop and gentle sway - 2026-11-13
+
+User-directed text tuning: scale0.6 ->0.45 of native1.5 (25% smaller than previous). Text starts at88% of final size and eases to100% over0.12s, rises0.35m/s and sways0.055m sideways along rendering-camera right. Native text color gradient and lifetime remain. Motion/size are web tuning based on user description, shared by game and Lab.
