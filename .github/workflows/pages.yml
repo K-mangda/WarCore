@@ -29,7 +29,9 @@ jobs:
       - name: Build game and Lab for repository hosting
         run: npm run build -- --base=/${{ github.event.repository.name }}/
       - name: Validate packaged paths
-        run: node tools/check_deploy.mjs /${{ github.event.repository.name }}/
+        run: |
+          node tools/check_deploy.mjs /${{ github.event.repository.name }}/
+          node tools/check_lab_boot.mjs
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
         with:
           path: dist
