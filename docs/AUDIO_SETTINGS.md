@@ -12,6 +12,8 @@ Implemented from the user's supplied settings screenshot: dark-green panel/heade
 
 ## Channels
 
+**Unverified native routing:** These are the current web assignments, not a verified description of what the original sliders control. UI labels come from the user's image; clip membership, especially Levelup4/LevelupAmbience/LevelupAfter and Silver, still needs evidence. The detailed questions and current mappings for the other AI are in [AUDIO_MIXER_HANDOFF.md](AUDIO_MIXER_HANDOFF.md). Verified clip/event identity must not be confused with verified mixer routing.
+
 - Master: overall mix, with the existing0.35 calibration retained.
 - Game Sounds: attacks/impacts, player movement/hurt/death, world level-up notification and manual weapon samples in Lab.
 - Ambience: existing LevelupAmbience loop while the upgrade modal is open.

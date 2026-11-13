@@ -7,6 +7,8 @@
 
 ## ผู้รับผิดชอบและสถานะล่าสุด
 
+งานเสียงที่ผู้ใช้ให้ตามเพิ่ม: [AUDIO_MIXER_HANDOFF.md](AUDIO_MIXER_HANDOFF.md) แยกชื่อสไลเดอร์ที่เห็นในภาพจาก routing ที่ยังไม่ยืนยัน พร้อมรายการทุกคลิปที่เว็บจัดเข้าช่องอยู่ ให้ AI อีกตัวตาม slider callback/settings field → exposed mixer parameter/group → AudioSource/runtime assignment โดยเฉพาะ UI/Levelup4, Ambience/LevelupAmbience, Game Sounds/LevelupAfter และ XP and Gold/Silver รวมสูตร gain/dB/default/save-load ห้ามเดาจากชื่อคลิปหรือถือ event ที่ยืนยันแล้วว่าเป็นหลักฐาน mixer ด้วย
+
 ผู้ใช้ย้ำว่าอาวุธ ตัวละคร มอน และบอสยังมีอีกมาก ห้ามถือว่าสิ่งที่มีใน Lab คือรายชื่อครบเกม หากจะเพิ่มตัวใด ให้ตรวจ manifest และไฟล์เดิมก่อน: **มี asset แต่ยังไม่ต่อเว็บ** ต่างจาก **asset/พฤติกรรมยังไม่พร้อม** กรณีหลังให้จดรายการรายตัวที่นี่เพื่อส่ง AI สกัด ไม่สร้างของแทนหรือสรุปว่าต้องสกัดใหม่โดยไม่มีการตรวจ
 
 ## คิวขยายเนื้อหา: อาวุธ / ตัวละคร / มอน / บอส
