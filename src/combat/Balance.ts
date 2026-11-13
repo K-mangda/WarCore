@@ -11,5 +11,5 @@ export const balance={
   // User-requested visual tuning only; native layers and damage radius are retained.
   staffImpactVisualScale:.5,staffProjectileVisualScale:.8,
   staffBurstTime:1,staffMinBurstInterval:.15,staffEndCooldown:.5,staffTargetRange:24,staffExplosionRadius:1.5,staffCollisionRadius:.45,
-  xpHoverHeight:.35,pickupRadius:1.4,magnetRadius:5,maxProjectiles:160,maxGems:400,
+  goldSpawnHeight:1.8,xpHoverHeight:.35,pickupRadius:1.4,magnetRadius:5,maxProjectiles:160,maxGems:400,
 } as const;

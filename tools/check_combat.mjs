@@ -105,7 +105,7 @@ currencies.gems.push({kind:'gold',position:player.clone(),value:4},{kind:'silver
 assert.equal(currencies.snapshot().gold,4);assert.equal(currencies.snapshot().silver,7);assert.equal(currencies.currencyReceipts.length,2);
 assert.deepEqual(currencies.currencyReceipts.map(r=>r.kind).sort(),['gold','silver']);
 currencies.reset();assert.equal(currencies.currencyReceipts.length,0);
-currencies.spawnPickup('gold',new Vector3(0,5,0));assert.equal(currencies.gems[0].position.y,.35,'Currency must hover near ground like EXP');
+currencies.spawnPickup('gold',new Vector3(0,5,0));assert.equal(currencies.gems[0].position.y,1.8,'Gold starts above the enemy head');
 for(const name of ['combat/PickupNumbers','combat/DamageNumbers','core/assetUrl']){
  const dest=resolve('.local-evidence/combat-check',name+'.js');mkdirSync(dirname(dest),{recursive:true});
  writeFileSync(dest,ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'"));
@@ -143,3 +143,7 @@ const droppedGold=goldDrop.gems.find(p=>p.kind==='gold');assert.ok(droppedGold,'
 assert.ok(droppedGold.collectDelay>0,'Dropped gold remains visible briefly');const droppedXp=goldDrop.gems.find(p=>(p.kind??'xp')==='xp');if(droppedXp)assert.ok(droppedGold.position.distanceTo(droppedXp.position)>.3,'Gold does not overlap EXP');
 for(let i=0;i<40;i++)goldDrop.step(.02,player);assert.equal(goldDrop.snapshot().gold,1,'Visible gold is eventually collected exactly once');
 console.log('Gameplay gold drop checks passed: death spawn, visible separation/delay and collection.');
+
+const curvedGold={kind:'gold',position:new Vector3(4,1.8,0),following:true,speed:50};
+movePickup(curvedGold,new Vector3(0,.35,0),.02,5);const linearY=1.8+(.35-1.8)*curvedGold.pullProgress;
+assert.ok(curvedGold.position.y>linearY,'Gold attraction arches above the direct line');

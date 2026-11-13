@@ -46,7 +46,7 @@ export class Run {
   }
   spawnPickup(kind:PickupKind,position:Vector3,value=1,echo=false){
     if(!Number.isFinite(value)||value<=0)return;
-    const spot=position.clone();if(kind==='gold'){spot.x+=.45;spot.z+=.15;}spot.y=this.ground(spot.x,spot.z)+balance.xpHoverHeight;
+    const spot=position.clone();if(kind==='gold'){spot.x+=.45;spot.z+=.15;}spot.y=this.ground(spot.x,spot.z)+(kind==='gold'?balance.goldSpawnHeight:balance.xpHoverHeight);
     const radius=.5+7.5*Math.min(1,this.state.elapsed/900);
     const existing=kind==='xp'?this.gems.find(p=>(p.kind??'xp')==='xp'&&!p.following&&!!p.echo===echo&&(p.value??1)<500&&p.position.distanceToSquared(spot)<=radius*radius):undefined;
     if(existing){existing.value=(existing.value??1)+value;if(existing.value>=500){this.gems.splice(this.gems.indexOf(existing),1);this.gems.push(existing);}return;}

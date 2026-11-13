@@ -8,6 +8,14 @@ export class ProgressionView {
  private data?:Data;private textures=new Map<string,T.Texture>();private coins=new Map<Gem,T.Sprite>();
  private effects:{sprite:T.Sprite;age:number;life:number;velocity:T.Vector3;kind:string}[]=[];
  private cameraRotation=new T.Quaternion();
+ private goldGlow=(()=>{
+  const size=32,pixels=new Uint8Array(size*size*4);
+  for(let y=0;y<size;y++)for(let x=0;x<size;x++){
+   const i=(y*size+x)*4,r=Math.hypot((x+.5-size/2)/(size/2),(y+.5-size/2)/(size/2));
+   pixels[i]=255;pixels[i+1]=255;pixels[i+2]=255;pixels[i+3]=Math.round(Math.max(0,1-r)**2*255);
+  }
+  const texture=new T.DataTexture(pixels,size,size);texture.magFilter=T.LinearFilter;texture.minFilter=T.LinearFilter;texture.needsUpdate=true;return texture;
+ })();
  private level=1;private previous=0;private disposed=false;
  constructor(private scene:T.Scene){
   // Sprite onBeforeRender supplies the actual rendering camera in game and Lab.
@@ -20,7 +28,11 @@ export class ProgressionView {
   const texture=this.textures.get(kind)?.clone();if(!texture)return;
   texture.needsUpdate=true;const sprite=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));if(kind==='text')sprite.material.onBeforeCompile=shader=>{shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>',`#include <map_fragment>
  float ink=max(sampledDiffuseColor.r,max(sampledDiffuseColor.g,sampledDiffuseColor.b));
- diffuseColor.a*=smoothstep(.22,.45,ink);`);};sprite.onBeforeRender=(_renderer,_scene,camera)=>{this.cameraRotation.copy(camera.quaternion);};this.scene.add(sprite);return sprite;
+ diffuseColor.a*=smoothstep(.22,.45,ink);`);};sprite.onBeforeRender=(_renderer,_scene,camera)=>{this.cameraRotation.copy(camera.quaternion);};if(kind==='gold'){
+   const halo=new T.Sprite(new T.SpriteMaterial({map:this.goldGlow,color:0xffd45b,opacity:.22,transparent:true,depthWrite:false,blending:T.AdditiveBlending,toneMapped:false}));
+   halo.scale.setScalar(2.6);halo.renderOrder=1;sprite.renderOrder=2;sprite.add(halo);
+  }
+  this.scene.add(sprite);return sprite;
  }
  private frame(sprite:T.Sprite,kind:string,age:number){
   const source=this.data!.sprites[kind],p=source.particle,uv=p.UVModule,initial=p.InitialModule;
@@ -58,14 +70,22 @@ export class ProgressionView {
    }
   }
  }
- private remove(sprite:T.Sprite){this.scene.remove(sprite);sprite.material.map?.dispose();sprite.material.dispose();}
+ private remove(sprite:T.Sprite){for(const child of sprite.children)if(child instanceof T.Sprite)child.material.dispose();this.scene.remove(sprite);sprite.material.map?.dispose();sprite.material.dispose();}
  update(run:Run,player:T.Vector3,dt:number){
   if(!this.data)return;const snapshot=run.snapshot();
   if(snapshot.elapsed<this.previous){this.clear();this.level=1;}this.previous=snapshot.elapsed;
   if(snapshot.level>this.level){this.burst(player);this.level=snapshot.level;}
   const present=new Set(run.gems);
   for(const [gem,sprite] of this.coins)if(!present.has(gem)){this.remove(sprite);this.coins.delete(gem);}
-  for(const gem of run.gems){const kind=gem.kind;if(!kind||kind==='xp')continue;let sprite=this.coins.get(gem);if(!sprite){sprite=this.sprite(kind);if(!sprite)continue;this.coins.set(gem,sprite);sprite.userData.born=snapshot.elapsed;}sprite.position.copy(gem.position);this.frame(sprite,kind,snapshot.elapsed-sprite.userData.born);}
+  for(const gem of run.gems){const kind=gem.kind;if(!kind||kind==='xp')continue;let sprite=this.coins.get(gem);if(!sprite){sprite=this.sprite(kind);if(!sprite)continue;this.coins.set(gem,sprite);sprite.userData.born=snapshot.elapsed;}sprite.position.copy(gem.position);this.frame(sprite,kind,snapshot.elapsed-sprite.userData.born);
+   if(kind==='gold'&&gem.following){
+    const distance=gem.position.distanceTo(player.clone().add(new T.Vector3(0,.35,0)));
+    sprite.userData.pullDistance??=Math.max(.6,distance);
+    const progress=T.MathUtils.clamp((distance-.5)/(sprite.userData.pullDistance-.5),0,1);
+    sprite.userData.pullScale=Math.min(sprite.userData.pullScale??1,.15+.85*progress);
+    sprite.scale.multiplyScalar(sprite.userData.pullScale);
+   }
+  }
   for(let i=this.effects.length-1;i>=0;i--){const e=this.effects[i];e.age+=dt;if(e.age>=e.life){this.remove(e.sprite);this.effects.splice(i,1);continue;}e.sprite.position.addScaledVector(e.velocity,dt);
    if(e.kind==='text'){
     e.sprite.position.copy(player).add(new T.Vector3(0,1.85,0));e.sprite.position.y+=e.age*.35;
@@ -77,5 +97,5 @@ export class ProgressionView {
    this.frame(e.sprite,e.kind,e.age);}
  }
  clear(){this.level=1;this.previous=0;for(const sprite of this.coins.values())this.remove(sprite);this.coins.clear();for(const e of this.effects)this.remove(e.sprite);this.effects=[];}
- dispose(){this.disposed=true;this.clear();for(const texture of this.textures.values())texture.dispose();this.textures.clear();}
+ dispose(){this.disposed=true;this.clear();for(const texture of this.textures.values())texture.dispose();this.textures.clear();this.goldGlow.dispose();}
 }
