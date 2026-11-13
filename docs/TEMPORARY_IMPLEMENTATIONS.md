@@ -336,3 +336,8 @@ User reported letters did not follow the widened border. Removed the two separat
 ## Closer above-head LEVEL UP gap - 2026-11-13
 
 User screenshot shows2.5m anchor too far above the hat. Lowered only the text spawn/follow anchor to2.1m, leaving the latest unified sign proportions, motion and pause behavior unchanged. Shared game/Lab tuning; automatic delivery applies.
+
+
+## Pickup counter growth per collection - 2026-11-13
+
+User clarified size should accumulate per new pickup while the previous number remains visible:1x,1.1x,1.2x etc. Each currency now starts1x, adds0.1 per subsequent collection and caps at1.8x, including its small retriggered pulse. Chain/value reset only after the1.4s visible lifetime expires (previous growth window0.9s). EXP receipts preserve pickup count separately from award value so multiple entities collected within one fixed tick increase size correctly without treating one valuable gem as many pickups. Gold/Silver/EXP remain independent. Row spacing25 ->28px prevents capped text overlap. Cap/timing are web tuning, not recovered native behavior. Automatic delivery applies.

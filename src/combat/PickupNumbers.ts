@@ -22,8 +22,8 @@ export class PickupNumbers {
    if(this.seen.has(receipt))continue;this.seen.add(receipt);
    const kind=receipt.kind??'xp';let counter=this.counters.get(kind);
    if(!counter){counter={total:0,idle:Infinity,chain:0,pulse:0};this.counters.set(kind,counter);}
-   if(counter.idle>.9){counter.total=0;counter.chain=0;}
-   counter.total+=receipt.value;counter.chain=Math.min(12,counter.chain+1);counter.idle=0;counter.pulse=.18;changed.add(kind);
+   if(counter.idle>=1.4){counter.total=0;counter.chain=0;}
+   counter.total+=receipt.value;counter.chain=Math.min(9,counter.chain+(receipt.pickups??1));counter.idle=0;counter.pulse=.18;changed.add(kind);
   }
   for(const kind of changed){
    const counter=this.counters.get(kind)!;if(counter.sprite)this.remove(counter.sprite);
@@ -39,11 +39,11 @@ export class PickupNumbers {
   for(const [kind,counter] of this.counters){
    const sprite=counter.sprite;if(!sprite)continue;sprite.visible=counter.idle<1.4;
    sprite.material.opacity=T.MathUtils.clamp((1.4-counter.idle)/.3,0,1);
-   // Both chain growth and retriggered pulse are capped at1.55x.
-   const pop=Math.sin(counter.pulse/.18*Math.PI)*.15,scale=Math.min(1.55,1+counter.chain/12*.4+pop);
+   // First pickup is1x; each subsequent pickup adds0.1x until1.8x.
+   const pop=Math.sin(counter.pulse/.18*Math.PI)*.06,scale=Math.min(1.8,1+Math.max(0,counter.chain-1)*.1+pop);
    const image=sprite.material.map!.image as HTMLCanvasElement;
    sprite.scale.set(image.width/80*42*pixel*scale,42*pixel*scale,1);
-   sprite.position.set(0,-(kind==='xp'?0:kind==='gold'?25:50)*pixel,0);
+   sprite.position.set(0,-(kind==='xp'?0:kind==='gold'?28:56)*pixel,0);
   }
  }
  private remove(sprite:T.Sprite){this.root.remove(sprite);sprite.material.map?.dispose();sprite.material.dispose();}

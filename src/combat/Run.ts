@@ -11,7 +11,7 @@ export interface StaffEffect {kind:'muzzle'|'impact'|'hit';position:Vector3;dire
 export interface Slash {position:Vector3;direction:Vector3;life:number;duration:number;damage:number;hits:Set<number>;hitAudioPlayed?:boolean;}
 export interface EnemyRemains {id?:number;animationTime?:number;position:Vector3;heading:number;life:number;duration:number;}
 export interface Gem extends Pickup {}
-export interface XpReceipt {position:Vector3;value:number;time:number;kind?:PickupKind;}
+export interface XpReceipt {position:Vector3;value:number;time:number;kind?:PickupKind;pickups?:number;}
 export interface Hit {position:Vector3;damage:number;life:number;}
 export interface RunSnapshot {weapon:Weapon;gold:number;silver:number;health:number;maxHealth:number;level:number;xp:number;xpNeeded:number;kills:number;elapsed:number;enemyCount:number;pendingUpgrades:number;dead:boolean;damage:number;attackInterval:number;projectiles:number;}
 export const initialRun:RunSnapshot={weapon:'bolt',gold:0,silver:0,health:balance.maxHealth,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:5,kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1};
@@ -57,8 +57,8 @@ export class Run {
   }
   private gainXp(value=1,player=new Vector3()){
     const last=this.xpReceipts.at(-1);
-    if(last&&last.time===this.state.elapsed)last.value+=value;
-    else this.xpReceipts.push({position:player.clone().add(new Vector3(0,1.8,0)),value,time:this.state.elapsed});
+    if(last&&last.time===this.state.elapsed){last.value+=value;last.pickups=(last.pickups??1)+1;}
+    else this.xpReceipts.push({position:player.clone().add(new Vector3(0,1.8,0)),value,time:this.state.elapsed,pickups:1});
     if(this.xpReceipts.length>24)this.xpReceipts.shift();
     this.state.xp+=value;this.sound('xp');
     while(this.state.xp>=this.state.xpNeeded){this.state.xp-=this.state.xpNeeded;this.state.level++;this.state.xpNeeded=5+(this.state.level-1)*3;this.state.pendingUpgrades++;this.sound('level');}
