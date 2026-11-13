@@ -1,3 +1,5 @@
+> Continuing in a new chat? Start with [NEXT_CHAT_HANDOFF.md](docs/NEXT_CHAT_HANDOFF.md).
+
 > Current scope: **Phase 2 — playtest systems and player tools**. See [phase status](docs/PHASE_STATUS.md) and [Pause/death reference backlog](docs/PAUSE_END_REFERENCE.md). The deployment branch retains its historical Phase 1 name. Movement-native-parity gaps remain open.
 
 # Megabonk movement lab
