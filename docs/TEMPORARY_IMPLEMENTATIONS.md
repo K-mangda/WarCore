@@ -226,3 +226,8 @@ User refined the desired motion: text starts at20% size, eases to normal over0.1
 The native text atlas has opaque dark pixels (742 dark opaque pixels in the selected64x32 tile). Text material now suppresses dark backing via a luminance alpha mask in the renderer; source PNG is preserved. This removes the visible dark plate without editing source art.
 
 Engine now passes effect delta only while active AND Run is not blocked: manual pause, focus/pointer-lock loss and upgrade/death screens all freeze effects, including a level-up reached in the current physics tick. The initial small text remains frozen until gameplay resumes. Lab explicit timeline/playback remains a preview clock, with Stop freezing it. This supersedes the earlier special unscaled animation during the level-up modal. Automatic delivery applies.
+
+
+## Shorter Firestaff target range - 2026-11-13
+
+User requested shorter attack reach. staffTargetRange40 ->32m (20% shorter acquisition range). Explosion radius1.5m, projectile speed/lifetime, visuals and damage remain unchanged. This is user-directed web tuning; source metadata is preserved. Automatic delivery applies.
