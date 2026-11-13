@@ -5,6 +5,7 @@ const compile=path=>ts.transpileModule(readFileSync(path,'utf8'),{compilerOption
 const modelUrl='data:text/javascript;base64,'+Buffer.from(compile('src/dev/WeaponModels.ts')).toString('base64');
 const code=compile('src/dev/LabAssets.ts').replace('./WeaponModels',modelUrl);
 const {LabAssets,roomAssets}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+assert.deepEqual(roomAssets('fox-run'),['fox'],'Character room does not load weapon or enemy assets');
 assert.deepEqual(roomAssets('skeleton-hit'),['skeleton']);
 assert.deepEqual(roomAssets('bandit-death'),['bandit']);
 assert.deepEqual(roomAssets('model-axe'),['model-axe'],'Model previews load neither player nor combat assets');

@@ -168,3 +168,7 @@ Controls ที่ต่อแล้วใช้ค่าทดลองเว�
 ## Pause / death reference — new request, 2026-11-13
 
 See [PAUSE_END_REFERENCE.md](PAUSE_END_REFERENCE.md) for the user screenshots' missing data: Damage/DPS accounting, final Silver reward, Quests, stage/tier/multiplier, Shrine Logs, native stats and transitions. Screenshot numbers must not become gameplay defaults. Web history, presets, and five-key rebindings are explicitly web tools, not recovered native behavior.
+
+## Character Lab — 2026-11-13
+
+Fox now has Idle / Run / Jump / Falling / Grind clip rooms using the existing web rig. This is raw animation inspection, not a new gameplay skill. Other character rigs/skins/clips remain in the existing multi-character request above; no new extraction was performed. Need verified per-character state transitions, clip rate/loop rules, footstep and jump/land/audio event mapping before adding sound to these previews. Existing Fox movement audio in-game does not prove clip-event timing. Do not re-extract Fox geometry/texture/clips already in public/megabonk/.

@@ -32,6 +32,7 @@ jobs:
           node tools/check_effects.mjs
           node tools/check_game_settings.mjs
           node tools/check_run_panels.mjs
+          node tools/check_character_lab.mjs
       - name: Build game and Lab for repository hosting
         run: npm run build -- --base=/${{ github.event.repository.name }}/
       - name: Validate packaged paths

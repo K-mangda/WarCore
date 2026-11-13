@@ -62,6 +62,15 @@ export class Fox {
     this.play('FoxIdle');this.mixer.update(0);
   }
 
+  /** Deterministic raw-clip inspection for Lab; does not alter gameplay state selection. */
+  preview(clip:string,time:number,yaw:number){
+    const action=this.actions.get(clip);if(!action||!this.mixer)return;
+    this.root.position.set(0,0,0);this.root.rotation.y=yaw+Math.PI;
+    this.mixer.stopAllAction();action.reset().setEffectiveTimeScale(1).setEffectiveWeight(1).play();
+    this.current=action;this.mixer.setTime(Math.max(0,time));this.root.updateMatrixWorld(true);
+  }
+  clipDuration(clip:string){return this.actions.get(clip)?.getClip().duration??0;}
+
   private play(name:string){
     const action=this.actions.get(name);if(!action||action===this.current)return;
     action.reset().fadeIn(.12).play();this.current?.fadeOut(.12);this.current=action;

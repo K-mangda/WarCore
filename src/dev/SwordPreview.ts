@@ -1,3 +1,4 @@
+import {characterRooms,characterClip} from './CharacterRooms';
 import {buildVersion} from '../core/BuildInfo';
 import {EnemyPreview} from './EnemyPreview';
 import {WeaponModelPreview} from './WeaponModelPreview';
@@ -39,6 +40,7 @@ const soundPreview=new WeaponSoundPreview(),sharedHit=new SharedHitPreview(scene
 const soundPanel=document.createElement('div');soundPanel.className='sound-samples';soundPanel.style.display='none';host.before(soundPanel);
 let audible=false;
 let xpView=new XpView(scene),progression=new ProgressionView(scene);const pickupNumbers=new PickupNumbers(scene,camera,()=>({width:host.clientWidth,height:host.clientHeight}));
+const characterRoom=()=>!!characterClip(weapon.value);
 const enemyRoom=()=>weapon.value.startsWith('skeleton-')||weapon.value.startsWith('bandit-');
 const pickupRoom=()=>['xp','gold','silver','level'].includes(weapon.value);
 const run=new Run(()=>0,()=>true,random,event=>{if(audible)audio.play(event);});
@@ -72,9 +74,9 @@ function paint(){
  const model=modelId(weapon.value);modelPreview.update(model,Number(rotate.value)*Math.PI/180+(weapon.value.startsWith('model-')?Number(frame.value)*Math.PI:0));
  if(hitRoom(weapon.value))sharedHit.advance(Number(frame.value),facing());
  fox.root.visible=!enemyRoom()&&!model;enemyPreview.update(weapon.value,Number(frame.value),facing());
- fox.update(origin,Number(rotate.value)*Math.PI/180,0,true,0,0);sword.update(run);staff.update(run,0);
- xpView.update(run);progression.update(run,origin,0);dummy.visible=!pickupRoom()&&!enemyRoom()&&!model;dummy.position.copy(target()).y=.8;
- if(model){camera.position.set(3,2.3,3.8);camera.lookAt(0,1.25,0);}else if(weapon.value!=='sword'){camera.position.set(4,3,5);camera.lookAt(0,.8,-2);}else{camera.position.set(0,2.25,3.5);camera.lookAt(0,1.3,0);}
+ if(characterRoom())fox.preview(characterClip(weapon.value)!,Number(frame.value),Number(rotate.value)*Math.PI/180);else fox.update(origin,Number(rotate.value)*Math.PI/180,0,true,0,0);sword.update(run);staff.update(run,0);
+ xpView.update(run);progression.update(run,origin,0);dummy.visible=!characterRoom()&&!pickupRoom()&&!enemyRoom()&&!model;dummy.position.copy(target()).y=.8;
+ if(characterRoom()){camera.position.set(0,1.7,3.5);camera.lookAt(0,1,0);}else if(model){camera.position.set(3,2.3,3.8);camera.lookAt(0,1.25,0);}else if(weapon.value!=='sword'){camera.position.set(4,3,5);camera.lookAt(0,.8,-2);}else{camera.position.set(0,2.25,3.5);camera.lookAt(0,1.3,0);}
  pickupNumbers.update(run,0,origin);
  const showNumbers=getEffectsPreferences().damageNumbers;
  while(showNumbers&&hitLabels.length<run.hits.length){const sprite=new T.Sprite(numbers.material(0).clone());hitLabels.push(sprite);scene.add(sprite);}
@@ -88,7 +90,7 @@ function paint(){
 }
 function inspect(){
  if(disposed||!roomReady)return;audible=false;const age=Number(frame.value);sharedHit.reset();
- if(enemyRoom()||modelId(weapon.value)){run.reset();staff.reset();progression.clear();pickupNumbers.clear();}
+ if(characterRoom()||enemyRoom()||modelId(weapon.value)){run.reset();staff.reset();progression.clear();pickupNumbers.clear();}
  else if(weapon.value==='sword'){resetStaff();advanceWeapon(age);}
  else if(pickupRoom()){resetXp();advanceXp(age);progression.update(run,origin,0);if(weapon.value==='level')progression.update(run,origin,age);}else{resetStaff();advanceWeapon(age);}
  paint();
@@ -100,12 +102,13 @@ async function selectRoom(){
  const request=++loadTicket;roomReady=false;play.disabled=true;stop.disabled=true;frame.disabled=true;rotate.disabled=true;sharedHit.reset();soundPanel.style.display='none';soundPanel.replaceChildren();
  const status=document.getElementById('ready')!;status.textContent='Loading room…';renderer.clear();
  const model=modelId(weapon.value);
- frame.max=model?'2':enemyRoom()?'1.5':weapon.value==='sword'?'.8':pickupRoom()?'2':'1.5';frame.value=model?'0':weapon.value==='sword'?'.01':'.08';
- play.textContent=soundRoom(weapon.value)?'Choose a sound below':hitRoom(weapon.value)?'Play effect + sound':model?'Rotate model':'Play test + sound';document.getElementById('mute')!.style.display=model&&!soundRoom(weapon.value)&&!hitRoom(weapon.value)?'none':'';
- document.getElementById('room-title')!.textContent=`WARCORE LAB · ${model||enemyRoom()?enemySelect.options[enemySelect.selectedIndex].text+' - '+weapon.options[weapon.selectedIndex].text:weapon.value==='sword'?'SWORD':pickupRoom()?weapon.value.toUpperCase():'FIRESTAFF'}`;
+ frame.max=characterRoom()?String(fox.clipDuration(characterClip(weapon.value)!)||7):model?'2':enemyRoom()?'1.5':weapon.value==='sword'?'.8':pickupRoom()?'2':'1.5';frame.value=model?'0':weapon.value==='sword'?'.01':'.08';
+ play.textContent=characterRoom()?'Play animation':soundRoom(weapon.value)?'Choose a sound below':hitRoom(weapon.value)?'Play effect + sound':model?'Rotate model':'Play test + sound';document.getElementById('mute')!.style.display=characterRoom()||model&&!soundRoom(weapon.value)&&!hitRoom(weapon.value)?'none':'';
+ document.getElementById('room-title')!.textContent=`WARCORE LAB · ${characterRoom()||model||enemyRoom()?enemySelect.options[enemySelect.selectedIndex].text+' - '+weapon.options[weapon.selectedIndex].text:weapon.value==='sword'?'SWORD':pickupRoom()?weapon.value.toUpperCase():'FIRESTAFF'}`;
  try{
   await Promise.all(roomAssets(weapon.value).map(key=>assets.load(key,loaders[key])));
   if(disposed||request!==loadTicket)return;
+  if(characterRoom()){frame.max=String(fox.clipDuration(characterClip(weapon.value)!));frame.value='0';}
   roomReady=true;play.disabled=soundRoom(weapon.value);stop.disabled=false;frame.disabled=soundRoom(weapon.value);rotate.disabled=false;status.textContent=soundRoom(weapon.value)?'Ready · Sound samples':hitRoom(weapon.value)?'Ready · Shared hit effect':model?'Ready · Model preview':'Ready';
   if(model&&soundRoom(weapon.value)){
    soundPanel.style.display='flex';soundPanel.setAttribute('role','group');soundPanel.setAttribute('aria-label','Weapon sound samples');
@@ -117,6 +120,7 @@ async function selectRoom(){
  }catch(error){if(disposed||request!==loadTicket)return;status.textContent=`Could not load room: ${String(error)}. Use Retry to load this room again.`;retry.hidden=false;}
 }
 const categories={
+ characters:characterRooms.map(([id,label])=>[id,label] as const),
  weapons:[['sword','Sword - Combat'],['bolt','Firestaff - Combat'],...weaponModelRooms],
  pickups:[['xp','EXP tiers'],['gold','Gold'],['silver','Silver']],
  effects:[['level','Level up']],
@@ -126,12 +130,12 @@ type Category=keyof typeof categories;
 // Group weapons and enemies by entity, with a separate room/action selector.
 const enemySelect=document.createElement('select'),enemyLabel=document.createElement('label');
 enemySelect.setAttribute('aria-label','Enemy');enemyLabel.append('Enemy',enemySelect);
-const entityKey=(category:Category,room:string)=>category==='enemies'?room.split('-')[0]:modelId(room)??room;
+const entityKey=(category:Category,room:string)=>(category==='enemies'||category==='characters')?room.split('-')[0]:modelId(room)??room;
 const entityNames=(category:Category)=>new Map(categories[category].map(([value,text])=>[entityKey(category,value),text.split(' - ')[0]]));
 weapon.parentElement!.before(enemyLabel);
 enemySelect.addEventListener('change',()=>{
- if(currentCategory==='enemies'){
-  const action=weapon.value.split('-').slice(1).join('-');openCategory('enemies',`${enemySelect.value}-${action}`);
+ if(currentCategory==='enemies'||currentCategory==='characters'){
+  const action=weapon.value.split('-').slice(1).join('-');openCategory(currentCategory,`${enemySelect.value}-${action}`);
  }else{
   const room=categories.weapons.find(([value])=>entityKey('weapons',value)===enemySelect.value)![0];openCategory('weapons',room);
  }
@@ -139,19 +143,19 @@ enemySelect.addEventListener('change',()=>{
 const search=document.createElement('input');search.type='search';search.placeholder='Search this category…';search.setAttribute('aria-label','Search Lab');
 const searchLabel=document.createElement('label');searchLabel.append('Search ',search);enemyLabel.before(searchLabel);
 const readiness=document.createElement('p');readiness.className='lab-readiness';host.before(readiness);
-function roomReadiness(room:string){if(room==='sword'||room==='bolt')return 'Combat test ready · web tuning; native parity is not complete.';if(modelId(room))return 'Preview assets ready · native attack behavior still needs data. Model / sounds / shared hit rooms are separate previews.';if(room.startsWith('skeleton-')||room.startsWith('bandit-'))return 'Animation preview ready · native attacks, boss skills and stage spawning still need data.';return 'Pickup / effect test ready · unverified currency rules remain documented.';}
+function roomReadiness(room:string){if(characterClip(room))return 'Animation preview ready · original Fox clips at source speed. Grind is a clip preview, not an enabled gameplay skill. Character audio/event mapping is pending.';if(room==='sword'||room==='bolt')return 'Combat test ready · web tuning; native parity is not complete.';if(modelId(room))return 'Preview assets ready · native attack behavior still needs data. Model / sounds / shared hit rooms are separate previews.';if(room.startsWith('skeleton-')||room.startsWith('bandit-'))return 'Animation preview ready · native attacks, boss skills and stage spawning still need data.';return 'Pickup / effect test ready · unverified currency rules remain documented.';}
 const retry=document.createElement('button');retry.textContent='Retry room';retry.hidden=true;retry.addEventListener('click',()=>{halt();void selectRoom();});document.getElementById('ready')!.after(retry);
 const version=document.createElement('small');version.textContent=' · BUILD '+buildVersion;document.getElementById('room-title')!.after(version);
 search.addEventListener('input',()=>openCategory(currentCategory));
 const tabs=Array.from(document.querySelectorAll<HTMLButtonElement>('[data-category]'));
-const lastRoom:Record<Category,string>={weapons:'sword',pickups:'xp',effects:'level',enemies:'skeleton-walk'};
+const lastRoom:Record<Category,string>={characters:'fox-idle',weapons:'sword',pickups:'xp',effects:'level',enemies:'skeleton-walk'};
 let currentCategory:Category='weapons';
 function openCategory(category:Category,room=lastRoom[category],preview=true){
  currentCategory=category;
- const grouped=category==='enemies'||category==='weapons';enemyLabel.style.display=grouped?'':'none';
+ const grouped=category==='characters'||category==='enemies'||category==='weapons';enemyLabel.style.display=grouped?'':'none';
  if(grouped){
   const names=new Map(Array.from(entityNames(category)).filter(([key,text])=>`${key} ${text}`.toLowerCase().includes(search.value.trim().toLowerCase())));enemySelect.replaceChildren(...Array.from(names,([value,text])=>new Option(text,value)));
-  enemyLabel.firstChild!.textContent=category==='weapons'?'Weapon':'Enemy';enemySelect.setAttribute('aria-label',category==='weapons'?'Weapon':'Enemy');
+  enemyLabel.firstChild!.textContent=category==='characters'?'Character':category==='weapons'?'Weapon':'Enemy';enemySelect.setAttribute('aria-label',category==='characters'?'Character':category==='weapons'?'Weapon':'Enemy');
   const key=entityKey(category,room);enemySelect.value=names.has(key)?key:enemySelect.options[0]?.value??'';
  }
  const rooms=categories[category].filter(([value,text])=>grouped?entityKey(category,value)===enemySelect.value:`${value} ${text}`.toLowerCase().includes(search.value.trim().toLowerCase()));
@@ -183,13 +187,13 @@ const unsubscribeVideo=subscribeVideoPreferences(()=>{playbackCadence.reset();re
 const unsubscribeEffects=subscribeEffectsPreferences(paint);
 play.addEventListener('click',async()=>{
  if(!roomReady||soundRoom(weapon.value))return;
- halt();sharedHit.reset();const request=ticket;play.disabled=true;if(!modelId(weapon.value)||hitRoom(weapon.value))await audio.prepare();if(disposed||request!==ticket||!roomReady)return;play.disabled=false;
- const kind=weapon.value;if(enemyRoom()||modelId(kind)){run.reset();staff.reset();progression.clear();pickupNumbers.clear();}else if(pickupRoom())resetXp();else resetStaff();audible=!modelId(kind);let lastAge=0,hitSoundPlayed=false;const start=performance.now(),limit=Number(frame.max);
+ halt();sharedHit.reset();const request=ticket;play.disabled=true;if(!characterRoom()&&(!modelId(weapon.value)||hitRoom(weapon.value)))await audio.prepare();if(disposed||request!==ticket||!roomReady)return;play.disabled=false;
+ const kind=weapon.value;if(characterRoom()||enemyRoom()||modelId(kind)){run.reset();staff.reset();progression.clear();pickupNumbers.clear();}else if(pickupRoom())resetXp();else resetStaff();audible=!characterRoom()&&!modelId(kind);let lastAge=0,hitSoundPlayed=false;const start=performance.now(),limit=Number(frame.max);
  const tick=(time:number)=>{
   if(disposed||request!==ticket)return;
   if(!playbackCadence.ready(time,getVideoPreferences().fpsLimit)){animation=requestAnimationFrame(tick);return;}
   const age=Math.min(limit,(time-start)/1000);frame.value=String(age);
-  if(modelId(kind)){if(hitRoom(kind)&&!hitSoundPlayed){hitSoundPlayed=true;audio.play('staffHit');}paint();}else if(enemyRoom()){if(lastAge<.2&&age>=.2&&!kind.endsWith('-walk'))audio.play('staffHit');paint();}else if(kind==='bolt'||kind==='sword'){advanceWeapon(age);paint();}else if(pickupRoom()){advanceXp(age);progression.update(run,origin,age-lastAge);if(kind==='level')audio.setLevelModal(run.blocked);paint();}else{inspect();}lastAge=age;
+  if(characterClip(kind)){paint();}else if(modelId(kind)){if(hitRoom(kind)&&!hitSoundPlayed){hitSoundPlayed=true;audio.play('staffHit');}paint();}else if(enemyRoom()){if(lastAge<.2&&age>=.2&&!kind.endsWith('-walk'))audio.play('staffHit');paint();}else if(kind==='bolt'||kind==='sword'){advanceWeapon(age);paint();}else if(pickupRoom()){advanceXp(age);progression.update(run,origin,age-lastAge);if(kind==='level')audio.setLevelModal(run.blocked);paint();}else{inspect();}lastAge=age;
   if(age<limit)animation=requestAnimationFrame(tick);else{audible=false;audio.setLevelModal(false);}
  };
  frame.value='0';animation=requestAnimationFrame(tick);

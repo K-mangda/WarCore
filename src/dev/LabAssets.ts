@@ -9,6 +9,7 @@ export class LabAssets {
  }
 }
 export function roomAssets(room:string){
+ if(room.startsWith('fox-'))return ['fox'];
  const id=modelId(room);if(id)return ['model-'+id,...(room.startsWith('sounds-')?['media-'+id]:room.startsWith('hit-')?['hitFx']:[])];
  if(room.startsWith('skeleton-')||room.startsWith('bandit-'))return [room.split('-')[0]];
  if(room==='sword')return ['fox','sword','staff','damage']; // Shared weapon-hit effects.
