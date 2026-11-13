@@ -1,4 +1,5 @@
 import {xpVisual} from './XpAppearance';
+import {getEffectsPreferences} from '../core/EffectsPreferences';
 import * as T from 'three';
 import {assetUrl} from '../core/assetUrl';
 import type {Run,Gem} from './Run';
@@ -51,7 +52,7 @@ export class ProgressionView {
    sprite.scale.x*=1.6;sprite.scale.y*=.6;
    sprite.material.opacity=1;
   }
-  if(kind==='burst'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a;sprite.material.toneMapped=false;}
+  if(kind==='burst'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a*getEffectsPreferences().particlesOpacity;sprite.material.toneMapped=false;}
   if(kind==='gold'||kind==='silver'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a;sprite.material.toneMapped=false;}
  }
  burst(player:T.Vector3){

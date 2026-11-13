@@ -20,6 +20,7 @@ import {subscribeAudioPreferences} from '../audio/AudioPreferences';
 import {getVideoPreferences,subscribeVideoPreferences} from '../core/VideoPreferences';
 import {applyVideoPreferences} from '../core/VideoRenderer';
 import {RenderCadence} from '../core/RenderCadence';
+import {getEffectsPreferences,subscribeEffectsPreferences} from '../core/EffectsPreferences';
 import {DamageNumbers} from '../combat/DamageNumbers';
 const host=document.getElementById('view')!;
 (document.getElementById('back') as HTMLAnchorElement).href=assetUrl('');
@@ -70,13 +71,14 @@ function paint(){
  const model=modelId(weapon.value);modelPreview.update(model,Number(rotate.value)*Math.PI/180+(weapon.value.startsWith('model-')?Number(frame.value)*Math.PI:0));
  if(hitRoom(weapon.value))sharedHit.advance(Number(frame.value),facing());
  fox.root.visible=!enemyRoom()&&!model;enemyPreview.update(weapon.value,Number(frame.value),facing());
- fox.update(origin,Number(rotate.value)*Math.PI/180,0,true,0,0);sword.update(run);
+ fox.update(origin,Number(rotate.value)*Math.PI/180,0,true,0,0);sword.update(run);staff.update(run,0);
  xpView.update(run);progression.update(run,origin,0);dummy.visible=!pickupRoom()&&!enemyRoom()&&!model;dummy.position.copy(target()).y=.8;
  if(model){camera.position.set(3,2.3,3.8);camera.lookAt(0,1.25,0);}else if(weapon.value!=='sword'){camera.position.set(4,3,5);camera.lookAt(0,.8,-2);}else{camera.position.set(0,2.25,3.5);camera.lookAt(0,1.3,0);}
  pickupNumbers.update(run,0,origin);
- while(hitLabels.length<run.hits.length){const sprite=new T.Sprite(numbers.material(0).clone());hitLabels.push(sprite);scene.add(sprite);}
+ const showNumbers=getEffectsPreferences().damageNumbers;
+ while(showNumbers&&hitLabels.length<run.hits.length){const sprite=new T.Sprite(numbers.material(0).clone());hitLabels.push(sprite);scene.add(sprite);}
  hitLabels.forEach((sprite,i)=>{
-  const hit=run.hits[i];sprite.visible=!!hit&&!pickupRoom();if(!hit)return;
+  const hit=run.hits[i];sprite.visible=!!hit&&!pickupRoom()&&showNumbers;if(!hit||!showNumbers)return;
   if(sprite.userData.damage!==hit.damage){sprite.material.dispose();sprite.material=numbers.material(hit.damage).clone();sprite.userData.damage=hit.damage;}
   sprite.material.opacity=Math.min(1,hit.life/.15);sprite.position.copy(hit.position);
   sprite.scale.set((sprite.material.map!.image as HTMLCanvasElement).width/128*1.2,.75,1);
@@ -166,6 +168,7 @@ weapon.addEventListener('change',()=>{lastRoom[currentCategory]=weapon.value;hal
 const resizeLab=()=>{applyVideoPreferences(renderer,camera,scene,getVideoPreferences(),host.clientWidth,host.clientHeight,devicePixelRatio,'lab');paint();};
 const resize=new ResizeObserver(resizeLab);resize.observe(host);
 const unsubscribeVideo=subscribeVideoPreferences(()=>{playbackCadence.reset();resizeLab();});
+const unsubscribeEffects=subscribeEffectsPreferences(paint);
 play.addEventListener('click',async()=>{
  if(!roomReady||soundRoom(weapon.value))return;
  halt();sharedHit.reset();const request=ticket;play.disabled=true;if(!modelId(weapon.value)||hitRoom(weapon.value))await audio.prepare();if(disposed||request!==ticket||!roomReady)return;play.disabled=false;
@@ -183,6 +186,6 @@ stop.addEventListener('click',halt);
 document.getElementById('mute')!.addEventListener('click',()=>{const muted=audio.toggle(),button=document.getElementById('mute')!;soundPreview.setMuted(muted);button.textContent=muted?'Sound off':'Sound on';button.setAttribute('aria-pressed',String(muted));});
 const syncMute=()=>{const button=document.getElementById('mute')!;button.textContent=audio.muted?'Sound off':'Sound on';button.setAttribute('aria-pressed',String(audio.muted));};
 const unsubscribeMute=subscribeAudioPreferences(syncMute);syncMute();
-window.addEventListener('pagehide',()=>{disposed=true;halt();unsubscribeMute();unsubscribeVideo();resize.disconnect();audio.dispose();soundPreview.dispose();sharedHit.dispose();modelPreview.dispose();enemyPreview.dispose();sword.dispose();staff.dispose();xpView.dispose();progression.dispose();pickupNumbers.dispose();fox.dispose();for(const sprite of hitLabels){scene.remove(sprite);sprite.material.dispose();}numbers.dispose();dummy.geometry.dispose();dummy.material.dispose();renderer.dispose();});
+window.addEventListener('pagehide',()=>{disposed=true;halt();unsubscribeMute();unsubscribeVideo();unsubscribeEffects();resize.disconnect();audio.dispose();soundPreview.dispose();sharedHit.dispose();modelPreview.dispose();enemyPreview.dispose();sword.dispose();staff.dispose();xpView.dispose();progression.dispose();pickupNumbers.dispose();fox.dispose();for(const sprite of hitLabels){scene.remove(sprite);sprite.material.dispose();}numbers.dispose();dummy.geometry.dispose();dummy.material.dispose();renderer.dispose();});
 for(const tab of tabs)tab.disabled=false;
 void selectRoom();

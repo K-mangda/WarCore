@@ -4,6 +4,7 @@ import {balance} from '../combat/Balance';
 import type {Run,EnemyRemains} from '../combat/Run';
 import type {Enemy,EnemyKind} from './Swarm';
 import {damageMaterial} from './DamageMaterial';
+import {getEffectsPreferences} from '../core/EffectsPreferences';
 interface Frame {positions:number[];uv:number[];indices:number[];}
 interface Animation {fps:number;frames:Frame[];texture:string;}
 export function skeletonFrame(time:number,id:number,fps:number,count:number,moving=true){return moving?Math.floor(Math.max(0,time)*fps+(id%count))%count:0;}
@@ -29,7 +30,7 @@ export class BakedEnemyView {
  update(run:Run,player:T.Vector3){this.render(run.swarm.enemies,run.remains,run.snapshot().elapsed,player);}
  render(enemies:readonly Enemy[],remains:readonly EnemyRemains[],elapsed:number,player:T.Vector3){
   if(!this.batches.length)return;for(const mesh of this.batches)mesh.count=0;
-  const matrix=this.matrix,rotation=this.rotation,up=this.up,scale=this.unitScale;
+  const matrix=this.matrix,rotation=this.rotation,up=this.up,scale=this.unitScale,flashEnabled=getEffectsPreferences().damageFlash;
   if(this.camera)this.frustum.setFromProjectionMatrix(this.projection.multiplyMatrices(this.camera.projectionMatrix,this.camera.matrixWorldInverse));
   const put=(frame:number,position:T.Vector3,heading:number,flash:number,dissolve:number)=>{
    if(this.camera){this.sphere.center.copy(position).y+=.8;if(!this.frustum.intersectsSphere(this.sphere))return;}
@@ -40,7 +41,7 @@ export class BakedEnemyView {
   for(const enemy of enemies){
    if((enemy.kind??'skeleton')!==this.species)continue;
    const moving=(enemy.position.x-player.x)**2+(enemy.position.z-player.z)**2>.5;
-   put(skeletonFrame(elapsed,enemy.id,this.fps,this.batches.length,moving),enemy.position,Math.atan2(player.x-enemy.position.x,player.z-enemy.position.z),enemy.flash>0?1:0,0);
+   put(skeletonFrame(elapsed,enemy.id,this.fps,this.batches.length,moving),enemy.position,Math.atan2(player.x-enemy.position.x,player.z-enemy.position.z),flashEnabled&&enemy.flash>0?1:0,0);
   }
   for(const corpse of remains)if((corpse.kind??'skeleton')===this.species)put(skeletonFrame(corpse.animationTime??elapsed,corpse.id??0,this.fps,this.batches.length),corpse.position,corpse.heading,1,1-corpse.life/corpse.duration);
   for(const mesh of this.batches){

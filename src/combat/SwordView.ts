@@ -1,4 +1,5 @@
 import {assetUrl} from '../core/assetUrl';
+import {getEffectsPreferences} from '../core/EffectsPreferences';
 import {balance} from './Balance';
 import {placeSwordSlash,orientSwordArc} from './SwordPose';
 import * as T from 'three';
@@ -48,7 +49,7 @@ export class SwordView {
       const start=p.colorModule.enabled?gradient.key0:color,end=p.colorModule.enabled?gradient.key1:color;
       // Preserve source gradient; native HDR glow/postprocessing is not reproduced.
       mesh.material.color.setRGB(start.r+(end.r-start.r)*age,start.g+(end.g-start.g)*age,start.b+(end.b-start.b)*age);
-      mesh.material.opacity=start.a+(end.a-start.a)*age;
+      mesh.material.opacity=(start.a+(end.a-start.a)*age)*getEffectsPreferences().particlesOpacity;
       placeSwordSlash(mesh,slash.position,slash.direction,{x:p.initialModule.startRotationX.scalar,y:p.initialModule.startRotationY.scalar,z:p.initialModule.startRotation.scalar});
       mesh.position.addScaledVector(slash.direction,p.initialModule.startSpeed.scalar*elapsed);
       mesh.scale.setScalar(p.initialModule.startSize.scalar*balance.swordVisualScale);

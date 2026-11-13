@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
-for(const name of ['enemies/SkeletonView','enemies/BakedEnemyView','enemies/DamageMaterial','combat/Balance','core/assetUrl','dev/EnemyPreview']){
+for(const name of ['enemies/SkeletonView','core/EffectsPreferences','enemies/BakedEnemyView','enemies/DamageMaterial','combat/Balance','core/assetUrl','dev/EnemyPreview']){
  const out=resolve('.local-evidence/skeleton-check',name+'.js');mkdirSync(dirname(out),{recursive:true});
  writeFileSync(out,ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'"));
 }

@@ -7,6 +7,8 @@
 
 ## ผู้รับผิดชอบและสถานะล่าสุด
 
+Effects3ตัวเลือกต่อแล้ว (Damage Numbers, Damage Flash, Particles Opacity) ดู EFFECTS_IMPLEMENTATION.md ขอบเขตที่ยังไม่ยืนยันให้ AI อีกตัวตรวจคือ native toggle ครอบคลุมเลข/flash/particlesชนิดใดบ้าง, death flash แยกหรือรวม, opacity ใช้กับ pickup/text/HUD หรือไม่, ลำดับคูณ alpha และ interaction กับ Auto Opacity ห้ามถือว่าขอบเขตเว็บปัจจุบันเป็นคำตอบต้นฉบับ ส่วน Low HP/Auto Opacity/telegraph color ยังพักตาม SETTINGS_REFERENCE_BACKLOG.md
+
 ภาพอ้างอิง Video/Game/Effects ล่าสุดบันทึกไว้ใน [SETTINGS_REFERENCE_BACKLOG.md](SETTINGS_REFERENCE_BACKLOG.md) แยกสิ่งที่ทำได้จริงในเว็บ/มีระบบเดิมแล้ว/ยังไม่มีระบบ/ยังขาดสูตรต้นฉบับ Video ที่ต่อแล้วดู VIDEO_IMPLEMENTATION.md ผู้ใช้ย้ำให้เก็บระบบที่ทำงานดีไว้ และไม่ต้องใส่ native PC options ที่เว็บใช้ไม่ได้ ให้ AI อีกตัวตามเฉพาะค่า/สูตรที่ยังไม่แน่ใจ เช่น camera-distance conversion, input-delay units (ไม่ถือว่า2ในภาพเท่ากับ jump buffer), Smart Aim/random targeting, auto particle opacity, Low HP, palettes และ auto-upgrade rarity ห้ามเดาจากภาพหรือทำสไลเดอร์หลอก
 
 ข้อกำหนด Controls ล่าสุด: **ไม่ทำ Controller/gamepad input** จึงไม่ต้องหา/สกัดส่วน controller sensitivity/vibration/disconnect/bindings มาทำ เว็บมีแผนเล่นมือถือในอนาคตด้วย touch controls แยกต่างหาก ยังไม่ได้เริ่มงานมือถือ ดู [CONTROLS_IMPLEMENTATION.md](CONTROLS_IMPLEMENTATION.md)

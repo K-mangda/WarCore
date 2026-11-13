@@ -2,6 +2,7 @@ import {PointerLockState} from './PointerLockState';
 import {getVideoPreferences,subscribeVideoPreferences} from './VideoPreferences';
 import {applyVideoPreferences} from './VideoRenderer';
 import {RenderCadence} from './RenderCadence';
+import {subscribeEffectsPreferences} from './EffectsPreferences';
 import {GameAudio} from '../audio/GameAudio';
 import * as T from 'three';
 import { Motor } from '../player/Motor';
@@ -25,7 +26,7 @@ export class Engine {
   private disposed=false;
   private active=false;private inLab=false;
   private pointerLock=new PointerLockState();
-  private cadence=new RenderCadence();private previousRender=0;private bufferSize=new T.Vector2();private unsubscribeVideo:()=>void;
+  private cadence=new RenderCadence();private previousRender=0;private bufferSize=new T.Vector2();private unsubscribeVideo:()=>void;private unsubscribeEffects:()=>void;
   private renderer:T.WebGLRenderer; private scene=new T.Scene(); private camera=new T.PerspectiveCamera(75,1,.05,250); private motor=new Motor(); private input:Input; private orbit:Orbit; private terrain:T.Mesh; private effects:Effects; private frame=0; private previous=0; private accumulator=0; private frames=0; private fps=0; private sample=0;
   constructor(private host:HTMLElement,private report:(data:Telemetry)=>void) {
     this.renderer=new T.WebGLRenderer({antialias:true}); this.renderer.setClearColor(0xb5c9ba); this.renderer.outputColorSpace=T.SRGBColorSpace; host.append(this.renderer.domElement);
@@ -38,6 +39,7 @@ export class Engine {
     this.combatView=new CombatView(this.scene,this.camera,()=>({width:this.host.clientWidth,height:this.host.clientHeight}));
     window.addEventListener('resize',this.resize); this.resize();
     this.unsubscribeVideo=subscribeVideoPreferences(()=>{this.cadence.reset();this.resize();this.emit();});this.emit();
+    this.unsubscribeEffects=subscribeEffectsPreferences(()=>this.cadence.reset());
     this.ready=Promise.all([this.fox.load(),this.combatView.load()]).then(()=>{if(!this.disposed)this.frame=requestAnimationFrame(this.tick);});
   }
   lock=(feedback=true)=>{
@@ -78,5 +80,5 @@ export class Engine {
     this.sample+=wallDelta;if(this.sample>=.2){this.fps=Math.round(this.frames/this.sample);this.frames=0;this.sample=0;this.emit();}
     this.frame=requestAnimationFrame(this.tick);
   };
-  dispose(){this.unsubscribeVideo();this.audio.dispose();this.disposed=true;cancelAnimationFrame(this.frame);document.removeEventListener('pointerlockchange',this.lockChanged);window.removeEventListener('blur',this.pause);window.removeEventListener('resize',this.resize);this.input.dispose();this.orbit.dispose();this.fox.dispose();this.combatView.dispose();this.scene.traverse(o=>{if(o instanceof T.Mesh || o instanceof T.Points){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();if(o instanceof T.InstancedMesh)o.dispose();}});this.renderer.dispose();this.renderer.domElement.remove();}
+  dispose(){this.unsubscribeVideo();this.unsubscribeEffects();this.audio.dispose();this.disposed=true;cancelAnimationFrame(this.frame);document.removeEventListener('pointerlockchange',this.lockChanged);window.removeEventListener('blur',this.pause);window.removeEventListener('resize',this.resize);this.input.dispose();this.orbit.dispose();this.fox.dispose();this.combatView.dispose();this.scene.traverse(o=>{if(o instanceof T.Mesh || o instanceof T.Points){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();if(o instanceof T.InstancedMesh)o.dispose();}});this.renderer.dispose();this.renderer.domElement.remove();}
 }

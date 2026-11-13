@@ -7,6 +7,7 @@ import {SwordView} from './SwordView';
 import * as T from 'three';
 import type {Run} from './Run';
 import {XpView} from './XpView';
+import {getEffectsPreferences} from '../core/EffectsPreferences';
 export class CombatView {
   private enemies:BakedEnemyView[];
   private staff:StaffView;private previousElapsed=0;
@@ -23,8 +24,9 @@ export class CombatView {
     const elapsed=run.snapshot().elapsed;this.staff.update(run,Math.max(0,elapsed-this.previousElapsed));this.previousElapsed=elapsed;
     for(const view of this.enemies)view.update(run,player);
     this.gems.update(run);
-    while(this.labels.length<run.hits.length){const label=new T.Sprite(this.numbers.material(0));label.scale.set(1.2,.6,1);this.labels.push(label);this.scene.add(label);}
-    this.labels.forEach((label,i)=>{const hit=run.hits[i];label.visible=!!hit;if(hit){label.material=this.numbers.material(hit.damage);label.scale.set((label.material.map!.image as HTMLCanvasElement).width/128*1.2,.75,1);label.position.copy(hit.position);}});
+    const showNumbers=getEffectsPreferences().damageNumbers;
+    while(showNumbers&&this.labels.length<run.hits.length){const label=new T.Sprite(this.numbers.material(0));label.scale.set(1.2,.6,1);this.labels.push(label);this.scene.add(label);}
+    this.labels.forEach((label,i)=>{const hit=run.hits[i];label.visible=!!hit&&showNumbers;if(hit&&showNumbers){label.material=this.numbers.material(hit.damage);label.scale.set((label.material.map!.image as HTMLCanvasElement).width/128*1.2,.75,1);label.position.copy(hit.position);}});
   }
   dispose(){this.pickupNumbers.dispose();this.progression.dispose();this.staff.dispose();this.sword.dispose();this.gems.dispose();for(const view of this.enemies)view.dispose();for(const label of this.labels){this.scene.remove(label);}this.numbers.dispose();}
 }

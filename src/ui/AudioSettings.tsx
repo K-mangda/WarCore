@@ -1,6 +1,7 @@
 import {useEffect,useRef,useState,useSyncExternalStore,type CSSProperties} from 'react';
 import {ControlSettings} from './ControlSettings';
 import {VideoSettings} from './VideoSettings';
+import {EffectsSettings} from './EffectsSettings';
 import {audioDefaults,getAudioPreferences,resetAudioPreferences,setAudioPreferences,subscribeAudioPreferences,type AudioVolume} from '../audio/AudioPreferences';
 import './audio-settings.css';
 const rows:[AudioVolume,string][]=[['master','Master Volume'],['music','Music Volume'],['game','Game Sounds'],['ambience','Ambience'],['ui','UI'],['pickups','XP and Gold']];
@@ -25,8 +26,8 @@ export function AudioSettings({onClose,onTestSound,onInteract,resolution}:{onClo
  return <section className="settings-shade" role="dialog" aria-modal="true" aria-labelledby="settings-title">
   <div className="settings-window" ref={panel}>
    <div className="settings-heading"><h2 id="settings-title">SETTINGS</h2><button className="settings-close" aria-label="Close settings" onClick={onClose}>×</button></div>
-   <nav className="settings-tabs" aria-label="Settings sections">{['GAME','VIDEO','CONTROLS','AUDIO','EFFECTS','OTHER'].map(tab=><button key={tab} disabled={!['AUDIO','CONTROLS','VIDEO'].includes(tab)} aria-current={tab===section?'page':undefined} onClick={()=>{onInteract();setSection(tab);}} title={['AUDIO','CONTROLS','VIDEO'].includes(tab)?undefined:'Not available in this playtest'}>{tab}</button>)}</nav>
-   {section==='VIDEO'?<VideoSettings onInteract={onInteract} resolution={resolution}/>:section==='CONTROLS'?<ControlSettings onInteract={onInteract}/>:<div className="settings-content"><h3>AUDIO</h3>
+   <nav className="settings-tabs" aria-label="Settings sections">{['GAME','VIDEO','CONTROLS','AUDIO','EFFECTS','OTHER'].map(tab=><button key={tab} disabled={!['AUDIO','CONTROLS','VIDEO','EFFECTS'].includes(tab)} aria-current={tab===section?'page':undefined} onClick={()=>{onInteract();setSection(tab);}} title={['AUDIO','CONTROLS','VIDEO','EFFECTS'].includes(tab)?undefined:'Not available in this playtest'}>{tab}</button>)}</nav>
+   {section==='EFFECTS'?<EffectsSettings onInteract={onInteract}/>:section==='VIDEO'?<VideoSettings onInteract={onInteract} resolution={resolution}/>:section==='CONTROLS'?<ControlSettings onInteract={onInteract}/>:<div className="settings-content"><h3>AUDIO</h3>
     <div className="audio-rows">{rows.map(([key,label])=><div className="audio-setting-row" key={key}>
      <label htmlFor={'audio-'+key}>{label}</label>
      <input id={'audio-'+key} type="range" min="0" max="1" step="0.01" value={preferences[key]} aria-valuetext={`${Math.round(preferences[key]*100)} percent`} style={{'--audio-level':`${preferences[key]*100}%`} as CSSProperties} onChange={event=>{onInteract();setAudioPreferences({[key]:Number(event.currentTarget.value)});}}/>

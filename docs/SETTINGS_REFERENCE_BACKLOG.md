@@ -10,10 +10,12 @@ Graphics options shown: Grass Quality, Shadow Quality, Shadow Resolution, Anti A
 
 ## Effects: future work, not fake settings now
 
-- Damage Numbers: existing damage labels work; a future visibility toggle can use this code while preserving hit/damage simulation.
-- Damage Flash: existing white hit flash/dissolve works. A future toggle should distinguish hit flash from death dissolve instead of disabling death visuals accidentally; native option scope still needs confirmation.
+อัปเดต: Damage Numbers, Damage Flash และ Particles Opacity ต่อแล้ว ดู EFFECTS_IMPLEMENTATION.md สำหรับขอบเขตเว็บที่ชัดเจน ส่วนสูตร/ขอบเขต native ยังต้องให้ AI อีกตัวตรวจ ไม่ต้องสกัดภาพ/เสียงเดิมซ้ำ
+
+- Damage Numbers: visibility toggle implemented for game/Lab damage labels; hit/damage simulation and pickup counters remain. Confirm native scope separately.
+- Damage Flash: living-hit flash toggle implemented with white death/dissolve preserved; native option scope still needs confirmation.
 - Low HP Effects: no complete native low-health visual behavior is integrated. Need threshold, visual/postprocess parameters, interpolation, health/regen/pause transitions and event evidence.
-- Particles Opacity: existing particle renderers can support a manual web multiplier later; native scope and multiplication order still need confirmation. Do not apply it to unrelated HUD/coin/text sprites automatically.
+- Particles Opacity: manual web multiplier implemented for combat particles, level-up burst and dust; source alpha is recomputed, not compounded. Native scope/multiplication order and any effect on coins/EXP/text still need confirmation. Current pickups/HUD/LEVEL UP sign remain readable.
 - Particles Auto Opacity: need the actual algorithm/input (distance/overlap/particle count/other), thresholds and interaction with manual opacity. A catalog component named ParticleOpacity is not sufficient evidence.
 - Enemy Attack Indicator Color: wait for proven enemy attack/telegraph behavior. Need palette enum/color values and which indicators the setting changes. Existing ordinary contact damage has no complete telegraph system.
 

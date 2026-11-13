@@ -1,4 +1,5 @@
 import {balance} from './Balance';
+import {getEffectsPreferences} from '../core/EffectsPreferences';
 import {physics} from '../player/Physics';
 import {assetUrl} from '../core/assetUrl';
 import * as T from 'three';
@@ -93,9 +94,9 @@ export class StaffView {
     // Actual shader pass state is not known. Only an explicit saved One/One pair
     // selects additive here; One/Zero is never mislabeled as additive.
     const additive=native.floats?._SrcBlend===1&&native.floats?._DstBlend===1;
-    const material=new T.ShaderMaterial({uniforms:{stretch:{value:layer.renderer.mode===1?layer.renderer.lengthScale??1:0},map:{value:texture},tint:{value:new T.Vector4(tint.r,tint.g,tint.b,tint.a??1)}},transparent:true,depthWrite:false,side:T.DoubleSide,blending:additive?T.AdditiveBlending:T.NormalBlending,
+    const material=new T.ShaderMaterial({uniforms:{effectOpacity:{value:1},stretch:{value:layer.renderer.mode===1?layer.renderer.lengthScale??1:0},map:{value:texture},tint:{value:new T.Vector4(tint.r,tint.g,tint.b,tint.a??1)}},transparent:true,depthWrite:false,side:T.DoubleSide,blending:additive?T.AdditiveBlending:T.NormalBlending,
       vertexShader:`attribute vec2 corner;attribute vec3 particleVelocity;attribute vec4 particleColor;uniform float stretch;varying vec2 vUv;varying vec4 vColor;void main(){vUv=uv;vColor=particleColor;vec4 p=modelViewMatrix*vec4(position,1.0);if(stretch>0.0){vec2 v=(modelViewMatrix*vec4(particleVelocity,0.0)).xy;vec2 d=length(v)>0.0001?normalize(v):vec2(0.0,1.0);p.xy+=vec2(d.y,-d.x)*corner.x+d*corner.y*stretch;}else{p.xy+=corner;}gl_Position=projectionMatrix*p;}`,
-      fragmentShader:`uniform sampler2D map;uniform vec4 tint;varying vec2 vUv;varying vec4 vColor;void main(){gl_FragColor=texture2D(map,vUv)*vColor*tint;if(gl_FragColor.a<0.005)discard;#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}`.replace(';#include',';\n#include')});
+      fragmentShader:`uniform sampler2D map;uniform vec4 tint;uniform float effectOpacity;varying vec2 vUv;varying vec4 vColor;void main(){gl_FragColor=texture2D(map,vUv)*vColor*tint;gl_FragColor.a*=effectOpacity;if(gl_FragColor.a<0.005)discard;#include <tonemapping_fragment>\n#include <colorspace_fragment>\n}`.replace(';#include',';\n#include')});
     const mesh=new T.Mesh(geometry,material);mesh.frustumCulled=false;mesh.renderOrder=2;this.scene.add(mesh);
     this.batches.set(layer.pathId,{layer,mesh,positions,velocities,corners,uvs,colors,particles:[]});
   }
@@ -135,6 +136,8 @@ export class StaffView {
   }
   update(run:Run,delta:number){
     if(!this.manifest)return;
+    const opacity=getEffectsPreferences().particlesOpacity;
+    for(const batch of this.batches.values()){batch.mesh.material.uniforms.effectOpacity.value=opacity;batch.mesh.visible=opacity>0;}
     const elapsed=run.snapshot().elapsed;
     if(elapsed<this.lastElapsed||elapsed===0&&this.lastElapsed>0)this.clear();this.lastElapsed=elapsed;
     const dt=Math.max(0,Math.min(delta,.1));
