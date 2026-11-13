@@ -304,3 +304,8 @@ User requested slower Gold flight again. Gold Bezier progress multiplier0.75 ->0
 ## Lower LEVEL UP position by40% - 2026-11-13
 
 User reported the level-up sign sits too high. Reduced its vertical player-relative anchor1.85 ->1.11m (40% lower offset), both initial spawn and player-follow updates. Text size, rise/sway and collapse timing remain unchanged. Shared game/Lab tuning; automatic delivery applies.
+
+
+## Correct LEVEL UP dimensional tuning - 2026-11-13
+
+User clarified40% reduction refers to letter height, not sign position. Restored vertical anchor1.11 ->1.85m. Text applies independent width1.10 and height0.60 multipliers after its existing pop/center-collapse animation. This makes the word40% shorter vertically and10% wider without moving it down. Prior lowered-position entry is superseded. Shared game/Lab, automatic delivery applies.
