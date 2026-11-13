@@ -289,3 +289,8 @@ Upgrade confirmation now plays only after Run.choose succeeds, then resumes game
 ## Smaller Firestaff hitbox and shorter range - 2026-11-13
 
 User reported apparent two-target hits and requested reduced hitbox/range. Firestaff already has AoE damage; retaining that mechanic, swept collision radius0.45 ->0.30m, explosion radius1.5 ->0.9m, acquisition range24 ->19.2m (20% shorter). Damage, visual scale and attack cadence unchanged. Nearby enemies inside0.9m may still both take damage; this is not single-target conversion. These are explicit user tuning, not native values. Long-flight fixture adjusted within the new targeting range. Automatic delivery applies.
+
+
+## Skeleton enemy animation slice - 2026-11-13
+
+User authorized using existing enemy assets after phase/scope notification. Direct native chain EnemyData8037 -> AnimatedMesh7798/Material277 -> Texture802 is integrated; the raw list has8 Moving frames at8FPS, not the catalog7. SkeletonView batches baked frames with instancing and is shared by game and Lab Enemies (Walk/Hit/Death). Animation follows Run.elapsed, so pause freezes it; visual corpses retain death animation time. Existing skeleton mesh files remain archived. Web1.6m size, AI, combat, loot and encounter tuning remain; no new enemy species/boss is added. Native toon shaders/state transitions are incomplete. See ENEMY_IMPLEMENTATION.md for evidence, bounds and tests. No GPU/FPS/visual parity claim; user handles image/audio/gameplay testing. Automatic commit/push applies.

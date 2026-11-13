@@ -10,7 +10,7 @@ for(const entry of ['index.html','lab.html']){
   assert.ok(existsSync(join('dist',url.slice(base.length))),`Missing bundled asset: ${url}`);
  }
 }
-for(const file of ['megabonk/fox-rig.json','combat/skeleton.json','game-ui/damage/atlas.png','game-ui/damage/glyphs.json','weapons/knight-sword/particle.json','weapons/knight-sword/audio/SwordSwing.wav','game-audio/Player_Jump.wav','weapons/staff/manifest.json','weapons/staff/audio/retro_shoot_fireball3.wav','weapons/staff/audio/retro_explosion_fireball1.wav','weapons/staff/audio/retro_explosion_fireball3.wav','weapons/staff/audio/Hit2.wav'])assert.ok(existsSync(join('dist',file)),`Missing game dependency: ${file}`);
+for(const file of ['megabonk/fox-rig.json','combat/skeleton.json','enemies/skeleton/animation.json','enemies/skeleton/albedo.png','game-ui/damage/atlas.png','game-ui/damage/glyphs.json','weapons/knight-sword/particle.json','weapons/knight-sword/audio/SwordSwing.wav','game-audio/Player_Jump.wav','weapons/staff/manifest.json','weapons/staff/audio/retro_shoot_fireball3.wav','weapons/staff/audio/retro_explosion_fireball1.wav','weapons/staff/audio/retro_explosion_fireball3.wav','weapons/staff/audio/Hit2.wav'])assert.ok(existsSync(join('dist',file)),`Missing game dependency: ${file}`);
 for(const file of readdirSync('dist/assets').filter(name=>name.endsWith('.css'))){
  const css=readFileSync(join('dist/assets',file),'utf8');
  for(const [,url] of css.matchAll(/url\(["']?([^\)"']+)["']?\)/g)){

@@ -1,5 +1,7 @@
 # Phase parity ledger
 
+2026-11-13 enemy slice: Skeleton now uses native baked Moving mesh animation (8 frames at8FPS), shared by game and Lab. See [enemy implementation](ENEMY_IMPLEMENTATION.md). This supersedes older static/deferred enemy-visual status below; native AI and encounter parity remain incomplete.
+
 No system has verified 100% behavioral parity. Native method bodies and reference captures are required.
 
 Current visual update: Fox default skin, original 23-joint rig and Idle/Run/Jump/Falling clips are integrated; see [Fox provenance](FOX_ASSETS.md). Map replacement and sliding are deferred at the user's request. Native Animator transition/shader parity is not claimed.
