@@ -463,3 +463,8 @@ Replaced the old three-across wood cards with reference-shaped Inventory / verti
 ## Removed pickup glow - 2026-11-14
 
 User requested no money or EXP glow. Removed the additive EXP halo batch/material and Gold halo sprite/generated texture; reset EXP's extra brightness multiplier to 1. Actual atlas art, tier tints, size/rotation, gold arc/shrink, pickups, sound and LEVEL UP effects are preserved. Shared renderers apply this to gameplay and Lab. Supersedes earlier glow tuning; no source asset edits or phase change. Build and existing progression/effects checks; user handles appearance.
+
+
+## Warm compact level-up sparkles - 2026-11-14
+
+User screenshot tuning: changed the selection-independent LEVEL UP burst tint from serialized blue to pale warm yellow, reduced sparkle size to 18% and radial launch speed to 2.5-4.5 (previously 7-12). Random in-plane sparkle rotation, faint additive warmth for burst/text only, and lighter cream/gold sign text follow the supplied image. Text anchor/size/sway/collapse/pause behavior are preserved. Glow is restricted to level-up effects; Gold/Silver/EXP remain without added glow. Source atlas/manifest unchanged, shared gameplay/Lab renderer, no native-parity claim or phase change. Build and existing effect/pause/coin-no-glow checks; user handles appearance.

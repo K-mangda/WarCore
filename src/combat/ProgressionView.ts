@@ -20,6 +20,10 @@ export class ProgressionView {
  private sprite(kind:string){
   const texture=this.textures.get(kind)?.clone();if(!texture)return;
   texture.needsUpdate=true;const sprite=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));sprite.onBeforeRender=(_renderer,_scene,camera)=>{this.cameraRotation.copy(camera.quaternion);};
+  if(kind==='text'||kind==='burst'){
+   const glow=new T.Sprite(new T.SpriteMaterial({map:texture,color:0xffdf8a,opacity:kind==='text'?.1:.16,transparent:true,depthWrite:false,toneMapped:false,blending:T.AdditiveBlending}));
+   glow.scale.setScalar(kind==='text'?1.045:1.35);glow.renderOrder=1;sprite.renderOrder=2;sprite.add(glow);
+  }
   this.scene.add(sprite);return sprite;
  }
  private frame(sprite:T.Sprite,kind:string,age:number){
@@ -28,11 +32,11 @@ export class ProgressionView {
   const coin=kind==='gold'||kind==='silver',activeFrames=Math.max(1,Math.ceil(uv.frameOverTime.scalar*count));
   const selectedFrame=coin?start+Math.floor(age/initial.startLifetime.scalar*activeFrames)%activeFrames:frame;
   sprite.material.map!.repeat.set(1/count,1);sprite.material.map!.offset.set(selectedFrame/count,0);
-  sprite.scale.setScalar(kind==='gold'?xpVisual.scale*.8:kind==='silver'?xpVisual.scale:initial.startSize.scalar*(kind==='text'?.4:1));
+  sprite.scale.setScalar(kind==='gold'?xpVisual.scale*.8:kind==='silver'?xpVisual.scale:initial.startSize.scalar*(kind==='text'?.4:kind==='burst'?.18:1));
   if(kind==='text'){
    const g=p.ColorModule.gradient.maxGradient;
    const t=T.MathUtils.clamp(age/initial.startLifetime.scalar/(g.ctime1/65535),0,1);
-   sprite.material.color.setRGB(1,T.MathUtils.lerp(.84,.76,t),T.MathUtils.lerp(.55,.42,t),T.SRGBColorSpace);
+   sprite.material.color.setRGB(1,T.MathUtils.lerp(.93,.86,t),T.MathUtils.lerp(.64,.49,t),T.SRGBColorSpace);
    sprite.material.toneMapped=false;
    const enter=1-Math.pow(1-T.MathUtils.clamp(age/.14,0,1),3);
    const exit=T.MathUtils.clamp((initial.startLifetime.scalar-age)/.09,0,1);
@@ -41,7 +45,8 @@ export class ProgressionView {
    sprite.scale.x*=1.6;sprite.scale.y*=.6;
    sprite.material.opacity=1;
   }
-  if(kind==='burst'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a*getEffectsPreferences().particlesOpacity;sprite.material.toneMapped=false;}
+  if(kind==='burst'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(1,.94,.65,T.SRGBColorSpace);sprite.material.opacity=c.a*getEffectsPreferences().particlesOpacity;sprite.material.toneMapped=false;}
+  for(const child of sprite.children)if(child instanceof T.Sprite){child.material.opacity=(kind==='text'?.1:.16)*sprite.material.opacity;child.material.rotation=sprite.material.rotation;}
   if(kind==='gold'||kind==='silver'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a;sprite.material.toneMapped=false;}
  }
  burst(player:T.Vector3){
@@ -52,7 +57,8 @@ export class ProgressionView {
    for(let i=0;i<count;i++){
     const sprite=this.sprite(kind);if(!sprite)continue;sprite.position.copy(player).y+=kind==='text'?2.1:1;
     const life=initial.startLifetime.minMaxState===3?T.MathUtils.lerp(initial.startLifetime.minScalar,initial.startLifetime.scalar,Math.random()):initial.startLifetime.scalar;
-    const angle=i/count*Math.PI*2,speed=kind==='text'?0:T.MathUtils.lerp(7,12,Math.random());
+    const angle=i/count*Math.PI*2,speed=kind==='text'?0:T.MathUtils.lerp(2.5,4.5,Math.random());
+    if(kind==='burst')sprite.material.rotation=Math.random()*Math.PI;
     if(kind==='text'){sprite.userData.sway=Math.random()<.5?-1:1;}
     this.effects.push({sprite,age:0,life,velocity:new T.Vector3(Math.cos(angle)*speed,.5*speed,Math.sin(angle)*speed),kind});this.frame(sprite,kind,0);
    }
