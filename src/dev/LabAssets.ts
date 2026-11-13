@@ -8,8 +8,10 @@ export class LabAssets {
  }
 }
 export function roomAssets(room:string){
+ if(modelId(room))return [room];
  if(room.startsWith('skeleton-')||room.startsWith('bandit-'))return [room.split('-')[0]];
  if(room==='sword')return ['fox','sword','staff','damage']; // Shared weapon-hit effects.
  if(room==='bolt')return ['fox','staff','damage'];
  return ['fox','xp','progression','pickup'];
 }
+import {modelId} from './WeaponModels';

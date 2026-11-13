@@ -1,0 +1,168 @@
+{
+  "id": "mine",
+  "assetName": "WeaponMines",
+  "enum": {
+    "id": 21,
+    "name": "Mine"
+  },
+  "stats": {
+    "damage": 10.0,
+    "knockback": 4.0,
+    "critChance": 0.0,
+    "element": "Neutral",
+    "elementId": 0,
+    "projectiles": 1,
+    "projectileBounces": 0,
+    "attackDuration": 4.0,
+    "maxDuration": -1.0,
+    "maxSizeMultiplier": -1.0,
+    "effectDuration": 0.0,
+    "projectileSpeed": 1.0,
+    "cooldown": 1.0,
+    "burstTime": 1.0,
+    "minBurstInterval": 0.25,
+    "canBounce": false,
+    "amplificationMode": "Bounce",
+    "amplificationModeId": 0,
+    "procCoefficient": 0.8,
+    "useVision": true,
+    "canMultiHit": false,
+    "hasCrosshair": false,
+    "spawnProjectileRange": 40.0,
+    "isAura": false,
+    "spawnOffset": [
+      0.0,
+      1.0,
+      1.0
+    ]
+  },
+  "icon": {
+    "pathId": 929,
+    "assetName": "Mine",
+    "webPath": "weapons/mine/web/icon.png",
+    "rawPath": "weapons/mine/raw/icon.bytes",
+    "width": 32,
+    "height": 32
+  },
+  "upgrades": {
+    "name": "MinesUpgrade",
+    "pathId": 8596,
+    "modifiers": [
+      {
+        "statId": 9,
+        "type": 0,
+        "value": 0.15
+      },
+      {
+        "statId": 12,
+        "type": 2,
+        "value": 3.0
+      },
+      {
+        "statId": 16,
+        "type": 2,
+        "value": 1.0
+      },
+      {
+        "statId": 10,
+        "type": 2,
+        "value": 0.4
+      }
+    ]
+  },
+  "references": {
+    "attackPrefab": {
+      "name": "MinesAttack",
+      "pathId": 4143
+    },
+    "projectilePrefab": {
+      "pathId": 3951
+    },
+    "muzzlePrefab": {
+      "pathId": 0
+    },
+    "hitPrefab": {
+      "name": "GeneralProjectileHit",
+      "pathId": 3790,
+      "shared": true,
+      "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+    },
+    "explosionsCount": 1
+  },
+  "audio": {
+    "fire": [
+      {
+        "clipName": "MineSpawn",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.9800000190734863,
+        "maxPitch": 1.0199999809265137,
+        "randomVolume": 0.25,
+        "playOnAwake": true,
+        "file": "shared/audio/web/MineSpawn.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "impact": [
+      {
+        "clipName": "Hit2",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.8999999761581421,
+        "maxPitch": 1.2000000476837158,
+        "randomVolume": 0.4000000059604645,
+        "playOnAwake": true,
+        "file": "shared/audio/web/Hit2.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "explosion": [
+      {
+        "clipName": "bombExplosion",
+        "source": "AudioMapping",
+        "volume": 1.0,
+        "minPitch": 1.0,
+        "maxPitch": 1.0,
+        "randomVolume": 0.0,
+        "playOnAwake": false,
+        "file": "shared/audio/web/bombExplosion.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "ambient_or_loop": [
+      {
+        "clipName": "NoodleStop",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.9399999976158142,
+        "maxPitch": 1.059999942779541,
+        "randomVolume": 0.10000000149011612,
+        "playOnAwake": true,
+        "file": "shared/audio/web/NoodleStop.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ]
+  },
+  "dependencies": [
+    "shared/audio/web/Hit2.wav",
+    "shared/audio/web/MineSpawn.wav",
+    "shared/audio/web/NoodleStop.wav",
+    "shared/audio/web/bombExplosion.wav",
+    "shared/materials/Atlas03Glow.json",
+    "shared/materials/Spark.json",
+    "shared/materials/m_mine.json",
+    "shared/meshes/web/Mine.obj",
+    "shared/prefabs/GeneralProjectileHit.json",
+    "shared/textures/web/atlas03.png",
+    "shared/textures/web/grain.png",
+    "weapons/mine/web/icon.png"
+  ]
+}

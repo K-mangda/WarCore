@@ -1,0 +1,44 @@
+{
+  "id": "rockets",
+  "mesh": "model.obj",
+  "texture": null,
+  "tint": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "textureScale": [
+    1,
+    1
+  ],
+  "textureOffset": [
+    0,
+    0
+  ],
+  "previewOnly": true,
+  "meshNode": {
+    "name": "RocketProjectile",
+    "pathId": 3839,
+    "meshFilterPathId": 6243,
+    "rendererPathId": 5937,
+    "transform": {
+      "position": [
+        -270.80859375,
+        -40.790000915527344,
+        67.50398254394531
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "previewPolicy": "Centered, longest dimension 2m, opaque Lambert inspection material; native shader/transform/attack not reproduced."
+}

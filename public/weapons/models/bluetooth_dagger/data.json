@@ -1,0 +1,139 @@
+{
+  "id": "bluetooth_dagger",
+  "assetName": "WeaponWirelessDagger",
+  "enum": {
+    "id": 26,
+    "name": "BluetoothDagger"
+  },
+  "stats": {
+    "damage": 9.0,
+    "knockback": 0.4,
+    "critChance": 0.0,
+    "element": "Lightning",
+    "elementId": 1,
+    "projectiles": 1,
+    "projectileBounces": 1,
+    "attackDuration": 2.5,
+    "maxDuration": 8.0,
+    "maxSizeMultiplier": 3.5,
+    "effectDuration": 0.0,
+    "projectileSpeed": 0.75,
+    "cooldown": 0.5,
+    "burstTime": 1.1,
+    "minBurstInterval": 0.02,
+    "canBounce": true,
+    "amplificationMode": "Bounce",
+    "amplificationModeId": 0,
+    "procCoefficient": 0.9,
+    "useVision": true,
+    "canMultiHit": false,
+    "hasCrosshair": false,
+    "spawnProjectileRange": 40.0,
+    "isAura": false,
+    "spawnOffset": [
+      0.0,
+      1.0,
+      1.0
+    ]
+  },
+  "icon": {
+    "pathId": 1181,
+    "assetName": "Bluetooth Knife",
+    "webPath": "weapons/bluetooth_dagger/web/icon.png",
+    "rawPath": "weapons/bluetooth_dagger/raw/icon.bytes",
+    "width": 32,
+    "height": 32
+  },
+  "upgrades": {
+    "name": "BluetoothBladeUpgrades",
+    "pathId": 8584,
+    "modifiers": [
+      {
+        "statId": 12,
+        "type": 2,
+        "value": 2.0
+      },
+      {
+        "statId": 16,
+        "type": 2,
+        "value": 1.0
+      },
+      {
+        "statId": 45,
+        "type": 2,
+        "value": 1.0
+      },
+      {
+        "statId": 11,
+        "type": 0,
+        "value": 0.15
+      }
+    ]
+  },
+  "references": {
+    "attackPrefab": {
+      "name": "BluetoothBladeAttack",
+      "pathId": 3801
+    },
+    "projectilePrefab": {
+      "pathId": 3418
+    },
+    "muzzlePrefab": {
+      "pathId": 3568
+    },
+    "hitPrefab": {
+      "name": "GeneralProjectileHit",
+      "pathId": 3790,
+      "shared": true,
+      "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+    },
+    "explosionsCount": 0
+  },
+  "audio": {
+    "fire": [
+      {
+        "clipName": "BluetoothDagger",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.9399999976158142,
+        "maxPitch": 1.059999942779541,
+        "randomVolume": 0.10000000149011612,
+        "playOnAwake": true,
+        "file": "shared/audio/web/BluetoothDagger.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "impact": [
+      {
+        "clipName": "Hit2",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.8999999761581421,
+        "maxPitch": 1.2000000476837158,
+        "randomVolume": 0.4000000059604645,
+        "playOnAwake": true,
+        "file": "shared/audio/web/Hit2.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "explosion": [],
+    "ambient_or_loop": []
+  },
+  "dependencies": [
+    "shared/audio/web/BluetoothDagger.wav",
+    "shared/audio/web/Hit2.wav",
+    "shared/materials/Atlas01.json",
+    "shared/materials/Atlas01Glow.json",
+    "shared/materials/Spark.json",
+    "shared/materials/m_bluetoothDagger.json",
+    "shared/meshes/web/BluetoothDagger.obj",
+    "shared/prefabs/GeneralProjectileHit.json",
+    "shared/textures/web/atlas01.png",
+    "shared/textures/web/grain.png",
+    "weapons/bluetooth_dagger/web/icon.png"
+  ]
+}

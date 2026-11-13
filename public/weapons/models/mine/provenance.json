@@ -1,0 +1,31 @@
+{
+  "sourceRoot": "C:\\Users\\Korawit\\Desktop\\WarCore\\megabonk_extracted_assets",
+  "operation": "Copied existing exported files; no extraction or native identity verification.",
+  "files": [
+    {
+      "source": "shared/meshes/web/Mine.obj",
+      "output": "model.obj",
+      "sha256": "88855973f3308f52523c68d01b46c0ef3dd7311c2b828f9ab2bf124aa5c2d0a2"
+    },
+    {
+      "source": "weapons/mine/data.json",
+      "output": "data.json",
+      "sha256": "34069f74c4ea08f07091104061bfdccf9a7d5093e5b18cf38ef6382a14e3eeea"
+    },
+    {
+      "source": "weapons/mine/hierarchy.json",
+      "output": "hierarchy.json",
+      "sha256": "57c3da705597931ae692eed8aa77ee21480fcbc1930db9d64ec734dfc3ee3ccb"
+    },
+    {
+      "source": "shared/materials/m_mine.json",
+      "output": "material.json",
+      "sha256": "757e4361c10f9070dbb2012bfd127f197031c6fb226f0ce0e666c9b88c7653a1"
+    },
+    {
+      "source": "shared/textures/web/FBX_Mine_Color.png",
+      "output": "albedo.png",
+      "sha256": "58549c1143d5babc649d2944c71624aff9e077cd13ba3c3ae6d6ac30f6689e5e"
+    }
+  ]
+}

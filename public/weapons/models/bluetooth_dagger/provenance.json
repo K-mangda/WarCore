@@ -1,0 +1,31 @@
+{
+  "sourceRoot": "C:\\Users\\Korawit\\Desktop\\WarCore\\megabonk_extracted_assets",
+  "operation": "Copied existing exported files; no extraction or native identity verification.",
+  "files": [
+    {
+      "source": "shared/meshes/web/BluetoothDagger.obj",
+      "output": "model.obj",
+      "sha256": "c2c95df2a71a03d4c55afcb6ef62993773b85a26bfc7bce8199c43ec4c9444db"
+    },
+    {
+      "source": "weapons/bluetooth_dagger/data.json",
+      "output": "data.json",
+      "sha256": "e7081c59fe85d6b36c5fe76eb341b25ab5142aa336575566ccadf1f86bce4209"
+    },
+    {
+      "source": "weapons/bluetooth_dagger/hierarchy.json",
+      "output": "hierarchy.json",
+      "sha256": "686bb325fd45dab9a1a924cf706002463a45b9061dc8539b097ab4620cc633a2"
+    },
+    {
+      "source": "shared/materials/m_bluetoothDagger.json",
+      "output": "material.json",
+      "sha256": "f28d7862e985318fec78f1404d718572d3f823371b563e395bf6166d730a8799"
+    },
+    {
+      "source": "shared/textures/web/FBX_BluetoothBlade_Color.png",
+      "output": "albedo.png",
+      "sha256": "26ad49839cba6a0761bf0cf23360ab0271d5f098ccc661b1c8cda1303200da47"
+    }
+  ]
+}

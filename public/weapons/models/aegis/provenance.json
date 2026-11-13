@@ -1,0 +1,26 @@
+{
+  "sourceRoot": "C:\\Users\\Korawit\\Desktop\\WarCore\\megabonk_extracted_assets",
+  "operation": "Copied existing exported files; no extraction or native identity verification.",
+  "files": [
+    {
+      "source": "shared/meshes/web/Shield.obj",
+      "output": "model.obj",
+      "sha256": "1080ae706cdb7c9ad7483cf2f34f4b3b3ef6bf40c9fb162ad37b8f1ddcb4140b"
+    },
+    {
+      "source": "weapons/aegis/data.json",
+      "output": "data.json",
+      "sha256": "6599cbc8660cf9400741f95e253f168ed6d6184dd3d6679b0d33aca0cc9ad672"
+    },
+    {
+      "source": "weapons/aegis/hierarchy.json",
+      "output": "hierarchy.json",
+      "sha256": "40c3b06314bc42207e8985029eeac9a2917f2df0f783c4ad10b4561208c35196"
+    },
+    {
+      "source": "shared/materials/Forcefield_Aegis.json",
+      "output": "material.json",
+      "sha256": "5c2924eaeecbf386cd570a7428c37c2147224f078150c916f6fe1156888c4ac9"
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "id": "axe",
+  "assetName": "WeaponAxe",
+  "enum": {
+    "id": 6,
+    "name": "Axe"
+  },
+  "stats": {
+    "damage": 6.0,
+    "knockback": 1.0,
+    "critChance": 0.0,
+    "element": "Neutral",
+    "elementId": 0,
+    "projectiles": 2,
+    "projectileBounces": 0,
+    "attackDuration": 0.82,
+    "maxDuration": 8.0,
+    "maxSizeMultiplier": -1.0,
+    "effectDuration": 1.5,
+    "projectileSpeed": 0.5,
+    "cooldown": 1.4,
+    "burstTime": 0.0,
+    "minBurstInterval": 0.0,
+    "canBounce": true,
+    "amplificationMode": "Bounce",
+    "amplificationModeId": 0,
+    "procCoefficient": 0.7,
+    "useVision": true,
+    "canMultiHit": false,
+    "hasCrosshair": false,
+    "spawnProjectileRange": 40.0,
+    "isAura": false,
+    "spawnOffset": [
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "icon": {
+    "pathId": 915,
+    "assetName": "Axe",
+    "webPath": "weapons/axe/web/icon.png",
+    "rawPath": "weapons/axe/raw/icon.bytes",
+    "width": 32,
+    "height": 32
+  },
+  "upgrades": {
+    "name": "AxeUpgrades",
+    "pathId": 8580,
+    "modifiers": [
+      {
+        "statId": 9,
+        "type": 0,
+        "value": 0.1
+      },
+      {
+        "statId": 12,
+        "type": 2,
+        "value": 1.5
+      },
+      {
+        "statId": 16,
+        "type": 2,
+        "value": 1.0
+      },
+      {
+        "statId": 10,
+        "type": 0,
+        "value": 0.1
+      }
+    ]
+  },
+  "references": {
+    "attackPrefab": {
+      "name": "AxeAttackPrefab",
+      "pathId": 4269
+    },
+    "projectilePrefab": {
+      "pathId": 4122
+    },
+    "muzzlePrefab": {
+      "pathId": 0
+    },
+    "hitPrefab": {
+      "name": "GeneralProjectileHit",
+      "pathId": 3790,
+      "shared": true,
+      "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+    },
+    "explosionsCount": 0
+  },
+  "audio": {
+    "fire": [
+      {
+        "clipName": "AxeThrow",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.8999999761581421,
+        "maxPitch": 1.100000023841858,
+        "randomVolume": 0.20000000298023224,
+        "playOnAwake": false,
+        "file": "shared/audio/web/AxeThrow.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "impact": [
+      {
+        "clipName": "Hit2",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.8999999761581421,
+        "maxPitch": 1.2000000476837158,
+        "randomVolume": 0.4000000059604645,
+        "playOnAwake": true,
+        "file": "shared/audio/web/Hit2.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "explosion": [],
+    "ambient_or_loop": [
+      {
+        "clipName": "AxeSpin",
+        "pathId": 2225,
+        "source": "AudioSource",
+        "volume": 0.25,
+        "pitch": 1.0,
+        "playOnAwake": true,
+        "file": "shared/audio/web/AxeSpin.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ]
+  },
+  "dependencies": [
+    "shared/audio/web/AxeSpin.wav",
+    "shared/audio/web/AxeThrow.wav",
+    "shared/audio/web/Hit2.wav",
+    "shared/materials/m_ogre_axe_Projectile.json",
+    "shared/meshes/web/Axe.obj",
+    "shared/prefabs/GeneralProjectileHit.json",
+    "weapons/axe/web/icon.png"
+  ]
+}

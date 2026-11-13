@@ -1,0 +1,31 @@
+{
+  "sourceRoot": "C:\\Users\\Korawit\\Desktop\\WarCore\\megabonk_extracted_assets",
+  "operation": "Copied existing exported files; no extraction or native identity verification.",
+  "files": [
+    {
+      "source": "shared/meshes/web/Axe.obj",
+      "output": "model.obj",
+      "sha256": "5452255427ca05531566cc80c6fda2de4f50b68f4d66cab00c8db739bfb9412e"
+    },
+    {
+      "source": "weapons/axe/data.json",
+      "output": "data.json",
+      "sha256": "13ce292c8b72ff380a8134ca8efa30efd201a43502d743fda5c3ff2885d15d9b"
+    },
+    {
+      "source": "weapons/axe/hierarchy.json",
+      "output": "hierarchy.json",
+      "sha256": "ba1a6cbfe57420916efac6694854b6a2fede91087dc49509803b4bf74107aecd"
+    },
+    {
+      "source": "shared/materials/m_ogre_axe_Projectile.json",
+      "output": "material.json",
+      "sha256": "8b1b77f17f1f72be980193c5a04172158342dded45dfb27a65d33fe6e5d1d94c"
+    },
+    {
+      "source": "shared/textures/web/Axe_Default.png",
+      "output": "albedo.png",
+      "sha256": "2d5503fb9f071f377b3c0c5e8f9d0c3444d43e4e7482e024e4ff68bd9f8dcba4"
+    }
+  ]
+}

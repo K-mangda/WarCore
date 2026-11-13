@@ -8,6 +8,7 @@
 
 - มี OBJ ให้ตรวจนำมาใช้ต่อหลายชิ้น เช่น Axe, Bow/Arrow, Dice, Mine, Rockets, Bluetooth Dagger และ Aegis/Shield ไม่ต้องสกัด mesh เหล่านี้ซ้ำ หากต้องการ preview ต้องตรวจ material/texture/transform ที่อ้างมาด้วย
 - การพบ OBJ เป็นผู้สมัครสำหรับ preview ภาพ ไม่ได้แปลว่ากติกาโจมตี เสียง และ VFX พร้อมเล่นครบ ต้องเทียบหลักฐานตาม WEAPON_BEHAVIOR.md ก่อนเพิ่มระบบโจมตี
+- เพิ่มห้องดูโมเดลใน Lab แล้ว7ชิ้น: Axe, Bow/Arrow, Dice, Mine, Rockets, Bluetooth Dagger, Aegis ดู WEAPON_MODEL_PREVIEWS.md; ใช้ไฟล์เดิม ไม่มีการสกัดเพิ่ม
 - Bananarang/Poison Flask ที่อ้าง mesh ชื่อ Cube ต้องตรวจ geometry/material pairing ก่อนตัดสินรูปทรง ชื่อไฟล์อย่างเดียวไม่บอกว่าเป็น placeholder หรือโมเดลที่ถูกต้อง
 - EnemyData มีชื่อ AnimatedMesh/pathID แต่ในโฟลเดอร์ enemies มีเพียง JSON; hierarchy ที่ว่างและตัวเลข frameCount ไม่ใช่ vertex/index/UV payload จึงยังใช้สร้างตัวใหม่ไม่ได้จากชุดนี้เพียงอย่างเดียว
 - Skeleton/Bandit มีไฟล์ animation/albedo ที่ต่อในเว็บแล้ว แยกจากข้อจำกัดของชุด catalog; ห้ามเหมาว่ามอนทั้งหมดไม่มี asset หรือเรียก importer เพื่อสกัดตัวใหม่เอง
@@ -18,19 +19,19 @@
 
 ### อาวุธ: 30 รายการ
 
-- **aegis** — ยังไม่ต่อเว็บ; OBJ: Shield.obj; PNG shared 2; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/aegis/data.json`
+- **aegis** — มีห้องดูโมเดลใน Lab (ยังไม่มี combat); OBJ: Shield.obj; PNG shared 2; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/aegis/data.json`
 - **aura** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 2; WAV 1; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/aura/data.json`
-- **axe** — ยังไม่ต่อเว็บ; OBJ: Axe.obj; PNG shared 2; WAV 3; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/axe/data.json`
+- **axe** — มีห้องดูโมเดลใน Lab (ยังไม่มี combat); OBJ: Axe.obj; PNG shared 2; WAV 3; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/axe/data.json`
 - **bananarang** — ยังไม่ต่อเว็บ; OBJ: Cube.obj; PNG shared 2; WAV 3; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/bananarang/data.json`
 - **black_hole** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 2; WAV 3; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/black_hole/data.json`
 - **blood_magic** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 4; WAV 3; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/blood_magic/data.json`
-- **bluetooth_dagger** — ยังไม่ต่อเว็บ; OBJ: BluetoothDagger.obj; PNG shared 4; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/bluetooth_dagger/data.json`
+- **bluetooth_dagger** — มีห้องดูโมเดลใน Lab (ยังไม่มี combat); OBJ: BluetoothDagger.obj; PNG shared 4; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/bluetooth_dagger/data.json`
 - **bone** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 3; WAV 3; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/bone/data.json`
-- **bow** — ยังไม่ต่อเว็บ; OBJ: Arrow.obj; PNG shared 2; WAV 3; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/bow/data.json`
+- **bow** — มีห้องดูโมเดลใน Lab (ยังไม่มี combat); OBJ: Arrow.obj; PNG shared 2; WAV 3; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/bow/data.json`
 - **chunkers** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 2; WAV 4; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/chunkers/data.json`
 - **corrupt_sword** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 2; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/corrupt_sword/data.json`
 - **dexecutioner** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 3; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/dexecutioner/data.json`
-- **dice** — ยังไม่ต่อเว็บ; OBJ: Dice.obj; PNG shared 4; WAV 5; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/dice/data.json`
+- **dice** — มีห้องดูโมเดลใน Lab (ยังไม่มี combat); OBJ: Dice.obj; PNG shared 4; WAV 5; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/dice/data.json`
 - **dragons_breath** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 2; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/dragons_breath/data.json`
 - **firestaff** — ต่อเว็บบางส่วนแล้ว; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 4; WAV 4; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/firestaff/data.json`
 - **flamewalker** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 2; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/flamewalker/data.json`
@@ -38,10 +39,10 @@
 - **hero_sword** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 2; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/hero_sword/data.json`
 - **katana** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 2; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/katana/data.json`
 - **lightning_staff** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 1; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/lightning_staff/data.json`
-- **mine** — ยังไม่ต่อเว็บ; OBJ: Mine.obj; PNG shared 4; WAV 4; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/mine/data.json`
+- **mine** — มีห้องดูโมเดลใน Lab (ยังไม่มี combat); OBJ: Mine.obj; PNG shared 4; WAV 4; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/mine/data.json`
 - **poison_flask** — ยังไม่ต่อเว็บ; OBJ: Outline.obj, Top.obj; PNG shared 6; WAV 3; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/poison_flask/data.json`
 - **revolver** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 3; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/revolver/data.json`
-- **rockets** — ยังไม่ต่อเว็บ; OBJ: mesh_rocket.obj; PNG shared 4; WAV 5; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/rockets/data.json`
+- **rockets** — มีห้องดูโมเดลใน Lab (ยังไม่มี combat); OBJ: mesh_rocket.obj; PNG shared 4; WAV 5; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/rockets/data.json`
 - **scythe** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 3; WAV 4; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/scythe/data.json`
 - **shotgun** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 4; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/shotgun/data.json`
 - **sniper** — ยังไม่ต่อเว็บ; OBJ: ไม่มี OBJ ใน references ที่ตรวจ; PNG shared 3; WAV 2; ไม่พบ reference ชี้ไฟล์ขาดในขอบเขตที่ตรวจ. metadata: `weapons/sniper/data.json`

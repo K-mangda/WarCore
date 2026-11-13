@@ -1,0 +1,44 @@
+{
+  "id": "dice",
+  "mesh": "model.obj",
+  "texture": "albedo.png",
+  "tint": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "textureScale": [
+    1.0,
+    1.0
+  ],
+  "textureOffset": [
+    0.0,
+    0.0
+  ],
+  "previewOnly": true,
+  "meshNode": {
+    "name": "DiceProjectile",
+    "pathId": 3978,
+    "meshFilterPathId": 6364,
+    "rendererPathId": 6005,
+    "transform": {
+      "position": [
+        -4.417149543762207,
+        1.0269999504089355,
+        16.24669075012207
+      ],
+      "rotation": [
+        -0.7071068286895752,
+        0.0,
+        -0.0,
+        0.7071067094802856
+      ],
+      "scale": [
+        0.28691399097442627,
+        0.28691399097442627,
+        0.28691399097442627
+      ]
+    }
+  },
+  "previewPolicy": "Centered, longest dimension 2m, opaque Lambert inspection material; native shader/transform/attack not reproduced."
+}

@@ -1,0 +1,131 @@
+{
+  "id": "aegis",
+  "assetName": "WeaponAegis",
+  "enum": {
+    "id": 8,
+    "name": "Aegis"
+  },
+  "stats": {
+    "damage": 10.0,
+    "knockback": 3.0,
+    "critChance": 0.0,
+    "element": "Neutral",
+    "elementId": 0,
+    "projectiles": 2,
+    "projectileBounces": 1,
+    "attackDuration": 0.0,
+    "maxDuration": -1.0,
+    "maxSizeMultiplier": -1.0,
+    "effectDuration": 1.5,
+    "projectileSpeed": 1.0,
+    "cooldown": 1.5,
+    "burstTime": 0.0,
+    "minBurstInterval": 0.0,
+    "canBounce": false,
+    "amplificationMode": "ShieldStack",
+    "amplificationModeId": 2,
+    "procCoefficient": 1.0,
+    "useVision": true,
+    "canMultiHit": false,
+    "hasCrosshair": false,
+    "spawnProjectileRange": 0.0,
+    "isAura": true,
+    "spawnOffset": [
+      0.0,
+      0.5,
+      2.5
+    ]
+  },
+  "icon": {
+    "pathId": 1061,
+    "assetName": "Aegis",
+    "webPath": "weapons/aegis/web/icon.png",
+    "rawPath": "weapons/aegis/raw/icon.bytes",
+    "width": 32,
+    "height": 32
+  },
+  "upgrades": {
+    "name": "AegisUpgrades",
+    "pathId": 8577,
+    "modifiers": [
+      {
+        "statId": 9,
+        "type": 0,
+        "value": 0.15
+      },
+      {
+        "statId": 12,
+        "type": 2,
+        "value": 2.0
+      },
+      {
+        "statId": 24,
+        "type": 0,
+        "value": 0.25
+      },
+      {
+        "statId": 16,
+        "type": 2,
+        "value": 1.0
+      }
+    ]
+  },
+  "references": {
+    "attackPrefab": {
+      "name": "AegisAttack",
+      "pathId": 4149
+    },
+    "projectilePrefab": {
+      "pathId": 0
+    },
+    "muzzlePrefab": {
+      "pathId": 0
+    },
+    "hitPrefab": null,
+    "explosionsCount": 0
+  },
+  "audio": {
+    "fire": [
+      {
+        "clipName": "AegisUse",
+        "pathId": 2149,
+        "source": "AudioSource",
+        "volume": 0.6000000238418579,
+        "pitch": 1.0,
+        "playOnAwake": false,
+        "file": "shared/audio/web/AegisUse.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "impact": [],
+    "explosion": [],
+    "ambient_or_loop": [
+      {
+        "clipName": "AegisRecharge",
+        "pathId": 2264,
+        "source": "AudioSource",
+        "volume": 0.25,
+        "pitch": 1.0,
+        "playOnAwake": false,
+        "file": "shared/audio/web/AegisRecharge.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ]
+  },
+  "dependencies": [
+    "shared/audio/web/AegisRecharge.wav",
+    "shared/audio/web/AegisUse.wav",
+    "shared/materials/Atlas01.json",
+    "shared/materials/Atlas01Glow.json",
+    "shared/materials/Forcefield_Aegis.json",
+    "shared/materials/Spark.json",
+    "shared/meshes/web/Shield.obj",
+    "shared/textures/web/atlas01.png",
+    "shared/textures/web/grain.png",
+    "weapons/aegis/web/icon.png"
+  ]
+}

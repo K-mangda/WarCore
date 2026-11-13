@@ -1,0 +1,44 @@
+{
+  "id": "bluetooth_dagger",
+  "mesh": "model.obj",
+  "texture": "albedo.png",
+  "tint": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "textureScale": [
+    1.0,
+    1.0
+  ],
+  "textureOffset": [
+    0.0,
+    0.0
+  ],
+  "previewOnly": true,
+  "meshNode": {
+    "name": "BluetoothProjectile",
+    "pathId": 3418,
+    "meshFilterPathId": 6388,
+    "rendererPathId": 6056,
+    "transform": {
+      "position": [
+        143.0399932861328,
+        15.520000457763672,
+        152.9499969482422
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "previewPolicy": "Centered, longest dimension 2m, opaque Lambert inspection material; native shader/transform/attack not reproduced."
+}

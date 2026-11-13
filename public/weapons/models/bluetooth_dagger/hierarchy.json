@@ -1,0 +1,367 @@
+{
+  "weaponId": "bluetooth_dagger",
+  "assetName": "WeaponWirelessDagger",
+  "attackTree": {
+    "name": "BluetoothBladeAttack",
+    "pathId": 3801,
+    "transform": {
+      "position": [
+        145.28440856933594,
+        13.600000381469727,
+        156.8910675048828
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "components": [
+      {
+        "type": "WeaponAttack",
+        "pathId": 9316,
+        "scriptPid": 961
+      }
+    ],
+    "children": []
+  },
+  "projectileTree": {
+    "name": "BluetoothProjectile",
+    "pathId": 3418,
+    "transform": {
+      "position": [
+        143.0399932861328,
+        15.520000457763672,
+        152.9499969482422
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "components": [
+      {
+        "type": "ParticleSystem",
+        "pathId": 7036,
+        "main": {
+          "duration": 1.0,
+          "looping": true,
+          "startLifetime": 0.10000000149011612,
+          "startSpeed": 0.0,
+          "startSize": 0.15000000596046448,
+          "playOnAwake": true,
+          "simulationSpace": 1
+        },
+        "modules": {
+          "emission": {
+            "enabled": true,
+            "rateOverTime": {
+              "constant": 0.0,
+              "minScalar": 10.0
+            }
+          },
+          "shape": {
+            "shapeType": 0,
+            "radius": 0.10000000149011612
+          },
+          "trail": {
+            "enabled": false,
+            "ratio": 1.0,
+            "lifetime": 1.0
+          }
+        }
+      },
+      {
+        "type": "ParticleSystemRenderer",
+        "pathId": 7443,
+        "material": "shared/materials/Spark.json"
+      },
+      {
+        "type": "MeshFilter",
+        "pathId": 6388,
+        "mesh": "shared/meshes/web/BluetoothDagger.obj"
+      },
+      {
+        "type": "MeshRenderer",
+        "pathId": 6056,
+        "materials": [
+          {
+            "name": "m_bluetoothDagger",
+            "pathId": 329,
+            "relativePath": "shared/materials/m_bluetoothDagger.json",
+            "shader": "",
+            "textures": [
+              "shared/textures/web/FBX_BluetoothBlade_Color.png",
+              "shared/textures/web/FBX_BluetoothBlade_Color.png"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ProjectileBluetooth",
+        "pathId": 8869,
+        "scriptPid": 1752
+      },
+      {
+        "type": "AudioSource",
+        "pathId": 6664,
+        "clip": "",
+        "volume": 0.30000001192092896,
+        "pitch": 1.0,
+        "playOnAwake": true
+      },
+      {
+        "type": "RandomSfx",
+        "pathId": 8896,
+        "sounds": [
+          "BluetoothDagger"
+        ],
+        "minPitch": 0.9399999976158142,
+        "maxPitch": 1.059999942779541,
+        "randomVolume": 0.10000000149011612,
+        "playOnAwake": true,
+        "defaultVolume": 1.0
+      },
+      {
+        "type": "AudioSpamFilter",
+        "pathId": 8918,
+        "scriptPid": 1806
+      },
+      {
+        "type": "ParticleOpacity",
+        "pathId": 8884,
+        "scriptPid": 2043
+      }
+    ],
+    "children": []
+  },
+  "muzzleTree": {
+    "name": "BluetoothMuzzle",
+    "pathId": 3568,
+    "transform": {
+      "position": [
+        -242.7425537109375,
+        3.880000114440918,
+        -62.51484298706055
+      ],
+      "rotation": [
+        -0.0,
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "scale": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "components": [
+      {
+        "type": "ParticleSystem",
+        "pathId": 7067,
+        "main": {
+          "duration": 1.0,
+          "looping": true,
+          "startLifetime": 0.3499999940395355,
+          "startSpeed": 0.5,
+          "startSize": 0.4000000059604645,
+          "playOnAwake": true,
+          "simulationSpace": 1
+        },
+        "modules": {
+          "emission": {
+            "enabled": true,
+            "rateOverTime": {
+              "constant": 0.0,
+              "minScalar": 10.0
+            }
+          },
+          "shape": {
+            "shapeType": 4,
+            "radius": 0.10000000149011612
+          },
+          "trail": {
+            "enabled": false,
+            "ratio": 1.0,
+            "lifetime": 1.0
+          }
+        }
+      },
+      {
+        "type": "ParticleSystemRenderer",
+        "pathId": 7397,
+        "material": "shared/materials/Atlas01Glow.json"
+      },
+      {
+        "type": "RandomSfx",
+        "pathId": 9443,
+        "sounds": [
+          "BluetoothDagger"
+        ],
+        "minPitch": 0.8999999761581421,
+        "maxPitch": 1.100000023841858,
+        "randomVolume": 0.25,
+        "playOnAwake": false,
+        "defaultVolume": 1.0
+      },
+      {
+        "type": "AudioSource",
+        "pathId": 6691,
+        "clip": "",
+        "volume": 0.23000000417232513,
+        "pitch": 1.0,
+        "playOnAwake": false
+      },
+      {
+        "type": "AttackMuzzle",
+        "pathId": 8866,
+        "scriptPid": 1048
+      }
+    ],
+    "children": [
+      {
+        "name": "Sparks",
+        "pathId": 3780,
+        "transform": {
+          "position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -0.0,
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "components": [
+          {
+            "type": "ParticleSystem",
+            "pathId": 6979,
+            "main": {
+              "duration": 1.0,
+              "looping": true,
+              "startLifetime": 0.2199999988079071,
+              "startSpeed": 45.0,
+              "startSize": 0.10000000149011612,
+              "playOnAwake": true,
+              "simulationSpace": 1
+            },
+            "modules": {
+              "emission": {
+                "enabled": true,
+                "rateOverTime": {
+                  "constant": 0.0,
+                  "minScalar": 10.0
+                }
+              },
+              "shape": {
+                "shapeType": 4,
+                "radius": 9.999999747378752e-05
+              },
+              "trail": {
+                "enabled": false,
+                "ratio": 1.0,
+                "lifetime": 1.0
+              }
+            }
+          },
+          {
+            "type": "ParticleSystemRenderer",
+            "pathId": 7386,
+            "material": "shared/materials/Spark.json"
+          }
+        ],
+        "children": []
+      },
+      {
+        "name": "Smoke",
+        "pathId": 3990,
+        "transform": {
+          "position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -0.0,
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "components": [
+          {
+            "type": "ParticleSystem",
+            "pathId": 6971,
+            "main": {
+              "duration": 1.0,
+              "looping": true,
+              "startLifetime": 0.5,
+              "startSpeed": 15.0,
+              "startSize": 0.5,
+              "playOnAwake": true,
+              "simulationSpace": 1
+            },
+            "modules": {
+              "emission": {
+                "enabled": true,
+                "rateOverTime": {
+                  "constant": 0.0,
+                  "minScalar": 10.0
+                }
+              },
+              "shape": {
+                "shapeType": 4,
+                "radius": 9.999999747378752e-05
+              },
+              "trail": {
+                "enabled": false,
+                "ratio": 1.0,
+                "lifetime": 1.0
+              }
+            }
+          },
+          {
+            "type": "ParticleSystemRenderer",
+            "pathId": 7250,
+            "material": "shared/materials/Atlas01.json"
+          }
+        ],
+        "children": []
+      }
+    ]
+  },
+  "hit": {
+    "name": "GeneralProjectileHit",
+    "pathId": 3790,
+    "shared": true,
+    "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+  },
+  "explosions": []
+}

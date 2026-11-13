@@ -1,0 +1,44 @@
+{
+  "id": "aegis",
+  "mesh": "model.obj",
+  "texture": null,
+  "tint": [
+    1.0,
+    0.8933853507041931,
+    0.0
+  ],
+  "textureScale": [
+    1,
+    1
+  ],
+  "textureOffset": [
+    0,
+    0
+  ],
+  "previewOnly": true,
+  "meshNode": {
+    "name": "B_AegisShield",
+    "pathId": 3369,
+    "meshFilterPathId": 6186,
+    "rendererPathId": 5832,
+    "transform": {
+      "position": [
+        0.0,
+        0.0,
+        1.75
+      ],
+      "rotation": [
+        -0.0,
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "previewPolicy": "Centered, longest dimension 2m, opaque Lambert inspection material; native shader/transform/attack not reproduced."
+}

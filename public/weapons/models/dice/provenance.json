@@ -1,0 +1,31 @@
+{
+  "sourceRoot": "C:\\Users\\Korawit\\Desktop\\WarCore\\megabonk_extracted_assets",
+  "operation": "Copied existing exported files; no extraction or native identity verification.",
+  "files": [
+    {
+      "source": "shared/meshes/web/Dice.obj",
+      "output": "model.obj",
+      "sha256": "0d6c366487944e49254144f288cc8d8b90d48b54cd3ce7246b71467a77a5c44f"
+    },
+    {
+      "source": "weapons/dice/data.json",
+      "output": "data.json",
+      "sha256": "2cc1c61cbce51b93a8e3d3a0110c2961a2e39f6e5f342c7184919c533d792f8d"
+    },
+    {
+      "source": "weapons/dice/hierarchy.json",
+      "output": "hierarchy.json",
+      "sha256": "8b212d0c3b892e1ff0d5a4f0db4eafb5ec5e19ebfd6098da25059d28e0150528"
+    },
+    {
+      "source": "shared/materials/m_dice.json",
+      "output": "material.json",
+      "sha256": "69b1e3bd837a9519b28c7ea65a52a75fa7dc7c43972baa8854a0db40f609e9ee"
+    },
+    {
+      "source": "shared/textures/web/FBX_Dice_Color.png",
+      "output": "albedo.png",
+      "sha256": "2f1b334946f20e559839bdcdf41d6ef1d8822a561cfe6dded0539c426a294daf"
+    }
+  ]
+}

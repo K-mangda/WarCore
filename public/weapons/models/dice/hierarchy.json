@@ -1,0 +1,567 @@
+{
+  "weaponId": "dice",
+  "assetName": "WeaponDice",
+  "attackTree": {
+    "name": "DiceAttack",
+    "pathId": 3196,
+    "transform": {
+      "position": [
+        177.0748291015625,
+        13.0,
+        92.01603698730469
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "components": [
+      {
+        "type": "WeaponAttack",
+        "pathId": 9624,
+        "scriptPid": 961
+      }
+    ],
+    "children": []
+  },
+  "projectileTree": {
+    "name": "DiceProjectile",
+    "pathId": 3978,
+    "transform": {
+      "position": [
+        -4.417149543762207,
+        1.0269999504089355,
+        16.24669075012207
+      ],
+      "rotation": [
+        -0.7071068286895752,
+        0.0,
+        -0.0,
+        0.7071067094802856
+      ],
+      "scale": [
+        0.28691399097442627,
+        0.28691399097442627,
+        0.28691399097442627
+      ]
+    },
+    "components": [
+      {
+        "type": "MeshFilter",
+        "pathId": 6364,
+        "mesh": "shared/meshes/web/Dice.obj"
+      },
+      {
+        "type": "MeshRenderer",
+        "pathId": 6005,
+        "materials": [
+          {
+            "name": "m_dice",
+            "pathId": 330,
+            "relativePath": "shared/materials/m_dice.json",
+            "shader": "",
+            "textures": [
+              "shared/textures/web/FBX_Dice_Color.png",
+              "shared/textures/web/FBX_Dice_Color.png"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ProjectileDice",
+        "pathId": 9255,
+        "scriptPid": 1216
+      },
+      {
+        "type": "AudioSource",
+        "pathId": 6642,
+        "clip": "",
+        "volume": 0.25,
+        "pitch": 1.0,
+        "playOnAwake": true
+      },
+      {
+        "type": "RandomSfx",
+        "pathId": 8899,
+        "sounds": [
+          "DiceThrow"
+        ],
+        "minPitch": 0.9399999976158142,
+        "maxPitch": 1.059999942779541,
+        "randomVolume": 0.10000000149011612,
+        "playOnAwake": true,
+        "defaultVolume": 1.0
+      },
+      {
+        "type": "AudioSpamFilter",
+        "pathId": 8902,
+        "scriptPid": 1806
+      },
+      {
+        "type": "RotateObjectRandomly",
+        "pathId": 9636,
+        "scriptPid": 1551
+      },
+      {
+        "type": "ParticleOpacity",
+        "pathId": 9087,
+        "scriptPid": 2043
+      }
+    ],
+    "children": []
+  },
+  "muzzleTree": null,
+  "hit": {
+    "name": "GeneralProjectileHit",
+    "pathId": 3790,
+    "shared": true,
+    "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+  },
+  "explosions": [
+    {
+      "name": "DiceExplosion",
+      "pathId": 3783,
+      "transform": {
+        "position": [
+          176.5,
+          12.5,
+          93.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          2.0,
+          2.0,
+          2.0
+        ]
+      },
+      "components": [
+        {
+          "type": "ParticleSystem",
+          "pathId": 6858,
+          "main": {
+            "duration": 1.0,
+            "looping": true,
+            "startLifetime": 0.4000000059604645,
+            "startSpeed": 0.0,
+            "startSize": 2.5,
+            "playOnAwake": true,
+            "simulationSpace": 1
+          },
+          "modules": {
+            "emission": {
+              "enabled": true,
+              "rateOverTime": {
+                "constant": 0.0,
+                "minScalar": 10.0
+              }
+            },
+            "shape": {
+              "shapeType": 0,
+              "radius": 0.25
+            },
+            "trail": {
+              "enabled": false,
+              "ratio": 1.0,
+              "lifetime": 1.0
+            }
+          }
+        },
+        {
+          "type": "ParticleSystemRenderer",
+          "pathId": 7447,
+          "material": "shared/materials/Atlas01Glow.json"
+        },
+        {
+          "type": "AudioSource",
+          "pathId": 6671,
+          "clip": "retro_explosion_fireball1",
+          "volume": 0.25999999046325684,
+          "pitch": 1.0,
+          "playOnAwake": true
+        },
+        {
+          "type": "RandomSfx",
+          "pathId": 9500,
+          "sounds": [
+            "DiceHitNormal"
+          ],
+          "minPitch": 0.8999999761581421,
+          "maxPitch": 1.100000023841858,
+          "randomVolume": 0.10000000149011612,
+          "playOnAwake": true,
+          "defaultVolume": 1.0
+        },
+        {
+          "type": "AudioSpamFilter",
+          "pathId": 8856,
+          "scriptPid": 1806
+        },
+        {
+          "type": "AttackEndFx",
+          "pathId": 9164,
+          "scriptPid": 1976
+        },
+        {
+          "type": "ParticleOpacity",
+          "pathId": 8876,
+          "scriptPid": 2043
+        }
+      ],
+      "children": [
+        {
+          "name": "Circle",
+          "pathId": 3742,
+          "transform": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rotation": [
+              -0.0,
+              -0.0,
+              -0.0,
+              1.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "components": [
+            {
+              "type": "ParticleSystem",
+              "pathId": 7015,
+              "main": {
+                "duration": 1.0,
+                "looping": true,
+                "startLifetime": 0.4000000059604645,
+                "startSpeed": 0.0,
+                "startSize": 1.399999976158142,
+                "playOnAwake": true,
+                "simulationSpace": 1
+              },
+              "modules": {
+                "emission": {
+                  "enabled": true,
+                  "rateOverTime": {
+                    "constant": 0.0,
+                    "minScalar": 10.0
+                  }
+                },
+                "shape": {
+                  "shapeType": 0,
+                  "radius": 0.25
+                },
+                "trail": {
+                  "enabled": false,
+                  "ratio": 1.0,
+                  "lifetime": 1.0
+                }
+              }
+            },
+            {
+              "type": "ParticleSystemRenderer",
+              "pathId": 7211,
+              "material": "shared/materials/Atlas01Glow_Custom.json"
+            }
+          ],
+          "children": []
+        },
+        {
+          "name": "Dice",
+          "pathId": 3715,
+          "transform": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rotation": [
+              -0.7071068286895752,
+              -0.0,
+              -0.0,
+              0.7071068286895752
+            ],
+            "scale": [
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          "components": [
+            {
+              "type": "ParticleSystem",
+              "pathId": 6963,
+              "main": {
+                "duration": 1.0,
+                "looping": true,
+                "startLifetime": 0.5,
+                "startSpeed": 50.0,
+                "startSize": 0.800000011920929,
+                "playOnAwake": true,
+                "simulationSpace": 1
+              },
+              "modules": {
+                "emission": {
+                  "enabled": true,
+                  "rateOverTime": {
+                    "constant": 0.0,
+                    "minScalar": 10.0
+                  }
+                },
+                "shape": {
+                  "shapeType": 0,
+                  "radius": 1.0
+                },
+                "trail": {
+                  "enabled": false,
+                  "ratio": 1.0,
+                  "lifetime": 1.0
+                }
+              }
+            },
+            {
+              "type": "ParticleSystemRenderer",
+              "pathId": 7295,
+              "material": "shared/materials/m_dice.json"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "DiceExplosion6",
+      "pathId": 3492,
+      "transform": {
+        "position": [
+          -5.788191795349121,
+          3.119999885559082,
+          12.470520973205566
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          2.0,
+          2.0,
+          2.0
+        ]
+      },
+      "components": [
+        {
+          "type": "ParticleSystem",
+          "pathId": 6886,
+          "main": {
+            "duration": 1.0,
+            "looping": true,
+            "startLifetime": 0.4000000059604645,
+            "startSpeed": 0.0,
+            "startSize": 3.0,
+            "playOnAwake": true,
+            "simulationSpace": 1
+          },
+          "modules": {
+            "emission": {
+              "enabled": true,
+              "rateOverTime": {
+                "constant": 0.0,
+                "minScalar": 10.0
+              }
+            },
+            "shape": {
+              "shapeType": 0,
+              "radius": 0.25
+            },
+            "trail": {
+              "enabled": false,
+              "ratio": 1.0,
+              "lifetime": 1.0
+            }
+          }
+        },
+        {
+          "type": "ParticleSystemRenderer",
+          "pathId": 7178,
+          "material": "shared/materials/Atlas01Glow.json"
+        },
+        {
+          "type": "AudioSource",
+          "pathId": 6679,
+          "clip": "retro_explosion_fireball1",
+          "volume": 0.30000001192092896,
+          "pitch": 1.0,
+          "playOnAwake": true
+        },
+        {
+          "type": "RandomSfx",
+          "pathId": 9118,
+          "sounds": [
+            "DiceHit6"
+          ],
+          "minPitch": 0.8999999761581421,
+          "maxPitch": 1.100000023841858,
+          "randomVolume": 0.10000000149011612,
+          "playOnAwake": true,
+          "defaultVolume": 1.0
+        },
+        {
+          "type": "AudioSpamFilter",
+          "pathId": 9126,
+          "scriptPid": 1806
+        },
+        {
+          "type": "AttackEndFx",
+          "pathId": 9480,
+          "scriptPid": 1976
+        },
+        {
+          "type": "ParticleOpacity",
+          "pathId": 8889,
+          "scriptPid": 2043
+        }
+      ],
+      "children": [
+        {
+          "name": "Circle",
+          "pathId": 3358,
+          "transform": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rotation": [
+              -0.0,
+              -0.0,
+              -0.0,
+              1.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "components": [
+            {
+              "type": "ParticleSystem",
+              "pathId": 6934,
+              "main": {
+                "duration": 1.0,
+                "looping": true,
+                "startLifetime": 0.4000000059604645,
+                "startSpeed": 0.0,
+                "startSize": 1.399999976158142,
+                "playOnAwake": true,
+                "simulationSpace": 1
+              },
+              "modules": {
+                "emission": {
+                  "enabled": true,
+                  "rateOverTime": {
+                    "constant": 0.0,
+                    "minScalar": 10.0
+                  }
+                },
+                "shape": {
+                  "shapeType": 0,
+                  "radius": 0.25
+                },
+                "trail": {
+                  "enabled": false,
+                  "ratio": 1.0,
+                  "lifetime": 1.0
+                }
+              }
+            },
+            {
+              "type": "ParticleSystemRenderer",
+              "pathId": 7291,
+              "material": "shared/materials/Atlas01Glow_Custom.json"
+            }
+          ],
+          "children": []
+        },
+        {
+          "name": "Dice",
+          "pathId": 3714,
+          "transform": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rotation": [
+              -0.7071068286895752,
+              -0.0,
+              -0.0,
+              0.7071068286895752
+            ],
+            "scale": [
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          "components": [
+            {
+              "type": "ParticleSystem",
+              "pathId": 7111,
+              "main": {
+                "duration": 1.0,
+                "looping": true,
+                "startLifetime": 0.5,
+                "startSpeed": 50.0,
+                "startSize": 0.800000011920929,
+                "playOnAwake": true,
+                "simulationSpace": 1
+              },
+              "modules": {
+                "emission": {
+                  "enabled": true,
+                  "rateOverTime": {
+                    "constant": 0.0,
+                    "minScalar": 10.0
+                  }
+                },
+                "shape": {
+                  "shapeType": 0,
+                  "radius": 1.0
+                },
+                "trail": {
+                  "enabled": false,
+                  "ratio": 1.0,
+                  "lifetime": 1.0
+                }
+              }
+            },
+            {
+              "type": "ParticleSystemRenderer",
+              "pathId": 7235,
+              "material": "shared/materials/m_dice.json"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

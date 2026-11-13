@@ -11,6 +11,10 @@
 
 ## คิวขยายเนื้อหา: อาวุธ / ตัวละคร / มอน / บอส
 
+อัปเดต: นำไฟล์เดิมมาเพิ่มห้อง Model ใน Lab แล้ว7อาวุธ (Axe, Bow/Arrow, Dice, Mine, Rockets, Bluetooth Dagger, Aegis) ยังไม่ใช่ combat ที่พร้อมเล่น ดู [WEAPON_MODEL_PREVIEWS.md](WEAPON_MODEL_PREVIEWS.md) สำหรับพฤติกรรมที่ขาดรายชิ้น; ไม่ต้องส่ง OBJ/texture ที่คัดลอกแล้วซ้ำ ส่วน Bananarang/Poison Flask ยังรอ geometry/material mapping ให้ชัด
+
+ตัวละคร: Fox เป็นตัวเดียวที่มี playable web rig อยู่ขณะนี้ ชุด catalog มี21รายการและ8 hierarchy ที่ไม่ว่าง ยังไม่พบ playable payload ครบของตัวอื่นใน references ที่ตรวจ ให้ตรวจไฟล์เดิมก่อน แล้วส่ง rig/skin/clips หรือ baked representation หลายตัวเป็นชุด (เช่น Amog, Bush, Chadwell, Dicehead, Megachad, Ogre, Spaceman, Vlad ตาม hierarchy ที่มีจริง; resolve ID/ชื่อก่อนใช้) รวม passive/starting weapon/state/material chain ไม่ใช้ portrait แทนโมเดลในเกม
+
 คำสั่งล่าสุด: ตรวจของที่มีอยู่ **หลายชิ้นเป็นชุดได้เลย รวมถึงมอน** ไม่จำกัดทีละชิ้น คำว่า “หา” หมายถึงสำรวจไฟล์ที่สกัดไว้แล้ว ไม่ใช่ให้ AI ฝั่งเว็บแกะเกม งานสกัดยังเป็นหน้าที่ AI อีกตัวเสมอ
 
 ผลตรวจชุดแรกครบ30อาวุธ/53รายการมอน/21ตัวละครอยู่ใน [EXISTING_ASSET_AUDIT.md](EXISTING_ASSET_AUDIT.md) และ JSON คู่กัน มี OBJ candidates เพิ่ม9อาวุธ; คิวภาพที่ชื่อ mesh ตรงพอให้ตรวจต่อก่อนคือ Axe, Bow/Arrow, Dice, Mine, Rockets, Bluetooth Dagger, Aegis/Shield ส่วน Bananarang และ Poison Flask ต้องตรวจการจับคู่ mesh ชื่อ Cube เพิ่ม ไม่ถือว่ามีพฤติกรรมพร้อมเล่นทั้งหมด

@@ -1,0 +1,204 @@
+{
+  "name": "m_ogre_axe_Projectile",
+  "pathId": 205,
+  "shader": "",
+  "floats": {
+    "_AdvancedTab": 0.0,
+    "_AlbedoMapIntensity": 1.0,
+    "_AlphaClipping": 0.0,
+    "_AlphaCutoff": 0.5,
+    "_Artistic": 0.0,
+    "_ArtisticFrequency": 1.0,
+    "_ArtisticProjection": 0.0,
+    "_Blend": 0.0,
+    "_BlendDst": 10.0,
+    "_BlendSrc": 5.0,
+    "_Brightness": 1.0,
+    "_BumpScale": 1.0,
+    "_ColorGrading": 0.0,
+    "_Contrast": 1.0,
+    "_Cutoff": 0.5,
+    "_DetailNormalMapScale": 1.0,
+    "_DiffuseSmoothness": 0.0,
+    "_DiffuseThresholdOffset": 0.25,
+    "_Dissolve": 0.0,
+    "_DissolveAmount": 0.5,
+    "_DissolveBorderSize": 0.25,
+    "_DissolveMapScale": 1.0,
+    "_DrawnClampMax": 1.0,
+    "_DrawnClampMin": 0.0,
+    "_DrawnMapScale": 1.0,
+    "_DstBlend": 0.0,
+    "_EnvironmentReflections": 1.0,
+    "_GlossMapScale": 1.0,
+    "_Glossiness": 0.0,
+    "_GlossyReflections": 1.0,
+    "_GoochRampIntensity": 0.5,
+    "_HatchingMapScale": 1.0,
+    "_IndirectFade": 1.0,
+    "_Initialized": 0.0,
+    "_InputTab": 1.0,
+    "_Iridescence": 0.0,
+    "_IridescenceSize": 1.0,
+    "_IridescenceSmoothness": 0.5,
+    "_IridescenceThresholdOffset": 0.0,
+    "_Light": 1.0,
+    "_LightBands": 4.0,
+    "_LightBandsScale": 0.5,
+    "_LightThreshold": 0.5,
+    "_Metallic": 0.0,
+    "_Mode": 0.0,
+    "_NormalMapIntensity": 1.0,
+    "_OcclusionStrength": 1.0,
+    "_OptionsTab": 1.0,
+    "_Outline": 3.0,
+    "_OutlineData": 0.0,
+    "_OutlineFadeMax": 2.0,
+    "_OutlineFadeMin": 0.25,
+    "_OutlineNoise": 0.0,
+    "_OutlineSize": 50.0,
+    "_OutlineTab": 1.0,
+    "_Parallax": 0.019999999552965164,
+    "_ReceiveShadows": 1.0,
+    "_RenderFace": 2.0,
+    "_RenderPriority": 0.0,
+    "_Rim": 0.0,
+    "_RimSize": 1.0,
+    "_RimSmoothness": 0.5,
+    "_RimThresholdOffset": 0.25,
+    "_Saturation": 1.0,
+    "_SketchMapScale": 1.0,
+    "_Smoothness": 0.0,
+    "_SmoothnessTextureChannel": 0.0,
+    "_Specular": 1.0,
+    "_SpecularHighlights": 1.0,
+    "_SpecularIntensity": 1.0,
+    "_SpecularSmoothness": 0.0,
+    "_SpecularThresholdOffset": 0.25,
+    "_SrcBlend": 1.0,
+    "_Stencil": 1.0,
+    "_StencilComp": 8.0,
+    "_StencilFail": 0.0,
+    "_StencilPass": 0.0,
+    "_StencilReadMask": 255.0,
+    "_StencilRef": 0.0,
+    "_StencilWriteMask": 255.0,
+    "_StencilZFail": 0.0,
+    "_StylizeTab": 0.0,
+    "_Surface": 1.0,
+    "_ThresholdMapScale": 1.0,
+    "_UVSec": 0.0,
+    "_VertexAnimation": 0.0,
+    "_VertexAnimationIntensity": 0.05000000074505806,
+    "_VertexAnimationStutter": 0.0,
+    "_WrappedLighting": 1.0,
+    "_ZTest": 4.0,
+    "_ZWrite": 0.0
+  },
+  "colors": {
+    "_AlbedoColor": [
+      1.0,
+      1.0,
+      1.0,
+      0.10000000149011612
+    ],
+    "_Color": [
+      1.0,
+      1.0,
+      1.0,
+      0.10000000149011612
+    ],
+    "_DissolveBorderColor": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_EmissionColor": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "_GoochBrightColor": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_GoochDarkColor": [
+      0.501960813999176,
+      0.501960813999176,
+      0.501960813999176,
+      1.0
+    ],
+    "_IridescenceColor": [
+      1.0,
+      1.0,
+      1.0,
+      0.5
+    ],
+    "_OutlineColor": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "_RimBrightColor": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_RimColor": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "_RimDarkColor": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "_SpecularColor": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "_VertexAnimationFrequency": [
+      2.5,
+      2.5,
+      2.5,
+      1.0
+    ]
+  },
+  "textures": [
+    {
+      "property": "_AlbedoMap",
+      "texture": "shared/textures/web/Axe_Default.png",
+      "scale": [
+        1.0,
+        1.0
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "property": "_MainTex",
+      "texture": "shared/textures/web/Axe_Default.png",
+      "scale": [
+        1.0,
+        1.0
+      ],
+      "offset": [
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}

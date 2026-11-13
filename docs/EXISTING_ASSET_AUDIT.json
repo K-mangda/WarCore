@@ -81,8 +81,8 @@
       ],
       "catalogAnimatedMesh": null,
       "catalogBossFlagUnverified": null,
-      "webIntegration": "not-integrated",
-      "readiness": "exported-mesh-candidate"
+      "webIntegration": "model-preview-only",
+      "readiness": "lab-model-preview"
     },
     {
       "domain": "weapons",
@@ -224,8 +224,8 @@
       ],
       "catalogAnimatedMesh": null,
       "catalogBossFlagUnverified": null,
-      "webIntegration": "not-integrated",
-      "readiness": "exported-mesh-candidate"
+      "webIntegration": "model-preview-only",
+      "readiness": "lab-model-preview"
     },
     {
       "domain": "weapons",
@@ -575,8 +575,8 @@
       ],
       "catalogAnimatedMesh": null,
       "catalogBossFlagUnverified": null,
-      "webIntegration": "not-integrated",
-      "readiness": "exported-mesh-candidate"
+      "webIntegration": "model-preview-only",
+      "readiness": "lab-model-preview"
     },
     {
       "domain": "weapons",
@@ -739,8 +739,8 @@
       ],
       "catalogAnimatedMesh": null,
       "catalogBossFlagUnverified": null,
-      "webIntegration": "not-integrated",
-      "readiness": "exported-mesh-candidate"
+      "webIntegration": "model-preview-only",
+      "readiness": "lab-model-preview"
     },
     {
       "domain": "weapons",
@@ -1083,8 +1083,8 @@
       ],
       "catalogAnimatedMesh": null,
       "catalogBossFlagUnverified": null,
-      "webIntegration": "not-integrated",
-      "readiness": "exported-mesh-candidate"
+      "webIntegration": "model-preview-only",
+      "readiness": "lab-model-preview"
     },
     {
       "domain": "weapons",
@@ -1713,8 +1713,8 @@
       ],
       "catalogAnimatedMesh": null,
       "catalogBossFlagUnverified": null,
-      "webIntegration": "not-integrated",
-      "readiness": "exported-mesh-candidate"
+      "webIntegration": "model-preview-only",
+      "readiness": "lab-model-preview"
     },
     {
       "domain": "weapons",
@@ -2044,8 +2044,8 @@
       ],
       "catalogAnimatedMesh": null,
       "catalogBossFlagUnverified": null,
-      "webIntegration": "not-integrated",
-      "readiness": "exported-mesh-candidate"
+      "webIntegration": "model-preview-only",
+      "readiness": "lab-model-preview"
     },
     {
       "domain": "weapons",

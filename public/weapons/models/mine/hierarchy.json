@@ -1,0 +1,461 @@
+{
+  "weaponId": "mine",
+  "assetName": "WeaponMines",
+  "attackTree": {
+    "name": "MinesAttack",
+    "pathId": 4143,
+    "transform": {
+      "position": [
+        153.14952087402344,
+        12.130000114440918,
+        143.75405883789062
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "components": [
+      {
+        "type": "WeaponAttack",
+        "pathId": 8927,
+        "scriptPid": 961
+      }
+    ],
+    "children": []
+  },
+  "projectileTree": {
+    "name": "MinesProjectile",
+    "pathId": 3951,
+    "transform": {
+      "position": [
+        48.0416374206543,
+        2.0965874195098877,
+        -104.33267974853516
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "components": [
+      {
+        "type": "MeshFilter",
+        "pathId": 6319,
+        "mesh": "shared/meshes/web/Mine.obj"
+      },
+      {
+        "type": "MeshRenderer",
+        "pathId": 6107,
+        "materials": [
+          {
+            "name": "m_mine",
+            "pathId": 331,
+            "relativePath": "shared/materials/m_mine.json",
+            "shader": "",
+            "textures": [
+              "shared/textures/web/FBX_Mine_Color.png",
+              "shared/textures/web/FBX_Mine_Color.png"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ProjectileMines",
+        "pathId": 9175,
+        "scriptPid": 2481
+      },
+      {
+        "type": "RandomSfx",
+        "pathId": 8981,
+        "sounds": [
+          "MineSpawn"
+        ],
+        "minPitch": 0.9800000190734863,
+        "maxPitch": 1.0199999809265137,
+        "randomVolume": 0.25,
+        "playOnAwake": true,
+        "defaultVolume": 1.0
+      },
+      {
+        "type": "AudioSource",
+        "pathId": 6749,
+        "clip": "",
+        "volume": 0.30000001192092896,
+        "pitch": 1.0,
+        "playOnAwake": true
+      },
+      {
+        "type": "AudioSpamFilter",
+        "pathId": 9667,
+        "scriptPid": 1806
+      },
+      {
+        "type": "ParticleOpacity",
+        "pathId": 8868,
+        "scriptPid": 2043
+      }
+    ],
+    "children": []
+  },
+  "muzzleTree": null,
+  "hit": {
+    "name": "GeneralProjectileHit",
+    "pathId": 3790,
+    "shared": true,
+    "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+  },
+  "explosions": [
+    {
+      "name": "Explosion",
+      "pathId": 3866,
+      "transform": {
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          -0.0,
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "scale": [
+          2.5,
+          2.5,
+          2.5
+        ]
+      },
+      "components": [
+        {
+          "type": "ParticleSystem",
+          "pathId": 7029,
+          "main": {
+            "duration": 1.0,
+            "looping": true,
+            "startLifetime": 0.3499999940395355,
+            "startSpeed": 0.0,
+            "startSize": 2.0,
+            "playOnAwake": true,
+            "simulationSpace": 1
+          },
+          "modules": {
+            "emission": {
+              "enabled": true,
+              "rateOverTime": {
+                "constant": 0.0,
+                "minScalar": 10.0
+              }
+            },
+            "shape": {
+              "shapeType": 0,
+              "radius": 9.999999747378752e-05
+            },
+            "trail": {
+              "enabled": false,
+              "ratio": 1.0,
+              "lifetime": 1.0
+            }
+          }
+        },
+        {
+          "type": "ParticleSystemRenderer",
+          "pathId": 7334,
+          "material": "shared/materials/Atlas03Glow.json"
+        },
+        {
+          "type": "AudioSource",
+          "pathId": 6756,
+          "clip": "",
+          "volume": 0.3499999940395355,
+          "pitch": 1.0,
+          "playOnAwake": true
+        },
+        {
+          "type": "RandomSfx",
+          "pathId": 9666,
+          "sounds": [
+            "NoodleStop"
+          ],
+          "minPitch": 0.9399999976158142,
+          "maxPitch": 1.059999942779541,
+          "randomVolume": 0.10000000149011612,
+          "playOnAwake": true,
+          "defaultVolume": 1.0
+        },
+        {
+          "type": "DisableAfterTime",
+          "pathId": 9642,
+          "scriptPid": 51
+        },
+        {
+          "type": "EffectPlayer",
+          "pathId": 9390,
+          "scriptPid": 1640
+        }
+      ],
+      "children": [
+        {
+          "name": "Center",
+          "pathId": 3175,
+          "transform": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rotation": [
+              -0.0,
+              -0.0,
+              -0.0,
+              1.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "components": [
+            {
+              "type": "ParticleSystem",
+              "pathId": 6876,
+              "main": {
+                "duration": 1.0,
+                "looping": true,
+                "startLifetime": 0.20000000298023224,
+                "startSpeed": 0.0,
+                "startSize": 1.0,
+                "playOnAwake": true,
+                "simulationSpace": 1
+              },
+              "modules": {
+                "emission": {
+                  "enabled": true,
+                  "rateOverTime": {
+                    "constant": 0.0,
+                    "minScalar": 10.0
+                  }
+                },
+                "shape": {
+                  "shapeType": 0,
+                  "radius": 0.4000000059604645
+                },
+                "trail": {
+                  "enabled": false,
+                  "ratio": 1.0,
+                  "lifetime": 1.0
+                }
+              }
+            },
+            {
+              "type": "ParticleSystemRenderer",
+              "pathId": 7169,
+              "material": "shared/materials/Atlas03Glow.json"
+            }
+          ],
+          "children": []
+        },
+        {
+          "name": "Sparks",
+          "pathId": 3775,
+          "transform": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rotation": [
+              -0.0,
+              -0.0,
+              -0.0,
+              1.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "components": [
+            {
+              "type": "ParticleSystem",
+              "pathId": 7110,
+              "main": {
+                "duration": 1.0,
+                "looping": true,
+                "startLifetime": 0.3499999940395355,
+                "startSpeed": 7.0,
+                "startSize": 0.09000000357627869,
+                "playOnAwake": true,
+                "simulationSpace": 1
+              },
+              "modules": {
+                "emission": {
+                  "enabled": true,
+                  "rateOverTime": {
+                    "constant": 0.0,
+                    "minScalar": 10.0
+                  }
+                },
+                "shape": {
+                  "shapeType": 0,
+                  "radius": 0.6399999856948853
+                },
+                "trail": {
+                  "enabled": false,
+                  "ratio": 1.0,
+                  "lifetime": 1.0
+                }
+              }
+            },
+            {
+              "type": "ParticleSystemRenderer",
+              "pathId": 7238,
+              "material": "shared/materials/Spark.json"
+            }
+          ],
+          "children": []
+        },
+        {
+          "name": "Sparks",
+          "pathId": 3365,
+          "transform": {
+            "position": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rotation": [
+              -0.0,
+              -0.0,
+              -0.0,
+              1.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "components": [
+            {
+              "type": "ParticleSystem",
+              "pathId": 7141,
+              "main": {
+                "duration": 1.0,
+                "looping": true,
+                "startLifetime": 0.3499999940395355,
+                "startSpeed": 11.0,
+                "startSize": 0.07000000029802322,
+                "playOnAwake": true,
+                "simulationSpace": 1
+              },
+              "modules": {
+                "emission": {
+                  "enabled": true,
+                  "rateOverTime": {
+                    "constant": 0.0,
+                    "minScalar": 10.0
+                  }
+                },
+                "shape": {
+                  "shapeType": 0,
+                  "radius": 0.10000000149011612
+                },
+                "trail": {
+                  "enabled": false,
+                  "ratio": 1.0,
+                  "lifetime": 1.0
+                }
+              }
+            },
+            {
+              "type": "ParticleSystemRenderer",
+              "pathId": 7382,
+              "material": "shared/materials/Spark.json"
+            }
+          ],
+          "children": [
+            {
+              "name": "SparkSub",
+              "pathId": 4033,
+              "transform": {
+                "position": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "rotation": [
+                  -0.0,
+                  -0.0,
+                  -0.0,
+                  1.0
+                ],
+                "scale": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "components": [
+                {
+                  "type": "ParticleSystem",
+                  "pathId": 6901,
+                  "main": {
+                    "duration": 1.0,
+                    "looping": true,
+                    "startLifetime": 0.15000000596046448,
+                    "startSpeed": 0.0,
+                    "startSize": 0.07000000029802322,
+                    "playOnAwake": true,
+                    "simulationSpace": 1
+                  },
+                  "modules": {
+                    "emission": {
+                      "enabled": true,
+                      "rateOverTime": {
+                        "constant": 0.0,
+                        "minScalar": 10.0
+                      }
+                    },
+                    "shape": {
+                      "shapeType": 10,
+                      "radius": 0.029999999329447746
+                    },
+                    "trail": {
+                      "enabled": false,
+                      "ratio": 1.0,
+                      "lifetime": 1.0
+                    }
+                  }
+                },
+                {
+                  "type": "ParticleSystemRenderer",
+                  "pathId": 7424,
+                  "material": "shared/materials/Spark.json"
+                }
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

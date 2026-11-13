@@ -1,0 +1,342 @@
+{
+  "weaponId": "aegis",
+  "assetName": "WeaponAegis",
+  "attackTree": {
+    "name": "AegisAttack",
+    "pathId": 4149,
+    "transform": {
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "components": [
+      {
+        "type": "AudioSource",
+        "pathId": 6644,
+        "clip": "AegisRecharge",
+        "volume": 0.25,
+        "pitch": 1.0,
+        "playOnAwake": false
+      },
+      {
+        "type": "AegisAttack",
+        "pathId": 9588,
+        "scriptPid": 2262
+      },
+      {
+        "type": "RandomSfx",
+        "pathId": 8985,
+        "sounds": [
+          "AegisRecharge"
+        ],
+        "minPitch": 0.8999999761581421,
+        "maxPitch": 1.100000023841858,
+        "randomVolume": 0.10000000149011612,
+        "playOnAwake": true,
+        "defaultVolume": 1.0
+      }
+    ],
+    "children": [
+      {
+        "name": "Renderer",
+        "pathId": 3763,
+        "transform": {
+          "position": [
+            0.0,
+            2.5,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "components": [
+          {
+            "type": "AegisRenderer",
+            "pathId": 9469,
+            "scriptPid": 1325
+          }
+        ],
+        "children": [
+          {
+            "name": "B_AegisShield",
+            "pathId": 3369,
+            "transform": {
+              "position": [
+                0.0,
+                0.0,
+                1.75
+              ],
+              "rotation": [
+                -0.0,
+                -0.0,
+                -0.0,
+                1.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            },
+            "components": [
+              {
+                "type": "MeshFilter",
+                "pathId": 6186,
+                "mesh": "shared/meshes/web/Shield.obj"
+              },
+              {
+                "type": "MeshRenderer",
+                "pathId": 5832,
+                "materials": [
+                  {
+                    "name": "Forcefield_Aegis",
+                    "pathId": 76,
+                    "relativePath": "shared/materials/Forcefield_Aegis.json",
+                    "shader": "",
+                    "textures": []
+                  }
+                ]
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "Poof",
+        "pathId": 4427,
+        "transform": {
+          "position": [
+            0.0,
+            2.0,
+            0.0
+          ],
+          "rotation": [
+            -0.0,
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "scale": [
+            5.0,
+            5.0,
+            5.0
+          ]
+        },
+        "components": [
+          {
+            "type": "ParticleSystem",
+            "pathId": 6881,
+            "main": {
+              "duration": 1.0,
+              "looping": true,
+              "startLifetime": 0.6000000238418579,
+              "startSpeed": 20.0,
+              "startSize": 0.30000001192092896,
+              "playOnAwake": true,
+              "simulationSpace": 1
+            },
+            "modules": {
+              "emission": {
+                "enabled": true,
+                "rateOverTime": {
+                  "constant": 0.0,
+                  "minScalar": 10.0
+                }
+              },
+              "shape": {
+                "shapeType": 4,
+                "radius": 0.25
+              },
+              "trail": {
+                "enabled": false,
+                "ratio": 1.0,
+                "lifetime": 1.0
+              }
+            }
+          },
+          {
+            "type": "ParticleSystemRenderer",
+            "pathId": 7222,
+            "material": "shared/materials/Atlas01.json"
+          },
+          {
+            "type": "AudioSource",
+            "pathId": 6711,
+            "clip": "AegisUse",
+            "volume": 0.6000000238418579,
+            "pitch": 1.0,
+            "playOnAwake": false
+          },
+          {
+            "type": "RandomSfx",
+            "pathId": 9243,
+            "sounds": [
+              "AegisUse"
+            ],
+            "minPitch": 0.8999999761581421,
+            "maxPitch": 1.100000023841858,
+            "randomVolume": 0.10000000149011612,
+            "playOnAwake": false,
+            "defaultVolume": 1.0
+          },
+          {
+            "type": "ParticleOpacity",
+            "pathId": 9429,
+            "scriptPid": 2043
+          }
+        ],
+        "children": [
+          {
+            "name": "Sparks",
+            "pathId": 3270,
+            "transform": {
+              "position": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rotation": [
+                -0.0,
+                -0.0,
+                -0.0,
+                1.0
+              ],
+              "scale": [
+                5.0,
+                5.0,
+                5.0
+              ]
+            },
+            "components": [
+              {
+                "type": "ParticleSystem",
+                "pathId": 6973,
+                "main": {
+                  "duration": 1.0,
+                  "looping": true,
+                  "startLifetime": 0.4000000059604645,
+                  "startSpeed": 13.0,
+                  "startSize": 0.03500000014901161,
+                  "playOnAwake": true,
+                  "simulationSpace": 1
+                },
+                "modules": {
+                  "emission": {
+                    "enabled": true,
+                    "rateOverTime": {
+                      "constant": 0.0,
+                      "minScalar": 10.0
+                    }
+                  },
+                  "shape": {
+                    "shapeType": 4,
+                    "radius": 0.15000000596046448
+                  },
+                  "trail": {
+                    "enabled": false,
+                    "ratio": 1.0,
+                    "lifetime": 1.0
+                  }
+                }
+              },
+              {
+                "type": "ParticleSystemRenderer",
+                "pathId": 7355,
+                "material": "shared/materials/Spark.json"
+              }
+            ],
+            "children": []
+          },
+          {
+            "name": "Circle",
+            "pathId": 3499,
+            "transform": {
+              "position": [
+                0.0,
+                0.0,
+                0.4000000059604645
+              ],
+              "rotation": [
+                -0.0,
+                -0.0,
+                -0.0,
+                1.0
+              ],
+              "scale": [
+                5.0,
+                5.0,
+                5.0
+              ]
+            },
+            "components": [
+              {
+                "type": "ParticleSystem",
+                "pathId": 7074,
+                "main": {
+                  "duration": 1.0,
+                  "looping": true,
+                  "startLifetime": 0.20000000298023224,
+                  "startSpeed": 0.0,
+                  "startSize": 0.15000000596046448,
+                  "playOnAwake": true,
+                  "simulationSpace": 1
+                },
+                "modules": {
+                  "emission": {
+                    "enabled": true,
+                    "rateOverTime": {
+                      "constant": 0.0,
+                      "minScalar": 10.0
+                    }
+                  },
+                  "shape": {
+                    "shapeType": 0,
+                    "radius": 0.25
+                  },
+                  "trail": {
+                    "enabled": false,
+                    "ratio": 1.0,
+                    "lifetime": 1.0
+                  }
+                }
+              },
+              {
+                "type": "ParticleSystemRenderer",
+                "pathId": 7413,
+                "material": "shared/materials/Atlas01Glow.json"
+              }
+            ],
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "projectileTree": null,
+  "muzzleTree": null,
+  "hit": null,
+  "explosions": []
+}

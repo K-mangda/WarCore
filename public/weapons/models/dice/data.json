@@ -1,0 +1,190 @@
+{
+  "id": "dice",
+  "assetName": "WeaponDice",
+  "enum": {
+    "id": 27,
+    "name": "Dice"
+  },
+  "stats": {
+    "damage": 0.0,
+    "knockback": 2.5,
+    "critChance": 0.1,
+    "element": "Neutral",
+    "elementId": 0,
+    "projectiles": 1,
+    "projectileBounces": 0,
+    "attackDuration": 2.0,
+    "maxDuration": 5.0,
+    "maxSizeMultiplier": -1.0,
+    "effectDuration": 1.5,
+    "projectileSpeed": 0.6,
+    "cooldown": 0.5,
+    "burstTime": 1.0,
+    "minBurstInterval": 0.15,
+    "canBounce": false,
+    "amplificationMode": "Bounce",
+    "amplificationModeId": 0,
+    "procCoefficient": 1.0,
+    "useVision": true,
+    "canMultiHit": false,
+    "hasCrosshair": false,
+    "spawnProjectileRange": 40.0,
+    "isAura": false,
+    "spawnOffset": [
+      0.0,
+      1.0,
+      1.0
+    ]
+  },
+  "icon": {
+    "pathId": 1045,
+    "assetName": "Dice",
+    "webPath": "weapons/dice/web/icon.png",
+    "rawPath": "weapons/dice/raw/icon.bytes",
+    "width": 32,
+    "height": 32
+  },
+  "upgrades": {
+    "name": "DiceUpgrades",
+    "pathId": 8589,
+    "modifiers": [
+      {
+        "statId": 11,
+        "type": 2,
+        "value": 0.2
+      },
+      {
+        "statId": 12,
+        "type": 2,
+        "value": 2.0
+      },
+      {
+        "statId": 16,
+        "type": 2,
+        "value": 1.0
+      },
+      {
+        "statId": 9,
+        "type": 0,
+        "value": 0.15
+      },
+      {
+        "statId": 18,
+        "type": 2,
+        "value": 0.1
+      },
+      {
+        "statId": 19,
+        "type": 2,
+        "value": 0.2
+      }
+    ]
+  },
+  "references": {
+    "attackPrefab": {
+      "name": "DiceAttack",
+      "pathId": 3196
+    },
+    "projectilePrefab": {
+      "pathId": 3978
+    },
+    "muzzlePrefab": {
+      "pathId": 0
+    },
+    "hitPrefab": {
+      "name": "GeneralProjectileHit",
+      "pathId": 3790,
+      "shared": true,
+      "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+    },
+    "explosionsCount": 2
+  },
+  "audio": {
+    "fire": [
+      {
+        "clipName": "DiceThrow",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.9399999976158142,
+        "maxPitch": 1.059999942779541,
+        "randomVolume": 0.10000000149011612,
+        "playOnAwake": true,
+        "file": "shared/audio/web/DiceThrow.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      },
+      {
+        "clipName": "retro_explosion_fireball1",
+        "pathId": 2277,
+        "source": "AudioSource",
+        "volume": 0.25999999046325684,
+        "pitch": 1.0,
+        "playOnAwake": true,
+        "file": "shared/audio/web/retro_explosion_fireball1.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "impact": [
+      {
+        "clipName": "DiceHitNormal",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.8999999761581421,
+        "maxPitch": 1.100000023841858,
+        "randomVolume": 0.10000000149011612,
+        "playOnAwake": true,
+        "file": "shared/audio/web/DiceHitNormal.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      },
+      {
+        "clipName": "DiceHit6",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.8999999761581421,
+        "maxPitch": 1.100000023841858,
+        "randomVolume": 0.10000000149011612,
+        "playOnAwake": true,
+        "file": "shared/audio/web/DiceHit6.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      },
+      {
+        "clipName": "Hit2",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.8999999761581421,
+        "maxPitch": 1.2000000476837158,
+        "randomVolume": 0.4000000059604645,
+        "playOnAwake": true,
+        "file": "shared/audio/web/Hit2.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "explosion": [],
+    "ambient_or_loop": []
+  },
+  "dependencies": [
+    "shared/audio/web/DiceHit6.wav",
+    "shared/audio/web/DiceHitNormal.wav",
+    "shared/audio/web/DiceThrow.wav",
+    "shared/audio/web/Hit2.wav",
+    "shared/audio/web/retro_explosion_fireball1.wav",
+    "shared/materials/Atlas01Glow.json",
+    "shared/materials/Atlas01Glow_Custom.json",
+    "shared/materials/m_dice.json",
+    "shared/meshes/web/Dice.obj",
+    "shared/prefabs/GeneralProjectileHit.json",
+    "shared/textures/web/FBX_Dice_Color.png",
+    "shared/textures/web/atlas01.png",
+    "shared/textures/web/atlas01_custom.png",
+    "weapons/dice/web/icon.png"
+  ]
+}

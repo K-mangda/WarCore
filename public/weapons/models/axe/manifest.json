@@ -1,0 +1,44 @@
+{
+  "id": "axe",
+  "mesh": "model.obj",
+  "texture": "albedo.png",
+  "tint": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "textureScale": [
+    1.0,
+    1.0
+  ],
+  "textureOffset": [
+    0.0,
+    0.0
+  ],
+  "previewOnly": true,
+  "meshNode": {
+    "name": "Renderer",
+    "pathId": 3532,
+    "meshFilterPathId": 6254,
+    "rendererPathId": 6076,
+    "transform": {
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        -0.0,
+        -0.0,
+        0.7071068286895752,
+        0.7071068286895752
+      ],
+      "scale": [
+        1.25,
+        1.25,
+        1.25
+      ]
+    }
+  },
+  "previewPolicy": "Centered, longest dimension 2m, opaque Lambert inspection material; native shader/transform/attack not reproduced."
+}

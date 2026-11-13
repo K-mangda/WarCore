@@ -33,6 +33,7 @@ jobs:
           node tools/check_deploy.mjs /${{ github.event.repository.name }}/
           node tools/check_lab_boot.mjs
           node tools/check_lab_assets.mjs
+          node tools/check_weapon_models.mjs
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
         with:
           path: dist

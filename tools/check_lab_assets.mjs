@@ -1,10 +1,13 @@
 import assert from 'node:assert/strict';
 import ts from 'typescript';
 import {readFileSync} from 'node:fs';
-const code=ts.transpileModule(readFileSync('src/dev/LabAssets.ts','utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
+const compile=path=>ts.transpileModule(readFileSync(path,'utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
+const modelUrl='data:text/javascript;base64,'+Buffer.from(compile('src/dev/WeaponModels.ts')).toString('base64');
+const code=compile('src/dev/LabAssets.ts').replace('./WeaponModels',modelUrl);
 const {LabAssets,roomAssets}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
 assert.deepEqual(roomAssets('skeleton-hit'),['skeleton']);
 assert.deepEqual(roomAssets('bandit-death'),['bandit']);
+assert.deepEqual(roomAssets('model-axe'),['model-axe'],'Model previews load neither player nor combat assets');
 assert.ok(!roomAssets('bolt').includes('sword'));
 assert.ok(roomAssets('sword').includes('staff'),'Sword retains shared hit effects');
 assert.deepEqual(roomAssets('gold'),['fox','xp','progression','pickup']);

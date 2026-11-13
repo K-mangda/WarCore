@@ -1,0 +1,31 @@
+{
+  "sourceRoot": "C:\\Users\\Korawit\\Desktop\\WarCore\\megabonk_extracted_assets",
+  "operation": "Copied existing exported files; no extraction or native identity verification.",
+  "files": [
+    {
+      "source": "shared/meshes/web/Arrow.obj",
+      "output": "model.obj",
+      "sha256": "bf61e389889f834acf842823eef2d537be4af9a6f559e5b00fcb7e7b421991d7"
+    },
+    {
+      "source": "weapons/bow/data.json",
+      "output": "data.json",
+      "sha256": "bdbedfd4e2407b9c7c5b2345cf7c94985d782bbf0ef257417a53141bd5646c25"
+    },
+    {
+      "source": "weapons/bow/hierarchy.json",
+      "output": "hierarchy.json",
+      "sha256": "1a31e423ea7d4d4f760ca475499fcb6a42baa9c5aa0d51ed10f45d9971615e5c"
+    },
+    {
+      "source": "shared/materials/m_Arrow.json",
+      "output": "material.json",
+      "sha256": "40e0daca5f74cb5f4917942ac963d158f2f3c9ccb04a9a584c938b2c7987b717"
+    },
+    {
+      "source": "shared/textures/web/FBX_Arrow_Color.png",
+      "output": "albedo.png",
+      "sha256": "b7632f7c5cab8640582c436b2a77405f44c27b7bf9bb385a54fb8f138bb51af0"
+    }
+  ]
+}

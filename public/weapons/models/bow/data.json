@@ -1,0 +1,158 @@
+{
+  "id": "bow",
+  "assetName": "WeaponBow",
+  "enum": {
+    "id": 7,
+    "name": "Bow"
+  },
+  "stats": {
+    "damage": 9.0,
+    "knockback": 0.5,
+    "critChance": 0.0,
+    "element": "Neutral",
+    "elementId": 0,
+    "projectiles": 1,
+    "projectileBounces": 99,
+    "attackDuration": 0.5,
+    "maxDuration": 1.0,
+    "maxSizeMultiplier": -1.0,
+    "effectDuration": 1.5,
+    "projectileSpeed": 1.5,
+    "cooldown": 0.92,
+    "burstTime": 0.0,
+    "minBurstInterval": 0.0,
+    "canBounce": false,
+    "amplificationMode": "Pierce",
+    "amplificationModeId": 1,
+    "procCoefficient": 1.0,
+    "useVision": true,
+    "canMultiHit": false,
+    "hasCrosshair": false,
+    "spawnProjectileRange": 40.0,
+    "isAura": false,
+    "spawnOffset": [
+      0.0,
+      1.0,
+      1.0
+    ]
+  },
+  "icon": {
+    "pathId": 1336,
+    "assetName": "Bow",
+    "webPath": "weapons/bow/web/icon.png",
+    "rawPath": "weapons/bow/raw/icon.bytes",
+    "width": 32,
+    "height": 32
+  },
+  "upgrades": {
+    "name": "BowUpgrades",
+    "pathId": 8586,
+    "modifiers": [
+      {
+        "statId": 11,
+        "type": 0,
+        "value": 0.2
+      },
+      {
+        "statId": 12,
+        "type": 2,
+        "value": 1.75
+      },
+      {
+        "statId": 16,
+        "type": 2,
+        "value": 1.0
+      },
+      {
+        "statId": 9,
+        "type": 2,
+        "value": 0.15
+      },
+      {
+        "statId": 18,
+        "type": 2,
+        "value": 0.08
+      },
+      {
+        "statId": 19,
+        "type": 2,
+        "value": 0.18
+      }
+    ]
+  },
+  "references": {
+    "attackPrefab": {
+      "name": "BowAttackPrefab",
+      "pathId": 4268
+    },
+    "projectilePrefab": {
+      "pathId": 4121
+    },
+    "muzzlePrefab": {
+      "pathId": 0
+    },
+    "hitPrefab": {
+      "name": "GeneralProjectileHit",
+      "pathId": 3790,
+      "shared": true,
+      "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+    },
+    "explosionsCount": 0
+  },
+  "audio": {
+    "fire": [
+      {
+        "clipName": "Bow",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.8999999761581421,
+        "maxPitch": 1.100000023841858,
+        "randomVolume": 0.20000000298023224,
+        "playOnAwake": false,
+        "file": "shared/audio/web/Bow.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "impact": [
+      {
+        "clipName": "Hit2",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.8999999761581421,
+        "maxPitch": 1.2000000476837158,
+        "randomVolume": 0.4000000059604645,
+        "playOnAwake": true,
+        "file": "shared/audio/web/Hit2.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "explosion": [],
+    "ambient_or_loop": [
+      {
+        "clipName": "Arrow",
+        "pathId": 2238,
+        "source": "AudioSource",
+        "volume": 0.20000000298023224,
+        "pitch": 1.0,
+        "playOnAwake": true,
+        "file": "shared/audio/web/Arrow.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ]
+  },
+  "dependencies": [
+    "shared/audio/web/Arrow.wav",
+    "shared/audio/web/Bow.wav",
+    "shared/audio/web/Hit2.wav",
+    "shared/materials/m_Arrow.json",
+    "shared/meshes/web/Arrow.obj",
+    "shared/prefabs/GeneralProjectileHit.json",
+    "weapons/bow/web/icon.png"
+  ]
+}

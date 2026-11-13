@@ -1,0 +1,183 @@
+{
+  "id": "rockets",
+  "assetName": "WeaponSluttyRocket",
+  "enum": {
+    "id": 12,
+    "name": "Rockets"
+  },
+  "stats": {
+    "damage": 11.0,
+    "knockback": 2.0,
+    "critChance": 0.05,
+    "element": "Neutral",
+    "elementId": 0,
+    "projectiles": 1,
+    "projectileBounces": 0,
+    "attackDuration": 5.0,
+    "maxDuration": 5.0,
+    "maxSizeMultiplier": -1.0,
+    "effectDuration": 1.5,
+    "projectileSpeed": 1.0,
+    "cooldown": 0.3,
+    "burstTime": 1.0,
+    "minBurstInterval": 0.1,
+    "canBounce": false,
+    "amplificationMode": "Bounce",
+    "amplificationModeId": 0,
+    "procCoefficient": 1.0,
+    "useVision": true,
+    "canMultiHit": false,
+    "hasCrosshair": false,
+    "spawnProjectileRange": 60.0,
+    "isAura": false,
+    "spawnOffset": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "icon": {
+    "pathId": 1329,
+    "assetName": "SluttyRocket",
+    "webPath": "weapons/rockets/web/icon.png",
+    "rawPath": "weapons/rockets/raw/icon.bytes",
+    "width": 32,
+    "height": 32
+  },
+  "upgrades": {
+    "name": "RocketUpgrades",
+    "pathId": 8600,
+    "modifiers": [
+      {
+        "statId": 11,
+        "type": 0,
+        "value": 0.2
+      },
+      {
+        "statId": 12,
+        "type": 2,
+        "value": 2.0
+      },
+      {
+        "statId": 16,
+        "type": 2,
+        "value": 1.0
+      },
+      {
+        "statId": 18,
+        "type": 2,
+        "value": 0.08
+      }
+    ]
+  },
+  "references": {
+    "attackPrefab": {
+      "name": "RocketAttack",
+      "pathId": 3197
+    },
+    "projectilePrefab": {
+      "pathId": 3839
+    },
+    "muzzlePrefab": {
+      "pathId": 0
+    },
+    "hitPrefab": {
+      "name": "GeneralProjectileHit",
+      "pathId": 3790,
+      "shared": true,
+      "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+    },
+    "explosionsCount": 1
+  },
+  "audio": {
+    "fire": [
+      {
+        "clipName": "retro_shoot_missile02",
+        "pathId": 2179,
+        "source": "AudioSource",
+        "volume": 0.36000001430511475,
+        "pitch": 1.0,
+        "playOnAwake": true,
+        "file": "shared/audio/web/retro_shoot_missile02.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      },
+      {
+        "clipName": "retro_shoot_missile",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.9399999976158142,
+        "maxPitch": 1.059999942779541,
+        "randomVolume": 0.15000000596046448,
+        "playOnAwake": true,
+        "file": "shared/audio/web/retro_shoot_missile.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "impact": [
+      {
+        "clipName": "Hit2",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.8999999761581421,
+        "maxPitch": 1.2000000476837158,
+        "randomVolume": 0.4000000059604645,
+        "playOnAwake": true,
+        "file": "shared/audio/web/Hit2.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "explosion": [
+      {
+        "clipName": "bombExplosion",
+        "source": "AudioMapping",
+        "volume": 1.0,
+        "minPitch": 1.0,
+        "maxPitch": 1.0,
+        "randomVolume": 0.0,
+        "playOnAwake": false,
+        "file": "shared/audio/web/bombExplosion.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ],
+    "ambient_or_loop": [
+      {
+        "clipName": "NoodleStop",
+        "source": "RandomSfx",
+        "volume": 1.0,
+        "minPitch": 0.9399999976158142,
+        "maxPitch": 1.059999942779541,
+        "randomVolume": 0.10000000149011612,
+        "playOnAwake": true,
+        "file": "shared/audio/web/NoodleStop.wav",
+        "extracted": true,
+        "referenced": true,
+        "trigger_verified": true
+      }
+    ]
+  },
+  "dependencies": [
+    "shared/audio/web/Hit2.wav",
+    "shared/audio/web/NoodleStop.wav",
+    "shared/audio/web/bombExplosion.wav",
+    "shared/audio/web/retro_shoot_missile.wav",
+    "shared/audio/web/retro_shoot_missile02.wav",
+    "shared/materials/Atlas03Glow.json",
+    "shared/materials/Black.json",
+    "shared/materials/Spark.json",
+    "shared/materials/SplashGlow.json",
+    "shared/meshes/web/mesh_rocket.obj",
+    "shared/prefabs/GeneralProjectileHit.json",
+    "shared/textures/web/SplashParticle.png",
+    "shared/textures/web/atlas03.png",
+    "shared/textures/web/grain.png",
+    "weapons/rockets/web/icon.png"
+  ]
+}

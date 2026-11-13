@@ -63,6 +63,7 @@ def main():
             integrated = (domain == 'weapons' and ident in ('sword', 'firestaff') or
                           domain == 'enemies' and ident in ('skeleton', 'bandit') or
                           domain == 'characters' and ident == 'fox')
+            model_preview = domain == 'weapons' and (repo / 'public/weapons/models' / ident / 'manifest.json').exists()
             entries.append({
                 'domain': domain, 'id': ident, 'name': data.get('name', data.get('assetName')),
                 'data': str(data_path.relative_to(root)).replace('\\', '/'),
@@ -76,8 +77,8 @@ def main():
                 'audio': sorted(p for p in files if p.endswith('.wav')),
                 'catalogAnimatedMesh': data.get('animatedMesh'),
                 'catalogBossFlagUnverified': data.get('isBoss'),
-                'webIntegration': 'partial-existing' if integrated else 'not-integrated',
-                'readiness': 'existing-web-slice' if integrated else 'exported-mesh-candidate' if domain == 'weapons' and any(p.endswith('.obj') for p in files) else 'needs-readiness-evidence',
+                'webIntegration': 'partial-existing' if integrated else 'model-preview-only' if model_preview else 'not-integrated',
+                'readiness': 'existing-web-slice' if integrated else 'lab-model-preview' if model_preview else 'exported-mesh-candidate' if domain == 'weapons' and any(p.endswith('.obj') for p in files) else 'needs-readiness-evidence',
             })
     payload = {'source': str(root), 'scope': 'Existing exported files only; no native container inspection. Catalog identity/behavior claims are not verified.', 'entries': entries}
     output = repo / 'docs/EXISTING_ASSET_AUDIT.json'
@@ -88,6 +89,7 @@ def main():
              '## ข้อสรุปและคิวใช้งาน', '',
              '- มี OBJ ให้ตรวจนำมาใช้ต่อหลายชิ้น เช่น Axe, Bow/Arrow, Dice, Mine, Rockets, Bluetooth Dagger และ Aegis/Shield ไม่ต้องสกัด mesh เหล่านี้ซ้ำ หากต้องการ preview ต้องตรวจ material/texture/transform ที่อ้างมาด้วย',
              '- การพบ OBJ เป็นผู้สมัครสำหรับ preview ภาพ ไม่ได้แปลว่ากติกาโจมตี เสียง และ VFX พร้อมเล่นครบ ต้องเทียบหลักฐานตาม WEAPON_BEHAVIOR.md ก่อนเพิ่มระบบโจมตี',
+             '- เพิ่มห้องดูโมเดลใน Lab แล้ว7ชิ้น: Axe, Bow/Arrow, Dice, Mine, Rockets, Bluetooth Dagger, Aegis ดู WEAPON_MODEL_PREVIEWS.md; ใช้ไฟล์เดิม ไม่มีการสกัดเพิ่ม',
              '- Bananarang/Poison Flask ที่อ้าง mesh ชื่อ Cube ต้องตรวจ geometry/material pairing ก่อนตัดสินรูปทรง ชื่อไฟล์อย่างเดียวไม่บอกว่าเป็น placeholder หรือโมเดลที่ถูกต้อง',
              '- EnemyData มีชื่อ AnimatedMesh/pathID แต่ในโฟลเดอร์ enemies มีเพียง JSON; hierarchy ที่ว่างและตัวเลข frameCount ไม่ใช่ vertex/index/UV payload จึงยังใช้สร้างตัวใหม่ไม่ได้จากชุดนี้เพียงอย่างเดียว',
              '- Skeleton/Bandit มีไฟล์ animation/albedo ที่ต่อในเว็บแล้ว แยกจากข้อจำกัดของชุด catalog; ห้ามเหมาว่ามอนทั้งหมดไม่มี asset หรือเรียก importer เพื่อสกัดตัวใหม่เอง',
@@ -98,7 +100,7 @@ def main():
         group = [e for e in entries if e['domain'] == domain]
         lines.extend([f'### {title}: {len(group)} รายการ', ''])
         for e in group:
-            state = 'ต่อเว็บบางส่วนแล้ว' if e['webIntegration'] == 'partial-existing' else 'ยังไม่ต่อเว็บ'
+            state = 'ต่อเว็บบางส่วนแล้ว' if e['webIntegration'] == 'partial-existing' else 'มีห้องดูโมเดลใน Lab (ยังไม่มี combat)' if e['webIntegration'] == 'model-preview-only' else 'ยังไม่ต่อเว็บ'
             meshes = ', '.join(Path(p).name for p in e['meshes']) or 'ไม่มี OBJ ใน references ที่ตรวจ'
             evidence = f"OBJ: {meshes}; PNG shared {len(e['textures'])}; WAV {len(e['audio'])}"
             if domain != 'weapons':

@@ -1,0 +1,26 @@
+{
+  "sourceRoot": "C:\\Users\\Korawit\\Desktop\\WarCore\\megabonk_extracted_assets",
+  "operation": "Copied existing exported files; no extraction or native identity verification.",
+  "files": [
+    {
+      "source": "shared/meshes/web/mesh_rocket.obj",
+      "output": "model.obj",
+      "sha256": "4db9cfcfbec4581c35ce9f40b995e25ee9a0cc7fa2deb327a0b3cf929a6a36ed"
+    },
+    {
+      "source": "weapons/rockets/data.json",
+      "output": "data.json",
+      "sha256": "39380168548f7900953bacd3140ab9b5e7bcdca090c14ebcbcc0a49c80a36486"
+    },
+    {
+      "source": "weapons/rockets/hierarchy.json",
+      "output": "hierarchy.json",
+      "sha256": "62540590c7c649f9bbdbb4e146d14782bf962c0698d9ee4adaf9ad551bc5d050"
+    },
+    {
+      "source": "shared/materials/Black.json",
+      "output": "material.json",
+      "sha256": "c6c1eb6e99a16893d6f3b61cee067747dc7dd6d3d9756b7a3a054e0e6f8e387d"
+    }
+  ]
+}

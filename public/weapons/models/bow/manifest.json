@@ -1,0 +1,44 @@
+{
+  "id": "bow",
+  "mesh": "model.obj",
+  "texture": "albedo.png",
+  "tint": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "textureScale": [
+    1.0,
+    1.0
+  ],
+  "textureOffset": [
+    0.0,
+    0.0
+  ],
+  "previewOnly": true,
+  "meshNode": {
+    "name": "Renderer",
+    "pathId": 3531,
+    "meshFilterPathId": 6253,
+    "rendererPathId": 6075,
+    "transform": {
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "previewPolicy": "Centered, longest dimension 2m, opaque Lambert inspection material; native shader/transform/attack not reproduced."
+}
