@@ -11,6 +11,12 @@
 
 ## คิวขยายเนื้อหา: อาวุธ / ตัวละคร / มอน / บอส
 
+คำสั่งล่าสุด: ตรวจของที่มีอยู่ **หลายชิ้นเป็นชุดได้เลย รวมถึงมอน** ไม่จำกัดทีละชิ้น คำว่า “หา” หมายถึงสำรวจไฟล์ที่สกัดไว้แล้ว ไม่ใช่ให้ AI ฝั่งเว็บแกะเกม งานสกัดยังเป็นหน้าที่ AI อีกตัวเสมอ
+
+ผลตรวจชุดแรกครบ30อาวุธ/53รายการมอน/21ตัวละครอยู่ใน [EXISTING_ASSET_AUDIT.md](EXISTING_ASSET_AUDIT.md) และ JSON คู่กัน มี OBJ candidates เพิ่ม9อาวุธ; คิวภาพที่ชื่อ mesh ตรงพอให้ตรวจต่อก่อนคือ Axe, Bow/Arrow, Dice, Mine, Rockets, Bluetooth Dagger, Aegis/Shield ส่วน Bananarang และ Poison Flask ต้องตรวจการจับคู่ mesh ชื่อ Cube เพิ่ม ไม่ถือว่ามีพฤติกรรมพร้อมเล่นทั้งหมด
+
+มอนใหม่ยังไม่มี per-frame geometry ที่พร้อมใช้ใน references ของชุด catalog นี้ (มี AnimatedMesh name/pathID เท่านั้น) ให้ AI อีกตัวส่ง baked geometry/albedo chain ของหลายตัวเป็นชุด เช่น Bee, GoblinWeak/Strong/Tank, Mummy, Slime และ Zombie พร้อม state/FPS/transform ที่พิสูจน์แล้ว โดยตรวจว่ามีไฟล์พร้อมใช้อยู่ที่อื่นก่อนสกัดเพิ่ม รายชื่อเป็นคิวข้อมูล ไม่ใช่ยืนยันด่านเกิด/บทบาท หรือสั่งให้ใส่สนามเทสทุกตัวทันที
+
 รายการด้านล่างเป็นเกณฑ์ตรวจความพร้อม ไม่ใช่ผลตรวจว่า asset ทั้งหมดขาด ข้อมูลจำนวนรวมจากรายงานเดิมยังต้องเทียบ manifest/reference ก่อนใช้ตัดสินรายตัว
 
 - **อาวุธ:** เว็บมี Sword และ Firestaff เป็นชุดทดสอบ สำหรับอาวุธถัดไปให้ตรวจ mesh/texture/material, projectile/attack prefab, VFX, เสียง, targeting, hitbox, cooldown/quantity/burst และผลอัปเกรด แยก Sword/HeroSword ตาม ID จริง หากข้อมูล runtime ขาดให้ระบุ method/field ที่ต้องตาม
