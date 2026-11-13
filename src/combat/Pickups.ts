@@ -13,7 +13,7 @@ export function movePickup(p:Pickup,target:Vector3,dt:number,activationRadius:nu
  p.speed=(p.speed??0)+((distance>10?150:50)-(p.speed??0))*Math.min(1,(distance>10?4:2.5)*dt);
  if(p.kind==='gold'){
   p.pullStart??=p.position.clone();p.pullLength??=Math.max(3,distance);
-  p.pullProgress=Math.min(1,(p.pullProgress??0)+p.speed*dt/p.pullLength);
+  p.pullProgress=Math.min(1,(p.pullProgress??0)+p.speed*dt*.75/p.pullLength);
   const t=p.pullProgress,u=1-t,control=p.pullStart.clone().lerp(target,.5).add(new Vector3(0,3,0));
   p.position.copy(p.pullStart).multiplyScalar(u*u).addScaledVector(control,2*u*t).addScaledVector(target,t*t);
   return t>=1||(t>.8&&p.position.distanceTo(target)<=range);
