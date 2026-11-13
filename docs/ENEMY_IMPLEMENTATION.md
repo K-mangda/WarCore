@@ -37,3 +37,15 @@ Run `node tools/check_skeleton.mjs`: checks8FPS/eight-frame payload, valid mesh 
 ## Performance follow-up
 
 Following user-reported FPS drops, SkeletonView now skips offscreen instances using a conservative sphere/frustum check, marks dynamic instance buffers appropriately and uploads only occupied ranges. It reuses transform scratch objects and hides empty batches. With120 visible live instances, matrix data scheduled for update is120*16 floats rather than8*240*16; this is an upload-volume check, not a GPU timing benchmark. Damage shader only evaluates dissolve noise for dissolving instances. Baked geometry retains the same1694 vertices/1040 triangles per enemy as the prior static mesh. Camera now performs one terrain raycast per changed pose rather than three per frame; unchanged camera poses reuse the prior collision result. Existing89 trees are rendered as two static instanced batches instead of178 separate meshes, with original positions/geometries/materials retained. `tools/check_render_cost.mjs` verifies structure/transform/cache behavior. Actual browser FPS still requires user testing.
+
+
+## Bandit integration — 2026-11-13
+
+Direct native chain: EnemyData8032 Bandit -> Material106 m_bandit_default -> Texture824 t_bandit_default, and AnimatedMesh7779 Bandit. The serialized animation has one RunForEnemyAnimation clip,8 mesh frames and7FPS; catalog frameCount7 again differs from the actual list. Import with `python tools/import_enemy_animation.py --species bandit`. Raw source bytes/material/frame hashes and source/output hashes are preserved beside the animation. Rotation(-90,0,0) and rendererScale1.25 are retained as evidence; the web keeps its established1.6m normalized height.
+
+BakedEnemyView generalizes the former Skeleton-only renderer; SkeletonView is a compatibility re-export. Each species uses its own texture, FPS and frame batches, with the existing offscreen culling and occupied upload ranges. Enemy/corpse kind keeps models consistent through death and reset. Bandit now appears as every fourth ordinary spawn within the unchanged total120-enemy cap. The fraction is sandbox tuning, not a native encounter table. Existing chase/contact/HP/damage/loot tuning is shared for this first integration, not native Bandit AI parity. There are no new growls/spawn/death sounds inferred from catalog labels.
+
+Lab Enemies includes Bandit Walk/Hit/Death with the same renderer. Switching species clears old instances. Native Bandit geometry has2985 vertices/2620 triangles per frame versus Skeleton1694/1040; this is a higher-cost model. Batching/culling remain active and the initial fraction is deliberately limited, but no unchanged-FPS guarantee or benchmark is claimed. User tests appearance, orientation, gait and actual performance.
+
+
+Stage note: The user clarified that the original game has stage-specific enemy rosters. The mixed Bandit/Skeleton schedule is authorized only as a temporary test-arena roster. Stage/timeline spawn reconstruction is deferred and tracked in [EXTRACTION_BACKLOG.md](EXTRACTION_BACKLOG.md).

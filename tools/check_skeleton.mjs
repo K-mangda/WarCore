@@ -4,14 +4,16 @@ import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
-for(const name of ['enemies/SkeletonView','enemies/DamageMaterial','combat/Balance','core/assetUrl','dev/EnemyPreview']){
+for(const name of ['enemies/SkeletonView','enemies/BakedEnemyView','enemies/DamageMaterial','combat/Balance','core/assetUrl','dev/EnemyPreview']){
  const out=resolve('.local-evidence/skeleton-check',name+'.js');mkdirSync(dirname(out),{recursive:true});
  writeFileSync(out,ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'"));
 }
 const data=JSON.parse(readFileSync('public/enemies/skeleton/animation.json','utf8'));
 assert.equal(data.frames.length,8);assert.equal(data.fps,8);
 for(const frame of data.frames){assert.equal(frame.positions.length/3,frame.uv.length/2);assert.ok(frame.indices.every(i=>i>=0&&i<frame.positions.length/3));assert.ok(frame.positions.every(Number.isFinite));}
-globalThis.fetch=async()=>({ok:true,json:async()=>data});
+const banditData=JSON.parse(readFileSync('public/enemies/bandit/animation.json','utf8'));assert.equal(banditData.frames.length,8);assert.equal(banditData.fps,7);
+for(const frame of banditData.frames){assert.equal(frame.positions.length/3,frame.uv.length/2);assert.ok(frame.indices.every(i=>i>=0&&i<frame.positions.length/3));assert.ok(frame.positions.every(Number.isFinite));}
+globalThis.fetch=async url=>({ok:true,json:async()=>String(url).includes('/bandit/')?banditData:data});
 const load=T.TextureLoader.prototype.loadAsync;T.TextureLoader.prototype.loadAsync=async()=>new T.Texture();
 const {SkeletonView,skeletonFrame}=await import(pathToFileURL(resolve('.local-evidence/skeleton-check/enemies/SkeletonView.js')));
 const scene=new T.Scene(),view=new SkeletonView(scene);await view.load();assert.equal(scene.children.length,8);
@@ -34,5 +36,9 @@ const {EnemyPreview}=await import(pathToFileURL(resolve('.local-evidence/skeleto
 const labScene=new T.Scene(),preview=new EnemyPreview(labScene);await preview.load();preview.update('skeleton-hit',.25,new T.Vector3(0,0,-1));
 const hit=labScene.children.find(m=>m.count>0);assert.equal(hit.geometry.getAttribute('damageFlash').getX(0),1);
 preview.update('skeleton-death',1,new T.Vector3(0,0,-1));assert.equal(labScene.children.reduce((s,m)=>s+m.count,0),0);
+preview.update('bandit-walk',.3,new T.Vector3(0,0,-1));assert.equal(labScene.children.reduce((s,m)=>s+m.count,0),1);
+assert.equal(preview.views.skeleton.batches.reduce((s,m)=>s+m.count,0),0,'Switching species removes old preview instances');assert.equal(preview.views.bandit.fps,7,'Bandit uses its own baked FPS');
+preview.update('bandit-death',.3,new T.Vector3(0,0,-1));assert.equal(preview.views.bandit.batches.reduce((s,m)=>s+m.count,0),1);
+preview.update('bandit-death',1,new T.Vector3(0,0,-1));assert.equal(labScene.children.reduce((s,m)=>s+m.count,0),0);
 preview.dispose();T.TextureLoader.prototype.loadAsync=load;
-console.log('Skeleton checks passed: native eight-frame data, batching, frozen pause/death pose, Lab hit/death and cleanup. No GPU/FPS claim.');
+console.log('Baked enemy checks passed: Skeleton/Bandit source frames and FPS, batching, frozen pause/death pose, species switching and cleanup. No GPU/FPS claim.');

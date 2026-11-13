@@ -25,7 +25,7 @@ const fox=new Fox();scene.add(fox.root);const sword=new SwordView(scene),staff=n
 const enemyPreview=new EnemyPreview(scene);
 let audible=false;
 const xpView=new XpView(scene),progression=new ProgressionView(scene),pickupNumbers=new PickupNumbers(scene,camera,()=>({width:host.clientWidth,height:host.clientHeight}));
-const enemyRoom=()=>weapon.value.startsWith('skeleton-');
+const enemyRoom=()=>weapon.value.startsWith('skeleton-')||weapon.value.startsWith('bandit-');
 const pickupRoom=()=>['xp','gold','silver','level'].includes(weapon.value);
 const run=new Run(()=>0,()=>true,random,event=>{if(audible)audio.play(event);});
 const origin=new T.Vector3(),facing=()=>{const yaw=Number(rotate.value)*Math.PI/180;return new T.Vector3(-Math.sin(yaw),0,-Math.cos(yaw));};
@@ -80,7 +80,7 @@ const categories={
  weapons:[['sword','Sword'],['bolt','Firestaff']],
  pickups:[['xp','EXP tiers'],['gold','Gold'],['silver','Silver']],
  effects:[['level','Level up']],
- enemies:[['skeleton-walk','Skeleton - Walk'],['skeleton-hit','Skeleton - Hit'],['skeleton-death','Skeleton - Death']],
+ enemies:[['skeleton-walk','Skeleton - Walk'],['skeleton-hit','Skeleton - Hit'],['skeleton-death','Skeleton - Death'],['bandit-walk','Bandit - Walk'],['bandit-hit','Bandit - Hit'],['bandit-death','Bandit - Death']],
 } as const;
 type Category=keyof typeof categories;
 const tabs=Array.from(document.querySelectorAll<HTMLButtonElement>('[data-category]'));
@@ -114,7 +114,7 @@ play.addEventListener('click',async()=>{
  const tick=(time:number)=>{
   if(disposed||request!==ticket)return;
   const age=Math.min(limit,(time-start)/1000);frame.value=String(age);
-  if(enemyRoom()){if(lastAge<.2&&age>=.2&&kind!=='skeleton-walk')audio.play('staffHit');paint();}else if(kind==='bolt'||kind==='sword'){advanceWeapon(age);paint();}else if(pickupRoom()){advanceXp(age);progression.update(run,origin,age-lastAge);if(kind==='level')audio.setLevelModal(run.blocked);paint();}else{inspect();}lastAge=age;
+  if(enemyRoom()){if(lastAge<.2&&age>=.2&&!kind.endsWith('-walk'))audio.play('staffHit');paint();}else if(kind==='bolt'||kind==='sword'){advanceWeapon(age);paint();}else if(pickupRoom()){advanceXp(age);progression.update(run,origin,age-lastAge);if(kind==='level')audio.setLevelModal(run.blocked);paint();}else{inspect();}lastAge=age;
   if(age<limit)animation=requestAnimationFrame(tick);else{audible=false;audio.setLevelModal(false);}
  };
  frame.value='0';animation=requestAnimationFrame(tick);

@@ -159,3 +159,10 @@ assert.equal(remoteGold.following,true,'Gold automatically follows outside the m
 const remoteXp={kind:'xp',position:new Vector3(30,.35,0)};movePickup(remoteXp,new Vector3(0,.35,0),.02,5);assert.ok(!remoteXp.following,'EXP still requires magnet range');
 const nearGold={kind:'gold',position:new Vector3(.3,.35,0)};assert.equal(movePickup(nearGold,new Vector3(0,.35,0),.02,5),false,'Nearby Gold still performs its arc before collection');assert.ok(nearGold.position.y>.35);
 console.log('Gold automatic arc checks passed: distant collection, close-range launch and unchanged EXP magnet behavior.');
+
+const mixed=new Run(()=>0,()=>false,()=>.5);
+for(let i=0;i<12;i++)mixed.swarm.spawn(player,()=>0,()=>false,()=>.5);
+assert.equal(mixed.swarm.enemies.filter(e=>e.kind==='bandit').length,3,'Bandit enters the existing spawn roster as every fourth enemy');assert.equal(mixed.swarm.enemies.length,12);
+const banditDeath=new Run(()=>0,()=>true,()=>.5);banditDeath.setWeapon('sword');banditDeath.swarm.enemies.push({...enemy(6001,0,-2),kind:'bandit',health:1});banditDeath.step(.02,player);
+assert.equal(banditDeath.remains[0].kind,'bandit','A dead Bandit retains its species for dissolution');assert.equal(banditDeath.snapshot().kills,1);banditDeath.reset();assert.equal(banditDeath.remains.length,0);
+console.log('Bandit integration checks passed: bounded mixed spawn roster, species-preserving death and reset.');

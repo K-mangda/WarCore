@@ -1,7 +1,7 @@
 import {movePickup,type Pickup,type PickupKind} from './Pickups';
 import {burstInterval} from './AttackTiming';
 import {Vector3} from 'three';
-import {Swarm,type Enemy} from '../enemies/Swarm';
+import {Swarm,type Enemy,type EnemyKind} from '../enemies/Swarm';
 import {balance} from './Balance';
 export type Weapon='bolt'|'sword';
 export type RunEvent='sword'|'shot'|'staffImpact'|'staffHit'|'xp'|'gold'|'silver'|'level'|'hurt'|'death';
@@ -9,7 +9,7 @@ export type Upgrade='damage'|'haste'|'projectiles';
 export interface Projectile {position:Vector3;velocity:Vector3;life:number;damage:number;}
 export interface StaffEffect {kind:'muzzle'|'impact'|'hit';position:Vector3;direction:Vector3;life:number;duration:number;}
 export interface Slash {position:Vector3;direction:Vector3;life:number;duration:number;damage:number;hits:Set<number>;hitAudioPlayed?:boolean;}
-export interface EnemyRemains {id?:number;animationTime?:number;position:Vector3;heading:number;life:number;duration:number;}
+export interface EnemyRemains {kind?:EnemyKind;id?:number;animationTime?:number;position:Vector3;heading:number;life:number;duration:number;}
 export interface Gem extends Pickup {}
 export interface XpReceipt {position:Vector3;value:number;time:number;kind?:PickupKind;pickups?:number;}
 export interface Hit {position:Vector3;damage:number;life:number;}
@@ -36,7 +36,7 @@ export class Run {
   private kill(enemy:Enemy){
     const index=this.swarm.enemies.indexOf(enemy);if(index<0)return;
     this.swarm.enemies.splice(index,1);this.state.kills++;
-    this.remains.push({id:enemy.id,animationTime:this.state.elapsed,position:enemy.position.clone(),heading:Math.atan2(-enemy.velocity.x,-enemy.velocity.z),life:balance.enemyDissolveDuration,duration:balance.enemyDissolveDuration});
+    this.remains.push({kind:enemy.kind,id:enemy.id,animationTime:this.state.elapsed,position:enemy.position.clone(),heading:Math.atan2(-enemy.velocity.x,-enemy.velocity.z),life:balance.enemyDissolveDuration,duration:balance.enemyDissolveDuration});
     if(this.remains.length>balance.maxEnemies)this.remains.shift();
     this.spawnPickup('xp',enemy.position);
     // User playtest rule: every enemy drops one gold; native value remains unverified.

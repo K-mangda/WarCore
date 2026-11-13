@@ -1,6 +1,7 @@
 import {Vector3} from 'three';
 import {balance} from '../combat/Balance';
-export interface Enemy {id:number;position:Vector3;velocity:Vector3;health:number;flash:number;}
+export type EnemyKind='skeleton'|'bandit';
+export interface Enemy {kind?:EnemyKind;id:number;position:Vector3;velocity:Vector3;health:number;flash:number;}
 export class Swarm {
   readonly enemies:Enemy[]=[];
   private nextId=1;
@@ -12,7 +13,7 @@ export class Swarm {
       if(Math.abs(x)>94||Math.abs(z)>94)continue;
       const position=new Vector3(x,ground(x,z),z);
       if(visible(position.clone().add(new Vector3(0,1,0))))continue;
-      this.enemies.push({id:this.nextId++,position,velocity:new Vector3(),health:balance.enemyHealth,flash:0});return true;
+      this.enemies.push({kind:this.nextId%balance.banditEvery===0?'bandit':'skeleton',id:this.nextId++,position,velocity:new Vector3(),health:balance.enemyHealth,flash:0});return true;
     }
     return false;
   }

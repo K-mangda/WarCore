@@ -1,0 +1,18 @@
+{
+  "sourceFile": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Megabonk\\Megabonk_Data\\sharedassets1.assets",
+  "sourceSha256": "64c5156116e20fe645acc133bfae7ab1fdd3a7bbc99f915559efc0640be0349a",
+  "chain": "EnemyData8032 -> AnimatedMesh7779 / Material106",
+  "fps": 7,
+  "frameCount": 8,
+  "limitations": [
+    "Baked mesh swapping, not a skinned rig.",
+    "Source rotation applied; uniform 1.6m normalization retains current sandbox enemy size rather than native1.25 scale.",
+    "Native toon material, runtime animation state/speed changes and AI remain incomplete.",
+    "Serialized frame list is authoritative over the supplied catalog count."
+  ],
+  "outputHashes": {
+    "albedo.png": "74562d674ebafcb6c4560c91ed243d045a55b3d5207ef40eef3b1c70c48c99cd",
+    "animation.json": "29be51f041c5680635412a24b2a54e895705c2310a6d5cdc3f2921a21c5f6f85",
+    "source.json": "9c378631a0beaea02cc67488d0dac09bffc624c817a421eb2bbb1167dcbb543f"
+  }
+}
