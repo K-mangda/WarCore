@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import ts from 'typescript';
+import {readFileSync} from 'node:fs';
+const code=ts.transpileModule(readFileSync('src/dev/LabAssets.ts','utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
+const {LabAssets,roomAssets}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+assert.deepEqual(roomAssets('skeleton-hit'),['skeleton']);
+assert.deepEqual(roomAssets('bandit-death'),['bandit']);
+assert.ok(!roomAssets('bolt').includes('sword'));
+assert.ok(roomAssets('sword').includes('staff'),'Sword retains shared hit effects');
+assert.deepEqual(roomAssets('gold'),['fox','xp','progression','pickup']);
+const assets=new LabAssets();let calls=0,finish;
+const loader=()=>{calls++;return new Promise(resolve=>{finish=resolve;});};
+const first=assets.load('fox',loader),second=assets.load('fox',loader);
+assert.equal(first,second);await Promise.resolve();assert.equal(calls,1);finish();await first;
+await assets.load('fox',loader);assert.equal(calls,1,'Returning to a loaded room reuses assets');
+await assert.rejects(assets.load('bandit',async()=>{throw Error('offline');}),/offline/);
+let retries=0;await assets.load('bandit',async()=>{retries++;});assert.equal(retries,1,'Failure does not poison the cache');
+console.log('Lab room dependencies, in-flight reuse, warm reuse and failed-load retry passed.');

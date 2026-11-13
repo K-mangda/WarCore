@@ -6,7 +6,7 @@ import {balance} from '../combat/Balance';
 export class EnemyPreview {
  private views:Record<EnemyKind,BakedEnemyView>;
  constructor(scene:T.Scene){this.views={skeleton:new BakedEnemyView(scene,undefined,'skeleton'),bandit:new BakedEnemyView(scene,undefined,'bandit')};}
- load(){return Promise.all(Object.values(this.views).map(view=>view.load()));}
+ load(kind:EnemyKind){return this.views[kind].load();}
  update(room:string,age:number,facing:T.Vector3){
   const player=new T.Vector3(),position=facing.clone().multiplyScalar(2.5);
   const kind=room.startsWith('bandit-')?'bandit':room.startsWith('skeleton-')?'skeleton':undefined;

@@ -1,4 +1,5 @@
 import {EnemyPreview} from './EnemyPreview';
+import {LabAssets,roomAssets} from './LabAssets';
 import {balance} from '../combat/Balance';
 import {PickupNumbers} from '../combat/PickupNumbers';
 import {ProgressionView} from '../combat/ProgressionView';
@@ -31,7 +32,9 @@ const run=new Run(()=>0,()=>true,random,event=>{if(audible)audio.play(event);});
 const origin=new T.Vector3(),facing=()=>{const yaw=Number(rotate.value)*Math.PI/180;return new T.Vector3(-Math.sin(yaw),0,-Math.cos(yaw));};
 const frame=document.getElementById('frame') as HTMLInputElement,rotate=document.getElementById('rotate') as HTMLInputElement,weapon=document.getElementById('weapon') as HTMLSelectElement;
 const play=document.getElementById('play') as HTMLButtonElement,stop=document.getElementById('stop') as HTMLButtonElement;
-let animation=0,ticket=0,disposed=false;const hitLabels:T.Sprite[]=[];
+let animation=0,ticket=0,disposed=false,roomReady=false,loadTicket=0;const hitLabels:T.Sprite[]=[];
+const assets=new LabAssets();
+const loaders:Record<string,()=>Promise<unknown>>={fox:()=>fox.load(),sword:()=>sword.load(),staff:()=>staff.load(),damage:()=>numbers.load(),xp:()=>xpView.load(),progression:()=>progression.load(),pickup:()=>pickupNumbers.load(),skeleton:()=>enemyPreview.load('skeleton'),bandit:()=>enemyPreview.load('bandit')};
 const target=()=>facing().multiplyScalar(weapon.value==='sword'?2.5:6);
 function resetStaff(){seed=1;pickupNumbers.clear();run.reset();run.setWeapon(weapon.value==='sword'?'sword':'bolt');staff.reset();run.swarm.enemies.push({id:-1,position:target(),velocity:new T.Vector3(),health:1e6,flash:0});}
 function resetXp(){
@@ -49,6 +52,7 @@ function advanceWeapon(age:number){
 }
 function paint(){
  if(disposed)return;
+ if(!roomReady){renderer.clear();return;}
  fox.root.visible=!enemyRoom();enemyPreview.update(weapon.value,Number(frame.value),facing());
  fox.update(origin,Number(rotate.value)*Math.PI/180,0,true,0,0);sword.update(run);
  xpView.update(run);progression.update(run,origin,0);dummy.visible=!pickupRoom()&&!enemyRoom();dummy.position.copy(target()).y=.8;
@@ -64,7 +68,7 @@ function paint(){
  renderer.render(scene,camera);document.getElementById('time')!.textContent=Number(frame.value).toFixed(3)+' seconds';
 }
 function inspect(){
- if(disposed)return;audible=false;const age=Number(frame.value);
+ if(disposed||!roomReady)return;audible=false;const age=Number(frame.value);
  if(enemyRoom()){run.reset();staff.reset();progression.clear();pickupNumbers.clear();}
  else if(weapon.value==='sword'){resetStaff();advanceWeapon(age);}
  else if(pickupRoom()){resetXp();advanceXp(age);progression.update(run,origin,0);if(weapon.value==='level')progression.update(run,origin,age);}else{resetStaff();advanceWeapon(age);}
@@ -72,9 +76,16 @@ function inspect(){
 }
 function halt(){ticket++;cancelAnimationFrame(animation);audible=false;audio.stopProgression();audio.stopGameplay();}
 frame.addEventListener('input',()=>{halt();inspect();});rotate.addEventListener('input',()=>{halt();inspect();});
-function selectRoom(){
+async function selectRoom(){
+ const request=++loadTicket;roomReady=false;play.disabled=true;stop.disabled=true;frame.disabled=true;rotate.disabled=true;
+ const status=document.getElementById('ready')!;status.textContent='Loading room…';renderer.clear();
  frame.max=enemyRoom()?'1.5':weapon.value==='sword'?'.8':pickupRoom()?'2':'1.5';frame.value=weapon.value==='sword'?'.01':'.08';
- document.getElementById('room-title')!.textContent=`WARCORE LAB · ${enemyRoom()?enemySelect.options[enemySelect.selectedIndex].text+' - '+weapon.options[weapon.selectedIndex].text:weapon.value==='sword'?'SWORD':pickupRoom()?weapon.value.toUpperCase():'FIRESTAFF'}`;inspect();
+ document.getElementById('room-title')!.textContent=`WARCORE LAB · ${enemyRoom()?enemySelect.options[enemySelect.selectedIndex].text+' - '+weapon.options[weapon.selectedIndex].text:weapon.value==='sword'?'SWORD':pickupRoom()?weapon.value.toUpperCase():'FIRESTAFF'}`;
+ try{
+  await Promise.all(roomAssets(weapon.value).map(key=>assets.load(key,loaders[key])));
+  if(disposed||request!==loadTicket)return;
+  roomReady=true;play.disabled=false;stop.disabled=false;frame.disabled=false;rotate.disabled=false;status.textContent='Ready';inspect();
+ }catch(error){if(disposed||request!==loadTicket)return;status.textContent=`Could not load room: ${String(error)}. Select the room again to retry.`;}
 }
 const categories={
  weapons:[['sword','Sword'],['bolt','Firestaff']],
@@ -122,7 +133,8 @@ openCategory(initialCategory,requestedRoom??lastRoom[initialCategory],false);
 weapon.addEventListener('change',()=>{lastRoom[currentCategory]=weapon.value;halt();selectRoom();});
 const resize=new ResizeObserver(()=>{const width=host.clientWidth,height=host.clientHeight;renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();paint();});resize.observe(host);
 play.addEventListener('click',async()=>{
- halt();const request=ticket;play.disabled=true;await audio.prepare();play.disabled=false;if(disposed||request!==ticket)return;
+ if(!roomReady)return;
+ halt();const request=ticket;play.disabled=true;await audio.prepare();if(disposed||request!==ticket||!roomReady)return;play.disabled=false;
  const kind=weapon.value;if(enemyRoom()){run.reset();staff.reset();progression.clear();pickupNumbers.clear();}else if(pickupRoom())resetXp();else resetStaff();audible=true;let lastAge=0;const start=performance.now(),limit=Number(frame.max);
  const tick=(time:number)=>{
   if(disposed||request!==ticket)return;
@@ -135,7 +147,5 @@ play.addEventListener('click',async()=>{
 stop.addEventListener('click',halt);
 document.getElementById('mute')!.addEventListener('click',()=>{const muted=audio.toggle(),button=document.getElementById('mute')!;button.textContent=muted?'Sound off':'Sound on';button.setAttribute('aria-pressed',String(muted));});
 window.addEventListener('pagehide',()=>{disposed=true;halt();resize.disconnect();audio.dispose();enemyPreview.dispose();sword.dispose();staff.dispose();xpView.dispose();progression.dispose();pickupNumbers.dispose();fox.dispose();for(const sprite of hitLabels){scene.remove(sprite);sprite.material.dispose();}numbers.dispose();dummy.geometry.dispose();dummy.material.dispose();renderer.dispose();});
-try{
- await Promise.all([fox.load(),enemyPreview.load(),sword.load(),staff.load(),xpView.load(),progression.load(),pickupNumbers.load(),numbers.load()]);
- play.disabled=false;stop.disabled=false;for(const tab of tabs)tab.disabled=false;selectRoom();document.getElementById('ready')!.textContent='Ready';
-}catch(error){document.getElementById('ready')!.textContent=`Could not load Lab: ${String(error)}`;}
+for(const tab of tabs)tab.disabled=false;
+void selectRoom();
