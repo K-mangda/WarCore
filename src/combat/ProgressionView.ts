@@ -26,9 +26,7 @@ export class ProgressionView {
  }
  private sprite(kind:string){
   const texture=this.textures.get(kind)?.clone();if(!texture)return;
-  texture.needsUpdate=true;const sprite=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));if(kind==='text')sprite.material.onBeforeCompile=shader=>{shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>',`#include <map_fragment>
- float ink=max(sampledDiffuseColor.r,max(sampledDiffuseColor.g,sampledDiffuseColor.b));
- diffuseColor.a*=smoothstep(.35,.65,ink);`);};sprite.onBeforeRender=(_renderer,_scene,camera)=>{this.cameraRotation.copy(camera.quaternion);};if(kind==='gold'){
+  texture.needsUpdate=true;const sprite=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));sprite.onBeforeRender=(_renderer,_scene,camera)=>{this.cameraRotation.copy(camera.quaternion);};if(kind==='gold'){
    const halo=new T.Sprite(new T.SpriteMaterial({map:this.goldGlow,color:0xffd45b,opacity:.22,transparent:true,depthWrite:false,blending:T.AdditiveBlending,toneMapped:false}));
    halo.scale.setScalar(2.6);halo.renderOrder=1;sprite.renderOrder=2;sprite.add(halo);
   }

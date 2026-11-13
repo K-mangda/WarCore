@@ -272,3 +272,8 @@ Existing XP tiers are cyan values1..9, yellow10..49, red50+, with purple reserve
 ## Slower gold flight and cream-gold LEVEL UP tuning - 2026-11-13
 
 User requested slightly slower Gold flight. Gold Bezier progress uses0.75 of previous speed (about33% longer flight); activation, arc shape and gameplay reward are unchanged. LEVEL UP source art remains, while backing mask thresholds0.22/0.45 ->0.35/0.65 suppress more dark/gray edge pixels. User screenshot color override shifts prior saturated source orange toward cream-gold (1,0.84,0.55 ->1,0.76,0.42). This overrides the prior source gradient display only as requested visual tuning; shader parity is not claimed. Automatic delivery applies.
+
+
+## Restore native LEVEL UP outer border - 2026-11-13
+
+User clarified the outer dark border is desired and was lost to the luminance alpha mask. Removed that mask entirely so the original tile alpha preserves its native dark border/backing while transparent outside pixels remain transparent. Cream-gold text tint and existing animation/pause behavior remain. This supersedes earlier dark-backing removal and edge-threshold tuning for LEVEL UP only. Automatic delivery applies.
