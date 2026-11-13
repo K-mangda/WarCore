@@ -359,3 +359,7 @@ User clarified per-stage enemy rosters and accepted the current mixture only for
 ## Lab stale module graph recovery - 2026-11-13
 
 User screenshot confirms a cached Lab entry requests an obsolete XpView chunk and receives404 before the Lab module executes, leaving the initial Loading UI. Current published HTML references lab-Bj7H4WLN.js and XpView-3Ce7JExI.js, unlike the screenshot's older hashes. Embedded Lab URLs now include a build-specific version so a new game build does not reuse old Lab HTML. A small classic-script resource-error handler in lab.html works independently of the failed module graph and offers Reload latest Lab with a fresh URL, preserving embedded/room parameters. No automatic reload loop. Existing cached pages need a hard refresh once to obtain the fix. Build, deploy-package checks and focused VM recovery/version checks pass; no claim of live browser reproduction (computer-use access to Edge was denied).
+
+## Per-enemy Lab selectors - 2026-11-13
+
+User requested grouping enemy previews by individual monster to avoid a growing combined list. Enemies now shows an Enemy selector (Skeleton/Bandit) followed by the existing room selector containing only Walk/Hit/Death for that species. Species entries derive from registered enemy rooms. Switching species retains the selected action; category memory and existing weapon=bandit-death deep links remain supported. The room heading retains the full species/action name. Other categories keep their existing selectors. No gameplay or phase changes.

@@ -74,7 +74,7 @@ function halt(){ticket++;cancelAnimationFrame(animation);audible=false;audio.sto
 frame.addEventListener('input',()=>{halt();inspect();});rotate.addEventListener('input',()=>{halt();inspect();});
 function selectRoom(){
  frame.max=enemyRoom()?'1.5':weapon.value==='sword'?'.8':pickupRoom()?'2':'1.5';frame.value=weapon.value==='sword'?'.01':'.08';
- document.getElementById('room-title')!.textContent=`WARCORE LAB · ${enemyRoom()?weapon.options[weapon.selectedIndex].text:weapon.value==='sword'?'SWORD':pickupRoom()?weapon.value.toUpperCase():'FIRESTAFF'}`;inspect();
+ document.getElementById('room-title')!.textContent=`WARCORE LAB · ${enemyRoom()?enemySelect.options[enemySelect.selectedIndex].text+' - '+weapon.options[weapon.selectedIndex].text:weapon.value==='sword'?'SWORD':pickupRoom()?weapon.value.toUpperCase():'FIRESTAFF'}`;inspect();
 }
 const categories={
  weapons:[['sword','Sword'],['bolt','Firestaff']],
@@ -83,12 +83,25 @@ const categories={
  enemies:[['skeleton-walk','Skeleton - Walk'],['skeleton-hit','Skeleton - Hit'],['skeleton-death','Skeleton - Death'],['bandit-walk','Bandit - Walk'],['bandit-hit','Bandit - Hit'],['bandit-death','Bandit - Death']],
 } as const;
 type Category=keyof typeof categories;
+// Derive the species list from registered rooms so future enemies get one entry.
+const enemySelect=document.createElement('select'),enemyLabel=document.createElement('label');
+enemySelect.setAttribute('aria-label','Enemy');enemyLabel.append('Enemy',enemySelect);
+const enemyNames=new Map(categories.enemies.map(([value,text])=>[value.split('-')[0],text.split(' - ')[0]]));
+enemySelect.replaceChildren(...Array.from(enemyNames,([value,text])=>new Option(text,value)));
+weapon.parentElement!.before(enemyLabel);
+enemySelect.addEventListener('change',()=>{
+ const action=weapon.value.split('-').slice(1).join('-');
+ openCategory('enemies',`${enemySelect.value}-${action}`);
+});
 const tabs=Array.from(document.querySelectorAll<HTMLButtonElement>('[data-category]'));
 const lastRoom:Record<Category,string>={weapons:'sword',pickups:'xp',effects:'level',enemies:'skeleton-walk'};
 let currentCategory:Category='weapons';
 function openCategory(category:Category,room=lastRoom[category],preview=true){
  currentCategory=category;
- const rooms=categories[category];weapon.replaceChildren(...rooms.map(([value,text])=>new Option(text,value)));
+ enemyLabel.style.display=category==='enemies'?'':'none';
+ if(category==='enemies')enemySelect.value=enemyNames.has(room.split('-')[0])?room.split('-')[0]:enemySelect.options[0].value;
+ const rooms=categories[category].filter(([value])=>category!=='enemies'||value.startsWith(enemySelect.value+'-'));
+ weapon.replaceChildren(...rooms.map(([value,text])=>new Option(category==='enemies'?text.split(' - ')[1]:text,value)));
  weapon.value=rooms.some(([value])=>value===room)?room:rooms[0][0];lastRoom[category]=weapon.value;
  for(const tab of tabs){const active=tab.dataset.category===category;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;}
  document.getElementById('lab-room-panel')!.setAttribute('aria-labelledby','tab-'+category);
