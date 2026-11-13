@@ -16,7 +16,7 @@ export class CombatView {
   private labels:T.Sprite[]=[];private numbers=new DamageNumbers();
   private disposed=false;
   private sword:SwordView;
-  constructor(private scene:T.Scene){this.sword=new SwordView(scene);this.staff=new StaffView(scene);this.gems=new XpView(scene);this.progression=new ProgressionView(scene);this.pickupNumbers=new PickupNumbers(scene);}
+  constructor(private scene:T.Scene,camera:T.PerspectiveCamera,viewport:()=>{width:number;height:number}){this.sword=new SwordView(scene);this.staff=new StaffView(scene);this.gems=new XpView(scene);this.progression=new ProgressionView(scene);this.pickupNumbers=new PickupNumbers(scene,camera,viewport);}
   async load(){
     await Promise.all([this.sword.load(),this.staff.load(),this.numbers.load(),this.gems.load(),this.progression.load(),this.pickupNumbers.load()]);
     const response=await fetch(assetUrl('combat/skeleton.json'));if(!response.ok)throw new Error('Skeleton visual failed to load');
@@ -30,7 +30,7 @@ export class CombatView {
     this.enemies=new T.InstancedMesh(geometry,new T.MeshLambertMaterial({map:texture}),balance.maxEnemies);this.enemies.count=0;this.enemies.frustumCulled=false;this.scene.add(this.enemies);
   }
   update(run:Run,player:T.Vector3,dt=0){
-    this.progression.update(run,player,dt);this.pickupNumbers.update(run,dt);
+    this.progression.update(run,player,dt);this.pickupNumbers.update(run,dt,player);
     this.sword.update(run);
     const elapsed=run.snapshot().elapsed;this.staff.update(run,Math.max(0,elapsed-this.previousElapsed));this.previousElapsed=elapsed;
     const matrix=new T.Matrix4(),rotation=new T.Quaternion(),up=new T.Vector3(0,1,0),scale=new T.Vector3(1,1,1);

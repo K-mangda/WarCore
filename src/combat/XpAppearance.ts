@@ -8,4 +8,4 @@ export const xpColors={
 };
 // User screenshot tuning: compact crystal, bright center and soft colored halo.
 // These are web visual settings, not recovered native shader parameters.
-export const xpVisual={scale:.35,brightness:2.5,haloScale:2.4,haloOpacity:.32};
+export const xpVisual={scale:.32,brightness:2.5,haloScale:2.4,haloOpacity:.32};

@@ -152,3 +152,12 @@ Reduced xpVisual.scale0.42 to0.35 (about17% smaller). EXP spawn elevation now us
 ## Further user-requested slower movement and jump - 2026-11-13
 
 playtestMovement.speedMultiplier0.7 ->0.63 lowers walking/running and airborne movement cap from7 to6.3m/s (10% slower than the previous playtest). airTimeScale0.8 ->0.7 further slows ascent/descent and jump/fall animation, extending nominal flight by about14% relative to the previous version while retaining approximately the same apex. Existing motor scales vertical impulse by airTimeScale and gravity by its square; Fox airborne animation uses the same factor. Grounded animation, combat and source physics constants remain unchanged. Motor regression checks use the configured time scale for flight duration bounds. This is requested feel tuning, not recovered native balance. User authorized pushing this update.
+
+
+## Screen-anchored EXP and dual-currency counters - 2026-11-13
+
+User screenshots supersede the upward-floating XP feedback. PickupNumbers now projects the player anchor into a camera-plane overlay at a fixed pixel offset. EXP (cyan +), gold (yellow $) and silver (pale S) use separate rows/counters and do not mix balances. Collection within0.9s continues the running displayed total; each new receipt retriggers a0.18s pulse and chain growth, capped at1.55x after12 increments. Counters fade after1.1s and hide after1.4s idle. Fixed pixel sizing ignores camera distance, depth testing is disabled for HUD feedback. All timing, prefixes/offsets and caps are explicit web tuning pending native evidence; totals always use actual award values. Texture/material replacements are disposed rather than cached indefinitely.
+
+EXP size0.35 ->0.32 (about9% smaller); gold and silver billboards use the same0.32 base size rather than native1/1.5. Currency hover now matches EXP at ground+0.35m. Shared game/Lab changes; source artwork, separate currency sounds and wallet balances remain. Build and targeted feedback checks are required; rendered appearance/listening is left to user playtesting. No push/deploy.
+
+Currency sprite tint now consumes native InitialModule.startColor.maxColor: gold(1,0.9311,0.3538), silver(0.7333,0.7843,0.8510). Previously both were rendered without their distinct source tints.

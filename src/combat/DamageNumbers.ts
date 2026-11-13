@@ -22,9 +22,9 @@ export class DamageNumbers {
     for(let i=0;i<pixels.data.length;i+=4){const distance=pixels.data[i+3]/255;const foreground=distance>=.5;const underlay=distance>=.3;pixels.data[i]=foreground?255:0;pixels.data[i+1]=foreground?240:0;pixels.data[i+2]=foreground?189:0;pixels.data[i+3]=underlay?255:0;}
     context.putImageData(pixels,0,0);this.glyphs.set(char,canvas);return canvas;
   }
-  material(damage:number|string,color='#fff0bd'){
+  material(damage:number|string,color='#fff0bd',cache=true){
     const key=String(damage)+color;
-    let material=this.materials.get(key);if(material)return material;
+    let material=cache?this.materials.get(key):undefined;if(material)return material;
     if(!this.data||!this.image)throw Error('Damage font must load before rendering');
     const text=String(damage),size=28,scale=size/this.data.faceInfo.m_PointSize;
     const advance=[...text].reduce((sum,char)=>sum+this.data!.characters[char].metrics.horizontalAdvance*scale,0);
@@ -38,7 +38,7 @@ export class DamageNumbers {
       context.putImageData(pixels,0,0);
     }
     const map=new T.CanvasTexture(canvas);if(color!=='#fff0bd')map.colorSpace=T.SRGBColorSpace;map.magFilter=T.NearestFilter;map.minFilter=T.LinearFilter;
-    material=new T.SpriteMaterial({map,transparent:true,depthWrite:false});this.materials.set(key,material);return material;
+    material=new T.SpriteMaterial({map,transparent:true,depthWrite:false});if(cache)this.materials.set(key,material);return material;
   }
   dispose(){for(const material of this.materials.values()){material.map?.dispose();material.dispose();}this.materials.clear();this.glyphs.clear();}
 }

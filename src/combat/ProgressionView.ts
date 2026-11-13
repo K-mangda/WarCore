@@ -1,3 +1,4 @@
+import {xpVisual} from './XpAppearance';
 import * as T from 'three';
 import {assetUrl} from '../core/assetUrl';
 import type {Run,Gem} from './Run';
@@ -20,7 +21,8 @@ export class ProgressionView {
   const source=this.data!.sprites[kind],p=source.particle,uv=p.UVModule,initial=p.InitialModule;
   const count=source.frames,start=Math.floor(uv.startFrame.scalar*count),frame=Math.min(count-1,start+Math.floor(Math.min(1,age/initial.startLifetime.scalar)*uv.frameOverTime.scalar*count));
   sprite.material.map!.repeat.set(1/count,1);sprite.material.map!.offset.set(frame/count,0);
-  sprite.scale.setScalar(initial.startSize.scalar);
+  sprite.scale.setScalar(kind==='gold'||kind==='silver'?xpVisual.scale:initial.startSize.scalar);
+  if(kind==='gold'||kind==='silver'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a;sprite.material.toneMapped=false;}
  }
  burst(player:T.Vector3){
   if(!this.data)return;

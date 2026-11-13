@@ -99,3 +99,27 @@ assert.equal(feedback.xpReceipts.length,1,'Same-tick collection must produce one
 assert.equal(feedback.xpReceipts[0].position.y,1.8,'XP feedback must appear above the player');
 feedback.step(.02,player);assert.equal(feedback.xpReceipts.length,1,'Empty steps must not repeat feedback');feedback.reset();assert.equal(feedback.xpReceipts.length,0,'New run must clear collection feedback');
 console.log('XP feedback checks passed: actual total, collection sound dispatch, no duplicates and reset.');
+
+const currencies=new Run(()=>0,()=>true,()=>.5);
+currencies.gems.push({kind:'gold',position:player.clone(),value:4},{kind:'silver',position:player.clone(),value:7});currencies.step(.02,player);
+assert.equal(currencies.snapshot().gold,4);assert.equal(currencies.snapshot().silver,7);assert.equal(currencies.currencyReceipts.length,2);
+assert.deepEqual(currencies.currencyReceipts.map(r=>r.kind).sort(),['gold','silver']);
+currencies.reset();assert.equal(currencies.currencyReceipts.length,0);
+currencies.spawnPickup('gold',new Vector3(0,5,0));assert.equal(currencies.gems[0].position.y,.35,'Currency must hover near ground like EXP');
+for(const name of ['combat/PickupNumbers','combat/DamageNumbers','core/assetUrl']){
+ const dest=resolve('.local-evidence/combat-check',name+'.js');mkdirSync(dirname(dest),{recursive:true});
+ writeFileSync(dest,ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'"));
+}
+const T=await import('three');
+const {DamageNumbers}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/DamageNumbers.js')));
+DamageNumbers.prototype.material=function(){return new T.SpriteMaterial({map:new T.Texture({width:128,height:80})});};
+const {PickupNumbers}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/PickupNumbers.js')));
+const scene=new T.Scene(),camera=new T.PerspectiveCamera(75,16/9,.05,100);camera.position.set(0,2,5);camera.lookAt(0,1,0);
+const overlay=new PickupNumbers(scene,camera,()=>({width:1280,height:720}));
+const mock={snapshot:()=>({elapsed:1}),xpReceipts:[{value:3}],currencyReceipts:[{kind:'gold',value:4},{kind:'silver',value:7}]};
+overlay.update(mock,.02,player);const root=camera.children[0];assert.equal(root.children.length,3,'Three currencies require distinct screen rows');
+const baseHeight=root.children[0].scale.y;for(let i=0;i<50;i++){mock.xpReceipts=[{value:1}];overlay.update(mock,.02,player);}
+assert.equal(root.children.length,3,'Rapid pickups must replace counters, not leak sprites');assert.ok(root.children[0].scale.y<=baseHeight*1.55);
+const height=root.children[0].scale.y;camera.position.z=12;camera.lookAt(0,1,0);overlay.update(mock,0,player);assert.equal(root.children[0].scale.y,height,'Counter size must stay constant as camera distance changes');
+overlay.update(mock,2,player);assert.ok(root.children.every(s=>!s.visible),'Idle counters fade away');overlay.dispose();assert.equal(camera.children.length,0);
+console.log('Currency feedback checks passed: separate balances, bounded screen counters, distance-independent size, idle fade and disposal.');

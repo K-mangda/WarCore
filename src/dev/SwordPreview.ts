@@ -22,7 +22,7 @@ const dummy=new T.Mesh(new T.CapsuleGeometry(.4,1,4,8),new T.MeshBasicMaterial({
 let seed=1;const random=()=>((seed=Math.imul(seed,1664525)+1013904223>>>0)/4294967296);
 const fox=new Fox();scene.add(fox.root);const sword=new SwordView(scene),staff=new StaffView(scene,random),audio=new GameAudio(),numbers=new DamageNumbers();
 let audible=false;
-const xpView=new XpView(scene),progression=new ProgressionView(scene),pickupNumbers=new PickupNumbers(scene);
+const xpView=new XpView(scene),progression=new ProgressionView(scene),pickupNumbers=new PickupNumbers(scene,camera,()=>({width:host.clientWidth,height:host.clientHeight}));
 const pickupRoom=()=>['xp','gold','silver','level'].includes(weapon.value);
 const run=new Run(()=>0,()=>true,random,event=>{if(audible)audio.play(event);});
 const origin=new T.Vector3(),facing=()=>{const yaw=Number(rotate.value)*Math.PI/180;return new T.Vector3(-Math.sin(yaw),0,-Math.cos(yaw));};
@@ -34,7 +34,7 @@ function resetStaff(){seed=1;pickupNumbers.clear();run.reset();run.setWeapon('bo
 function resetXp(){
  seed=1;run.reset();staff.reset();progression.clear();pickupNumbers.clear();
  const kind=weapon.value==='gold'?'gold':weapon.value==='silver'?'silver':'xp';
- for(let i=0;i<(weapon.value==='level'?5:3);i++)run.gems.push({kind,position:weapon.value==='level'?origin.clone():new T.Vector3((i-1)*.6,kind==='xp'?balance.xpHoverHeight:1,-3-i*.5),value:kind==='xp'&&weapon.value!=='level'?[1,10,50][i]:1});
+ for(let i=0;i<(weapon.value==='level'?5:3);i++)run.gems.push({kind,position:weapon.value==='level'?origin.clone():new T.Vector3((i-1)*.6,balance.xpHoverHeight,-3-i*.5),value:kind==='xp'&&weapon.value!=='level'?[1,10,50][i]:1});
 }
 
 function advanceXp(age:number){while(!run.blocked&&run.snapshot().elapsed+1e-7<age){const dt=Math.min(.02,age-run.snapshot().elapsed);run.step(dt,origin,facing());xpView.update(run);pickupNumbers.update(run,dt);if(weapon.value!=='level')while(run.blocked&&!run.snapshot().dead)run.choose('damage');}}
@@ -49,6 +49,7 @@ function paint(){
  fox.update(origin,Number(rotate.value)*Math.PI/180,0,true,0,0);sword.update(run);
  xpView.update(run);progression.update(run,origin,0);dummy.visible=!pickupRoom();dummy.position.copy(target()).y=.8;
  if(weapon.value!=='sword'){camera.position.set(4,3,5);camera.lookAt(0,.8,-2);}else{camera.position.set(0,2.25,3.5);camera.lookAt(0,1.3,0);}
+ pickupNumbers.update(run,0,origin);
  if(label)label.material.opacity=1;
  renderer.render(scene,camera);document.getElementById('time')!.textContent=Number(frame.value).toFixed(3)+' seconds';
 }

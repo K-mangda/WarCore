@@ -30,7 +30,7 @@ export class Engine {
     document.addEventListener('pointerlockchange',this.lockChanged);
     window.addEventListener('blur',this.pause);
     this.scene.add(this.fox.root);
-    this.combatView=new CombatView(this.scene);
+    this.combatView=new CombatView(this.scene,this.camera,()=>({width:this.host.clientWidth,height:this.host.clientHeight}));
     window.addEventListener('resize',this.resize); this.resize();
     this.ready=Promise.all([this.fox.load(),this.combatView.load()]).then(()=>{if(!this.disposed)this.frame=requestAnimationFrame(this.tick);});
   }
@@ -61,6 +61,7 @@ export class Engine {
     else this.accumulator=0;
     const slide=this.motor.state===EMovementState.Sliding;
     this.fox.update(this.motor.position,this.orbit.yaw,this.motor.speed,this.motor.grounded,this.motor.velocity.y,locked?dt:0);
+    this.orbit.update(this.motor.position,this.terrain);this.camera.updateMatrixWorld();
     this.combatView.update(this.run,this.motor.position,this.run.snapshot().pendingUpgrades>0||locked?dt:0);
     this.audio.setLevelModal(!this.inLab&&this.run.snapshot().pendingUpgrades>0);
     this.orbit.update(this.motor.position,this.terrain);this.effects.update(locked?dt:0,this.motor.position,locked&&slide,this.motor.speed);this.renderer.render(this.scene,this.camera);
