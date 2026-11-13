@@ -44,5 +44,6 @@ audio.stopGameplay();assert.equal(preserved.stopped,true,'Ordinary stop/reset mu
 context.currentTime+=1;audio.play('hurt');assert.equal(started.at(-1).output.gain.value,.17,'PlayerDamage uses native source gain');
 audio.play('death');assert.equal(started.at(-1).output.gain.value,.5,'DeathImpact uses native source gain');
 context.currentTime+=1;audio.play('click');assert.ok(started.at(-1).buffer.label.includes('Enter5.wav'),'Button press uses native uiClick clip');assert.equal(started.at(-1).output.gain.value,.75);assert.ok(started.at(-1).playbackRate.value>=.98&&started.at(-1).playbackRate.value<=1.02);
+context.currentTime+=1;audio.setLevelModal(true);audio.stopGameplay(true);audio.setLevelModal(false);audio.play('sword');assert.ok(started.at(-1).buffer.label.includes('SwordSwing')&&!started.at(-1).stopped,'Gameplay audio resumes after closing upgrade modal');
 audio.dispose();assert.ok(started.every(v=>v.stopped),'Dispose must stop every remaining voice');
 console.log('Audio event checks passed: consecutive swings, bounded priorities, pause notifications, mute and cleanup. Mock audio does not verify waveform or perceived loudness.');

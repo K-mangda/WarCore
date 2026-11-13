@@ -2,7 +2,7 @@ import * as T from 'three';
 import {DamageNumbers} from './DamageNumbers';
 import type {Run,XpReceipt} from './Run';
 import type {PickupKind} from './Pickups';
-interface Counter {total:number;idle:number;chain:number;pulse:number;sprite?:T.Sprite;}
+interface Counter {total:number;idle:number;pulse:number;sprite?:T.Sprite;}
 const colors={xp:'#26dfff',gold:'#ffe52b',silver:'#e5efff'};
 const prefixes={xp:'+',gold:'$',silver:'S '};
 /** Camera-plane collection feedback; tuning follows user screenshots. */
@@ -21,9 +21,9 @@ export class PickupNumbers {
   for(const receipt of [...run.xpReceipts,...run.currencyReceipts]){
    if(this.seen.has(receipt))continue;this.seen.add(receipt);
    const kind=receipt.kind??'xp';let counter=this.counters.get(kind);
-   if(!counter){counter={total:0,idle:Infinity,chain:0,pulse:0};this.counters.set(kind,counter);}
-   if(counter.idle>=1.4){counter.total=0;counter.chain=0;}
-   counter.total+=receipt.value;counter.chain=Math.min(9,counter.chain+(receipt.pickups??1));counter.idle=0;counter.pulse=.18;changed.add(kind);
+   if(!counter){counter={total:0,idle:Infinity,pulse:0};this.counters.set(kind,counter);}
+   if(counter.idle>=1.4){counter.total=0;}
+   counter.total+=receipt.value;counter.idle=0;counter.pulse=.22;changed.add(kind);
   }
   for(const kind of changed){
    const counter=this.counters.get(kind)!;if(counter.sprite)this.remove(counter.sprite);
@@ -39,8 +39,8 @@ export class PickupNumbers {
   for(const [kind,counter] of this.counters){
    const sprite=counter.sprite;if(!sprite)continue;sprite.visible=counter.idle<1.4;
    sprite.material.opacity=T.MathUtils.clamp((1.4-counter.idle)/.3,0,1);
-   // First pickup is1x; each subsequent pickup adds0.1x until1.8x.
-   const pop=Math.sin(counter.pulse/.18*Math.PI)*.06,scale=Math.min(1.8,1+Math.max(0,counter.chain-1)*.1+pop);
+   // Each collection punches immediately to1.5x, then settles back to1x.
+   const scale=1+.5*(counter.pulse/.22)**2;
    const image=sprite.material.map!.image as HTMLCanvasElement;
    sprite.scale.set(image.width/80*42*pixel*scale,42*pixel*scale,1);
    sprite.position.set(0,-(kind==='xp'?0:kind==='gold'?28:56)*pixel,0);

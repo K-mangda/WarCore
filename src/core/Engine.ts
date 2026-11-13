@@ -1,3 +1,4 @@
+import {PointerLockState} from './PointerLockState';
 import {GameAudio} from '../audio/GameAudio';
 import * as T from 'three';
 import { Motor } from '../player/Motor';
@@ -20,7 +21,7 @@ export class Engine {
   private combatView:CombatView;
   private disposed=false;
   private active=false;private inLab=false;
-  private hadLock=false;
+  private pointerLock=new PointerLockState();
   private renderer:T.WebGLRenderer; private scene=new T.Scene(); private camera=new T.PerspectiveCamera(75,1,.05,250); private motor=new Motor(); private input:Input; private orbit:Orbit; private terrain:T.Mesh; private effects:Effects; private frame=0; private previous=0; private accumulator=0; private frames=0; private fps=0; private sample=0;
   constructor(private host:HTMLElement,private report:(data:Telemetry)=>void) {
     this.renderer=new T.WebGLRenderer({antialias:true}); this.renderer.setPixelRatio(Math.min(devicePixelRatio,1.75)); this.renderer.setClearColor(0xb5c9ba); this.renderer.outputColorSpace=T.SRGBColorSpace; host.append(this.renderer.domElement);
@@ -38,18 +39,18 @@ export class Engine {
     if(this.run.blocked)return;
     this.audio.unlock();if(feedback)this.audio.play('click');
     this.active=true;
-    this.renderer.domElement.focus();
+    this.renderer.domElement.focus();this.input.resume();
     // Embedded browsers may reject pointer lock. Gameplay remains available.
     try { const request=this.renderer.domElement.requestPointerLock?.(); void request?.catch(()=>{}); } catch { /* Drag-to-look fallback. */ }
   };
-  private pause=()=>{this.audio.stopGameplay(this.run.snapshot().pendingUpgrades>0&&!this.inLab);this.active=false;this.input.clear();if(document.pointerLockElement===this.renderer.domElement)document.exitPointerLock();};
-  private lockChanged=()=>{const locked=document.pointerLockElement===this.renderer.domElement;if(this.hadLock&&!locked)this.pause();this.hadLock=locked;};
+  private pause=()=>{this.audio.stopGameplay(this.run.snapshot().pendingUpgrades>0&&!this.inLab);this.active=false;this.input.clear();this.pointerLock.release();if(document.pointerLockElement===this.renderer.domElement)document.exitPointerLock();};
+  private lockChanged=()=>{if(this.pointerLock.changed(document.pointerLockElement===this.renderer.domElement))this.pause();};
   pauseForLab=()=>{this.inLab=true;this.audio.stopProgression();this.pause();this.emit();};
   resumeFromLab=()=>{this.inLab=false;};
   reset=(top=false)=>{this.audio.stopProgression();this.audio.stopGameplay();this.motor.reset(top);this.run.reset();this.emit();};
   setWeapon=(weapon:Weapon)=>{if(this.active)return;this.run.setWeapon(weapon);this.emit();};
   restart=()=>{this.reset();this.lock();};
-  chooseUpgrade=(upgrade:Upgrade)=>{if(!this.run.choose(upgrade))return;this.audio.play('click');if(!this.run.blocked)this.lock(false);this.emit();};
+  chooseUpgrade=(upgrade:Upgrade)=>{if(!this.run.choose(upgrade))return;this.audio.unlock();this.audio.setLevelModal(this.run.blocked);this.audio.play('click');if(!this.run.blocked)this.lock(false);this.emit();};
   private emit=()=>{this.report({...this.run.snapshot(),speed:this.motor.speed,fps:this.fps,state:EMovementState[this.motor.state],jumps:this.motor.jumps,locked:this.active});};
   private resize=()=>{const w=this.host.clientWidth,h=this.host.clientHeight;this.renderer.setSize(w,h);this.camera.aspect=w/h;this.camera.updateProjectionMatrix();};
   private tick=(time:number)=>{

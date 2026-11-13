@@ -120,9 +120,11 @@ const scene=new T.Scene(),camera=new T.PerspectiveCamera(75,16/9,.05,100);camera
 const overlay=new PickupNumbers(scene,camera,()=>({width:1280,height:720}));
 const mock={snapshot:()=>({elapsed:1}),xpReceipts:[{value:3}],currencyReceipts:[{kind:'gold',value:4},{kind:'silver',value:7}]};
 overlay.update(mock,.02,player);const root=camera.children[0];assert.equal(root.children.length,3,'Three currencies require distinct screen rows');
-const baseHeight=overlay.counters.get('xp').sprite.scale.y;mock.xpReceipts=[{value:1}];overlay.update(mock,0,player);assert.ok(Math.abs(overlay.counters.get('xp').sprite.scale.y/baseHeight-1.1)<.00001,'Second pickup adds ten percent');
+const baseHeight=overlay.counters.get('xp').sprite.scale.y;
+overlay.update(mock,.11,player);const settlingHeight=overlay.counters.get('xp').sprite.scale.y;assert.ok(settlingHeight<baseHeight,'Pickup pop shrinks back after the hit');
+mock.xpReceipts=[{value:1}];overlay.update(mock,0,player);assert.ok(Math.abs(overlay.counters.get('xp').sprite.scale.y-baseHeight)<.00001,'Each pickup retriggers the same bounded pop');
 for(let i=0;i<50;i++){mock.xpReceipts=[{value:1}];overlay.update(mock,.02,player);}
-assert.equal(root.children.length,3,'Rapid pickups must replace counters, not leak sprites');assert.ok(overlay.counters.get('xp').sprite.scale.y<=baseHeight*1.8);
+assert.equal(root.children.length,3,'Rapid pickups must replace counters, not leak sprites');assert.ok(overlay.counters.get('xp').sprite.scale.y<=baseHeight);
 const height=overlay.counters.get('xp').sprite.scale.y;camera.position.z=12;camera.lookAt(0,1,0);overlay.update(mock,0,player);assert.equal(overlay.counters.get('xp').sprite.scale.y,height,'Counter size must stay constant as camera distance changes');
 overlay.update(mock,2,player);assert.ok(root.children.every(s=>!s.visible),'Idle counters fade away');overlay.dispose();assert.equal(camera.children.length,0);
 console.log('Currency feedback checks passed: separate balances, bounded screen counters, distance-independent size, idle fade and disposal.');

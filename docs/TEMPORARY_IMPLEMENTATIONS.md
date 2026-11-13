@@ -341,3 +341,10 @@ User screenshot shows2.5m anchor too far above the hat. Lowered only the text sp
 ## Pickup counter growth per collection - 2026-11-13
 
 User clarified size should accumulate per new pickup while the previous number remains visible:1x,1.1x,1.2x etc. Each currency now starts1x, adds0.1 per subsequent collection and caps at1.8x, including its small retriggered pulse. Chain/value reset only after the1.4s visible lifetime expires (previous growth window0.9s). EXP receipts preserve pickup count separately from award value so multiple entities collected within one fixed tick increase size correctly without treating one valuable gem as many pickups. Gold/Silver/EXP remain independent. Row spacing25 ->28px prevents capped text overlap. Cap/timing are web tuning, not recovered native behavior. Automatic delivery applies.
+
+
+## Upgrade resume race and per-pickup punch feedback - 2026-11-13
+
+User reports silence/movement stopping after upgrade selection. Identified a pointer-lock race: hadLock could remain true after programmatic exit; a delayed pointerlockchange following resume could call pause again, stopping gameplay and voices. PointerLockState now clears ownership synchronously on intentional pause, ignores that delayed exit, and retains normal Escape/user-exit behavior. Input keeps physically held WASD separately from active actions and restores those held keys on resume; blur clears both to prevent stuck movement. Successful upgrade selection unlocks/resumes audio and reconciles the modal loop immediately, then resumes without duplicate clicks. Mock audio and lifecycle tests cover these paths; this does not claim browser listening/end-to-end reproduction.
+
+User clarified counters should punch bigger on every pickup and shrink back, rather than accumulating a permanently larger base size. Each new receipt now immediately sets a1.5x peak and decays quadratically to1x over0.22s; rapid pickups retrigger the same bounded punch. Displayed amounts still accumulate while visible, per currency. This supersedes the prior permanent+0.1 size chain rule; source timing is not claimed. Automatic delivery applies.
