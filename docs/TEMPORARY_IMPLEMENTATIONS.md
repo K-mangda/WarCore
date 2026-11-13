@@ -468,3 +468,8 @@ User requested no money or EXP glow. Removed the additive EXP halo batch/materia
 ## Warm compact level-up sparkles - 2026-11-14
 
 User screenshot tuning: changed the selection-independent LEVEL UP burst tint from serialized blue to pale warm yellow, reduced sparkle size to 18% and radial launch speed to 2.5-4.5 (previously 7-12). Random in-plane sparkle rotation, faint additive warmth for burst/text only, and lighter cream/gold sign text follow the supplied image. Text anchor/size/sway/collapse/pause behavior are preserved. Glow is restricted to level-up effects; Gold/Silver/EXP remain without added glow. Source atlas/manifest unchanged, shared gameplay/Lab renderer, no native-parity claim or phase change. Build and existing effect/pause/coin-no-glow checks; user handles appearance.
+
+
+## Silver receipt row and prefix - 2026-11-14
+
+User clarified Silver collection feedback: show +number in the existing pale silver coin color, one row above EXP. Replaced S prefix with + and moved Silver from below Gold to 28px above EXP; Gold remains below EXP. Existing pulse, accumulated values, pause and end-of-life fade are preserved (the supplied screenshot shows fade-out, not permanent low opacity). Shared gameplay/Lab counters; no currency balance/drop-rule change or phase transition. Build and existing collection feedback checks.

@@ -4,7 +4,7 @@ import type {Run,XpReceipt} from './Run';
 import type {PickupKind} from './Pickups';
 interface Counter {total:number;idle:number;pulse:number;sprite?:T.Sprite;}
 const colors={xp:'#26dfff',gold:'#ffe52b',silver:'#e5efff'};
-const prefixes={xp:'+',gold:'$',silver:'S '};
+const prefixes={xp:'+',gold:'$',silver:'+'};
 /** Camera-plane collection feedback; tuning follows user screenshots. */
 export class PickupNumbers {
  private font=new DamageNumbers();private seen=new WeakSet<XpReceipt>();private root=new T.Group();
@@ -43,7 +43,7 @@ export class PickupNumbers {
    const scale=1+.5*(counter.pulse/.22)**2;
    const image=sprite.material.map!.image as HTMLCanvasElement;
    sprite.scale.set(image.width/80*42*pixel*scale,42*pixel*scale,1);
-   sprite.position.set(0,-(kind==='xp'?0:kind==='gold'?28:56)*pixel,0);
+   sprite.position.set(0,(kind==='silver'?28:kind==='gold'?-28:0)*pixel,0);
   }
  }
  private remove(sprite:T.Sprite){this.root.remove(sprite);sprite.material.map?.dispose();sprite.material.dispose();}
