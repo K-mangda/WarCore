@@ -27,8 +27,8 @@ const pickupRoom=()=>['xp','gold','silver','level'].includes(weapon.value);
 const run=new Run(()=>0,()=>true,random,event=>{if(audible)audio.play(event);});
 const origin=new T.Vector3(),facing=()=>{const yaw=Number(rotate.value)*Math.PI/180;return new T.Vector3(-Math.sin(yaw),0,-Math.cos(yaw));};
 const frame=document.getElementById('frame') as HTMLInputElement,rotate=document.getElementById('rotate') as HTMLInputElement,weapon=document.getElementById('weapon') as HTMLSelectElement;
-const play=document.getElementById('play') as HTMLButtonElement,stop=document.getElementById('stop') as HTMLButtonElement,damage=document.getElementById('damage') as HTMLButtonElement;
-let animation=0,ticket=0,disposed=false;let label:T.Sprite|undefined;const hitLabels:T.Sprite[]=[];
+const play=document.getElementById('play') as HTMLButtonElement,stop=document.getElementById('stop') as HTMLButtonElement;
+let animation=0,ticket=0,disposed=false;const hitLabels:T.Sprite[]=[];
 const target=()=>facing().multiplyScalar(weapon.value==='sword'?2.5:6);
 function resetStaff(){seed=1;pickupNumbers.clear();run.reset();run.setWeapon(weapon.value==='sword'?'sword':'bolt');staff.reset();run.swarm.enemies.push({id:-1,position:target(),velocity:new T.Vector3(),health:1e6,flash:0});}
 function resetXp(){
@@ -57,7 +57,6 @@ function paint(){
   sprite.material.opacity=Math.min(1,hit.life/.15);sprite.position.copy(hit.position);
   sprite.scale.set((sprite.material.map!.image as HTMLCanvasElement).width/128*1.2,.75,1);
  });
- if(label)label.material.opacity=1;
  renderer.render(scene,camera);document.getElementById('time')!.textContent=Number(frame.value).toFixed(3)+' seconds';
 }
 function inspect(){
@@ -87,7 +86,7 @@ function openCategory(category:Category,room=lastRoom[category],preview=true){
  weapon.value=rooms.some(([value])=>value===room)?room:rooms[0][0];lastRoom[category]=weapon.value;
  for(const tab of tabs){const active=tab.dataset.category===category;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;}
  document.getElementById('lab-room-panel')!.setAttribute('aria-labelledby','tab-'+category);
- if(preview){halt();if(label)label.visible=false;selectRoom();}
+ if(preview){halt();selectRoom();}
 }
 for(const [index,tab] of tabs.entries()){
  tab.addEventListener('click',()=>openCategory(tab.dataset.category as Category));
@@ -101,7 +100,7 @@ for(const [index,tab] of tabs.entries()){
 const requestedRoom=new URLSearchParams(location.search).get('weapon');
 const initialCategory=(Object.keys(categories) as Category[]).find(key=>categories[key].some(([room])=>room===requestedRoom))??'weapons';
 openCategory(initialCategory,requestedRoom??lastRoom[initialCategory],false);
-weapon.addEventListener('change',()=>{lastRoom[currentCategory]=weapon.value;halt();if(label)label.visible=false;selectRoom();});
+weapon.addEventListener('change',()=>{lastRoom[currentCategory]=weapon.value;halt();selectRoom();});
 const resize=new ResizeObserver(()=>{const width=host.clientWidth,height=host.clientHeight;renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();paint();});resize.observe(host);
 play.addEventListener('click',async()=>{
  halt();const request=ticket;play.disabled=true;await audio.prepare();play.disabled=false;if(disposed||request!==ticket)return;
@@ -116,10 +115,8 @@ play.addEventListener('click',async()=>{
 });
 stop.addEventListener('click',halt);
 document.getElementById('mute')!.addEventListener('click',()=>{const muted=audio.toggle(),button=document.getElementById('mute')!;button.textContent=muted?'Sound off':'Sound on';button.setAttribute('aria-pressed',String(muted));});
-damage.addEventListener('click',()=>{if(label)label.visible=!label.visible;paint();});
 window.addEventListener('pagehide',()=>{disposed=true;halt();resize.disconnect();audio.dispose();sword.dispose();staff.dispose();xpView.dispose();progression.dispose();pickupNumbers.dispose();fox.dispose();for(const sprite of hitLabels){scene.remove(sprite);sprite.material.dispose();}numbers.dispose();dummy.geometry.dispose();dummy.material.dispose();renderer.dispose();});
 try{
  await Promise.all([fox.load(),sword.load(),staff.load(),xpView.load(),progression.load(),pickupNumbers.load(),numbers.load()]);
- label=new T.Sprite(numbers.material(10));label.position.set(0,2.15,-1.5);label.scale.set(1.2,.75,1);label.visible=false;scene.add(label);
- play.disabled=false;stop.disabled=false;damage.disabled=false;for(const tab of tabs)tab.disabled=false;selectRoom();document.getElementById('ready')!.textContent='Ready';
+ play.disabled=false;stop.disabled=false;for(const tab of tabs)tab.disabled=false;selectRoom();document.getElementById('ready')!.textContent='Ready';
 }catch(error){document.getElementById('ready')!.textContent=`Could not load Lab: ${String(error)}`;}
