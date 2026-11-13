@@ -1,0 +1,5 @@
+# Preserve copied source bytes: provenance hashes cover exact exported files.
+public/weapons/models/*/model.obj -text
+public/weapons/models/*/data.json -text
+public/weapons/models/*/hierarchy.json -text
+public/weapons/models/*/material.json -text
