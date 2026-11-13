@@ -47,10 +47,9 @@ export class ProgressionView {
    sprite.material.color.setRGB(a.r+(b.r-a.r)*t,a.g+(b.g-a.g)*t,a.b+(b.b-a.b)*t,T.SRGBColorSpace);
    sprite.material.toneMapped=false;
    const enter=1-Math.pow(1-T.MathUtils.clamp(age/.14,0,1),3);
-   const exit=T.MathUtils.clamp((initial.startLifetime.scalar-age)/.16,0,1);
-   sprite.scale.multiplyScalar(.2+.8*enter);
-   // End by squeezing left/right into the center, not shrinking vertically.
-   sprite.scale.x*=exit*exit;
+   const exit=T.MathUtils.clamp((initial.startLifetime.scalar-age)/.09,0,1);
+   // Rapidly collapse both axes toward the center of the word.
+   sprite.scale.multiplyScalar((.2+.8*enter)*exit*exit);
    sprite.material.opacity=1;
   }
   if(kind==='burst'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a;sprite.material.toneMapped=false;}
