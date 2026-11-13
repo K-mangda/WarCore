@@ -46,12 +46,12 @@ export class Run {
   }
   spawnPickup(kind:PickupKind,position:Vector3,value=1,echo=false){
     if(!Number.isFinite(value)||value<=0)return;
-    const spot=position.clone();spot.y=this.ground(spot.x,spot.z)+balance.xpHoverHeight;
+    const spot=position.clone();if(kind==='gold'){spot.x+=.45;spot.z+=.15;}spot.y=this.ground(spot.x,spot.z)+balance.xpHoverHeight;
     const radius=.5+7.5*Math.min(1,this.state.elapsed/900);
     const existing=kind==='xp'?this.gems.find(p=>(p.kind??'xp')==='xp'&&!p.following&&!!p.echo===echo&&(p.value??1)<500&&p.position.distanceToSquared(spot)<=radius*radius):undefined;
     if(existing){existing.value=(existing.value??1)+value;if(existing.value>=500){this.gems.splice(this.gems.indexOf(existing),1);this.gems.push(existing);}return;}
     if(kind!=='xp'&&this.gems.filter(p=>p.kind===kind).length>=100){const first=this.gems.find(p=>p.kind===kind)!;first.value=(first.value??1)+value;return;}
-    this.gems.push({kind,position:spot,value,echo,speed:0});
+    this.gems.push({kind,position:spot,value,echo,speed:0,collectDelay:kind==='gold'?.18:0});
     const xp=this.gems.filter(p=>(p.kind??'xp')==='xp');
     if(xp.length>300){const oldest=xp[0],next=xp[1];next.value=(next.value??1)+(oldest.value??1);this.gems.splice(this.gems.indexOf(oldest),1);}
   }

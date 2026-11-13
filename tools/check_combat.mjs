@@ -13,7 +13,7 @@ const player=new Vector3();let seed=1;const random=()=>((seed=Math.imul(seed,166
 const create=()=>new Run(()=>0,()=>false,random);
 const run=create();
 run.swarm.enemies.push({id:999,position:new Vector3(0,0,-5),velocity:new Vector3(),health:10,flash:0});
-run.step(.5,player);assert.equal(run.snapshot().kills,1,'Automatic attack must hit a target crossed between frames');assert.equal(run.gems.reduce((n,p)=>n+(p.value??1),0)+run.snapshot().xp,1,'A killed enemy must preserve its XP, including immediate attraction');
+run.step(.5,player);assert.equal(run.snapshot().kills,1,'Automatic attack must hit a target crossed between frames');assert.equal(run.gems.filter(p=>(p.kind??'xp')==='xp').reduce((n,p)=>n+(p.value??1),0)+run.snapshot().xp,1,'A killed enemy must preserve its XP, including immediate attraction');
 run.gems.push({position:player.clone()});
 run.gems[0].position.copy(player);run.step(.02,player);assert.equal(run.snapshot().xp,2,'Near XP must be collected');
 const upgradeRun=create();for(let i=0;i<13;i++)upgradeRun.gems.push({position:player.clone()});upgradeRun.step(.02,player);
@@ -137,3 +137,9 @@ const aoeSounds=[];const aoe=new Run(()=>0,()=>true,()=>.5,event=>aoeSounds.push
 aoe.swarm.enemies.push(enemy(4001,0,-6),enemy(4002,.2,-6.2));aoe.bolts.push({position:new Vector3(0,.7,-5),velocity:new Vector3(0,0,-50),life:1,damage:1});aoe.step(.02,player);
 assert.equal(aoeSounds.filter(e=>e==='staffImpact').length,1);assert.equal(aoeSounds.filter(e=>e==='staffHit').length,1,'AoE emits one Hit2 for all targets');assert.equal(aoe.staffEffects.filter(e=>e.kind==='hit').length,2);
 console.log('Damage feedback checks passed: Sword/AoE single-hit audio, per-enemy VFX, immediate death removal and corpse expiry.');
+
+const goldDrop=new Run(()=>0,()=>true,()=>.5);goldDrop.setWeapon('sword');goldDrop.swarm.enemies.push({...enemy(5001,0,-2),health:1});goldDrop.step(.02,player);
+const droppedGold=goldDrop.gems.find(p=>p.kind==='gold');assert.ok(droppedGold,'Every killed enemy drops a gold pickup in gameplay');assert.equal(goldDrop.snapshot().gold,0,'Gold is not awarded before pickup');
+assert.ok(droppedGold.collectDelay>0,'Dropped gold remains visible briefly');const droppedXp=goldDrop.gems.find(p=>(p.kind??'xp')==='xp');if(droppedXp)assert.ok(droppedGold.position.distanceTo(droppedXp.position)>.3,'Gold does not overlap EXP');
+for(let i=0;i<40;i++)goldDrop.step(.02,player);assert.equal(goldDrop.snapshot().gold,1,'Visible gold is eventually collected exactly once');
+console.log('Gameplay gold drop checks passed: death spawn, visible separation/delay and collection.');

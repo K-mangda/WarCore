@@ -1,9 +1,10 @@
 import {Vector3} from 'three';
 export type PickupKind='xp'|'gold'|'silver';
-export interface Pickup {position:Vector3;kind?:PickupKind;value?:number;echo?:boolean;following?:boolean;speed?:number;}
+export interface Pickup {position:Vector3;kind?:PickupKind;value?:number;echo?:boolean;following?:boolean;speed?:number;collectDelay?:number;}
 // External report RVAs: Pickup.Update 0x4d7800, FixedUpdate 0x4d70b0.
 // Activation radius and target height remain web choices pending evidence.
 export function movePickup(p:Pickup,target:Vector3,dt:number,activationRadius:number){
+ if((p.collectDelay??0)>0){p.collectDelay=Math.max(0,p.collectDelay!-dt);return false;}
  const distance=p.position.distanceTo(target);
  if(distance<activationRadius)p.following=true;
  const range=(p.speed??0)>50?1:.5;
