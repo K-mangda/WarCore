@@ -1,0 +1,62 @@
+{
+  "id": "bluetooth_dagger",
+  "samples": [
+    {
+      "name": "BluetoothDagger",
+      "file": "weapons/preview-audio/BluetoothDagger.wav",
+      "source": "shared/audio/web/BluetoothDagger.wav",
+      "sha256": "4d20df505f0a217754594a1b2372345bd1ee204c14306cefd3e20796639b9bd0",
+      "volume": 0.30000001192092896,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "BluetoothProjectile",
+          "nodePathId": 3418,
+          "componentPathId": 8896,
+          "componentType": "RandomSfx",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6664,
+            "clip": "",
+            "volume": 0.30000001192092896,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        },
+        {
+          "node": "BluetoothMuzzle",
+          "nodePathId": 3568,
+          "componentPathId": 9443,
+          "componentType": "RandomSfx",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6691,
+            "clip": "",
+            "volume": 0.23000000417232513,
+            "pitch": 1.0,
+            "playOnAwake": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "Hit2",
+      "file": "weapons/staff/audio/Hit2.wav",
+      "source": "shared/audio/web/Hit2.wav",
+      "sha256": "8bfbb9bab52f39536df8d5f25776193a843cf822b02abfac42699671b2d0045c",
+      "volume": 0.25,
+      "pitch": 1,
+      "previewGainPolicy": "web audition gain 0.25; runtime routing unknown",
+      "bindings": []
+    }
+  ],
+  "sharedHit": true,
+  "hitReference": {
+    "name": "GeneralProjectileHit",
+    "pathId": 3790,
+    "shared": true,
+    "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+  },
+  "scope": "Manual sound samples and shared hit-effect fixture, not native attack timing. RandomSfx variation/loops are not inferred."
+}

@@ -1,0 +1,137 @@
+{
+  "id": "dice",
+  "samples": [
+    {
+      "name": "DiceHit6",
+      "file": "weapons/preview-audio/DiceHit6.wav",
+      "source": "shared/audio/web/DiceHit6.wav",
+      "sha256": "3e5ecba43075882237cf358aec7890a252d61ba4f7b100a40670b8e40c72352a",
+      "volume": 0.30000001192092896,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "DiceExplosion6",
+          "nodePathId": 3492,
+          "componentPathId": 9118,
+          "componentType": "RandomSfx",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6679,
+            "clip": "retro_explosion_fireball1",
+            "volume": 0.30000001192092896,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "DiceHitNormal",
+      "file": "weapons/preview-audio/DiceHitNormal.wav",
+      "source": "shared/audio/web/DiceHitNormal.wav",
+      "sha256": "6e827df68eb67edf351e29dbf66bae85272d3a1c5cdc978211c43598ced1f141",
+      "volume": 0.25999999046325684,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "DiceExplosion",
+          "nodePathId": 3783,
+          "componentPathId": 9500,
+          "componentType": "RandomSfx",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6671,
+            "clip": "retro_explosion_fireball1",
+            "volume": 0.25999999046325684,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "DiceThrow",
+      "file": "weapons/preview-audio/DiceThrow.wav",
+      "source": "shared/audio/web/DiceThrow.wav",
+      "sha256": "b4bd53e9f00364365c46692fcaa362a9313c61788148507239f846aaa5a794af",
+      "volume": 0.25,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "DiceProjectile",
+          "nodePathId": 3978,
+          "componentPathId": 8899,
+          "componentType": "RandomSfx",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6642,
+            "clip": "",
+            "volume": 0.25,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "Hit2",
+      "file": "weapons/staff/audio/Hit2.wav",
+      "source": "shared/audio/web/Hit2.wav",
+      "sha256": "8bfbb9bab52f39536df8d5f25776193a843cf822b02abfac42699671b2d0045c",
+      "volume": 0.25,
+      "pitch": 1,
+      "previewGainPolicy": "web audition gain 0.25; runtime routing unknown",
+      "bindings": []
+    },
+    {
+      "name": "retro_explosion_fireball1",
+      "file": "weapons/staff/audio/retro_explosion_fireball1.wav",
+      "source": "shared/audio/web/retro_explosion_fireball1.wav",
+      "sha256": "dc20f7d4aa14428f90b4b51b9c90582d22c43db0d30f5c12a0b0bb801f1aaa3a",
+      "volume": 0.25999999046325684,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "DiceExplosion",
+          "nodePathId": 3783,
+          "componentPathId": 6671,
+          "componentType": "AudioSource",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6671,
+            "clip": "retro_explosion_fireball1",
+            "volume": 0.25999999046325684,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        },
+        {
+          "node": "DiceExplosion6",
+          "nodePathId": 3492,
+          "componentPathId": 6679,
+          "componentType": "AudioSource",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6679,
+            "clip": "retro_explosion_fireball1",
+            "volume": 0.30000001192092896,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        }
+      ]
+    }
+  ],
+  "sharedHit": true,
+  "hitReference": {
+    "name": "GeneralProjectileHit",
+    "pathId": 3790,
+    "shared": true,
+    "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+  },
+  "scope": "Manual sound samples and shared hit-effect fixture, not native attack timing. RandomSfx variation/loops are not inferred."
+}

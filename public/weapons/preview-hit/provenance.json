@@ -1,0 +1,9 @@
+{
+  "source": "weapons/staff/manifest.json",
+  "sourceLfNormalizedSha256": "1180f5256683869487e2f576cc1f51cb97a03065ad8deeb60674bff0ef53638a",
+  "layers": [
+    7145,
+    7001
+  ],
+  "operation": "Select existing shared-hit layers/materials; rewrite texture URLs to reuse existing images. Source manifest hash normalizes CRLF to LF for Git portability, copied OBJ/PNG/WAV hashes remain exact. No extraction."
+}

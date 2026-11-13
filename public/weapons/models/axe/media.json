@@ -1,0 +1,73 @@
+{
+  "id": "axe",
+  "samples": [
+    {
+      "name": "AxeSpin",
+      "file": "weapons/preview-audio/AxeSpin.wav",
+      "source": "shared/audio/web/AxeSpin.wav",
+      "sha256": "c0feefc44572183371f0bbae29d0fd493d20930fd3f9a3d3db7fb6f3da0a0240",
+      "volume": 0.25,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "SpinAudio",
+          "nodePathId": 3647,
+          "componentPathId": 6731,
+          "componentType": "AudioSource",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6731,
+            "clip": "AxeSpin",
+            "volume": 0.25,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "AxeThrow",
+      "file": "weapons/preview-audio/AxeThrow.wav",
+      "source": "shared/audio/web/AxeThrow.wav",
+      "sha256": "f2e25c9f50bcfad86354d5f3815fb49e26292d7dd6342ec31ed6a54ad0b2aca0",
+      "volume": 0.4000000059604645,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "AxeProjectile",
+          "nodePathId": 4122,
+          "componentPathId": 9465,
+          "componentType": "RandomSfx",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6718,
+            "clip": "",
+            "volume": 0.4000000059604645,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "Hit2",
+      "file": "weapons/staff/audio/Hit2.wav",
+      "source": "shared/audio/web/Hit2.wav",
+      "sha256": "8bfbb9bab52f39536df8d5f25776193a843cf822b02abfac42699671b2d0045c",
+      "volume": 0.25,
+      "pitch": 1,
+      "previewGainPolicy": "web audition gain 0.25; runtime routing unknown",
+      "bindings": []
+    }
+  ],
+  "sharedHit": true,
+  "hitReference": {
+    "name": "GeneralProjectileHit",
+    "pathId": 3790,
+    "shared": true,
+    "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+  },
+  "scope": "Manual sound samples and shared hit-effect fixture, not native attack timing. RandomSfx variation/loops are not inferred."
+}

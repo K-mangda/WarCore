@@ -1,3 +1,4 @@
+import {modelId} from './WeaponModels';
 /** Cache in-flight and completed loads; failed loads can be retried. */
 export class LabAssets {
  private pending=new Map<string,Promise<unknown>>();
@@ -8,10 +9,9 @@ export class LabAssets {
  }
 }
 export function roomAssets(room:string){
- if(modelId(room))return [room];
+ const id=modelId(room);if(id)return ['model-'+id,...(room.startsWith('sounds-')?['media-'+id]:room.startsWith('hit-')?['hitFx']:[])];
  if(room.startsWith('skeleton-')||room.startsWith('bandit-'))return [room.split('-')[0]];
  if(room==='sword')return ['fox','sword','staff','damage']; // Shared weapon-hit effects.
  if(room==='bolt')return ['fox','staff','damage'];
  return ['fox','xp','progression','pickup'];
 }
-import {modelId} from './WeaponModels';

@@ -1,0 +1,122 @@
+{
+  "id": "rockets",
+  "samples": [
+    {
+      "name": "Hit2",
+      "file": "weapons/staff/audio/Hit2.wav",
+      "source": "shared/audio/web/Hit2.wav",
+      "sha256": "8bfbb9bab52f39536df8d5f25776193a843cf822b02abfac42699671b2d0045c",
+      "volume": 0.25,
+      "pitch": 1,
+      "previewGainPolicy": "web audition gain 0.25; runtime routing unknown",
+      "bindings": []
+    },
+    {
+      "name": "NoodleStop",
+      "file": "weapons/preview-audio/NoodleStop.wav",
+      "source": "shared/audio/web/NoodleStop.wav",
+      "sha256": "9a39fa96725b12724122c42c2ff58e68e8f83865f8cc1205c684d93301d3266c",
+      "volume": 0.3499999940395355,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "Explosion",
+          "nodePathId": 3866,
+          "componentPathId": 9666,
+          "componentType": "RandomSfx",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6756,
+            "clip": "",
+            "volume": 0.3499999940395355,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "bombExplosion",
+      "file": "weapons/preview-audio/bombExplosion.wav",
+      "source": "shared/audio/web/bombExplosion.wav",
+      "sha256": "5ea41c9e168a40bd2a590c054d04563fdce5e929141aac7e8dabd32f157db538",
+      "volume": 0.25,
+      "pitch": 1,
+      "previewGainPolicy": "web audition gain 0.25; runtime routing unknown",
+      "bindings": []
+    },
+    {
+      "name": "retro_shoot_missile",
+      "file": "weapons/preview-audio/retro_shoot_missile.wav",
+      "source": "shared/audio/web/retro_shoot_missile.wav",
+      "sha256": "2106572d90e132c95f24b8d1eba0b6732862219b21fd9b0114512d759f85691b",
+      "volume": 0.36000001430511475,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "RocketProjectile",
+          "nodePathId": 3839,
+          "componentPathId": 9296,
+          "componentType": "RandomSfx",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6747,
+            "clip": "retro_shoot_missile02",
+            "volume": 0.36000001430511475,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "retro_shoot_missile02",
+      "file": "weapons/preview-audio/retro_shoot_missile02.wav",
+      "source": "shared/audio/web/retro_shoot_missile02.wav",
+      "sha256": "e3874e98d91d31003e59f0374d8eb4d3492eac997952b9365322274fed0d7457",
+      "volume": 0.36000001430511475,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "RocketProjectile",
+          "nodePathId": 3839,
+          "componentPathId": 6747,
+          "componentType": "AudioSource",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6747,
+            "clip": "retro_shoot_missile02",
+            "volume": 0.36000001430511475,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        },
+        {
+          "node": "RocketProjectile",
+          "nodePathId": 3839,
+          "componentPathId": 9296,
+          "componentType": "RandomSfx",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6747,
+            "clip": "retro_shoot_missile02",
+            "volume": 0.36000001430511475,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        }
+      ]
+    }
+  ],
+  "sharedHit": true,
+  "hitReference": {
+    "name": "GeneralProjectileHit",
+    "pathId": 3790,
+    "shared": true,
+    "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+  },
+  "scope": "Manual sound samples and shared hit-effect fixture, not native attack timing. RandomSfx variation/loops are not inferred."
+}

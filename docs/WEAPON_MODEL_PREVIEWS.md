@@ -18,9 +18,19 @@
 
 ## การใช้งาน
 
-Weapons แยกช่อง Weapon กับ Room: Sword/Firestaff มี Combat ส่วน7ชิ้นใหม่มี Model กด Rotate model เพื่อหมุนหนึ่งรอบ หรือปรับ Facing angle/Preview time เพื่อดูด้านต่าง ๆ ลิงก์ตรงเช่น lab.html?weapon=model-axe ยังใช้ได้
+Weapons แยกช่อง Weapon กับ Room: Sword/Firestaff มี Combat ส่วน7ชิ้นใหม่มี Model และ Sounds;6ชิ้นยกเว้น Aegis มี Hit effect ด้วย กด Rotate model เพื่อหมุนหนึ่งรอบ หรือปรับ Facing angle/Preview time เพื่อดูด้านต่าง ๆ ลิงก์ตรงเช่น lab.html?weapon=model-axe, sounds-axe หรือ hit-axe ยังใช้ได้
 
 ห้อง Model โหลดเฉพาะ asset ของชิ้นนั้น ไม่มีการโหลด Fox/มอน/เสียงเพื่อดูโมเดล และเก็บโมเดลไว้ใช้ซ้ำระหว่างเปิด Lab อยู่ สลับห้องจะซ่อนโมเดลเดิม ปิด Lab จะคืน geometry/material/texture รวมถึงผลโหลดที่เพิ่งเสร็จหลังปิด
+
+### ต่อภาพ/เสียง/เอฟเฟกต์จากข้อมูลที่พร้อมแล้ว
+
+- Sounds: ทั้ง7ชิ้นมีปุ่มชื่อคลิปให้ฟังทีละเสียง รวม17WAVไม่ซ้ำ ใช้ไฟล์เดิมทั้งหมด คัดลอกเพิ่ม15ไฟล์และอ้าง Hit2/retro_explosion_fireball1 ที่อยู่ในเว็บแล้วแทนการคัดลอกซ้ำ โหลด/ถอดรหัสเมื่อกดครั้งแรกแล้ว cache ระหว่างเปิด Lab; เล่นหนึ่งเสียงต่อครั้ง ไม่วนเอง และฟังเนื้อเสียงได้สูงสุด5วินาทีต่อการกด
+- ค่า gain/pitch ใช้ AudioSource บน node เดียวกับคลิป/RandomSfx จาก hierarchy ที่มีอยู่แบบ fixed; คลิปที่ไม่มี binding ให้ตรวจใช้ gain0.25 สำหรับ audition และระบุไว้ใน media.json ทุกคลิปผ่าน web master0.35 ไม่มีการอนุมาน RandomSfx distribution, procedural trigger หรือ mixer routing
+- Hit effect: Axe/Bow/Dice/Mine/Rockets/Bluetooth Dagger อ้าง GeneralProjectileHit3790 จริงใน hierarchy เดิม จึงใช้ชุดเต็ม7145+7001จาก public/weapons/staff/manifest.json ที่ต่อไว้แล้ว ไม่ใช้ summary particle ที่ขาด UV/curves ตัว package เลือกเฉพาะสองชั้น/วัสดุที่เกี่ยวข้องและ reuse texture URLs เดิม ไม่โหลด Firestaff projectile/muzzle/explosion มาด้วย
+- Play effect + sound เริ่ม fixture เอฟเฟกต์หนึ่งครั้งตรงกลางโมเดลที่ระดับ1.25ม. และเรียก Hit2 ด้วย GameAudio เดิม; เลื่อน timeline เงียบ/หยุดค้างได้ และ reset/switch/close เคลียร์ particles เสียง และผลรอถอดรหัส ไม่สร้าง damage/การโจมตีจริงหรือสรุปจังหวะ hit ของอาวุธจาก fixture
+- Aegis ไม่มี GeneralProjectileHit reference จึงไม่มีห้อง Hit effect ไม่เอาเอฟเฟกต์อื่นมาแทน Mine/Rockets/Dice ยังไม่มี explosion เฉพาะใน preview นี้ การมีเสียงระเบิดไม่เพียงพอให้เลือกเอฟเฟกต์ระเบิดผิดชนิด
+
+ข้อมูลผูกเสียง/แหล่งไฟล์/hash และ reference ของ hit อยู่ใน public/weapons/models/<id>/media.json; public/weapons/preview-hit/provenance.json บันทึกการเลือกข้อมูลเดิม Source manifest hash normalize CRLF→LF เฉพาะเพื่ออ้างอิงข้ามระบบ ส่วน hash ของ OBJ/PNG/WAV ที่คัดลอกยังตรวจ raw bytes แบบเดิม
 
 เพื่อดูรูปทรงชัด ใช้ opaque Lambert สองด้าน เก็บ RGB tint/UV scale/offset จาก material และ texture แบบ nearest; ไม่อ้างว่าแปลง Unity shader สำเร็จครบ โดยเฉพาะ Aegis forcefield/outline/alpha จัดโมเดลไว้กลางห้องและ normalize ด้านยาวสุด2ม. เป็นสเกลดูตัวอย่าง ไม่ใช่ขนาดในเกม หรือ transform ของ projectile จริง ไม่มีการเพิ่มการโจมตี/เสียงสมมุติให้7ชิ้นนี้ในเกมหลัก
 
@@ -40,7 +50,7 @@ Weapons แยกช่อง Weapon กับ Room: Sword/Firestaff มี Comb
 - Bluetooth Dagger: BluetoothDagger, Hit2
 - Aegis: AegisRecharge, AegisUse
 
-**งานฝั่งเว็บที่ยังไม่ได้ต่อ:** เสียง/VFX เหล่านี้และ prefab/particle ที่มีข้อมูลใช้งานเพียงพอ รอจับคู่ event จริงก่อนเชื่อมเข้าระบบโจมตี ไม่จัดเป็นคำขอให้สกัด WAV/ภาพ/โมเดลใหม่ทั้งหมด
+**อัปเดตงานฝั่งเว็บ:** คลิปเสียงทั้งหมดในรายการข้างต้นต่อให้ฟังใน Sounds แล้ว และ GeneralProjectileHit ต่อใน Hit effect ของ6ชิ้นแล้ว สิ่งที่ยังไม่ต่อคือการเรียก asset เหล่านี้จากการโจมตีจริง และเอฟเฟกต์เฉพาะที่ข้อมูลเต็มยังไม่ครบ ไม่จัดเป็นคำขอให้สกัด WAV/ภาพ/โมเดลใหม่ทั้งหมด
 
 **งานข้อมูลที่ยังขาดหรือยังไม่ยืนยัน ให้อีก AI หา:** activation/targeting, เส้นทางและการหมุน, quantity/burst/cooldown, damage lifetime เทียบ visual lifetime, hitbox/penetration/bounce/hit history, spawn transforms และ event mapping ของภาพ/เสียง (spawn/hit/loop/stop/expiry) พร้อมค่าที่ runtime เปลี่ยน รวม pause/reset/pooling รายชิ้นตามหัวข้อด้านล่าง ตรวจ JSON/report เดิมก่อน และส่งเฉพาะช่องว่างที่เหลือ ไม่อนุมาน event จากชื่อคลิปหรือ `trigger_verified` ใน catalog
 
@@ -64,4 +74,4 @@ Bananarang อ้าง Cube.obj จึงยังรอการยืนย�
 
 ## ตรวจสอบ
 
-Build/typecheck, deployment/boot checks, room-cache tests และ check_weapon_models.mjs ตรวจ hash ที่คัดลอก, OBJ vertices/UV, bounds/center, สลับการมองเห็น, disposal และ late-load หลังปิด โดย mock image loading ไม่อ้างผลภาพจริงหรือความตรง shader ผู้ใช้ตรวจภาพ/เสียง/เกมเพลย์เองตามแนวทางเดิม ไม่มีการเปลี่ยน phase
+Build/typecheck, deployment/boot checks, room-cache tests และ check_weapon_models.mjs ตรวจ hash ที่คัดลอก, OBJ vertices/UV, bounds/center, สลับการมองเห็น, disposal และ late-load หลังปิด; check_weapon_media.mjs ตรวจ WAV/hash/reference, สองชั้น hit ที่เหมือนชุดเดิม, timeline/pause/backward scrub/reset และ audition cache/mute/pending cancellation/disposal โดย mock image/audio loading ไม่อ้างผลภาพจริงหรือความตรง shader/เสียงที่ฟัง ผู้ใช้ตรวจภาพ/เสียง/เกมเพลย์เองตามแนวทางเดิม ไม่มีการเปลี่ยน phase

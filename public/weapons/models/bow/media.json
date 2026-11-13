@@ -1,0 +1,87 @@
+{
+  "id": "bow",
+  "samples": [
+    {
+      "name": "Arrow",
+      "file": "weapons/preview-audio/Arrow.wav",
+      "source": "shared/audio/web/Arrow.wav",
+      "sha256": "445dc1a25afd6db60b6d0ed0d72883c0a5887a11f6dfa6c18cfdc66e0ab7c378",
+      "volume": 0.20000000298023224,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "BowProjectileTrailAudio",
+          "nodePathId": 3646,
+          "componentPathId": 6730,
+          "componentType": "AudioSource",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6730,
+            "clip": "Arrow",
+            "volume": 0.20000000298023224,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        },
+        {
+          "node": "BowProjectileTrailAudio",
+          "nodePathId": 3646,
+          "componentPathId": 9299,
+          "componentType": "RandomSfx",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6730,
+            "clip": "Arrow",
+            "volume": 0.20000000298023224,
+            "pitch": 1.0,
+            "playOnAwake": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bow",
+      "file": "weapons/preview-audio/Bow.wav",
+      "source": "shared/audio/web/Bow.wav",
+      "sha256": "f620f14fbad6e5afac79e677e697d09be1cfe1dfc98c167fa79f85da103443e2",
+      "volume": 0.5,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "BowProjectile",
+          "nodePathId": 4121,
+          "componentPathId": 9464,
+          "componentType": "RandomSfx",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6717,
+            "clip": "",
+            "volume": 0.5,
+            "pitch": 1.0,
+            "playOnAwake": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "Hit2",
+      "file": "weapons/staff/audio/Hit2.wav",
+      "source": "shared/audio/web/Hit2.wav",
+      "sha256": "8bfbb9bab52f39536df8d5f25776193a843cf822b02abfac42699671b2d0045c",
+      "volume": 0.25,
+      "pitch": 1,
+      "previewGainPolicy": "web audition gain 0.25; runtime routing unknown",
+      "bindings": []
+    }
+  ],
+  "sharedHit": true,
+  "hitReference": {
+    "name": "GeneralProjectileHit",
+    "pathId": 3790,
+    "shared": true,
+    "relativePath": "shared/prefabs/GeneralProjectileHit.json"
+  },
+  "scope": "Manual sound samples and shared hit-effect fixture, not native attack timing. RandomSfx variation/loops are not inferred."
+}

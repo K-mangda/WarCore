@@ -11,7 +11,9 @@
 
 ## คิวขยายเนื้อหา: อาวุธ / ตัวละคร / มอน / บอส
 
-คำย้ำล่าสุดเรื่อง7อาวุธใน Lab: **มี asset หลายชนิดแล้ว แต่เว็บต่อเฉพาะโมเดล** สิ่งที่รออีก AI เป็นข้อมูลพฤติกรรมและ event mapping ที่ขาด/ยังไม่ยืนยัน ไม่ใช่สั่งสกัดไฟล์ทั้งชุดซ้ำ รายชื่อเสียงที่มีแล้วแยกรายอาวุธ และคำถาม targeting/motion/hitbox/timing/VFX/audio/pause/pooling อยู่ในหัวข้อ “แยกมี asset แล้วแต่ยังไม่ต่อกับข้อมูลยังขาด” ของ [WEAPON_MODEL_PREVIEWS.md](WEAPON_MODEL_PREVIEWS.md) ให้ตรวจของเดิมและส่งเฉพาะส่วนที่ยังไม่ครบ
+อัปเดตล่าสุดตามคำสั่ง “ถ้ามีครบให้ต่อ”: ทั้ง7อาวุธมีห้อง Sounds ให้ฟัง17WAVจากของเดิมแล้ว และ6ชิ้นที่มี GeneralProjectileHit reference มีห้อง Hit effect พร้อม Hit2 แล้ว (ยกเว้น Aegis) ใช้สองชั้น7145/7001ที่มีข้อมูลเต็มในเว็บ ไม่สกัดเพิ่ม รายละเอียดใน WEAPON_MODEL_PREVIEWS.md ส่วนที่รออีก AI ยังเป็นพฤติกรรมโจมตี/event mapping กับเอฟเฟกต์เฉพาะที่ยังไม่มีข้อมูลเต็ม ไม่ต้องสกัดไฟล์เสียงเหล่านี้ซ้ำ
+
+คำย้ำเรื่อง7อาวุธใน Lab: **มี asset หลายชนิดแล้ว** สิ่งที่รออีก AI เป็นข้อมูลพฤติกรรมและ event mapping ที่ขาด/ยังไม่ยืนยัน ไม่ใช่สั่งสกัดไฟล์ทั้งชุดซ้ำ รายชื่อเสียงที่มีแล้วแยกรายอาวุธ และคำถาม targeting/motion/hitbox/timing/VFX/audio/pause/pooling อยู่ในหัวข้อ “แยกมี asset แล้วแต่ยังไม่ต่อกับข้อมูลยังขาด” ของ [WEAPON_MODEL_PREVIEWS.md](WEAPON_MODEL_PREVIEWS.md) ให้ตรวจของเดิมและส่งเฉพาะส่วนที่ยังไม่ครบ
 
 อัปเดต: นำไฟล์เดิมมาเพิ่มห้อง Model ใน Lab แล้ว7อาวุธ (Axe, Bow/Arrow, Dice, Mine, Rockets, Bluetooth Dagger, Aegis) ยังไม่ใช่ combat ที่พร้อมเล่น ดู [WEAPON_MODEL_PREVIEWS.md](WEAPON_MODEL_PREVIEWS.md) สำหรับพฤติกรรมที่ขาดรายชิ้น; ไม่ต้องส่ง OBJ/texture ที่คัดลอกแล้วซ้ำ ส่วน Bananarang/Poison Flask ยังรอ geometry/material mapping ให้ชัด
 

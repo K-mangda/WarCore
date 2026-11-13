@@ -1,0 +1,86 @@
+{
+  "id": "aegis",
+  "samples": [
+    {
+      "name": "AegisRecharge",
+      "file": "weapons/preview-audio/AegisRecharge.wav",
+      "source": "shared/audio/web/AegisRecharge.wav",
+      "sha256": "b5f0fc5eed707e2d36d0b4789fdcef8f2fb00b7fe5224ea72dee42fcd50b2d6c",
+      "volume": 0.25,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "AegisAttack",
+          "nodePathId": 4149,
+          "componentPathId": 6644,
+          "componentType": "AudioSource",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6644,
+            "clip": "AegisRecharge",
+            "volume": 0.25,
+            "pitch": 1.0,
+            "playOnAwake": false
+          }
+        },
+        {
+          "node": "AegisAttack",
+          "nodePathId": 4149,
+          "componentPathId": 8985,
+          "componentType": "RandomSfx",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6644,
+            "clip": "AegisRecharge",
+            "volume": 0.25,
+            "pitch": 1.0,
+            "playOnAwake": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "AegisUse",
+      "file": "weapons/preview-audio/AegisUse.wav",
+      "source": "shared/audio/web/AegisUse.wav",
+      "sha256": "a76c847e0c7f9beafebfd00432d10fcce693e2dbb84b9a2492f44ca7af7e2196",
+      "volume": 0.6000000238418579,
+      "pitch": 1.0,
+      "previewGainPolicy": "fixed serialized AudioSource value",
+      "bindings": [
+        {
+          "node": "Poof",
+          "nodePathId": 4427,
+          "componentPathId": 6711,
+          "componentType": "AudioSource",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6711,
+            "clip": "AegisUse",
+            "volume": 0.6000000238418579,
+            "pitch": 1.0,
+            "playOnAwake": false
+          }
+        },
+        {
+          "node": "Poof",
+          "nodePathId": 4427,
+          "componentPathId": 9243,
+          "componentType": "RandomSfx",
+          "audioSource": {
+            "type": "AudioSource",
+            "pathId": 6711,
+            "clip": "AegisUse",
+            "volume": 0.6000000238418579,
+            "pitch": 1.0,
+            "playOnAwake": false
+          }
+        }
+      ]
+    }
+  ],
+  "sharedHit": false,
+  "hitReference": {},
+  "scope": "Manual sound samples and shared hit-effect fixture, not native attack timing. RandomSfx variation/loops are not inferred."
+}

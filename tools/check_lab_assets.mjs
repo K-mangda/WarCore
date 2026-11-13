@@ -8,6 +8,8 @@ const {LabAssets,roomAssets}=await import('data:text/javascript;base64,'+Buffer.
 assert.deepEqual(roomAssets('skeleton-hit'),['skeleton']);
 assert.deepEqual(roomAssets('bandit-death'),['bandit']);
 assert.deepEqual(roomAssets('model-axe'),['model-axe'],'Model previews load neither player nor combat assets');
+assert.deepEqual(roomAssets('sounds-axe'),['model-axe','media-axe']);
+assert.deepEqual(roomAssets('hit-axe'),['model-axe','hitFx'],'Hit fixtures load only the two shared hit layers');
 assert.ok(!roomAssets('bolt').includes('sword'));
 assert.ok(roomAssets('sword').includes('staff'),'Sword retains shared hit effects');
 assert.deepEqual(roomAssets('gold'),['fox','xp','progression','pickup']);
