@@ -97,6 +97,16 @@
 
 ## EXP และ progression
 
+อัปเดตงานเลือกอัปเกรด: อ่าน item JSON เดิมครบ142รายการแล้ว รายละเอียดรายตัวใน UPGRADE_DATA_AUDIT.json และ [UPGRADE_IMPLEMENTATION.md](UPGRADE_IMPLEMENTATION.md) ทั้ง26Tomes มี description ว่างและไม่มี numeric modifier/stat mapping ในไฟล์ที่ตรวจ;87Equipment มี29คำอธิบายว่าง (บางอันที่มีถูกตัด) จึงไม่ถือว่าพร้อมทำ effect จากข้อความอย่างเดียว
+
+เว็บต่อระบบเลือก/เก็บเลเวล/แสดงค่าก่อนหลัง/คัดตัวเลือกเต็มแล้วโดยใช้ผลเดิม3แบบของ Damage/Cooldown/Quantity เท่านั้น (+5,×0.85 floor0.15s,+1 cap8 เป็นค่าทดลองเดิม ไม่ใช่ค่าจริง Tome) อีก23Tomes ยังไม่เปิด gameplay รอ AI อีกตัวส่ง:
+
+- ทุก Tome: enum/identity chain, stat IDs และ operation (add/multiply/override), modifier values ต่อ level/rarity พร้อมหน่วยและสูตรรวมกับอาวุธ/ตัวละคร
+- ชื่อ/คำอธิบาย localized ที่ resolve ครบ ไม่เดาค่าจากชื่อหรือ icon
+- eligible pool, unlocks/slot limit/duplicates, weights/rarity roll, level caps, เมื่อ pool เต็ม/หมด รวม reroll/banish ถ้ามีจริง
+- หลักฐานว่า equipment/passive/shop ชิ้นใดเข้า level-up pool จริง แยกจากหีบ/ร้าน/starting passive ก่อนเสนอให้ผู้เล่นเลือก
+- Source fields และ runtime call sites ตามรูปแบบส่งงานท้ายไฟล์ ไม่ต้องส่ง PNG เดิมซ้ำหรือแก้เสียงกดเลือกที่ผู้ใช้ยืนยันแล้ว
+
 มีภาพ native, สี4กลุ่ม, tier thresholds, รายงาน stacking/attraction และ Xp2 แล้ว ดู XP_ASSET_HANDOFF.md และ PROGRESSION_IMPLEMENTATION.md ก่อน
 
 - สูตร EXP ที่ต้องใช้ต่อเลเวล และ modifiers; ตอนนี้เว็บใช้5+3ต่อเลเวล

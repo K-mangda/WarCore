@@ -4,7 +4,7 @@ import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 import {Vector3} from 'three';
-for(const name of ['combat/Run','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm']){
+for(const name of ['combat/Run','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm']){
   const destination=resolve('.local-evidence/combat-check',name+'.js');mkdirSync(dirname(destination),{recursive:true});
   const code=ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'");writeFileSync(destination,code);
 }
@@ -27,6 +27,28 @@ for(let i=0;i<1000&&!death.blocked;i++)death.step(.02,player);assert.equal(death
 death.reset();assert.equal(death.snapshot().health,100);assert.equal(death.snapshot().dead,false);assert.equal(death.swarm.enemies.length,0);assert.equal(death.bolts.length,0);assert.equal(death.snapshot().pendingUpgrades,0);
 const hidden=new Run(()=>0,()=>true,random);hidden.step(.02,player);assert.equal(hidden.swarm.enemies.length,0,'Spawn must reject positions visible to camera');
 console.log('Combat checks passed: auto-hit, drops, collection, queued upgrades, freeze, damage interval, death, reset and offscreen spawn.');
+
+const tomes=new Run(()=>0,()=>true,random);
+tomes.gems.push({position:player.clone(),value:10000});tomes.step(.02,player);
+assert.deepEqual(tomes.snapshot().upgradeChoices,['damage','haste','projectiles']);
+const queued=tomes.snapshot().pendingUpgrades,pausedAt=tomes.snapshot().elapsed;
+for(let i=0;i<7;i++)assert.equal(tomes.choose('projectiles'),true);
+assert.equal(tomes.snapshot().projectiles,8);assert.equal(tomes.snapshot().upgradeLevels.projectiles,7);
+assert.ok(!tomes.snapshot().upgradeChoices.includes('projectiles'));
+let remaining=tomes.snapshot().pendingUpgrades;assert.equal(tomes.choose('projectiles'),false);assert.equal(tomes.snapshot().pendingUpgrades,remaining,'Capped upgrade cannot consume a queued choice');
+while(tomes.snapshot().upgradeChoices.includes('haste'))assert.equal(tomes.choose('haste'),true);
+assert.equal(tomes.snapshot().attackInterval,.15);remaining=tomes.snapshot().pendingUpgrades;
+assert.equal(tomes.choose('haste'),false);assert.equal(tomes.choose('unknown'),false);assert.equal(tomes.snapshot().pendingUpgrades,remaining);
+const snapshot=tomes.snapshot();snapshot.upgradeLevels.damage=99;snapshot.upgradeChoices.length=0;
+assert.equal(tomes.snapshot().upgradeLevels.damage,0);assert.deepEqual(tomes.snapshot().upgradeChoices,['damage'],'Snapshots cannot mutate run inventory/eligibility');
+tomes.step(5,player);assert.equal(tomes.snapshot().elapsed,pausedAt,'Queued choices keep the game paused');
+while(tomes.blocked)assert.equal(tomes.choose('damage'),true);
+const owned=Object.values(tomes.snapshot().upgradeLevels).reduce((sum,level)=>sum+level,0);assert.equal(owned,queued,'Every earned level grants exactly one choice');
+assert.equal(tomes.snapshot().upgradeChoices.length,0);assert.equal(tomes.choose('damage'),false,'Double click after the final choice cannot grant a free level');
+tomes.step(.02,player);assert.ok(tomes.snapshot().elapsed>pausedAt,'Simulation can resume after final choice');
+tomes.reset();assert.deepEqual(tomes.snapshot().upgradeLevels,{damage:0,haste:0,projectiles:0});assert.equal(tomes.snapshot().damage,10);assert.equal(tomes.snapshot().projectiles,1);
+assert.deepEqual(create().snapshot().upgradeLevels,{damage:0,haste:0,projectiles:0},'Tome inventory is isolated per run');
+console.log('Tome progression checks passed: level inventory, cap eligibility/rejection, invalid input, snapshot isolation, queued freeze/resume and reset.');
 
 const sword=new Run(()=>0,()=>true,random);
 assert.equal(sword.setWeapon('sword'),true);

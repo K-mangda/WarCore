@@ -1,0 +1,38 @@
+{
+  "operation": "Read existing metadata and hash-match already packaged icons. No extraction, copied media or native effect verification.",
+  "entries": [
+    {
+      "id": "tomedamage",
+      "catalogPathIdUnverified": 8559,
+      "sourceMetadata": "items/tomes/tomedamage/data.json",
+      "sourceMetadataSha256": "f2afc71baf73238948c722d377dc3d73a603b94d6bfe5e8dad18a12ec57ee32c",
+      "sourceIcon": "shared/textures/web/DamageTome.png",
+      "webIcon": "game-ui/DamageTome.png",
+      "iconSha256": "3dd3d75a3039dc8a2ad53312e0577facdd9cc21faa51dd12af7a9a857021cd6b",
+      "effectValues": "Existing web tuning; numeric modifiers not provided by this source JSON",
+      "descriptionInSource": ""
+    },
+    {
+      "id": "tomecooldown",
+      "catalogPathIdUnverified": 8557,
+      "sourceMetadata": "items/tomes/tomecooldown/data.json",
+      "sourceMetadataSha256": "29fe8452ffa55ee4907b75652d6eff098e1a1a844b1f8958adaa28deab1d6eeb",
+      "sourceIcon": "shared/textures/web/CooldownTome.png",
+      "webIcon": "game-ui/CooldownTome.png",
+      "iconSha256": "19adf57556fad63b076c38d5aca8fff42ac3f16494847efc34f0afbb1ae1cac5",
+      "effectValues": "Existing web tuning; numeric modifiers not provided by this source JSON",
+      "descriptionInSource": ""
+    },
+    {
+      "id": "tomequantity",
+      "catalogPathIdUnverified": 8570,
+      "sourceMetadata": "items/tomes/tomequantity/data.json",
+      "sourceMetadataSha256": "05e5f56ba20318af652a643c805b2cc6ce87bdc6797363abcf9320b0f4e7cc2e",
+      "sourceIcon": "shared/textures/web/QuantityTome.png",
+      "webIcon": "game-ui/QuantityTome.png",
+      "iconSha256": "58897be6e883c4a6939da175d54eb934c7626928d984a17a2e8843ea37ed932f",
+      "effectValues": "Existing web tuning; numeric modifiers not provided by this source JSON",
+      "descriptionInSource": ""
+    }
+  ]
+}
