@@ -294,3 +294,8 @@ User reported apparent two-target hits and requested reduced hitbox/range. Fires
 ## Skeleton enemy animation slice - 2026-11-13
 
 User authorized using existing enemy assets after phase/scope notification. Direct native chain EnemyData8037 -> AnimatedMesh7798/Material277 -> Texture802 is integrated; the raw list has8 Moving frames at8FPS, not the catalog7. SkeletonView batches baked frames with instancing and is shared by game and Lab Enemies (Walk/Hit/Death). Animation follows Run.elapsed, so pause freezes it; visual corpses retain death animation time. Existing skeleton mesh files remain archived. Web1.6m size, AI, combat, loot and encounter tuning remain; no new enemy species/boss is added. Native toon shaders/state transitions are incomplete. See ENEMY_IMPLEMENTATION.md for evidence, bounds and tests. No GPU/FPS/visual parity claim; user handles image/audio/gameplay testing. Automatic commit/push applies.
+
+
+## Further slower Gold attraction - 2026-11-13
+
+User requested slower Gold flight again. Gold Bezier progress multiplier0.75 ->0.60 (20% slower progress than previous tuning). Arc shape, automatic collection, glow/shrink, EXP/Silver and awards remain unchanged. User-directed feel tuning; automatic delivery applies.
