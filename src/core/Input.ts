@@ -13,7 +13,7 @@ export class Input {
     if(this.movementKeys.has(event.code))this.heldMovement.add(event.code);
     if (!this.isActive()) return;
     if (event.code === 'Escape') { this.pause(); return; }
-    if (['Space','ControlLeft','ControlRight','Tab'].includes(event.code)) event.preventDefault();
+    if (['Space','ControlLeft','ControlRight','Tab'].includes(event.code)||getControlPreferences().arrowLook&&event.code.startsWith('Arrow')) event.preventDefault();
     this.keys.add(event.code);
     if (event.code === 'Space' && !event.repeat) this.jumpTicks = 4;
   };
@@ -23,3 +23,4 @@ export class Input {
   clear = () => { this.keys.clear(); this.jumpTicks = 0; };
   dispose() { window.removeEventListener('keydown',this.down); window.removeEventListener('keyup',this.up); window.removeEventListener('blur',this.blur); }
 }
+import {getControlPreferences} from './ControlPreferences';

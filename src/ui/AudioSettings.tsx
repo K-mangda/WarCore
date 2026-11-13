@@ -1,9 +1,11 @@
-import {useEffect,useRef,useSyncExternalStore,type CSSProperties} from 'react';
+import {useEffect,useRef,useState,useSyncExternalStore,type CSSProperties} from 'react';
+import {ControlSettings} from './ControlSettings';
 import {audioDefaults,getAudioPreferences,resetAudioPreferences,setAudioPreferences,subscribeAudioPreferences,type AudioVolume} from '../audio/AudioPreferences';
 import './audio-settings.css';
 const rows:[AudioVolume,string][]=[['master','Master Volume'],['music','Music Volume'],['game','Game Sounds'],['ambience','Ambience'],['ui','UI'],['pickups','XP and Gold']];
 export function AudioSettings({onClose,onTestSound,onInteract}:{onClose:()=>void;onTestSound:()=>void;onInteract:()=>void}){
  const preferences=useSyncExternalStore(subscribeAudioPreferences,getAudioPreferences,getAudioPreferences);
+ const [section,setSection]=useState('AUDIO');
  const panel=useRef<HTMLDivElement>(null),close=useRef(onClose);close.current=onClose;
  useEffect(()=>{
   const previous=document.activeElement as HTMLElement|null;panel.current?.querySelector<HTMLInputElement>('input')?.focus();
@@ -22,8 +24,8 @@ export function AudioSettings({onClose,onTestSound,onInteract}:{onClose:()=>void
  return <section className="settings-shade" role="dialog" aria-modal="true" aria-labelledby="settings-title">
   <div className="settings-window" ref={panel}>
    <div className="settings-heading"><h2 id="settings-title">SETTINGS</h2><button className="settings-close" aria-label="Close settings" onClick={onClose}>×</button></div>
-   <nav className="settings-tabs" aria-label="Settings sections">{['GAME','VIDEO','CONTROLS','AUDIO','EFFECTS','OTHER'].map(tab=><button key={tab} disabled={tab!=='AUDIO'} aria-current={tab==='AUDIO'?'page':undefined} title={tab==='AUDIO'?undefined:'Not available in this playtest'}>{tab}</button>)}</nav>
-   <div className="settings-content"><h3>AUDIO</h3>
+   <nav className="settings-tabs" aria-label="Settings sections">{['GAME','VIDEO','CONTROLS','AUDIO','EFFECTS','OTHER'].map(tab=><button key={tab} disabled={tab!=='AUDIO'&&tab!=='CONTROLS'} aria-current={tab===section?'page':undefined} onClick={()=>{onInteract();setSection(tab);}} title={tab==='AUDIO'||tab==='CONTROLS'?undefined:'Not available in this playtest'}>{tab}</button>)}</nav>
+   {section==='CONTROLS'?<ControlSettings onInteract={onInteract}/>:<div className="settings-content"><h3>AUDIO</h3>
     <div className="audio-rows">{rows.map(([key,label])=><div className="audio-setting-row" key={key}>
      <label htmlFor={'audio-'+key}>{label}</label>
      <input id={'audio-'+key} type="range" min="0" max="1" step="0.01" value={preferences[key]} aria-valuetext={`${Math.round(preferences[key]*100)} percent`} style={{'--audio-level':`${preferences[key]*100}%`} as CSSProperties} onChange={event=>{onInteract();setAudioPreferences({[key]:Number(event.currentTarget.value)});}}/>
@@ -31,7 +33,7 @@ export function AudioSettings({onClose,onTestSound,onInteract}:{onClose:()=>void
     </div>)}</div>
     <p className="audio-music-note">No background music is playing in this test arena.</p>
     <div className="audio-settings-actions"><button onClick={onTestSound}>TEST UI SOUND</button><button onClick={()=>{onInteract();resetAudioPreferences();}} disabled={Object.keys(audioDefaults).every(key=>preferences[key as keyof typeof preferences]===audioDefaults[key as keyof typeof audioDefaults])}>RESET TO DEFAULT</button></div>
-   </div>
+   </div>}
   </div>
  </section>;
 }

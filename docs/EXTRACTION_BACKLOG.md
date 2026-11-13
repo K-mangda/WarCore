@@ -7,6 +7,10 @@
 
 ## ผู้รับผิดชอบและสถานะล่าสุด
 
+ข้อกำหนด Controls ล่าสุด: **ไม่ทำ Controller/gamepad input** จึงไม่ต้องหา/สกัดส่วน controller sensitivity/vibration/disconnect/bindings มาทำ เว็บมีแผนเล่นมือถือในอนาคตด้วย touch controls แยกต่างหาก ยังไม่ได้เริ่มงานมือถือ ดู [CONTROLS_IMPLEMENTATION.md](CONTROLS_IMPLEMENTATION.md)
+
+Controls ที่ต่อแล้วใช้ค่าทดลองเว็บให้ทำงานได้จริง: sensitivity multiplier, optional smoothing, invert axes, arrow look และ upgrade keys1–3 สิ่งที่ให้ AI อีกตัวตรวจจากของเดิมก่อนคือสูตร/range/default/หน่วยของ Sensitivity และ Look Smoothing, time-step behavior, inversion/arrow-look rate, filtering/eligibility ของเลขเลือกอัปเกรด และ save fields พร้อมหลักฐานจริง ภาพ slider1.00/0.60เป็นค่าที่แสดงในภาพ ไม่ใช่หลักฐานสูตรหรือค่า default ห้ามเปลี่ยนค่าจูนผู้ใช้อัตโนมัติ ส่วน Interact/Aim/Quick Reset/Map Overlay/Hold Crouch-Aim ยังไม่ต่อระบบที่ใช้ได้ครบ จึงยังไม่มีแถวตั้งค่าหลอกในเว็บ
+
 แนวทางถาวรที่ผู้ใช้ยืนยัน: เมื่อพบข้อมูลไม่แน่ใจ ให้อัปเดต MD/รายการส่งต่อเองทันทีโดยไม่ต้องรอผู้ใช้สั่งซ้ำ ระบุสิ่งที่ตรวจแล้ว ข้อที่ยังไม่รู้ ค่าทดลองในเว็บ และคำถาม/หลักฐานที่ต้องการจาก AI อีกตัว แยก “มีไฟล์แต่ยังไม่ต่อ” จาก “ข้อมูลขาด/ยังไม่ยืนยัน” ไม่เปลี่ยนข้อสงสัยเป็นข้อเท็จจริง ไม่แกะเกมเอง และไม่หยุดงานส่วนที่มีข้อมูลพร้อมโดยไม่จำเป็น
 
 งานเสียงที่ผู้ใช้ให้ตามเพิ่ม: [AUDIO_MIXER_HANDOFF.md](AUDIO_MIXER_HANDOFF.md) แยกชื่อสไลเดอร์ที่เห็นในภาพจาก routing ที่ยังไม่ยืนยัน พร้อมรายการทุกคลิปที่เว็บจัดเข้าช่องอยู่ ให้ AI อีกตัวตาม slider callback/settings field → exposed mixer parameter/group → AudioSource/runtime assignment โดยเฉพาะ UI/Levelup4, Ambience/LevelupAmbience, Game Sounds/LevelupAfter และ XP and Gold/Silver รวมสูตร gain/dB/default/save-load ห้ามเดาจากชื่อคลิปหรือถือ event ที่ยืนยันแล้วว่าเป็นหลักฐาน mixer ด้วย

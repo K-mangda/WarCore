@@ -58,6 +58,7 @@ export class Engine {
     const wallDelta=this.previous?(time-this.previous)/1000:0;
     const dt=Math.min(wallDelta,.1);this.previous=time;
     const locked=this.active;
+    this.orbit.advanceLook(dt,this.input.keys);
     if(locked&&!this.run.blocked){this.accumulator+=dt;while(this.accumulator>=physics.fixedStep){const wasGrounded=this.motor.grounded,jumps=this.motor.jumps;this.motor.step(physics.fixedStep,this.input,this.orbit.yaw);if(this.motor.jumps>jumps)this.audio.play('jump');if(!wasGrounded&&this.motor.grounded)this.audio.play('land');this.run.step(physics.fixedStep,this.motor.position,new T.Vector3(-Math.sin(this.orbit.yaw),0,-Math.cos(this.orbit.yaw)));this.accumulator-=physics.fixedStep;if(this.run.blocked){this.pause();this.accumulator=0;this.emit();break;}}}
     else this.accumulator=0;
     const slide=this.motor.state===EMovementState.Sliding;

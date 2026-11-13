@@ -4,9 +4,9 @@ import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
-for(const name of ['camera/Orbit','environment/forest/Sandbox']){
+for(const name of ['camera/Orbit','core/ControlPreferences','environment/forest/Sandbox']){
  const out=resolve('.local-evidence/render-check',name+'.js');mkdirSync(dirname(out),{recursive:true});
- writeFileSync(out,ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText);
+ writeFileSync(out,ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'"));
 }
 const {makeSandbox}=await import(pathToFileURL(resolve('.local-evidence/render-check/environment/forest/Sandbox.js')));
 const scene=new T.Scene(),terrain=makeSandbox(scene),trees=scene.children.filter(o=>o.isInstancedMesh);

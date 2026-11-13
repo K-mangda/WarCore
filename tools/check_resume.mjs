@@ -4,7 +4,7 @@ import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 const out=resolve('.local-evidence/resume-check');mkdirSync(out,{recursive:true});
-for(const name of ['Input','PointerLockState'])writeFileSync(resolve(out,name+'.mjs'),ts.transpileModule(readFileSync('src/core/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText);
+for(const name of ['Input','PointerLockState','ControlPreferences'])writeFileSync(resolve(out,name+'.mjs'),ts.transpileModule(readFileSync('src/core/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.mjs'"));
 const {PointerLockState}=await import(pathToFileURL(resolve(out,'PointerLockState.mjs')));
 const lock=new PointerLockState();assert.equal(lock.changed(true),false);
 lock.release();assert.equal(lock.changed(false),false,'Delayed intentional unlock must not pause resumed gameplay');
