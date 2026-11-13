@@ -5,8 +5,8 @@ import {balance} from '../combat/Balance';
 /** Timeline fixture for the shared enemy renderer, not a second combat simulation. */
 export class EnemyPreview {
  private views:Record<EnemyKind,BakedEnemyView>;
- constructor(scene:T.Scene){this.views={skeleton:new BakedEnemyView(scene,undefined,'skeleton'),bandit:new BakedEnemyView(scene,undefined,'bandit')};}
- load(kind:EnemyKind){return this.views[kind].load();}
+ constructor(private scene:T.Scene){this.views={skeleton:new BakedEnemyView(scene,undefined,'skeleton'),bandit:new BakedEnemyView(scene,undefined,'bandit')};}
+ async load(kind:EnemyKind){try{await this.views[kind].load();}catch(error){this.views[kind].dispose();this.views[kind]=new BakedEnemyView(this.scene,undefined,kind);throw error;}}
  update(room:string,age:number,facing:T.Vector3){
   const player=new T.Vector3(),position=facing.clone().multiplyScalar(2.5);
   const kind=room.startsWith('bandit-')?'bandit':room.startsWith('skeleton-')?'skeleton':undefined;

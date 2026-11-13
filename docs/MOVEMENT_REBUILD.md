@@ -1,3 +1,5 @@
+> Historical movement/parity notes; see [current phase status](PHASE_STATUS.md) for delivered scope and remaining gaps.
+
 # Movement rebuild plan and evidence
 
 ## Revised execution order

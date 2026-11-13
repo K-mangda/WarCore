@@ -13,6 +13,7 @@ export function AudioSettings({onClose,onTestSound,onInteract,resolution}:{onClo
  useEffect(()=>{
   const previous=document.activeElement as HTMLElement|null;panel.current?.querySelector<HTMLInputElement>('input')?.focus();
   const keydown=(event:KeyboardEvent)=>{
+   if(panel.current?.querySelector('[data-rebinding=true]'))return;
    if(event.key==='Escape'){event.preventDefault();event.stopPropagation();close.current();}
    if(event.key==='Tab'){
     const elements=Array.from(panel.current!.querySelectorAll<HTMLElement>('button:not(:disabled),input'));

@@ -1,3 +1,5 @@
+> Historical movement/parity notes; see [current phase status](PHASE_STATUS.md) for delivered scope and remaining gaps.
+
 # Phase parity ledger
 
 2026-11-13 enemy slice: Skeleton now uses native baked Moving mesh animation (8 frames at8FPS), shared by game and Lab. See [enemy implementation](ENEMY_IMPLEMENTATION.md). This supersedes older static/deferred enemy-visual status below; native AI and encounter parity remain incomplete.

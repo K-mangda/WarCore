@@ -164,3 +164,7 @@ Controls ที่ต่อแล้วใช้ค่าทดลองเว�
 5. หากหาไม่พบ ระบุขอบเขตที่ตรวจแล้ว อย่าเปลี่ยน filename/category เป็น `trigger_verified`
 
 รักษาหลักฐานเดิมและแยกข้อมูลต้นฉบับจากค่าที่ผู้ใช้ตั้งใจจูนในเว็บเสมอ
+
+## Pause / death reference — new request, 2026-11-13
+
+See [PAUSE_END_REFERENCE.md](PAUSE_END_REFERENCE.md) for the user screenshots' missing data: Damage/DPS accounting, final Silver reward, Quests, stage/tier/multiplier, Shrine Logs, native stats and transitions. Screenshot numbers must not become gameplay defaults. Web history, presets, and five-key rebindings are explicitly web tools, not recovered native behavior.

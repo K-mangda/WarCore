@@ -1,9 +1,11 @@
-import {useSyncExternalStore,type CSSProperties} from 'react';
-import {getControlPreferences,setControlPreferences,resetControlPreferences,subscribeControlPreferences,type ControlPreferences} from '../core/ControlPreferences';
+import {useEffect,useState,useSyncExternalStore,type CSSProperties} from 'react';
+import {getControlPreferences,setControlPreferences,resetControlPreferences,subscribeControlPreferences,bindingActions,bindingLabel,bindControl,type BindingAction,type ControlPreferences} from '../core/ControlPreferences';
 const toggles:[keyof Pick<ControlPreferences,'invertHorizontal'|'invertVertical'|'arrowLook'|'numberUpgrades'>,string][]=[['invertHorizontal','Inverted Horizontal Axis'],['invertVertical','Inverted Vertical Axis'],['arrowLook','Rotate camera with arrow keys'],['numberUpgrades','Select upgrades with number keys']];
 export function ControlSettings({onInteract}:{onInteract:()=>void}){
+ const [capture,setCapture]=useState<BindingAction|null>(null),[message,setMessage]=useState('');
+ useEffect(()=>{if(!capture)return;const key=(event:KeyboardEvent)=>{event.preventDefault();event.stopPropagation();if(event.code==='Escape'){setCapture(null);return;}if(event.repeat)return;const error=event.altKey||event.metaKey||event.ctrlKey&&!event.code.startsWith('Control')?'Key combinations are unsupported.':bindControl(capture,event.code);setMessage(error??'Binding saved.');if(!error)setCapture(null);};document.addEventListener('keydown',key,true);return ()=>document.removeEventListener('keydown',key,true);},[capture]);
  const settings=useSyncExternalStore(subscribeControlPreferences,getControlPreferences,getControlPreferences);
- const bindings:[string,string[]][]=[['Forward',['W']],['Backward',['S']],['Left',['A']],['Right',['D']],['Jump',['SPACE']],['Pause',['ESC']],['Look',['MOUSE']]];
+ const bindings:[string,string[]][]=[['Pause',['ESC']],['Look',['MOUSE']]];
  if(settings.arrowLook)bindings.push(['Rotate camera',['←','↑','↓','→']]);
  if(settings.numberUpgrades)bindings.push(['Select upgrade',['1','2','3']]);
  return <div className="settings-content controls-content"><h3>GENERAL</h3><div className="audio-rows">
@@ -19,8 +21,8 @@ export function ControlSettings({onInteract}:{onInteract:()=>void}){
    </div></div>;
   })}
  </div><h3 className="controls-keyboard-title">KEYBOARD INPUT</h3>
- <div className="controls-bindings" aria-label="Current keyboard and mouse controls">{bindings.map(([label,keys])=><div className="controls-key-row" key={label}><span>{label}</span><div>{keys.map(key=><kbd className={'controls-keycap'+(key.length>1?' controls-keycap-wide':'')} key={key}>{key}</kbd>)}</div></div>)}</div>
- <p className="audio-music-note">Controls shown above are fixed. Drag to look when pointer lock is unavailable.</p>
- <button className="controls-reset" onClick={()=>{onInteract();resetControlPreferences();}}>Reset Controls</button>
+ <div className="controls-bindings" data-rebinding={capture?"true":undefined} aria-label="Current keyboard and mouse controls">{bindingActions.map(action=><div className="controls-key-row" key={action}><span>{action[0].toUpperCase()+action.slice(1)}</span><button onClick={()=>{onInteract();setMessage('Press a key; Esc cancels.');setCapture(action);}} aria-label={'Change '+action+' key'}>{capture===action?'Press key…':bindingLabel(settings.bindings[action])}</button></div>)}{bindings.map(([label,keys])=><div className="controls-key-row" key={label}><span>{label}</span><div>{keys.map(key=><kbd className={'controls-keycap'+(key.length>1?' controls-keycap-wide':'')} key={key}>{key}</kbd>)}</div></div>)}</div>
+ <p className="audio-music-note">Click a movement or jump key to change it. Esc, arrows and 1–3 remain reserved. Drag to look when pointer lock is unavailable.</p>
+ <p role="status">{message}</p><button className="controls-reset" onClick={()=>{onInteract();setCapture(null);setMessage('Controls reset.');resetControlPreferences();}}>Reset Controls</button>
  </div>;
 }

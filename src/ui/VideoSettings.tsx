@@ -1,5 +1,5 @@
 import {useEffect,useState,useSyncExternalStore,type CSSProperties} from 'react';
-import {fpsLimits,getVideoPreferences,setVideoPreferences,resetVideoPreferences,subscribeVideoPreferences} from '../core/VideoPreferences';
+import {videoPresets,applyVideoPreset,currentVideoPreset,type VideoPreset,fpsLimits,getVideoPreferences,setVideoPreferences,resetVideoPreferences,subscribeVideoPreferences} from '../core/VideoPreferences';
 export async function toggleBrowserFullscreen(){if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}
 export function VideoSettings({onInteract,resolution}:{onInteract:()=>void;resolution?:{width:number;height:number}}){
  const settings=useSyncExternalStore(subscribeVideoPreferences,getVideoPreferences,getVideoPreferences);
@@ -17,7 +17,7 @@ export function VideoSettings({onInteract,resolution}:{onInteract:()=>void;resol
   {([['fov','FOV',60,110,1,0],['cameraDistance','Camera Distance',0,3,.05,2]] as const).map(([key,label,min,max,step,digits])=><div className="audio-setting-row" key={key}>
    <label htmlFor={'video-'+key}>{label}</label><input id={'video-'+key} type="range" min={min} max={max} step={step} value={settings[key]} style={{'--audio-level':`${(settings[key]-min)/(max-min)*100}%`} as CSSProperties} onChange={event=>{onInteract();setVideoPreferences({[key]:Number(event.currentTarget.value)});}}/><output htmlFor={'video-'+key}>{settings[key].toFixed(digits)}</output>
   </div>)}
- </div><h3 className="controls-keyboard-title">GRAPHICS</h3><div className="audio-rows">
+ </div><h3 className="controls-keyboard-title">GRAPHICS</h3><div className="audio-rows"><div className="controls-option"><label htmlFor="video-preset">Graphics Preset</label><select id="video-preset" value={currentVideoPreset(settings)} onChange={event=>{onInteract();applyVideoPreset(event.currentTarget.value as VideoPreset);}}><option value="Custom" disabled>Custom</option>{Object.keys(videoPresets).map(name=><option key={name}>{name}</option>)}</select></div>
   {([['renderScale','Render Scale',.5,1.25,.05],['viewDistance','View Distance',50,250,10]] as const).map(([key,label,min,max,step])=><div className="audio-setting-row" key={key}>
    <label htmlFor={'video-'+key}>{label}</label><input id={'video-'+key} type="range" min={min} max={max} step={step} value={settings[key]} style={{'--audio-level':`${(settings[key]-min)/(max-min)*100}%`} as CSSProperties} onChange={event=>{onInteract();setVideoPreferences({[key]:Number(event.currentTarget.value)});}}/><output htmlFor={'video-'+key}>{key==='renderScale'?`${Math.round(settings[key]*100)}%`:settings[key].toFixed(0)}</output>
   </div>)}

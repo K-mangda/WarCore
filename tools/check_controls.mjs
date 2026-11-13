@@ -15,7 +15,7 @@ const target=()=>({addEventListener(type,fn){if(!events.has(this))events.set(thi
 globalThis.window=target();globalThis.document=target();const canvas=target();document.pointerLockElement=canvas;
 globalThis.localStorage={getItem:key=>stored.get(key)??null,setItem:(key,value)=>stored.set(key,value)};
 const url=pathToFileURL(resolve(folder,'core/ControlPreferences.js'));
-const {controlDefaults,controlStorageKey,getControlPreferences,setControlPreferences,resetControlPreferences}=await import(url);
+const {controlDefaults,controlStorageKey,getControlPreferences,setControlPreferences,resetControlPreferences,bindControl}=await import(url);
 assert.equal(getControlPreferences().sensitivity,1);assert.equal(getControlPreferences().lookSmoothing,0);
 setControlPreferences({sensitivity:100,lookSmoothing:-1});assert.equal(getControlPreferences().sensitivity,8);assert.equal(getControlPreferences().lookSmoothing,0);
 const reloaded=await import(url+'?reload');assert.equal(reloaded.getControlPreferences().sensitivity,8);
@@ -32,6 +32,15 @@ resetControlPreferences();orbit.move({movementX:0,movementY:1e6});near(orbit.pit
 document.pointerLockElement=null;const yaw=orbit.yaw;orbit.move({movementX:10,movementY:0});near(orbit.yaw,yaw);orbit.down();orbit.move({movementX:10,movementY:0});near(orbit.yaw,yaw-.02);orbit.up();
 const {Input}=await import(pathToFileURL(resolve(folder,'core/Input.js')));let prevented=0;const input=new Input(()=>active,()=>{}),event=(code,extra={})=>({code,repeat:false,preventDefault(){prevented++;},...extra});
 setControlPreferences({arrowLook:true});input.down(event('ArrowLeft'));assert.ok(input.keys.has('ArrowLeft'));assert.equal(prevented,1);active=false;input.clear();input.down(event('ArrowRight'));assert.equal(prevented,1,'Paused settings sliders keep normal arrow-key behavior');
+active=true;resetControlPreferences();
+assert.match(bindControl('forward','KeyS'),/already assigned/);assert.equal(getControlPreferences().bindings.forward,'KeyW');
+for(const code of ['Escape','Tab','Digit1','ArrowUp','F5'])assert.ok(bindControl('forward',code),'Reserved keys rejected');
+assert.equal(bindControl('forward','KeyZ'),undefined);assert.equal(getControlPreferences().bindings.forward,'KeyZ');
+input.down(event('KeyW'));assert.ok(!input.keys.has('KeyW'),'Unbound old W must not move');input.down(event('KeyZ'));assert.ok(input.keys.has('KeyW'),'Physical custom key maps to motor forward');
+active=false;input.clear();active=true;input.resume();assert.ok(input.keys.has('KeyW'),'Custom held key resumes');input.up(event('KeyZ'));assert.equal(input.keys.size,0);
+bindControl('jump','KeyJ');input.down(event('Space'));assert.equal(input.jumpTicks,0);input.down(event('KeyJ'));assert.equal(input.jumpTicks,4);input.clear();
+active=false;input.down(event('KeyZ'));active=true;input.resume();assert.equal(input.keys.size,0,'Typing while a menu is open does not create held movement');
+resetControlPreferences();
 const {upgradeHotkey}=await import(pathToFileURL(resolve(folder,'core/UpgradeHotkeys.js')));const choices=['projectiles','damage'];
 assert.equal(upgradeHotkey(event('Digit1'),choices),'projectiles');assert.equal(upgradeHotkey(event('Numpad2'),choices),'damage');assert.equal(upgradeHotkey(event('Digit3'),choices),undefined);
 for(const extra of [{repeat:true},{ctrlKey:true},{shiftKey:true},{target:{tagName:'INPUT'}},{target:{isContentEditable:true}}])assert.equal(upgradeHotkey(event('Digit1',extra),choices),undefined);

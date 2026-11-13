@@ -1,3 +1,5 @@
+> Current scope: **Phase 2 — playtest systems and player tools**. See [phase status](docs/PHASE_STATUS.md) and [Pause/death reference backlog](docs/PAUSE_END_REFERENCE.md). The deployment branch retains its historical Phase 1 name. Movement-native-parity gaps remain open.
+
 # Megabonk movement lab
 
 Current movement evidence and revised implementation order: [movement rebuild](docs/MOVEMENT_REBUILD.md). It supersedes earlier provisional movement notes where they conflict. Run `node tools/check_slide.mjs` and `node tools/check_motor.mjs` for motor regression checks.

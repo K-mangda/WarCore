@@ -19,3 +19,8 @@ export const getVideoPreferences=()=>current;
 export function setVideoPreferences(patch:Partial<VideoPreferences>){const next=sanitize({...current,...patch});try{localStorage.setItem(videoStorageKey,JSON.stringify(next));}catch{/* Keep settings usable in memory. */}publish(next);}
 export const resetVideoPreferences=()=>setVideoPreferences({...videoDefaults});
 export function subscribeVideoPreferences(listener:()=>void){if(!listeners.size&&typeof window!=='undefined')window.addEventListener('storage',storageChanged);listeners.add(listener);return ()=>{listeners.delete(listener);if(!listeners.size&&typeof window!=='undefined')window.removeEventListener('storage',storageChanged);};}
+
+export const videoPresets={Low:{renderScale:.6,viewDistance:80,fpsLimit:60},Balanced:{renderScale:.85,viewDistance:150,fpsLimit:0},High:{renderScale:1,viewDistance:250,fpsLimit:0}} as const;
+export type VideoPreset=keyof typeof videoPresets;
+export function applyVideoPreset(name:VideoPreset){setVideoPreferences(videoPresets[name]);}
+export function currentVideoPreset(settings:VideoPreferences):VideoPreset|'Custom'{return (Object.keys(videoPresets) as VideoPreset[]).find(name=>{const p=videoPresets[name];return p.renderScale===settings.renderScale&&p.viewDistance===settings.viewDistance&&p.fpsLimit===settings.fpsLimit;})??'Custom';}

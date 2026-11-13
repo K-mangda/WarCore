@@ -14,7 +14,7 @@ const stored=new Map(),events=new Set();globalThis.localStorage={getItem:key=>st
 globalThis.window={addEventListener(type,fn){if(type==='storage')events.add(fn);},removeEventListener(type,fn){if(type==='storage')events.delete(fn);}};
 globalThis.document={addEventListener(){},removeEventListener(){},fullscreenEnabled:false,fullscreenElement:null,documentElement:{}};
 const url=pathToFileURL(resolve(folder,'core/VideoPreferences.js'));
-const {videoDefaults,videoStorageKey,getVideoPreferences,setVideoPreferences,resetVideoPreferences,subscribeVideoPreferences}=await import(url);
+const {videoDefaults,videoStorageKey,getVideoPreferences,setVideoPreferences,resetVideoPreferences,applyVideoPreset,currentVideoPreset,subscribeVideoPreferences}=await import(url);
 assert.deepEqual(getVideoPreferences(),{renderScale:1,viewDistance:250,fpsLimit:0,fov:75,cameraDistance:0});
 setVideoPreferences({renderScale:5,viewDistance:-1,fov:1000,cameraDistance:-1,fpsLimit:59});assert.equal(getVideoPreferences().renderScale,1.25);assert.equal(getVideoPreferences().viewDistance,50);assert.equal(getVideoPreferences().fov,110);assert.equal(getVideoPreferences().cameraDistance,0);assert.equal(getVideoPreferences().fpsLimit,0);
 setVideoPreferences({renderScale:.5,fpsLimit:60});assert.equal((await import(url+'?reload')).getVideoPreferences().renderScale,.5);stored.set(videoStorageKey,'broken');assert.deepEqual((await import(url+'?corrupt')).getVideoPreferences(),videoDefaults);
@@ -29,6 +29,8 @@ const initialResizes=resizeCalls;applyVideoPreferences(renderer,camera,scene,{..
 applyVideoPreferences(renderer,camera,scene,{...videoDefaults,renderScale:.5,viewDistance:60,fov:90},1920,1080,2);assert.equal(renderer.width*renderer.height*renderer.ratio**2,normalPixels/4,'Half render scale draws a quarter of the pixels');assert.equal(camera.fov,90);assert.equal(camera.far,60);assert.equal(scene.fog.far,54);assert.ok(scene.fog.near<scene.fog.far);
 const labCamera=new T.PerspectiveCamera(75,1,.05,100);applyVideoPreferences(renderer,labCamera,new T.Scene(),{...videoDefaults,fov:110,renderScale:.5},800,600,2,'lab');assert.equal(renderer.ratio,.75);assert.equal(labCamera.fov,75);assert.equal(labCamera.far,100,'Lab fixture framing is retained');
 applyVideoPreferences(renderer,camera,scene,videoDefaults,0,0,1);assert.equal(camera.aspect,1,'Zero-sized hidden surface cannot corrupt the projection');
+setVideoPreferences({fov:93,cameraDistance:1.25});applyVideoPreset('Low');assert.equal(currentVideoPreset(getVideoPreferences()),'Low');assert.equal(getVideoPreferences().fov,93);assert.equal(getVideoPreferences().cameraDistance,1.25);assert.equal(getVideoPreferences().fpsLimit,60);
+applyVideoPreset('Balanced');assert.equal(getVideoPreferences().viewDistance,150);setVideoPreferences({renderScale:.7});assert.equal(currentVideoPreset(getVideoPreferences()),'Custom');applyVideoPreset('High');assert.equal(getVideoPreferences().renderScale,1);resetVideoPreferences();
 const {RenderCadence}=await import(pathToFileURL(resolve(folder,'core/RenderCadence.js')));
 for(const [refresh,limit,expected] of [[120,60,60],[144,60,60],[60,144,60],[60,30,30],[144,0,144]]){
  const cadence=new RenderCadence();let frames=0;for(let i=0;i<refresh;i++)if(cadence.ready(i*1000/refresh,limit))frames++;assert.ok(Math.abs(frames-expected)<=1,`${refresh}Hz / cap${limit}: ${frames}`);

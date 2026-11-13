@@ -1,3 +1,5 @@
+import {RunRecorder} from './RunHistory';
+import {buildVersion} from './BuildInfo';
 import {PointerLockState} from './PointerLockState';
 import {getVideoPreferences,subscribeVideoPreferences} from './VideoPreferences';
 import {applyVideoPreferences} from './VideoRenderer';
@@ -24,6 +26,7 @@ export class Engine {
   private run=new Run(heightAt,point=>{const projected=point.project(this.camera);return projected.z>=-1&&projected.z<=1&&Math.abs(projected.x)<1.2&&Math.abs(projected.y)<1.2;},Math.random,event=>this.audio.play(event));
   private combatView:CombatView;
   private disposed=false;
+  private recorder=new RunRecorder();
   private active=false;private inLab=false;
   private pointerLock=new PointerLockState();
   private cadence=new RenderCadence();private previousRender=0;private bufferSize=new T.Vector2();private unsubscribeVideo:()=>void;private unsubscribeEffects:()=>void;
@@ -55,7 +58,7 @@ export class Engine {
   pauseForLab=()=>{this.inLab=true;this.audio.stopProgression();this.pause();this.emit();};
   resumeFromLab=()=>{this.inLab=false;};
   pauseForSettings=()=>{this.pause();this.emit();};
-  reset=(top=false)=>{this.audio.stopProgression();this.audio.stopGameplay();this.motor.reset(top);this.run.reset();this.emit();};
+  reset=(top=false)=>{this.recorder.reset(this.run.snapshot(),buildVersion);this.audio.stopProgression();this.audio.stopGameplay();this.motor.reset(top);this.run.reset();this.emit();};
   setWeapon=(weapon:Weapon)=>{if(this.active)return;this.run.setWeapon(weapon);this.emit();};
   restart=()=>{this.reset();this.lock();};
   chooseUpgrade=(upgrade:Upgrade)=>{if(!this.run.choose(upgrade))return;this.audio.unlock();this.audio.setLevelModal(this.run.blocked);this.audio.play('click');if(!this.run.blocked)this.lock(false);this.emit();};
@@ -66,7 +69,7 @@ export class Engine {
     const dt=Math.min(wallDelta,.1);this.previous=time;
     const locked=this.active;
     this.orbit.advanceLook(dt,this.input.keys);
-    if(locked&&!this.run.blocked){this.accumulator+=dt;while(this.accumulator>=physics.fixedStep){const wasGrounded=this.motor.grounded,jumps=this.motor.jumps;this.motor.step(physics.fixedStep,this.input,this.orbit.yaw);if(this.motor.jumps>jumps)this.audio.play('jump');if(!wasGrounded&&this.motor.grounded)this.audio.play('land');this.run.step(physics.fixedStep,this.motor.position,new T.Vector3(-Math.sin(this.orbit.yaw),0,-Math.cos(this.orbit.yaw)));this.accumulator-=physics.fixedStep;if(this.run.blocked){this.pause();this.accumulator=0;this.emit();break;}}}
+    if(locked&&!this.run.blocked){this.accumulator+=dt;while(this.accumulator>=physics.fixedStep){const wasGrounded=this.motor.grounded,jumps=this.motor.jumps;this.motor.step(physics.fixedStep,this.input,this.orbit.yaw);if(this.motor.jumps>jumps)this.audio.play('jump');if(!wasGrounded&&this.motor.grounded)this.audio.play('land');this.run.step(physics.fixedStep,this.motor.position,new T.Vector3(-Math.sin(this.orbit.yaw),0,-Math.cos(this.orbit.yaw)));this.accumulator-=physics.fixedStep;if(this.run.blocked){this.recorder.death(this.run.snapshot(),buildVersion);this.pause();this.accumulator=0;this.emit();break;}}}
     else this.accumulator=0;
     this.audio.setLevelModal(!this.inLab&&this.run.snapshot().pendingUpgrades>0);
     if(this.cadence.ready(time,getVideoPreferences().fpsLimit)){
