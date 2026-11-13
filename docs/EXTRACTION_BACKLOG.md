@@ -11,6 +11,8 @@
 
 ## คิวขยายเนื้อหา: อาวุธ / ตัวละคร / มอน / บอส
 
+คำย้ำล่าสุดเรื่อง7อาวุธใน Lab: **มี asset หลายชนิดแล้ว แต่เว็บต่อเฉพาะโมเดล** สิ่งที่รออีก AI เป็นข้อมูลพฤติกรรมและ event mapping ที่ขาด/ยังไม่ยืนยัน ไม่ใช่สั่งสกัดไฟล์ทั้งชุดซ้ำ รายชื่อเสียงที่มีแล้วแยกรายอาวุธ และคำถาม targeting/motion/hitbox/timing/VFX/audio/pause/pooling อยู่ในหัวข้อ “แยกมี asset แล้วแต่ยังไม่ต่อกับข้อมูลยังขาด” ของ [WEAPON_MODEL_PREVIEWS.md](WEAPON_MODEL_PREVIEWS.md) ให้ตรวจของเดิมและส่งเฉพาะส่วนที่ยังไม่ครบ
+
 อัปเดต: นำไฟล์เดิมมาเพิ่มห้อง Model ใน Lab แล้ว7อาวุธ (Axe, Bow/Arrow, Dice, Mine, Rockets, Bluetooth Dagger, Aegis) ยังไม่ใช่ combat ที่พร้อมเล่น ดู [WEAPON_MODEL_PREVIEWS.md](WEAPON_MODEL_PREVIEWS.md) สำหรับพฤติกรรมที่ขาดรายชิ้น; ไม่ต้องส่ง OBJ/texture ที่คัดลอกแล้วซ้ำ ส่วน Bananarang/Poison Flask ยังรอ geometry/material mapping ให้ชัด
 
 ตัวละคร: Fox เป็นตัวเดียวที่มี playable web rig อยู่ขณะนี้ ชุด catalog มี21รายการและ8 hierarchy ที่ไม่ว่าง ยังไม่พบ playable payload ครบของตัวอื่นใน references ที่ตรวจ ให้ตรวจไฟล์เดิมก่อน แล้วส่ง rig/skin/clips หรือ baked representation หลายตัวเป็นชุด (เช่น Amog, Bush, Chadwell, Dicehead, Megachad, Ogre, Spaceman, Vlad ตาม hierarchy ที่มีจริง; resolve ID/ชื่อก่อนใช้) รวม passive/starting weapon/state/material chain ไม่ใช้ portrait แทนโมเดลในเกม

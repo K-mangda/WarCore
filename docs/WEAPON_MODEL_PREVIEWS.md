@@ -26,6 +26,26 @@ Weapons แยกช่อง Weapon กับ Room: Sword/Firestaff มี Comb
 
 ## ข้อมูลที่ส่งต่ออีก AI
 
+### แยก “มี asset แล้วแต่ยังไม่ต่อ” กับ “ข้อมูลยังขาด”
+
+ตามคำย้ำผู้ใช้: ห้ามรายงานว่าอาวุธ7ชิ้นนี้มีแค่โมเดล ขณะนี้เว็บนำเข้าเฉพาะ model/material/texture เพื่อดูใน Lab ส่วนชุดสกัดเดิมมี data/hierarchy, icon, material และไฟล์เสียงที่ references ระบุอยู่แล้ว รวมถึงข้อมูล particle/prefab บางส่วน การมีไฟล์ครบตาม references ไม่ยืนยันว่าจังหวะใช้งานหรือ runtime fields ครบ
+
+เสียงที่พบใน dependency ของแต่ละชิ้น (มีไฟล์แล้ว **ยังไม่ยืนยันว่าแต่ละชื่อถูกเรียกตอนไหน**):
+
+- Axe: AxeSpin, AxeThrow, Hit2
+- Bow: Arrow, Bow, Hit2
+- Dice: DiceHit6, DiceHitNormal, DiceThrow, Hit2, retro_explosion_fireball1
+- Mine: Hit2, MineSpawn, NoodleStop, bombExplosion
+- Rockets: Hit2, NoodleStop, bombExplosion, retro_shoot_missile, retro_shoot_missile02
+- Bluetooth Dagger: BluetoothDagger, Hit2
+- Aegis: AegisRecharge, AegisUse
+
+**งานฝั่งเว็บที่ยังไม่ได้ต่อ:** เสียง/VFX เหล่านี้และ prefab/particle ที่มีข้อมูลใช้งานเพียงพอ รอจับคู่ event จริงก่อนเชื่อมเข้าระบบโจมตี ไม่จัดเป็นคำขอให้สกัด WAV/ภาพ/โมเดลใหม่ทั้งหมด
+
+**งานข้อมูลที่ยังขาดหรือยังไม่ยืนยัน ให้อีก AI หา:** activation/targeting, เส้นทางและการหมุน, quantity/burst/cooldown, damage lifetime เทียบ visual lifetime, hitbox/penetration/bounce/hit history, spawn transforms และ event mapping ของภาพ/เสียง (spawn/hit/loop/stop/expiry) พร้อมค่าที่ runtime เปลี่ยน รวม pause/reset/pooling รายชิ้นตามหัวข้อด้านล่าง ตรวจ JSON/report เดิมก่อน และส่งเฉพาะช่องว่างที่เหลือ ไม่อนุมาน event จากชื่อคลิปหรือ `trigger_verified` ใน catalog
+
+ผลส่งกลับที่ต้องการ: ผัง event → component/asset reference, ค่าพารามิเตอร์พร้อมหน่วย, หลักฐาน raw fields และ method/call site สำหรับ runtime พร้อมสถานะยืนยัน/อนุมาน/ไม่ทราบ แยก “ไม่มีไฟล์” จาก “มีไฟล์แต่ไม่ทราบวิธีเรียก” ทุกครั้ง
+
 ไม่ต้องสกัด mesh/PNG ชุดนี้ซ้ำ ให้ส่งข้อมูลพฤติกรรมพร้อมหลักฐานตาม WEAPON_BEHAVIOR.md และ EXTRACTION_BACKLOG.md:
 
 - Axe: aiming/spawn, เส้นทางเคลื่อนที่/การหมุน, hit history/penetration, จังหวะเสียง throw/spin/stop
