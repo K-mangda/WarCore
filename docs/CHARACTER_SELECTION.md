@@ -19,3 +19,5 @@ The supplied screenshot establishes Fox description, Firestaff description and R
 - Skin availability/pricing and preview, confirmation/back/menu transitions, source scene/environment assets and character-selection audio event mapping.
 
 Return verified / inferred / unknown separately, with raw references and method-body evidence for formulas. Preserve existing files; extraction belongs to the other AI. Stay in Phase 2 and retain user movement/combat/audio tuning.
+
+2026-11-14 user feedback: selection Fox faces the camera and supports primary-button horizontal drag rotation. Unplayable portrait alpha silhouettes are black in roster/details; source images stay unchanged. This presentation follows user instruction, not native unlock-state logic.
