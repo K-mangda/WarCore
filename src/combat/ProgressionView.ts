@@ -18,7 +18,9 @@ export class ProgressionView {
  }
  private sprite(kind:string){
   const texture=this.textures.get(kind)?.clone();if(!texture)return;
-  texture.needsUpdate=true;const sprite=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));sprite.onBeforeRender=(_renderer,_scene,camera)=>{this.cameraRotation.copy(camera.quaternion);};this.scene.add(sprite);return sprite;
+  texture.needsUpdate=true;const sprite=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));if(kind==='text')sprite.material.onBeforeCompile=shader=>{shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>',`#include <map_fragment>
+ float ink=max(sampledDiffuseColor.r,max(sampledDiffuseColor.g,sampledDiffuseColor.b));
+ diffuseColor.a*=smoothstep(.22,.45,ink);`);};sprite.onBeforeRender=(_renderer,_scene,camera)=>{this.cameraRotation.copy(camera.quaternion);};this.scene.add(sprite);return sprite;
  }
  private frame(sprite:T.Sprite,kind:string,age:number){
   const source=this.data!.sprites[kind],p=source.particle,uv=p.UVModule,initial=p.InitialModule;
@@ -32,8 +34,10 @@ export class ProgressionView {
    const t=T.MathUtils.clamp(age/initial.startLifetime.scalar/(g.ctime1/65535),0,1);
    sprite.material.color.setRGB(a.r+(b.r-a.r)*t,a.g+(b.g-a.g)*t,a.b+(b.b-a.b)*t,T.SRGBColorSpace);
    sprite.material.toneMapped=false;
-   const grow=1-Math.pow(1-T.MathUtils.clamp(age/.12,0,1),3);
-   sprite.scale.multiplyScalar(.88+.12*grow);
+   const enter=1-Math.pow(1-T.MathUtils.clamp(age/.14,0,1),3);
+   const exit=T.MathUtils.clamp((initial.startLifetime.scalar-age)/.16,0,1);
+   sprite.scale.multiplyScalar((.2+.8*enter)*exit);
+   sprite.material.opacity=exit;
   }
   if(kind==='gold'||kind==='silver'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a;sprite.material.toneMapped=false;}
  }
@@ -46,7 +50,7 @@ export class ProgressionView {
     const sprite=this.sprite(kind);if(!sprite)continue;sprite.position.copy(player).y+=kind==='text'?2.5:1;
     const life=initial.startLifetime.minMaxState===3?T.MathUtils.lerp(initial.startLifetime.minScalar,initial.startLifetime.scalar,Math.random()):initial.startLifetime.scalar;
     const angle=i/count*Math.PI*2,speed=kind==='text'?0:T.MathUtils.lerp(7,12,Math.random());
-    if(kind==='text')sprite.userData.anchor=sprite.position.clone();
+    if(kind==='text'){sprite.userData.anchor=sprite.position.clone();sprite.userData.sway=Math.random()<.5?-1:1;}
     this.effects.push({sprite,age:0,life,velocity:new T.Vector3(Math.cos(angle)*speed,.5*speed,Math.sin(angle)*speed),kind});this.frame(sprite,kind,0);
    }
   }
@@ -65,7 +69,8 @@ export class ProgressionView {
     e.sprite.position.copy(anchor);e.sprite.position.y+=e.age*.35;
     // Local camera-right sway stays sideways on screen at every viewing angle.
     const cameraRight=new T.Vector3(1,0,0).applyQuaternion(this.cameraRotation);
-    e.sprite.position.addScaledVector(cameraRight,Math.sin(e.age*Math.PI*3)*.055);
+    e.sprite.position.addScaledVector(cameraRight,Math.sin(Math.PI*e.age/e.life)*.055*e.sprite.userData.sway);
+    e.sprite.material.rotation=Math.sin(Math.PI*e.age/e.life)*.07*e.sprite.userData.sway;
    }
    this.frame(e.sprite,e.kind,e.age);}
  }

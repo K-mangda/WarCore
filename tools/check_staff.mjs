@@ -4,7 +4,7 @@ import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 import * as T from 'three';
-for(const name of ['combat/Run','combat/Pickups','combat/Balance','combat/AttackTiming','combat/StaffView','core/assetUrl','enemies/Swarm','player/Physics']){
+for(const name of ['combat/Run','combat/Pickups','combat/Balance','combat/AttackTiming','combat/StaffView','combat/ProgressionView','combat/XpAppearance','core/assetUrl','enemies/Swarm','player/Physics']){
  const path=resolve('.local-evidence/staff-check',name+'.js');mkdirSync(dirname(path),{recursive:true});
  writeFileSync(path,ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'"));
 }
@@ -31,3 +31,17 @@ run.reset();view.update(run,0);
 view.dispose();assert.equal(scene.children.length,0,'Disposal must remove every particle mesh');
 for(const file of ['retro_shoot_fireball3','retro_explosion_fireball1','retro_explosion_fireball3','Hit2']){const wav=readFileSync(`public/weapons/staff/audio/${file}.wav`);assert.equal(wav.toString('ascii',0,4),'RIFF');assert.equal(wav.toString('ascii',8,12),'WAVE');assert.ok(wav.length>44);}
 console.log('Firestaff renderer checks passed: 13 source layers, valid media, pause, reset, bounded particles and disposal. No GPU/image/audio fidelity claim.');
+
+const {ProgressionView}=await import(pathToFileURL(resolve('.local-evidence/staff-check/combat/ProgressionView.js')));
+const progressionScene=new T.Scene(),progression=new ProgressionView(progressionScene);
+progression.data=JSON.parse(readFileSync('public/progression/manifest.json','utf8'));
+for(const name of ['text','burst','gold','silver'])progression.textures.set(name,new T.Texture());
+const fixture={snapshot:()=>({level:2,elapsed:1}),gems:[]};progression.update(fixture,new T.Vector3(),0);
+const text=progression.effects.find(e=>e.kind==='text');assert.ok(text);const startScale=text.sprite.scale.x;
+const startPosition=text.sprite.position.clone();for(let i=0;i<10;i++)progression.update(fixture,new T.Vector3(),0);
+assert.equal(text.age,0,'Paused rendering must not age the LEVEL UP effect');assert.ok(text.sprite.position.equals(startPosition));
+progression.update(fixture,new T.Vector3(),.14);assert.ok(text.sprite.scale.x>startScale,'Text must grow from small');
+const side=Math.sign(text.sprite.position.x);progression.update(fixture,new T.Vector3(),.2);assert.equal(Math.sign(text.sprite.position.x),side,'Sway must stay on its one chosen side');
+const fullScale=text.sprite.scale.x;progression.update(fixture,new T.Vector3(),.4);assert.ok(text.sprite.scale.x<fullScale,'Text shrinks before expiry');
+progression.update(fixture,new T.Vector3(),.1);assert.equal(progression.effects.length,0);progression.dispose();
+console.log('Level-up effect checks passed: zero-delta pause, small start, single-sided sway, shrink and expiry.');

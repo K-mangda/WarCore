@@ -62,7 +62,7 @@ export class Engine {
     const slide=this.motor.state===EMovementState.Sliding;
     this.fox.update(this.motor.position,this.orbit.yaw,this.motor.speed,this.motor.grounded,this.motor.velocity.y,locked?dt:0);
     this.orbit.update(this.motor.position,this.terrain);this.camera.updateMatrixWorld();
-    this.combatView.update(this.run,this.motor.position,this.run.snapshot().pendingUpgrades>0||locked?dt:0);
+    this.combatView.update(this.run,this.motor.position,this.active&&!this.run.blocked?dt:0);
     this.audio.setLevelModal(!this.inLab&&this.run.snapshot().pendingUpgrades>0);
     this.orbit.update(this.motor.position,this.terrain);this.effects.update(locked?dt:0,this.motor.position,locked&&slide,this.motor.speed);this.renderer.render(this.scene,this.camera);
     this.frames++;this.sample+=wallDelta;if(this.sample>=.2){this.fps=Math.round(this.frames/this.sample);this.frames=0;this.sample=0;this.emit();}

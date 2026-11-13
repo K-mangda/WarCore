@@ -217,3 +217,12 @@ User-directed text tuning: scale0.6 ->0.45 of native1.5 (25% smaller than previo
 ## Pickup counter readability tuning - 2026-11-13
 
 User requested no black outline, slightly smaller text, farther right/lower positioning. Pickup counters use native SDF foreground only (no black underlay); ordinary damage labels retain their existing outline. Base counter canvas height48 ->42 screen pixels (12.5% smaller), anchor85 ->105px right and24 ->12px up relative to projected player anchor. Existing currency colors, stack/pulse cap and fade remain. Shared game/Lab tuning, automatic delivery applies.
+
+
+## LEVEL UP single-sided pop/sway and strict pause - 2026-11-13
+
+User refined the desired motion: text starts at20% size, eases to normal over0.14s, floats from its head anchor, randomly chooses left/right once, performs one small sideways/tilt arc over its lifetime, then shrinks/fades over the last0.16s. These are user-directed approximations. The native source gold/orange color gradient is retained, not claimed visually exact.
+
+The native text atlas has opaque dark pixels (742 dark opaque pixels in the selected64x32 tile). Text material now suppresses dark backing via a luminance alpha mask in the renderer; source PNG is preserved. This removes the visible dark plate without editing source art.
+
+Engine now passes effect delta only while active AND Run is not blocked: manual pause, focus/pointer-lock loss and upgrade/death screens all freeze effects, including a level-up reached in the current physics tick. The initial small text remains frozen until gameplay resumes. Lab explicit timeline/playback remains a preview clock, with Stop freezing it. This supersedes the earlier special unscaled animation during the level-up modal. Automatic delivery applies.
