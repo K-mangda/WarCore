@@ -326,3 +326,8 @@ User screenshot shows text at the character upper torso. Raised the player-relat
 ## Wider LEVEL UP backing with smaller letters - 2026-11-13
 
 User requested a longer banner but smaller text. Native lettering base multiplier0.45 ->0.40 (about11% smaller on both axes), retaining width1.10/height0.60 proportions. Separate procedural dark-brown backing and thin darker border extend sideways behind the smaller source lettering (relative widths1.40/1.46), rather than enlarging the letters to lengthen the sign. Backing inherits head-follow, tilt, opening and centered collapse. Colors/dimensions are explicit web UI tuning; original atlas untouched. Shared game/Lab; automatic delivery applies.
+
+
+## Unify LEVEL UP lettering and border - 2026-11-13
+
+User reported letters did not follow the widened border. Removed the two separate procedural backing/border sprites added previously. The source atlas already contains a complete sign, so it is now rendered as one sprite with horizontal multiplier1.60 and vertical0.60 at base0.40. This preserves approximately the widened outer sign width while extending the letters with its border; native dark backing stays intact. Opening/sway/tilt/center-collapse now transform the whole sign together. No new textures or separate background layer. Automatic delivery applies.

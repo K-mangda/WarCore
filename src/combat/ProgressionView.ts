@@ -30,13 +30,6 @@ export class ProgressionView {
    const halo=new T.Sprite(new T.SpriteMaterial({map:this.goldGlow,color:0xffd45b,opacity:.22,transparent:true,depthWrite:false,blending:T.AdditiveBlending,toneMapped:false}));
    halo.scale.setScalar(2.6);halo.renderOrder=1;sprite.renderOrder=2;sprite.add(halo);
   }
-  if(kind==='text'){
-   // Extend the backing independently of the smaller native lettering.
-   const border=new T.Sprite(new T.SpriteMaterial({color:0x150b06,depthWrite:false,toneMapped:false}));
-   const backing=new T.Sprite(new T.SpriteMaterial({color:0x2f1b10,depthWrite:false,toneMapped:false}));
-   border.scale.set(1.46,.58,1);backing.scale.set(1.4,.52,1);
-   border.renderOrder=8;backing.renderOrder=9;sprite.renderOrder=10;sprite.add(border,backing);
-  }
   this.scene.add(sprite);return sprite;
  }
  private frame(sprite:T.Sprite,kind:string,age:number){
@@ -55,7 +48,7 @@ export class ProgressionView {
    const exit=T.MathUtils.clamp((initial.startLifetime.scalar-age)/.09,0,1);
    // Rapidly collapse both axes toward the center of the word.
    sprite.scale.multiplyScalar((.2+.8*enter)*exit*exit);
-   sprite.scale.x*=1.1;sprite.scale.y*=.6;
+   sprite.scale.x*=1.6;sprite.scale.y*=.6;
    sprite.material.opacity=1;
   }
   if(kind==='burst'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a;sprite.material.toneMapped=false;}
