@@ -212,3 +212,8 @@ User explicitly requested automatic commit/push for completed checked changes, a
 ## LEVEL UP small pop and gentle sway - 2026-11-13
 
 User-directed text tuning: scale0.6 ->0.45 of native1.5 (25% smaller than previous). Text starts at88% of final size and eases to100% over0.12s, rises0.35m/s and sways0.055m sideways along rendering-camera right. Native text color gradient and lifetime remain. Motion/size are web tuning based on user description, shared by game and Lab.
+
+
+## Pickup counter readability tuning - 2026-11-13
+
+User requested no black outline, slightly smaller text, farther right/lower positioning. Pickup counters use native SDF foreground only (no black underlay); ordinary damage labels retain their existing outline. Base counter canvas height48 ->42 screen pixels (12.5% smaller), anchor85 ->105px right and24 ->12px up relative to projected player anchor. Existing currency colors, stack/pulse cap and fade remain. Shared game/Lab tuning, automatic delivery applies.

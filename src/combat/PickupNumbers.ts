@@ -27,7 +27,7 @@ export class PickupNumbers {
   }
   for(const kind of changed){
    const counter=this.counters.get(kind)!;if(counter.sprite)this.remove(counter.sprite);
-   const material=this.font.material(prefixes[kind]+counter.total,colors[kind],false);
+   const material=this.font.material(prefixes[kind]+counter.total,colors[kind],false,false);
    material.depthTest=false;material.toneMapped=false;
    const sprite=counter.sprite=new T.Sprite(material);sprite.renderOrder=100;this.root.add(sprite);
   }
@@ -35,14 +35,14 @@ export class PickupNumbers {
   this.camera.updateMatrixWorld();const anchor=player.clone().add(new T.Vector3(0,1.5,0)).project(this.camera);
   this.root.visible=anchor.z>=-1&&anchor.z<=1;
   const halfHeight=Math.tan(T.MathUtils.degToRad(this.camera.fov/2)),pixel=2*halfHeight/height;
-  this.root.position.set(T.MathUtils.clamp(anchor.x+170/width,-.7,.7)*halfHeight*this.camera.aspect,T.MathUtils.clamp(anchor.y+48/height,-.7,.7)*halfHeight,-1);
+  this.root.position.set(T.MathUtils.clamp(anchor.x+210/width,-.7,.7)*halfHeight*this.camera.aspect,T.MathUtils.clamp(anchor.y+24/height,-.7,.7)*halfHeight,-1);
   for(const [kind,counter] of this.counters){
    const sprite=counter.sprite;if(!sprite)continue;sprite.visible=counter.idle<1.4;
    sprite.material.opacity=T.MathUtils.clamp((1.4-counter.idle)/.3,0,1);
    // Both chain growth and retriggered pulse are capped at1.55x.
    const pop=Math.sin(counter.pulse/.18*Math.PI)*.15,scale=Math.min(1.55,1+counter.chain/12*.4+pop);
    const image=sprite.material.map!.image as HTMLCanvasElement;
-   sprite.scale.set(image.width/80*48*pixel*scale,48*pixel*scale,1);
+   sprite.scale.set(image.width/80*42*pixel*scale,42*pixel*scale,1);
    sprite.position.set(0,-(kind==='xp'?0:kind==='gold'?25:50)*pixel,0);
   }
  }

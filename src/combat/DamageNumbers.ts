@@ -13,17 +13,18 @@ export class DamageNumbers {
     if(!response.ok)throw Error('Damage font metadata unavailable');
     this.data=await response.json() as FontData;this.image=image;
   }
-  private glyph(char:string){
-    let canvas=this.glyphs.get(char);if(canvas)return canvas;
+  private glyph(char:string,outline=true){
+    const glyphKey=char+(outline?'outlined':'plain');
+    let canvas=this.glyphs.get(glyphKey);if(canvas)return canvas;
     const glyph=this.data!.characters[char];if(!glyph)throw Error(`Damage glyph unavailable: ${char}`);
     const rect=glyph.imageRect,padding=this.data!.atlas.padding;canvas=document.createElement('canvas');canvas.width=rect.width+padding*2;canvas.height=rect.height+padding*2;
     const context=canvas.getContext('2d')!;context.drawImage(this.image!,rect.x-padding,rect.y-padding,canvas.width,canvas.height,0,0,canvas.width,canvas.height);
     const pixels=context.getImageData(0,0,canvas.width,canvas.height);
-    for(let i=0;i<pixels.data.length;i+=4){const distance=pixels.data[i+3]/255;const foreground=distance>=.5;const underlay=distance>=.3;pixels.data[i]=foreground?255:0;pixels.data[i+1]=foreground?240:0;pixels.data[i+2]=foreground?189:0;pixels.data[i+3]=underlay?255:0;}
-    context.putImageData(pixels,0,0);this.glyphs.set(char,canvas);return canvas;
+    for(let i=0;i<pixels.data.length;i+=4){const distance=pixels.data[i+3]/255;const foreground=distance>=.5;const underlay=outline?distance>=.3:foreground;pixels.data[i]=foreground?255:0;pixels.data[i+1]=foreground?240:0;pixels.data[i+2]=foreground?189:0;pixels.data[i+3]=underlay?255:0;}
+    context.putImageData(pixels,0,0);this.glyphs.set(glyphKey,canvas);return canvas;
   }
-  material(damage:number|string,color='#fff0bd',cache=true){
-    const key=String(damage)+color;
+  material(damage:number|string,color='#fff0bd',cache=true,outline=true){
+    const key=String(damage)+color+outline;
     let material=cache?this.materials.get(key):undefined;if(material)return material;
     if(!this.data||!this.image)throw Error('Damage font must load before rendering');
     const text=String(damage),size=28,scale=size/this.data.faceInfo.m_PointSize;
@@ -31,7 +32,7 @@ export class DamageNumbers {
     const canvas=document.createElement('canvas');canvas.width=2**Math.ceil(Math.log2(Math.max(64,advance+24)));canvas.height=80;
     const context=canvas.getContext('2d')!;context.imageSmoothingEnabled=false;let x=(canvas.width-advance)/2;
     const baseline=12+size;
-    for(const char of text){const glyph=this.data.characters[char],bitmap=this.glyph(char);context.drawImage(bitmap,x+(glyph.metrics.horizontalBearingX-this.data.atlas.padding)*scale,baseline-(glyph.metrics.horizontalBearingY+this.data.atlas.padding)*scale,bitmap.width*scale,bitmap.height*scale);x+=glyph.metrics.horizontalAdvance*scale;}
+    for(const char of text){const glyph=this.data.characters[char],bitmap=this.glyph(char,outline);context.drawImage(bitmap,x+(glyph.metrics.horizontalBearingX-this.data.atlas.padding)*scale,baseline-(glyph.metrics.horizontalBearingY+this.data.atlas.padding)*scale,bitmap.width*scale,bitmap.height*scale);x+=glyph.metrics.horizontalAdvance*scale;}
     if(color!=='#fff0bd'){
       const tint=new T.Color(color).convertLinearToSRGB(),pixels=context.getImageData(0,0,canvas.width,canvas.height);
       for(let i=0;i<pixels.data.length;i+=4)if(pixels.data[i]>0){pixels.data[i]=Math.round(tint.r*255);pixels.data[i+1]=Math.round(tint.g*255);pixels.data[i+2]=Math.round(tint.b*255);}
