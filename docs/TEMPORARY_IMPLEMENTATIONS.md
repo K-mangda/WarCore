@@ -277,3 +277,10 @@ User requested slightly slower Gold flight. Gold Bezier progress uses0.75 of pre
 ## Restore native LEVEL UP outer border - 2026-11-13
 
 User clarified the outer dark border is desired and was lost to the luminance alpha mask. Removed that mask entirely so the original tile alpha preserves its native dark border/backing while transparent outside pixels remain transparent. Cream-gold text tint and existing animation/pause behavior remain. This supersedes earlier dark-backing removal and edge-threshold tuning for LEVEL UP only. Automatic delivery applies.
+
+
+## Native UI press clip correction - 2026-11-13
+
+User clarified hover/selection may be correct but button press is wrong. Direct metadata/native/serialized investigation: AudioManager.PlayButtonEnter0x34c0e0 sets queueEnter at memory+0xc9; LateUpdate0x34bd00 selects uiClick at+0x58 when enter is queued (and takes precedence over uiSelect). level2 AudioManager13704 serialized+0x50 references RandomSfx14631 (UiClick), whose sole clip is external fileID4/pathID2123 Enter5. AudioSource8891 volume0.75/pitch1; RandomSfx endpoints0.98/1.02, randomVolume0.1. Imported Enter5 with WAV validation/hash in public/game-audio/ui-click-provenance.json. Replaced provisional MenuClick mapping with Enter5, gain0.75 and uniform pitch0.98..1.02; native random-volume distribution/queue timing is not fully ported. uiSelect is separately RandomSfx15605/Select, but current hover/menuMove mapping remains unchanged per user direction.
+
+Upgrade confirmation now plays only after Run.choose succeeds, then resumes gameplay without dispatching a second click from lock(). Existing browser unlock, master gain and voice policies remain web behavior. Build/mock-audio validation, user listening test; automatic delivery applies.

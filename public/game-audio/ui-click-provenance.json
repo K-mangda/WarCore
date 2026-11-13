@@ -1,0 +1,27 @@
+{
+  "clip": "Enter5",
+  "sha256": "a5d672e49c80e65018f849b91fa12d2e5017d905558d20e3b6feab69ca3925f2",
+  "copiedFrom": "C:\\Users\\Korawit\\Desktop\\WarCore\\megabonk_extracted_assets\\shared\\audio\\web\\Enter5.wav",
+  "evidence": {
+    "scene": "level2",
+    "manager": 13704,
+    "uiClickSerializedOffset": "0x50",
+    "randomSfx": 14631,
+    "audioSource": 8891,
+    "clipFileId": 4,
+    "clipPathId": 2123,
+    "volume": 0.75,
+    "pitchEndpoints": [
+      0.98,
+      1.02
+    ],
+    "randomVolume": 0.1,
+    "PlayButtonEnter": "0x34c0e0",
+    "LateUpdate": "0x34bd00"
+  },
+  "limitations": [
+    "WAV copied from supplied export, not independently decoded from compressed bytes.",
+    "Uniform pitch sampling and fixed source gain are web interpretations; random-volume distribution remains unknown.",
+    "Hover mapping intentionally unchanged at user direction."
+  ]
+}

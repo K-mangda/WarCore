@@ -34,9 +34,9 @@ export class Engine {
     window.addEventListener('resize',this.resize); this.resize();
     this.ready=Promise.all([this.fox.load(),this.combatView.load()]).then(()=>{if(!this.disposed)this.frame=requestAnimationFrame(this.tick);});
   }
-  lock=()=>{
+  lock=(feedback=true)=>{
     if(this.run.blocked)return;
-    this.audio.unlock();this.audio.play('click');
+    this.audio.unlock();if(feedback)this.audio.play('click');
     this.active=true;
     this.renderer.domElement.focus();
     // Embedded browsers may reject pointer lock. Gameplay remains available.
@@ -49,7 +49,7 @@ export class Engine {
   reset=(top=false)=>{this.audio.stopProgression();this.audio.stopGameplay();this.motor.reset(top);this.run.reset();this.emit();};
   setWeapon=(weapon:Weapon)=>{if(this.active)return;this.run.setWeapon(weapon);this.emit();};
   restart=()=>{this.reset();this.lock();};
-  chooseUpgrade=(upgrade:Upgrade)=>{this.audio.play('click');if(this.run.choose(upgrade)&&!this.run.blocked)this.lock();this.emit();};
+  chooseUpgrade=(upgrade:Upgrade)=>{if(!this.run.choose(upgrade))return;this.audio.play('click');if(!this.run.blocked)this.lock(false);this.emit();};
   private emit=()=>{this.report({...this.run.snapshot(),speed:this.motor.speed,fps:this.fps,state:EMovementState[this.motor.state],jumps:this.motor.jumps,locked:this.active});};
   private resize=()=>{const w=this.host.clientWidth,h=this.host.clientHeight;this.renderer.setSize(w,h);this.camera.aspect=w/h;this.camera.updateProjectionMatrix();};
   private tick=(time:number)=>{

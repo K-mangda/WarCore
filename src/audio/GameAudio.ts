@@ -1,5 +1,5 @@
 import {assetUrl} from '../core/assetUrl';
-const clips={click:'MenuClick',hover:'menuMove',shot:'retro_shoot_fireball3',xp:'Xp2',level:'LevelupAfter',levelOpen:'Levelup4',levelAmbience:'LevelupAmbience',gold:'gold',silver:'Silver',hurt:'PlayerDamage',death:'DeathImpact',jump:'Player_Jump',land:'Player_Landing',sword:'SwordSwing',staffImpact:'retro_explosion_fireball1',staffImpactAlt:'retro_explosion_fireball3',staffHit:'Hit2'} as const;
+const clips={click:'Enter5',hover:'menuMove',shot:'retro_shoot_fireball3',xp:'Xp2',level:'LevelupAfter',levelOpen:'Levelup4',levelAmbience:'LevelupAmbience',gold:'gold',silver:'Silver',hurt:'PlayerDamage',death:'DeathImpact',jump:'Player_Jump',land:'Player_Landing',sword:'SwordSwing',staffImpact:'retro_explosion_fireball1',staffImpactAlt:'retro_explosion_fireball3',staffHit:'Hit2'} as const;
 const clipUrl=(key:Sound,file:string)=>assetUrl(key==='sword'?'weapons/knight-sword/audio/SwordSwing.wav':key==='shot'||key.startsWith('staff')?`weapons/staff/audio/${file}.wav`:`game-audio/${file}.wav`);
 export type Sound=keyof typeof clips;
 interface Voice {key:Sound;source:AudioBufferSourceNode;gain:GainNode;priority:number;}
@@ -69,7 +69,7 @@ export class GameAudio {
     }
     this.last.set(key,now);
     const source=context.createBufferSource();source.buffer=buffer;
-    const gain=context.createGain();gain.gain.value=key==='sword'||key==='staffImpact'||key==='staffImpactAlt'?.4:key==='shot'?.7:key==='staffHit'?.12:key==='xp'?.22:key==='gold'?.26:key==='silver'?.45:key==='level'?.6:key==='levelOpen'?.3:key==='levelAmbience'?.35:key==='hurt'?.17:key==='death'?.5:1;
+    const gain=context.createGain();gain.gain.value=key==='sword'||key==='staffImpact'||key==='staffImpactAlt'?.4:key==='shot'?.7:key==='staffHit'?.12:key==='xp'?.22:key==='gold'?.26:key==='silver'?.45:key==='level'?.6:key==='levelOpen'?.3:key==='levelAmbience'?.35:key==='hurt'?.17:key==='death'?.5:key==='click'?.75:1;
     // Source SwordSwing endpoints are .9/1.1 and volume .4. Uniform pitch
     // sampling is provisional; native random-volume distribution is unknown.
     if(key==='sword'||key==='staffImpact'||key==='staffImpactAlt')source.playbackRate.value=.9+Math.random()*.2;
@@ -77,6 +77,7 @@ export class GameAudio {
     if(key==='staffHit')source.playbackRate.value=.9+Math.random()*.3;
     if(key==='xp')source.playbackRate.value=.8+Math.max(0,Math.min(1,(this.xpTimes.length-20)/40));
     if(key==='gold')source.playbackRate.value=.92;
+    if(key==='click')source.playbackRate.value=.98+Math.random()*.04;
     if(key==='levelAmbience')source.loop=true;
     source.connect(gain);gain.connect(this.gain!);
     const voice:Voice={key,source,gain,priority:importance};this.voices.add(voice);
