@@ -14,3 +14,8 @@ Use case: text-localization. Edit target: supplied horizontal MEGABONK logo. Rep
 ### Icon
 
 Use case: text-localization. Edit target: supplied square MEGA BONK game icon. Change ONLY its lettering to the exact game name WARCORE arranged on two centered lines: top line "WAR", bottom line "CORE". Preserve the exact same tall bold condensed white irregular hand-cut lettering, oversized round O, heavy irregular black backing silhouette. Preserve surrounding orange/yellow flame swirls, dark burgundy background and small turquoise glowing details, same square composition and framing. Lettering should fill the same central area and remain readable as a website favicon. No additional words or symbols. Do not redesign the illustration; text replacement only.
+
+
+## Transparent header correction
+
+Current header asset: `warcore-logo-transparent.png`. Generated with built-in image_gen and true transparent alpha; prior black-background file is retained unused. Prompt: Preserve the white WARCORE lettering in one line; remove the rectangular black background, add a close-fitting irregular black outline as in the supplied outlined MEGABONK reference, use genuine transparent alpha outside the letter outlines, tightly frame the wordmark with safe transparent margins. No opaque backdrop or baked checkerboard.

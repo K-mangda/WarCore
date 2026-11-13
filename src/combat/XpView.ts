@@ -43,7 +43,7 @@ export class XpView {
   const gems=run.gems.filter(p=>(p.kind??'xp')==='xp');this.mesh.count=Math.min(gems.length,balance.maxGems);
   const tint=this.mesh.geometry.getAttribute('pickupTint') as T.InstancedBufferAttribute,scale=this.mesh.geometry.getAttribute('pickupScale') as T.InstancedBufferAttribute;
   for(let i=0;i<this.mesh.count;i++){const gem=gems[i];const appearance=xpAppearance(gem.value,gem.echo),rgb=xpColors[appearance.tier],color=new T.Color().setRGB(rgb[0],rgb[1],rgb[2],T.SRGBColorSpace);tint.setXYZ(i,color.r,color.g,color.b);scale.setX(i,appearance.scale);if(!this.born.has(gem))this.born.set(gem,elapsed);const age=elapsed-this.born.get(gem)!;
-   attr.setX(i,Math.min(this.frames-1,Math.floor(age/this.duration*this.frames)));this.mesh.setMatrixAt(i,matrix.makeTranslation(gem.position.x,gem.position.y,gem.position.z));}
+   attr.setX(i,Math.floor(age/this.duration*this.frames)%this.frames);this.mesh.setMatrixAt(i,matrix.makeTranslation(gem.position.x,gem.position.y,gem.position.z));}
   if(this.halo)this.halo.count=this.mesh.count;
   tint.needsUpdate=true;scale.needsUpdate=true;attr.needsUpdate=true;this.mesh.instanceMatrix.needsUpdate=true;
  }

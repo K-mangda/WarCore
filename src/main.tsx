@@ -22,7 +22,7 @@ function App(){
   const time=`${Math.floor(data.elapsed/60).toString().padStart(2,'0')}:${Math.floor(data.elapsed%60).toString().padStart(2,'0')}`;
   return <main>
     <div ref={host} className="world"/><div className="vignette"/>
-    <header><img className="game-logo" src={assetUrl('branding/warcore-logo.png')} alt="WARCORE"/><span className="build">WEB PLAYTEST · PROVISIONAL BALANCE</span></header>
+    <header><img className="game-logo" src={assetUrl('branding/warcore-logo-transparent.png')} alt="WARCORE"/><span className="build">WEB PLAYTEST · PROVISIONAL BALANCE</span></header>
     <button className="audio-toggle" aria-pressed={muted} onClick={()=>{engine.current?.audio.unlock();setMuted(engine.current?.audio.toggle()??false);}}>{muted?'SOUND OFF':'SOUND ON'}</button>
     <button className="lab-toggle" onClick={()=>{engine.current?.pauseForLab();setLabOpen(true);}}>LAB</button>
     <section className="run-hud" aria-label="Run status">
