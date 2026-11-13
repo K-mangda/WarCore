@@ -176,3 +176,7 @@ Fox now has Idle / Run / Jump / Falling / Grind clip rooms using the existing we
 ## Character selection reference — 2026-11-13
 
 [CHARACTER_SELECTION.md](CHARACTER_SELECTION.md) records the newly supplied selection screenshot and remaining requests: official naming/order, TonyMcZoom missing portrait, native unlock/rank/run counts/skins, starting weapons and passive formulas. Fox reference RNG Blessing text is displayed but its gameplay effect is not implemented. 20 portraits are now copied unchanged with hashes; do not ask to extract them again. All 21 catalog entries are inspectable; only Fox can start a web run.
+
+## Full level-up / Inventory / Stats reference — 2026-11-14
+
+New user screenshot and top-bar animation observation recorded in [UPGRADE_SCREEN_REFERENCE.md](UPGRADE_SCREEN_REFERENCE.md). Three-column UI now uses supported web values only. Missing work includes full stat schema/formulas, pool/rarity/eligibility, weapon/item upgrades, Banish/Skip/Refresh charges and behavior, inventory capacities, spectrum material/timing, selection backdrop VFX and HUD clocks/counters. Existing icons/models/audio are not missing solely because the gameplay system is not connected. No screenshot stats/charges become defaults.

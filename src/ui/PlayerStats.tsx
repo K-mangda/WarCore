@@ -1,0 +1,3 @@
+import {balance} from '../combat/Balance';
+import type {RunSnapshot} from '../combat/Run';
+export function Stats({run}:{run:RunSnapshot}){return <dl className="run-stats">{[['HP',`${run.health} / ${run.maxHealth}`],['Damage per hit',run.damage],['Attack interval',`${run.attackInterval.toFixed(2)}s`],['Attack count',run.projectiles],['Damage Tome',`Lv. ${run.upgradeLevels.damage} (+${run.damage-balance.damage} damage)`],['Haste Tome',`Lv. ${run.upgradeLevels.haste} (${Math.round((1-run.attackInterval/(run.weapon==='sword'?balance.attackInterval:balance.staffEndCooldown))*100)}% shorter interval)`],['Quantity Tome',`Lv. ${run.upgradeLevels.projectiles} (+${run.projectiles-1} attacks)`]].map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>;}
