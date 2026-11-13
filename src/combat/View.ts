@@ -13,7 +13,7 @@ export class CombatView {
   private gems:XpView;private progression:ProgressionView;private pickupNumbers:PickupNumbers;
   private labels:T.Sprite[]=[];private numbers=new DamageNumbers();
   private sword:SwordView;
-  constructor(private scene:T.Scene,camera:T.PerspectiveCamera,viewport:()=>{width:number;height:number}){this.enemies=new SkeletonView(scene);this.sword=new SwordView(scene);this.staff=new StaffView(scene);this.gems=new XpView(scene);this.progression=new ProgressionView(scene);this.pickupNumbers=new PickupNumbers(scene,camera,viewport);}
+  constructor(private scene:T.Scene,camera:T.PerspectiveCamera,viewport:()=>{width:number;height:number}){this.enemies=new SkeletonView(scene,camera);this.sword=new SwordView(scene);this.staff=new StaffView(scene);this.gems=new XpView(scene);this.progression=new ProgressionView(scene);this.pickupNumbers=new PickupNumbers(scene,camera,viewport);}
   async load(){
     await Promise.all([this.enemies.load(),this.sword.load(),this.staff.load(),this.numbers.load(),this.gems.load(),this.progression.load(),this.pickupNumbers.load()]);
   }

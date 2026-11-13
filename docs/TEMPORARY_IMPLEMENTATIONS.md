@@ -309,3 +309,10 @@ User reported the level-up sign sits too high. Reduced its vertical player-relat
 ## Correct LEVEL UP dimensional tuning - 2026-11-13
 
 User clarified40% reduction refers to letter height, not sign position. Restored vertical anchor1.11 ->1.85m. Text applies independent width1.10 and height0.60 multipliers after its existing pop/center-collapse animation. This makes the word40% shorter vertically and10% wider without moving it down. Prior lowered-position entry is superseded. Shared game/Lab, automatic delivery applies.
+
+
+## FPS-drop response: reduce repeated render/camera work - 2026-11-13
+
+User reported substantial FPS drop after enemy animation. Animation raises enemy frame batches1 ->up to8 but retains1694 vertices/1040 triangles per enemy; no measured attribution to a single cause is claimed. Optimizations: original89 trees become2 instanced trunk/crown batches instead of178 mesh draws; camera terrain raycasts (80,000 triangles) reduce3 ->1 per changed pose, with cache reuse when stationary; SkeletonView conservatively culls offscreen enemies/corpses, hides empty batches, reuses transform scratch values and marks dynamic buffers with occupied update ranges only; live enemies skip dissolve hash work in the shader. Native8-frame animation, source art, enemy count limits, game rules and pixel resolution remain. Instanced tree buffers dispose with Engine.
+
+Validation adds render-cost structure checks (identical tree transforms, camera cache/update count), occupied-instance upload checks and offscreen-culling regression. No GPU profiling or actual FPS uplift is claimed; user tests the deployed version. Automatic delivery applies.

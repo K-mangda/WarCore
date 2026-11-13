@@ -56,7 +56,6 @@ export class Engine {
     const wallDelta=this.previous?(time-this.previous)/1000:0;
     const dt=Math.min(wallDelta,.1);this.previous=time;
     const locked=this.active;
-    this.orbit.update(this.motor.position,this.terrain);this.camera.updateMatrixWorld();
     if(locked&&!this.run.blocked){this.accumulator+=dt;while(this.accumulator>=physics.fixedStep){const wasGrounded=this.motor.grounded,jumps=this.motor.jumps;this.motor.step(physics.fixedStep,this.input,this.orbit.yaw);if(this.motor.jumps>jumps)this.audio.play('jump');if(!wasGrounded&&this.motor.grounded)this.audio.play('land');this.run.step(physics.fixedStep,this.motor.position,new T.Vector3(-Math.sin(this.orbit.yaw),0,-Math.cos(this.orbit.yaw)));this.accumulator-=physics.fixedStep;if(this.run.blocked){this.pause();this.accumulator=0;this.emit();break;}}}
     else this.accumulator=0;
     const slide=this.motor.state===EMovementState.Sliding;
@@ -64,9 +63,9 @@ export class Engine {
     this.orbit.update(this.motor.position,this.terrain);this.camera.updateMatrixWorld();
     this.combatView.update(this.run,this.motor.position,this.active&&!this.run.blocked?dt:0);
     this.audio.setLevelModal(!this.inLab&&this.run.snapshot().pendingUpgrades>0);
-    this.orbit.update(this.motor.position,this.terrain);this.effects.update(locked?dt:0,this.motor.position,locked&&slide,this.motor.speed);this.renderer.render(this.scene,this.camera);
+    this.effects.update(locked?dt:0,this.motor.position,locked&&slide,this.motor.speed);this.renderer.render(this.scene,this.camera);
     this.frames++;this.sample+=wallDelta;if(this.sample>=.2){this.fps=Math.round(this.frames/this.sample);this.frames=0;this.sample=0;this.emit();}
     this.frame=requestAnimationFrame(this.tick);
   };
-  dispose(){this.audio.dispose();this.disposed=true;cancelAnimationFrame(this.frame);document.removeEventListener('pointerlockchange',this.lockChanged);window.removeEventListener('blur',this.pause);window.removeEventListener('resize',this.resize);this.input.dispose();this.orbit.dispose();this.fox.dispose();this.combatView.dispose();this.scene.traverse(o=>{if(o instanceof T.Mesh || o instanceof T.Points){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();}});this.renderer.dispose();this.renderer.domElement.remove();}
+  dispose(){this.audio.dispose();this.disposed=true;cancelAnimationFrame(this.frame);document.removeEventListener('pointerlockchange',this.lockChanged);window.removeEventListener('blur',this.pause);window.removeEventListener('resize',this.resize);this.input.dispose();this.orbit.dispose();this.fox.dispose();this.combatView.dispose();this.scene.traverse(o=>{if(o instanceof T.Mesh || o instanceof T.Points){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();if(o instanceof T.InstancedMesh)o.dispose();}});this.renderer.dispose();this.renderer.domElement.remove();}
 }

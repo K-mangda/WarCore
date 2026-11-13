@@ -18,12 +18,18 @@ const scene=new T.Scene(),view=new SkeletonView(scene);await view.load();assert.
 const enemies=Array.from({length:120},(_,i)=>({id:i,position:new T.Vector3(i%10,0,-4-Math.floor(i/10)),velocity:new T.Vector3(),health:20,flash:i===0?.15:0}));
 view.render(enemies,[],.1,new T.Vector3());assert.equal(scene.children.reduce((sum,m)=>sum+m.count,0),120);
 assert.equal(scene.children.filter(m=>m.count>0).length,8,'Moving enemies share eight baked frame batches');
+const transferred=scene.children.reduce((sum,m)=>sum+m.instanceMatrix.updateRanges.reduce((n,r)=>n+r.count,0),0);
+assert.equal(transferred,120*16,'Only occupied instance matrices are uploaded, not eight full capacities');
 const before=scene.children.map(m=>m.count);view.render(enemies,[],.1,new T.Vector3());assert.deepEqual(scene.children.map(m=>m.count),before,'Pause must not advance frames');
 assert.notEqual(skeletonFrame(.1,1,8,8),skeletonFrame(.3,1,8,8));assert.equal(skeletonFrame(100,1,8,8,false),0);
 const corpse={id:1,animationTime:.3,position:new T.Vector3(0,0,-2),heading:0,life:.3,duration:.45};
 view.render([], [corpse],1,new T.Vector3());const pose=scene.children.findIndex(m=>m.count===1);view.render([], [corpse],4,new T.Vector3());assert.equal(scene.children.findIndex(m=>m.count===1),pose,'Death freezes its baked pose');
 assert.ok(scene.children[pose].geometry.getAttribute('dissolve').getX(0)>0);
 view.render([],[],0,new T.Vector3());assert.equal(scene.children.reduce((s,m)=>s+m.count,0),0);view.dispose();assert.equal(scene.children.length,0);
+const cullScene=new T.Scene(),cullCamera=new T.PerspectiveCamera(75,1,.05,100);cullCamera.updateMatrixWorld();
+const culled=new SkeletonView(cullScene,cullCamera);await culled.load();
+culled.render([{...enemies[0],position:new T.Vector3(0,0,-5)},{...enemies[1],position:new T.Vector3(0,0,15)}],[],0,new T.Vector3());
+assert.equal(cullScene.children.reduce((sum,m)=>sum+m.count,0),1,'Offscreen enemies do not enter draw batches');culled.dispose();
 const {EnemyPreview}=await import(pathToFileURL(resolve('.local-evidence/skeleton-check/dev/EnemyPreview.js')));
 const labScene=new T.Scene(),preview=new EnemyPreview(labScene);await preview.load();preview.update('skeleton-hit',.25,new T.Vector3(0,0,-1));
 const hit=labScene.children.find(m=>m.count>0);assert.equal(hit.geometry.getAttribute('damageFlash').getX(0),1);

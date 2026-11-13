@@ -12,9 +12,11 @@ export function damageMaterial(texture:T.Texture){
   shader.fragmentShader=shader.fragmentShader.replace('#include <common>',`#include <common>
    varying float vDamageFlash;varying float vDissolve;varying vec3 vDissolvePosition;`)
    .replace('#include <opaque_fragment>',`
-   vec3 cell=floor(vDissolvePosition*24.);
-   float noise=fract(sin(dot(cell,vec3(12.9898,78.233,45.164)))*43758.5453);
-   if(vDissolve>0.&&noise<vDissolve)discard;
+   if(vDissolve>0.){
+    vec3 cell=floor(vDissolvePosition*24.);
+    float noise=fract(sin(dot(cell,vec3(12.9898,78.233,45.164)))*43758.5453);
+    if(noise<vDissolve)discard;
+   }
    outgoingLight=mix(outgoingLight,vec3(1.),vDamageFlash);
    #include <opaque_fragment>`);
  };

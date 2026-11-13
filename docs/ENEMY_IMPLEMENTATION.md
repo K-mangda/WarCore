@@ -32,3 +32,8 @@ Game CombatView and the Lab Enemies tab use the same SkeletonView. Lab rooms sho
 ## Validation
 
 Run `node tools/check_skeleton.mjs`: checks8FPS/eight-frame payload, valid mesh indices/UVs/finite positions, batching120 enemies, pause stability, death-pose stability, Lab hit/death and disposal. Build/typecheck, existing combat/audio/staff checks and deployment-path validation cover integration. These are CPU/mock-renderer checks; user handles rendered orientation, stride, audio feel and gameplay/performance testing.
+
+
+## Performance follow-up
+
+Following user-reported FPS drops, SkeletonView now skips offscreen instances using a conservative sphere/frustum check, marks dynamic instance buffers appropriately and uploads only occupied ranges. It reuses transform scratch objects and hides empty batches. With120 visible live instances, matrix data scheduled for update is120*16 floats rather than8*240*16; this is an upload-volume check, not a GPU timing benchmark. Damage shader only evaluates dissolve noise for dissolving instances. Baked geometry retains the same1694 vertices/1040 triangles per enemy as the prior static mesh. Camera now performs one terrain raycast per changed pose rather than three per frame; unchanged camera poses reuse the prior collision result. Existing89 trees are rendered as two static instanced batches instead of178 separate meshes, with original positions/geometries/materials retained. `tools/check_render_cost.mjs` verifies structure/transform/cache behavior. Actual browser FPS still requires user testing.
