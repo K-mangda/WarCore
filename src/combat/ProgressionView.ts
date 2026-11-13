@@ -30,6 +30,13 @@ export class ProgressionView {
    const halo=new T.Sprite(new T.SpriteMaterial({map:this.goldGlow,color:0xffd45b,opacity:.22,transparent:true,depthWrite:false,blending:T.AdditiveBlending,toneMapped:false}));
    halo.scale.setScalar(2.6);halo.renderOrder=1;sprite.renderOrder=2;sprite.add(halo);
   }
+  if(kind==='text'){
+   // Extend the backing independently of the smaller native lettering.
+   const border=new T.Sprite(new T.SpriteMaterial({color:0x150b06,depthWrite:false,toneMapped:false}));
+   const backing=new T.Sprite(new T.SpriteMaterial({color:0x2f1b10,depthWrite:false,toneMapped:false}));
+   border.scale.set(1.46,.58,1);backing.scale.set(1.4,.52,1);
+   border.renderOrder=8;backing.renderOrder=9;sprite.renderOrder=10;sprite.add(border,backing);
+  }
   this.scene.add(sprite);return sprite;
  }
  private frame(sprite:T.Sprite,kind:string,age:number){
@@ -38,7 +45,7 @@ export class ProgressionView {
   const coin=kind==='gold'||kind==='silver',activeFrames=Math.max(1,Math.ceil(uv.frameOverTime.scalar*count));
   const selectedFrame=coin?start+Math.floor(age/initial.startLifetime.scalar*activeFrames)%activeFrames:frame;
   sprite.material.map!.repeat.set(1/count,1);sprite.material.map!.offset.set(selectedFrame/count,0);
-  sprite.scale.setScalar(kind==='gold'?xpVisual.scale*.8:kind==='silver'?xpVisual.scale:initial.startSize.scalar*(kind==='text'?.45:1));
+  sprite.scale.setScalar(kind==='gold'?xpVisual.scale*.8:kind==='silver'?xpVisual.scale:initial.startSize.scalar*(kind==='text'?.4:1));
   if(kind==='text'){
    const g=p.ColorModule.gradient.maxGradient;
    const t=T.MathUtils.clamp(age/initial.startLifetime.scalar/(g.ctime1/65535),0,1);

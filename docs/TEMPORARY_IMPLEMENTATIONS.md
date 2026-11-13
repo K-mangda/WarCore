@@ -321,3 +321,8 @@ Validation adds render-cost structure checks (identical tree transforms, camera 
 ## LEVEL UP above-head placement correction - 2026-11-13
 
 User screenshot shows text at the character upper torso. Raised the player-relative text anchor1.85 ->2.5m at both spawn/follow updates. Letter width1.10/height0.60 overrides remain unchanged; this is position only. Current follow behavior prevents the earlier world-anchor drift. Shared game/Lab tuning; automatic delivery applies.
+
+
+## Wider LEVEL UP backing with smaller letters - 2026-11-13
+
+User requested a longer banner but smaller text. Native lettering base multiplier0.45 ->0.40 (about11% smaller on both axes), retaining width1.10/height0.60 proportions. Separate procedural dark-brown backing and thin darker border extend sideways behind the smaller source lettering (relative widths1.40/1.46), rather than enlarging the letters to lengthen the sign. Backing inherits head-follow, tilt, opening and centered collapse. Colors/dimensions are explicit web UI tuning; original atlas untouched. Shared game/Lab; automatic delivery applies.
