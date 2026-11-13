@@ -1,6 +1,6 @@
 # Audio settings — 2026-11-13
 
-Implemented from the user's supplied settings screenshot: dark-green panel/header, original BorderWindow corners, Alagard lettering, horizontal section strip, white square-thumb sliders and two-decimal readouts. The six labels/order follow the reference: Master Volume, Music Volume, Game Sounds, Ambience, UI, XP and Gold. This does not replace the arena with the original menu scene or claim pixel-perfect Unity UI reproduction. Audio, Controls, Video and Effects are available; Game/Other remain disabled. See the matching implementation documents for the follow-ups.
+Implemented from the user's supplied settings screenshot: dark-green panel/header, original BorderWindow corners, Alagard lettering, horizontal section strip, white square-thumb sliders and two-decimal readouts. The six labels/order follow the reference: Master Volume, Music Volume, Game Sounds, Ambience, UI, XP and Gold. This does not replace the arena with the original menu scene or claim pixel-perfect Unity UI reproduction. Game UI, Audio, Controls, Video and Effects are available; Other remains disabled. See the matching implementation documents for the follow-ups.
 
 ## Behavior
 

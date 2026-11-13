@@ -21,8 +21,10 @@ Graphics options shown: Grass Quality, Shadow Quality, Shadow Resolution, Anti A
 
 ## Game/UI: existing useful systems versus missing behavior
 
-- Keep the current FPS/speed HUD and pause/resume/input foundation. Screenshot Debug FPS/Debug Speed may motivate future visibility toggles; no need to remove those working systems.
-- Crosshair Height/Size/Alpha and HP Bar Color: existing crosshair/health bar give a working web base for later customization. Need native units/ranges/palette mapping for fidelity; screenshot values0.50/0.90/1.00/Red do not prove conversion/defaults.
+อัปเดต: Game tab ต่อ Crosshair Height/Size/Alpha, HP Bar Color และ Debug FPS/Speed แล้ว ดู GAME_SETTINGS.md ค่าเริ่มต้นรักษา HUD เดิมทั้งหมด ขอบเขต/ช่วงค่า/CSS multiplier/palette เป็น web choices ส่วนค่า native ที่ยังไม่ยืนยันยังต้องตามหลักฐาน ไม่ต้องสกัดภาพเป้าใหม่
+
+- Keep the current FPS/speed sampling and pause/resume/input foundation. Independent visibility toggles are implemented, both defaultOn; the underlying working metrics remain.
+- Crosshair Height/Size/Alpha and HP Bar Color: web customization implemented using existing HUD. Need native units/ranges/pivot/alpha/palette mapping for fidelity; screenshot values0.50/0.90/1.00/Red do not prove conversion/defaults.
 - Camera Shake: no recovered shake profile/options integration; need trigger, amplitude/frequency/decay and toggle scope before claiming native parity.
 - Input Delay: **do not equate the screenshot's2 to the existing four-fixed-tick jump buffer.** Need settings field/callback, units and all affected input paths.
 - Enemy Targeting Mode (Smart Aim) / Random Enemy Targeting0.75: need enum/rules and runtime formula per weapon. Do not assume0.75 is a simple per-shot probability or replace the user-tuned Firestaff targeting/range from a label alone.

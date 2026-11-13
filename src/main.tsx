@@ -6,12 +6,15 @@ import {initialRun} from './combat/Run';
 import {UpgradeMenu,TomeLoadout} from './ui/UpgradeMenu';
 import {AudioSettings} from './ui/AudioSettings';
 import {getAudioPreferences,subscribeAudioPreferences} from './audio/AudioPreferences';
+import {getGamePreferences,hpColors,subscribeGamePreferences} from './core/GamePreferences';
+import {Crosshair,PerformanceHud} from './ui/GameHud';
 import './ui/style.css';
 import './ui/combat.css';
 function App(){
   const host=useRef<HTMLDivElement>(null),engine=useRef<Engine|null>(null);
   const [error,setError]=useState(''),[ready,setReady]=useState(false),[labOpen,setLabOpen]=useState(false),[settingsOpen,setSettingsOpen]=useState(false);
   const audioPreferences=useSyncExternalStore(subscribeAudioPreferences,getAudioPreferences,getAudioPreferences);
+  const gamePreferences=useSyncExternalStore(subscribeGamePreferences,getGamePreferences,getGamePreferences);
   const [data,setData]=useState<Telemetry>({...initialRun,speed:0,fps:0,state:'Idle',jumps:0,locked:false,renderWidth:0,renderHeight:0});
   useEffect(()=>{
     if(!host.current)return;let mounted=true;
@@ -27,12 +30,12 @@ function App(){
     <button className="lab-toggle" onClick={()=>{engine.current?.pauseForLab();setLabOpen(true);}}>LAB</button>
     <section className="run-hud" aria-label="Run status">
       <div className="run-time">{time}<small>{data.kills} KILLS · {data.enemyCount} ENEMIES · {data.gold} GOLD · {data.silver} SILVER</small></div>
-      <div className="health"><span>HP {data.health} / {data.maxHealth}</span><div role="progressbar" aria-label="Health" aria-valuenow={data.health} aria-valuemax={data.maxHealth} aria-valuemin={0}><b style={{width:`${data.health/data.maxHealth*100}%`}}/></div></div>
+      <div className="health"><span>HP {data.health} / {data.maxHealth}</span><div role="progressbar" aria-label="Health" aria-valuenow={data.health} aria-valuemax={data.maxHealth} aria-valuemin={0}><b style={{width:`${data.health/data.maxHealth*100}%`,backgroundColor:hpColors[gamePreferences.hpColor]}}/></div></div>
       <div className="experience"><span>LEVEL {data.level} <small>{data.xp} / {data.xpNeeded} XP</small></span><div role="progressbar" aria-label="Experience" aria-valuenow={data.xp} aria-valuemax={data.xpNeeded} aria-valuemin={0}><b style={{width:`${data.xp/data.xpNeeded*100}%`}}/></div></div>
     </section>
-    <div className="crosshair">+</div>
+    <Crosshair settings={gamePreferences}/>
     <aside className="weapon-status"><img src={assetUrl(data.weapon==='sword'?'weapons/knight-sword/vfx/textures/Sword_Icon.png':'game-ui/Firestaff.png')} alt=""/><span>{data.weapon==='sword'?'SWORD · KNIGHT ASSETS':'FIRESTAFF'}</span><strong>{data.damage} DMG · {data.attackInterval.toFixed(2)}s · ×{data.projectiles}</strong><small>{data.weapon==='sword'?'Swings automatically in your facing direction':'Targets nearby enemies automatically'}</small><TomeLoadout run={data}/></aside>
-    <aside className="performance">{data.speed.toFixed(1)} m/s · {data.fps} FPS · {data.state}</aside>
+    <PerformanceHud settings={gamePreferences} speed={data.speed} fps={data.fps} state={data.state}/>
     {data.pendingUpgrades>0&&!data.dead&&!settingsOpen&&<UpgradeMenu run={data} choose={id=>engine.current?.chooseUpgrade(id)} hover={()=>engine.current?.audio.play('hover')}/>}
     {data.dead&&!settingsOpen&&<section className="start death" role="dialog" aria-label="Run ended"><span className="eyebrow">RUN ENDED</span><h2>One more run?</h2><p>{time} survived · {data.kills} kills · Level {data.level}</p><button onClick={()=>engine.current?.restart()}>PLAY AGAIN <span>↗</span></button></section>}
     {!data.locked&&!data.dead&&data.pendingUpgrades===0&&!settingsOpen&&<section className="start"><span className="eyebrow">FOX / COMBAT PLAYTEST</span><h2>{data.elapsed>0?'Paused':'Ready?'}</h2><p>Move, survive and collect blue XP.<br/>Attacks fire automatically. No clicking to shoot.</p>{data.elapsed===0&&<div className="weapon-select" aria-label="Starting weapon"><button aria-pressed={data.weapon==='bolt'} onClick={()=>engine.current?.setWeapon('bolt')}>Firestaff</button><button aria-pressed={data.weapon==='sword'} onClick={()=>engine.current?.setWeapon('sword')}>Sword</button></div>}<button disabled={!!error||!ready} onClick={()=>engine.current?.lock()}>{!ready?'LOADING…':data.elapsed>0?'RESUME RUN':'START RUN'} <span>↗</span></button><small>{error||'WASD move · Space jump · Drag to look · Esc pause'}</small><div className="reset"><button onClick={()=>engine.current?.reset()}>NEW RUN</button></div></section>}

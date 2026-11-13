@@ -1,0 +1,32 @@
+import assert from 'node:assert/strict';
+import ts from 'typescript';
+import React from 'react';
+import {renderToStaticMarkup} from 'react-dom/server';
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {resolve,dirname} from 'node:path';
+import {pathToFileURL} from 'node:url';
+const folder=resolve('.local-evidence/game-settings-check');
+for(const [name,extension] of [['core/GamePreferences','ts'],['ui/GameSettings','tsx'],['ui/GameHud','tsx']]){
+ const file=resolve(folder,name+'.js');mkdirSync(dirname(file),{recursive:true});writeFileSync(file,ts.transpileModule(readFileSync(`src/${name}.${extension}`,'utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'"));
+}
+const stored=new Map([['warcore.audio.v1','unchanged'],['run-test','unchanged']]),events=new Set();
+globalThis.localStorage={getItem:key=>stored.get(key)??null,setItem:(key,value)=>stored.set(key,value)};
+globalThis.window={addEventListener(type,fn){if(type==='storage')events.add(fn);},removeEventListener(type,fn){if(type==='storage')events.delete(fn);}};
+const url=pathToFileURL(resolve(folder,'core/GamePreferences.js'));
+const {gameDefaults,gameStorageKey,hpColors,getGamePreferences,setGamePreferences,resetGamePreferences,subscribeGamePreferences}=await import(url);
+assert.equal(hpColors[gameDefaults.hpColor],'#c83234','Default health color is preserved');assert.equal(gameDefaults.crosshairHeight,.5);assert.equal(gameDefaults.crosshairSize,1);assert.equal(gameDefaults.crosshairAlpha,1);assert.equal(gameDefaults.debugFps,true);assert.equal(gameDefaults.debugSpeed,true);
+setGamePreferences({crosshairHeight:2,crosshairSize:-1,crosshairAlpha:5,hpColor:'__proto__'});assert.equal(getGamePreferences().crosshairHeight,.9);assert.equal(getGamePreferences().crosshairSize,.5);assert.equal(getGamePreferences().crosshairAlpha,1);assert.equal(getGamePreferences().hpColor,'Red');
+setGamePreferences({hpColor:'Blue',crosshairAlpha:.3,debugSpeed:false});const reloaded=await import(url+'?reload');assert.equal(reloaded.getGamePreferences().hpColor,'Blue');assert.equal(reloaded.getGamePreferences().crosshairAlpha,.3);assert.equal(reloaded.getGamePreferences().debugSpeed,false);
+stored.set(gameStorageKey,'broken JSON');assert.deepEqual((await import(url+'?corrupt')).getGamePreferences(),gameDefaults);
+const setItem=localStorage.setItem;localStorage.setItem=()=>{throw Error('blocked');};assert.doesNotThrow(()=>setGamePreferences({crosshairSize:1.5}));assert.equal(getGamePreferences().crosshairSize,1.5);localStorage.setItem=setItem;
+const unsubscribe=subscribeGamePreferences(()=>{});for(const fn of events)fn({key:gameStorageKey,newValue:JSON.stringify({...gameDefaults,debugFps:false})});assert.equal(getGamePreferences().debugFps,false);
+const {Crosshair,PerformanceHud}=await import(pathToFileURL(resolve(folder,'ui/GameHud.js'))),render=(component,props)=>renderToStaticMarkup(React.createElement(component,props));
+let html=render(Crosshair,{settings:gameDefaults});assert.ok(html.includes('top:50%'));assert.ok(html.includes('scale(1)'));assert.ok(html.includes('opacity:1'));
+html=render(Crosshair,{settings:{...gameDefaults,crosshairHeight:.7,crosshairSize:1.5,crosshairAlpha:0}});assert.ok(html.includes('top:70%'));assert.ok(html.includes('scale(1.5)'));assert.ok(html.includes('opacity:0'));
+const metrics={speed:4.25,fps:60,state:'Walking'};html=render(PerformanceHud,{settings:gameDefaults,...metrics});assert.ok(html.includes('4.3 m/s · 60 FPS · Walking'));
+html=render(PerformanceHud,{settings:{...gameDefaults,debugSpeed:false},...metrics});assert.ok(html.includes('60 FPS'));assert.ok(!html.includes('m/s'));
+html=render(PerformanceHud,{settings:{...gameDefaults,debugFps:false},...metrics});assert.ok(html.includes('m/s'));assert.ok(!html.includes('FPS'));
+assert.equal(render(PerformanceHud,{settings:{...gameDefaults,debugFps:false,debugSpeed:false},...metrics}),'');
+const {GameSettings}=await import(pathToFileURL(resolve(folder,'ui/GameSettings.js')));html=render(GameSettings,{onInteract(){}});assert.equal((html.match(/type="range"/g)??[]).length,3);assert.ok(html.includes('HP Bar Color'));assert.ok(html.includes('Debug FPS'));assert.ok(html.includes('Debug Speed'));assert.ok(!/Input Delay|Smart Aim|Leaderboard|Auto Select/.test(html));
+resetGamePreferences();assert.deepEqual(getGamePreferences(),gameDefaults);assert.equal(stored.get('warcore.audio.v1'),'unchanged');assert.equal(stored.get('run-test'),'unchanged');unsubscribe();assert.equal(events.size,0);
+console.log('Game settings checks passed: preserved HUD defaults, storage/clamps/palette/reload/fallback, live values, independent debug visibility, supported-only controls and reset isolation.');
