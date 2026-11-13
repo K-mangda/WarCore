@@ -16,6 +16,7 @@ import {XpView} from '../combat/XpView';
 import {Run} from '../combat/Run';
 import {Fox} from '../player/Fox';
 import {GameAudio} from '../audio/GameAudio';
+import {subscribeAudioPreferences} from '../audio/AudioPreferences';
 import {DamageNumbers} from '../combat/DamageNumbers';
 const host=document.getElementById('view')!;
 (document.getElementById('back') as HTMLAnchorElement).href=assetUrl('');
@@ -173,6 +174,8 @@ play.addEventListener('click',async()=>{
 });
 stop.addEventListener('click',halt);
 document.getElementById('mute')!.addEventListener('click',()=>{const muted=audio.toggle(),button=document.getElementById('mute')!;soundPreview.setMuted(muted);button.textContent=muted?'Sound off':'Sound on';button.setAttribute('aria-pressed',String(muted));});
-window.addEventListener('pagehide',()=>{disposed=true;halt();resize.disconnect();audio.dispose();soundPreview.dispose();sharedHit.dispose();modelPreview.dispose();enemyPreview.dispose();sword.dispose();staff.dispose();xpView.dispose();progression.dispose();pickupNumbers.dispose();fox.dispose();for(const sprite of hitLabels){scene.remove(sprite);sprite.material.dispose();}numbers.dispose();dummy.geometry.dispose();dummy.material.dispose();renderer.dispose();});
+const syncMute=()=>{const button=document.getElementById('mute')!;button.textContent=audio.muted?'Sound off':'Sound on';button.setAttribute('aria-pressed',String(audio.muted));};
+const unsubscribeMute=subscribeAudioPreferences(syncMute);syncMute();
+window.addEventListener('pagehide',()=>{disposed=true;halt();unsubscribeMute();resize.disconnect();audio.dispose();soundPreview.dispose();sharedHit.dispose();modelPreview.dispose();enemyPreview.dispose();sword.dispose();staff.dispose();xpView.dispose();progression.dispose();pickupNumbers.dispose();fox.dispose();for(const sprite of hitLabels){scene.remove(sprite);sprite.material.dispose();}numbers.dispose();dummy.geometry.dispose();dummy.material.dispose();renderer.dispose();});
 for(const tab of tabs)tab.disabled=false;
 void selectRoom();

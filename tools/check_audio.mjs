@@ -13,8 +13,9 @@ globalThis.AudioContext=class{
  async resume(){} async close(){this.state='closed';}
 };
 const folder=resolve('.local-evidence/audio-check');mkdirSync(folder,{recursive:true});const file=resolve(folder,'GameAudio.mjs');
-writeFileSync(file,ts.transpileModule(readFileSync('src/audio/GameAudio.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace("from '../core/assetUrl'","from './assetUrl.mjs'"));
+writeFileSync(file,ts.transpileModule(readFileSync('src/audio/GameAudio.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace("from '../core/assetUrl'","from './assetUrl.mjs'").replace("from './AudioPreferences'","from './AudioPreferences.mjs'"));
 writeFileSync(resolve(folder,'assetUrl.mjs'),ts.transpileModule(readFileSync('src/core/assetUrl.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText);
+writeFileSync(resolve(folder,'AudioPreferences.mjs'),ts.transpileModule(readFileSync('src/audio/AudioPreferences.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText);
 const {GameAudio}=await import(pathToFileURL(file));const audio=new GameAudio();audio.unlock();await new Promise(setImmediate);
 audio.play('sword');context.currentTime+=.02;audio.play('sword');
 assert.equal(started.filter(v=>v.buffer.label.includes('SwordSwing')).length,2,'Fast consecutive swing events must not be silently discarded');

@@ -124,6 +124,8 @@
 
 ## งาน parity ภาพ/เสียงที่เหลือ (ความสำคัญรอง)
 
+- หน้าตั้งค่าเสียง6ช่องทำแล้วตามภาพผู้ใช้ ดู AUDIO_SETTINGS.md; หมวดเสียงเป็น web policy ยังไม่ยืนยัน native mixer routing ช่อง Music บันทึกค่าแล้วแต่สนามเทสยังไม่เล่น BGM หากจะต่อเพลงจริงให้ตรวจ WAV เดิมก่อน แล้วให้อีก AI ยืนยัน track/scene/event/loop transition และ routing ที่ยังไม่ทราบ ไม่สกัดเพลงซ้ำหรือเอา LevelupAmbience ไปเรียกว่าเพลง
+
 - Shader/postprocessing ของ hit/explosion และ enemy toon/outline: saved blend fields ไม่พอพิสูจน์ pass state; ไม่อนุมาน Additive จาก `_SrcBlend=1/_DstBlend=0`
 - RandomSfx random-volume distribution, AudioSpamFilter attenuation, mixer/spatial routing และ native UI event queue timing
 - จังหวะ LEVEL UP / เปิดหน้าเลือกของ / แสดง burst และตัวเลขเก็บจริง หากผู้ใช้ต้องการตรงต้นฉบับ ภาพและการเคลื่อนไหวป้ายตอนนี้ผ่านการจูนหลายครั้งตามผู้ใช้ ไม่ให้การสืบข้อมูลใหม่ลบทับค่าจูนโดยอัตโนมัติ

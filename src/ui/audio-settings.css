@@ -1,0 +1,24 @@
+.settings-toggle{position:absolute;right:103px;top:100px;font-size:14px;padding:5px 10px}
+.settings-shade{position:absolute;inset:0;z-index:50;display:flex;justify-content:center;align-items:center;background:#07120a45;backdrop-filter:blur(3px);padding:18px}
+.settings-window{width:min(1100px,94vw);height:min(850px,84vh);display:flex;flex-direction:column;background:#252e29;border:10px solid transparent;border-image:url('/game-ui/BorderWindow.png') 20 stretch;box-shadow:0 2px 15px #000c;image-rendering:pixelated;text-shadow:2px 2px #080d0a;overflow:hidden;color:#efefeb}
+.settings-heading{display:flex;align-items:center;justify-content:space-between;background:#2b4b3e;border-bottom:5px double #afa28e;padding:5px 20px;min-height:54px}
+.settings-heading h2{font-size:29px;font-weight:normal;margin:0}
+.settings-close{font:40px/30px Arial,sans-serif;color:#ff1010;border:0;border-image:none;background:#21362b;padding:0;width:32px;height:32px;text-shadow:none}
+.settings-tabs{display:flex;background:#1b241d;flex-shrink:0;min-height:60px;overflow-x:auto}
+.settings-tabs button{border:0;border-image:none;border-radius:0;background:none;padding:14px 21px;font-size:22px;flex-shrink:0}
+.settings-tabs button:disabled{opacity:.58;cursor:default;filter:none}
+.settings-tabs button[aria-current=page]{background:#252e29;box-shadow:inset 0 3px #efece1;position:relative;cursor:default}
+.settings-content{padding:34px 20px 20px;flex:1;overflow-y:auto}
+.settings-content h3{font-size:23px;color:#73e5f5;margin:10px 0 18px;font-weight:normal}
+.audio-rows{display:grid;gap:10px}
+.audio-setting-row{display:grid;grid-template-columns:minmax(150px,1fr) minmax(120px,330px) 90px;align-items:center;gap:16px;min-height:50px;padding:6px 10px 6px 20px;background:#1e2721;font-size:23px}
+.audio-setting-row output{display:block;background:#172019;text-align:center;padding:5px;font-size:23px;font-variant-numeric:tabular-nums}
+.audio-setting-row input{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:0;background:linear-gradient(to right,#f7f7f1 0 var(--audio-level),#687169 var(--audio-level) 100%);cursor:pointer;border:0;border-radius:0;accent-color:#fff}
+.audio-setting-row input::-webkit-slider-thumb{appearance:none;width:12px;height:20px;background:#fff;border:0;border-radius:0}
+.audio-setting-row input::-moz-range-thumb{width:12px;height:20px;background:#fff;border:0;border-radius:0}
+.audio-setting-row input:focus-visible{outline:2px solid #73e5f5;outline-offset:7px}
+.audio-music-note{font-size:14px;color:#aeb9b0;margin:15px 0 0}
+.audio-settings-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:26px;flex-wrap:wrap}
+.audio-settings-actions button{font-size:14px;padding:6px 10px}
+@media(max-width:650px){.settings-shade{padding:8px}.settings-window{width:100%;height:90dvh;border-width:8px}.settings-heading{padding:4px 12px}.settings-heading h2{font-size:24px}.settings-content{padding:20px 10px}.settings-tabs{min-height:46px}.settings-tabs button{font-size:14px;padding:10px 12px}.audio-setting-row{grid-template-columns:minmax(100px,1fr) minmax(65px,1fr) 52px;gap:9px;padding:8px;font-size:17px}.audio-setting-row output{font-size:17px}.settings-content h3{font-size:20px}.audio-settings-actions{justify-content:center}}
+@media(max-height:600px) and (min-width:651px){.settings-window{height:95vh}.settings-content{padding-top:10px}.settings-tabs{min-height:44px}.settings-tabs button{padding:10px 18px}.audio-rows{gap:6px}.audio-setting-row{min-height:40px;font-size:19px}.audio-setting-row output{font-size:19px}.audio-settings-actions{margin-top:12px}}

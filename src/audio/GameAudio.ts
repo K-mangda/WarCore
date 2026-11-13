@@ -1,7 +1,9 @@
 import {assetUrl} from '../core/assetUrl';
+import {audioChannels,getAudioPreferences,setAudioPreferences,subscribeAudioPreferences,type AudioChannel} from './AudioPreferences';
 const clips={click:'Enter5',hover:'menuMove',shot:'retro_shoot_fireball3',xp:'Xp2',level:'LevelupAfter',levelOpen:'Levelup4',levelAmbience:'LevelupAmbience',gold:'gold',silver:'Silver',hurt:'PlayerDamage',death:'DeathImpact',jump:'Player_Jump',land:'Player_Landing',sword:'SwordSwing',staffImpact:'retro_explosion_fireball1',staffImpactAlt:'retro_explosion_fireball3',staffHit:'Hit2'} as const;
 const clipUrl=(key:Sound,file:string)=>assetUrl(key==='sword'?'weapons/knight-sword/audio/SwordSwing.wav':key==='shot'||key.startsWith('staff')?`weapons/staff/audio/${file}.wav`:`game-audio/${file}.wav`);
 export type Sound=keyof typeof clips;
+export const soundChannel=(key:Sound):AudioChannel=>key==='click'||key==='hover'||key==='levelOpen'?'ui':key==='levelAmbience'?'ambience':key==='xp'||key==='gold'||key==='silver'?'pickups':'game';
 interface Voice {key:Sound;source:AudioBufferSourceNode;gain:GainNode;priority:number;}
 const gameplaySounds=new Set<Sound>(['shot','sword','staffImpact','staffImpactAlt','staffHit','xp','gold','silver','hurt','jump','land']);
 const priority=(key:Sound)=>key==='levelAmbience'?4:key==='death'||key==='level'||key==='levelOpen'||key==='hurt'?3:key==='sword'||key.startsWith('staff')?2:key==='shot'?1:0;
@@ -9,6 +11,8 @@ const priority=(key:Sound)=>key==='levelAmbience'?4:key==='death'||key==='level'
 export class GameAudio {
   private context?:AudioContext;
   private gain?:GainNode;
+  private channels=new Map<AudioChannel,GainNode>();
+  private preferences=getAudioPreferences();private unsubscribe:()=>void;
   private buffers=new Map<Sound,AudioBuffer>();
   private voices=new Set<Voice>();
   private last=new Map<Sound,number>();
@@ -16,9 +20,10 @@ export class GameAudio {
   private encoded=new Map<Sound,Promise<ArrayBuffer|null>>();
   private disposed=false;
   private decoding:Promise<void>=Promise.resolve();
-  muted=false;
+  get muted(){return this.preferences.muted;}
   private xpTimes:number[]=[];private levelModal=false;
   constructor(){
+    this.unsubscribe=subscribeAudioPreferences(()=>{this.preferences=getAudioPreferences();this.updateVolumes();});
     // Network preload needs no AudioContext or user gesture. Decoding and playback
     // still begin only after unlock, so late gameplay sounds are never queued.
     for(const [name,file] of Object.entries(clips)){
@@ -33,7 +38,8 @@ export class GameAudio {
     try{
       if(!this.context){
         const context=this.context=new AudioContext();
-        this.gain=context.createGain();this.gain.gain.value=this.muted?0:.35;this.gain.connect(context.destination);
+        this.gain=context.createGain();this.gain.connect(context.destination);
+        for(const key of audioChannels){const gain=context.createGain();gain.connect(this.gain);this.channels.set(key,gain);}this.updateVolumes();
         this.decoding=Promise.all([...this.encoded].map(([key,bytes])=>bytes.then(data=>data?context.decodeAudioData(data):null).then(buffer=>{
           if(buffer&&!this.disposed)this.buffers.set(key,buffer);
         }).catch(()=>{}))).then(()=>{});
@@ -42,7 +48,8 @@ export class GameAudio {
     }catch{/* Audio remains optional when a browser blocks it. */}
   }
   async prepare(){this.unlock();await this.decoding;}
-  toggle(){this.muted=!this.muted;if(this.gain)this.gain.gain.value=this.muted?0:.35;return this.muted;}
+  private updateVolumes(){if(this.gain)this.gain.gain.value=this.muted?0:.35*this.preferences.master;for(const [key,gain] of this.channels)gain.gain.value=this.preferences[key];}
+  toggle(){setAudioPreferences({muted:!this.muted});return this.muted;}
   private release(voice:Voice,stop=false){
     if(!this.voices.delete(voice))return;
     voice.source.onended=null;
@@ -79,7 +86,7 @@ export class GameAudio {
     if(key==='gold')source.playbackRate.value=.92;
     if(key==='click')source.playbackRate.value=.98+Math.random()*.04;
     if(key==='levelAmbience')source.loop=true;
-    source.connect(gain);gain.connect(this.gain!);
+    source.connect(gain);gain.connect(this.channels.get(soundChannel(key))!);
     const voice:Voice={key,source,gain,priority:importance};this.voices.add(voice);
     source.onended=()=>this.release(voice);source.start();if(key==='level')source.stop(now+2);
   };
@@ -99,9 +106,10 @@ export class GameAudio {
     for(const key of gameplaySounds)this.last.delete(key);this.xpTimes=[];
   }
   dispose(){
-    if(this.disposed)return;this.disposed=true;this.requests.abort();
+    if(this.disposed)return;this.disposed=true;this.requests.abort();this.unsubscribe();
     for(const voice of this.voices)this.release(voice,true);
     this.buffers.clear();this.encoded.clear();
+    for(const gain of this.channels.values())gain.disconnect();this.channels.clear();this.gain?.disconnect();
     void this.context?.close().catch(()=>{});
   }
 }

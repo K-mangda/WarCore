@@ -397,3 +397,11 @@ Validation: build/typecheck, model and media hashes/packaged paths, same hit dat
 ## Firestaff softer knockback and slightly wider hit area - 2026-11-13
 
 User reports the first hit pushes monsters too far, causing remaining burst shots to miss. Firestaff now uses knockback1.6 instead of the shared5 (68% lower), collision radius0.30→0.42 and compact damage radius0.90→1.05. Sword retains its prior5 knockback. Target range19.2, cadence, damage and visuals retain the user's prior tuning. These are web feel adjustments, not recovered native formulas. No extraction or phase change.
+
+## Reference-style persistent audio settings - 2026-11-13
+
+User requested audio settings and supplied main/settings screenshots. Added reference-style dark green settings panel, original BorderWindow/Alagard, section strip, square white sliders and numeric readouts for Master/Music/Game Sounds/Ambience/UI/XP and Gold. Only Audio is functional; other sections disabled. Opening settings pauses/releases pointer lock; X/Escape closes to the paused screen, preserving pending upgrades. Focus trap/return, test UI sound and reset provided. Values/mute persist via validated warcore.audio.v1 preferences, with in-memory fallback, and synchronize game/Lab via subscribers/storage events.
+
+GameAudio adds independent category gain buses before the existing master.35 calibration; source gains/pitches and lifecycle preserved. Default slider values1 preserve current loudness. Lab samples follow master/Game Sounds and shared mute. Existing upgrade ambience maps to Ambience, modal open/click/hover to UI, receipts to XP and Gold, other current clips to Game Sounds. No BGM currently plays; Music preference is saved for later and the panel states that no background music is playing. No invented native mixer/track rules, no source asset edits/extraction, no phase change. AUDIO_SETTINGS.md documents scope/routing; backlog records future BGM evidence.
+
+Validation covers production build, stored/reloaded/corrupt/blocked preferences, clamps, independent/live routing, mute/reset, cross-window updates, six-control markup, listener/audio cleanup, original audio behavior and Lab audition live volume. User performs visual/listening/gameplay review.
