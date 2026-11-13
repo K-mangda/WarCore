@@ -1,0 +1,181 @@
+{
+  "source": "Existing megabonk_extracted_assets/characters exports; no extraction",
+  "fieldsUsed": [
+    "id",
+    "name",
+    "portrait.webPath"
+  ],
+  "webPlayable": [
+    "fox"
+  ],
+  "entries": [
+    {
+      "id": "amog",
+      "metadata": "characters/amog/data.json",
+      "metadataSha256": "46adb25005d9da946882c6fcfdf9745df81bd62b5e2b99fad3fcd0094a3b2b53",
+      "sourcePortrait": "characters/amog/web/portrait.png",
+      "publicPortrait": "characters/amog/portrait.png",
+      "portraitSha256": "3127be31681ecc5200c279db7a32b9d4e2bca0ef55aad298f5f5cdf5c8e943e2"
+    },
+    {
+      "id": "athena",
+      "metadata": "characters/athena/data.json",
+      "metadataSha256": "28344d477af37339c59ddcdbed32ef3b44b50658108fc2f9e1e2e6eb1246a76e",
+      "sourcePortrait": "characters/athena/web/portrait.png",
+      "publicPortrait": "characters/athena/portrait.png",
+      "portraitSha256": "af060eda9ae64c4bd5779b7901541c222df58b0789dca52b025c02c98b3fe607"
+    },
+    {
+      "id": "bandit",
+      "metadata": "characters/bandit/data.json",
+      "metadataSha256": "1d06ad5a003b0f0ce0bf8585d64ca7b29915af1a3c26e1ac8bb1b9839b8ace7b",
+      "sourcePortrait": "characters/bandit/web/portrait.png",
+      "publicPortrait": "characters/bandit/portrait.png",
+      "portraitSha256": "4181ee00b495767524a94838783bece8a0c6b9f68c1320c13f93578d1d8a420a"
+    },
+    {
+      "id": "birdo",
+      "metadata": "characters/birdo/data.json",
+      "metadataSha256": "64a4e1de92c43dd13a18876738a8e2130129945e31abb510d32cb171a5c40fad",
+      "sourcePortrait": "characters/birdo/web/portrait.png",
+      "publicPortrait": "characters/birdo/portrait.png",
+      "portraitSha256": "f59ead60341a92c4fff51cdfaf193fde570db294f38297f0777b97f2f03cc7da"
+    },
+    {
+      "id": "bush",
+      "metadata": "characters/bush/data.json",
+      "metadataSha256": "bbe62e186adfb539ac74ac814d7612574f92f48d871ea772b4f9cbbd30fe6ce4",
+      "sourcePortrait": "characters/bush/web/portrait.png",
+      "publicPortrait": "characters/bush/portrait.png",
+      "portraitSha256": "3d40ef4b719581b450bdca17e8c5cb9a1c04c88ab30487f873c2c9727b731f3f"
+    },
+    {
+      "id": "calcium",
+      "metadata": "characters/calcium/data.json",
+      "metadataSha256": "7b35a81437e4cbabaa387a0cded9d2664a83645c88d8187e2ed95e4fa42bd3ab",
+      "sourcePortrait": "characters/calcium/web/portrait.png",
+      "publicPortrait": "characters/calcium/portrait.png",
+      "portraitSha256": "559deedcbb53427f0037b480fbeb932f05dbe5caec42278c4871dd54b61a2a29"
+    },
+    {
+      "id": "chadwell",
+      "metadata": "characters/chadwell/data.json",
+      "metadataSha256": "5f23ece0c752733d737ca56296bd47246c501afa799135d485c188f34ed44ff6",
+      "sourcePortrait": "characters/chadwell/web/portrait.png",
+      "publicPortrait": "characters/chadwell/portrait.png",
+      "portraitSha256": "84c7f18a072c93bee4b93e332c7a364b43b0e24b82e38cfcd5b1691c69cc2d5e"
+    },
+    {
+      "id": "clank",
+      "metadata": "characters/clank/data.json",
+      "metadataSha256": "5ae9cb06ea938c2599ba53745a63e725732f34c744ce240c57e6b9db14f5ecd4",
+      "sourcePortrait": "characters/clank/web/portrait.png",
+      "publicPortrait": "characters/clank/portrait.png",
+      "portraitSha256": "dac0d5f712d1adcf209e6e49e398e1b1daed40fadce7e9f53358b7cdf724380a"
+    },
+    {
+      "id": "dicehead",
+      "metadata": "characters/dicehead/data.json",
+      "metadataSha256": "14f620e6df4a5b1f590c3554b693ea3879c2eef628ded569d7110c03f6fd4755",
+      "sourcePortrait": "characters/dicehead/web/portrait.png",
+      "publicPortrait": "characters/dicehead/portrait.png",
+      "portraitSha256": "ed838c6dbb0a152e45ce4f6e5a04e04d757d3c42f921f1cabbb54f133c549b13"
+    },
+    {
+      "id": "fox",
+      "metadata": "characters/fox/data.json",
+      "metadataSha256": "726119e6bca9a906f72d7f0f390b5764cc05312749549811776e3c67882bc145",
+      "sourcePortrait": "characters/fox/web/portrait.png",
+      "publicPortrait": "characters/fox/portrait.png",
+      "portraitSha256": "ff9ae4355d4355d9f70ab9599598e77b7533f4014608d4332e5111f685f8e3f7"
+    },
+    {
+      "id": "knight",
+      "metadata": "characters/knight/data.json",
+      "metadataSha256": "f8fd419ee7364d837a43f698d33cc4326f6a78226715c24a3f697ae3a5c6d338",
+      "sourcePortrait": "characters/knight/web/portrait.png",
+      "publicPortrait": "characters/knight/portrait.png",
+      "portraitSha256": "fd7a55d478ba2a1816b770f03f7006a1622ed89c6e68c204a84d9a1d01eb3e1f"
+    },
+    {
+      "id": "megachad",
+      "metadata": "characters/megachad/data.json",
+      "metadataSha256": "ecd38d4e7ed5ab4c66ca68430ffb7782bcbd8c65c8e4252b8e15972c6091502c",
+      "sourcePortrait": "characters/megachad/web/portrait.png",
+      "publicPortrait": "characters/megachad/portrait.png",
+      "portraitSha256": "ab1a79d76e24287dd1cddd1230958e2fcf97c58c4830bbc7f4846901035dd3b3"
+    },
+    {
+      "id": "monke",
+      "metadata": "characters/monke/data.json",
+      "metadataSha256": "c39e514e3767d2aa74a9d61546c184c4aabeb7cff95a35810dd028fe6f8b0bde",
+      "sourcePortrait": "characters/monke/web/portrait.png",
+      "publicPortrait": "characters/monke/portrait.png",
+      "portraitSha256": "90d7e48483fac164ab3c77857b20700f9d81c5ecd2fed4ea5d81da7434180fd4"
+    },
+    {
+      "id": "ninja",
+      "metadata": "characters/ninja/data.json",
+      "metadataSha256": "aeeb2cf4662e489cb5c72cce8ade96694f6b8cc4482841cbed7d39b825b4abae",
+      "sourcePortrait": "characters/ninja/web/portrait.png",
+      "publicPortrait": "characters/ninja/portrait.png",
+      "portraitSha256": "d8a854fb4ca8bf5a50cd3c7da50181af42d39967ee3738edd6aab2a0c5d176d7"
+    },
+    {
+      "id": "noelle",
+      "metadata": "characters/noelle/data.json",
+      "metadataSha256": "54f793fd0a8158bad366b560bb2b99ca5846c7a9b175d3321263174ed7fd7689",
+      "sourcePortrait": "characters/noelle/web/portrait.png",
+      "publicPortrait": "characters/noelle/portrait.png",
+      "portraitSha256": "b8eb29a5afe953371c0cb8c38e8849949298a64d4655ee5b3687e9449b53e992"
+    },
+    {
+      "id": "ogre",
+      "metadata": "characters/ogre/data.json",
+      "metadataSha256": "44555ae7a1ab5375546d7bd684befc014998a2f20fc126a08823ff46fac8588d",
+      "sourcePortrait": "characters/ogre/web/portrait.png",
+      "publicPortrait": "characters/ogre/portrait.png",
+      "portraitSha256": "0f4699670d6f184e846ec63fd66a14d8d379b9349e2b1323be7c2a51fe8a1605"
+    },
+    {
+      "id": "roberto",
+      "metadata": "characters/roberto/data.json",
+      "metadataSha256": "3671d9c52edc12e0c4a01d31f266d7a103345a8141fa2f8d91a6721586a3412a",
+      "sourcePortrait": "characters/roberto/web/portrait.png",
+      "publicPortrait": "characters/roberto/portrait.png",
+      "portraitSha256": "49b9ddf0872bb1850a77fbe1e4ed27fd5956778f8c70ee49a03cc1da915c607b"
+    },
+    {
+      "id": "robinette",
+      "metadata": "characters/robinette/data.json",
+      "metadataSha256": "b6fe1412a34e249ec4a932f252c9a2f8ad4571abfc192a8de14e7a0194672079",
+      "sourcePortrait": "characters/robinette/web/portrait.png",
+      "publicPortrait": "characters/robinette/portrait.png",
+      "portraitSha256": "9474afd3d724c20ffe0a8e54940a36e35f726eecf9129de5e7c93111504a33eb"
+    },
+    {
+      "id": "spaceman",
+      "metadata": "characters/spaceman/data.json",
+      "metadataSha256": "962a09adfac5cf78b8c23db459c2c2f8fa49e6f0388352d5cc6a66c280dc8d34",
+      "sourcePortrait": "characters/spaceman/web/portrait.png",
+      "publicPortrait": "characters/spaceman/portrait.png",
+      "portraitSha256": "04d910299a151e20cd4f8d07193629322d89d95b4713834c2e303510954cfba1"
+    },
+    {
+      "id": "tonymczoom",
+      "metadata": "characters/tonymczoom/data.json",
+      "metadataSha256": "933b74f9656c9760fae48ec52db22d62cbc0f27c6414c9ea81ab095293bef3bc",
+      "sourcePortrait": null,
+      "publicPortrait": null,
+      "portraitSha256": null
+    },
+    {
+      "id": "vlad",
+      "metadata": "characters/vlad/data.json",
+      "metadataSha256": "f430ed15892b52a8ef85d5d0482275301c67637b9b0ce2e4e1c8deefbb29a537",
+      "sourcePortrait": "characters/vlad/web/portrait.png",
+      "publicPortrait": "characters/vlad/portrait.png",
+      "portraitSha256": "0f4699670d6f184e846ec63fd66a14d8d379b9349e2b1323be7c2a51fe8a1605"
+    }
+  ]
+}

@@ -38,6 +38,7 @@ jobs:
       - name: Validate packaged paths
         run: |
           node tools/check_deploy.mjs /${{ github.event.repository.name }}/
+          node tools/check_character_select.mjs
           node tools/check_lab_boot.mjs
           node tools/check_lab_assets.mjs
           node tools/check_weapon_models.mjs

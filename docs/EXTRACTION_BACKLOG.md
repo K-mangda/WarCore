@@ -172,3 +172,7 @@ See [PAUSE_END_REFERENCE.md](PAUSE_END_REFERENCE.md) for the user screenshots' m
 ## Character Lab — 2026-11-13
 
 Fox now has Idle / Run / Jump / Falling / Grind clip rooms using the existing web rig. This is raw animation inspection, not a new gameplay skill. Other character rigs/skins/clips remain in the existing multi-character request above; no new extraction was performed. Need verified per-character state transitions, clip rate/loop rules, footstep and jump/land/audio event mapping before adding sound to these previews. Existing Fox movement audio in-game does not prove clip-event timing. Do not re-extract Fox geometry/texture/clips already in public/megabonk/.
+
+## Character selection reference — 2026-11-13
+
+[CHARACTER_SELECTION.md](CHARACTER_SELECTION.md) records the newly supplied selection screenshot and remaining requests: official naming/order, TonyMcZoom missing portrait, native unlock/rank/run counts/skins, starting weapons and passive formulas. Fox reference RNG Blessing text is displayed but its gameplay effect is not implemented. 20 portraits are now copied unchanged with hashes; do not ask to extract them again. All 21 catalog entries are inspectable; only Fox can start a web run.
