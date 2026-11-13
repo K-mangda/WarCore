@@ -473,3 +473,8 @@ User screenshot tuning: changed the selection-independent LEVEL UP burst tint fr
 ## Silver receipt row and prefix - 2026-11-14
 
 User clarified Silver collection feedback: show +number in the existing pale silver coin color, one row above EXP. Replaced S prefix with + and moved Silver from below Gold to 28px above EXP; Gold remains below EXP. Existing pulse, accumulated values, pause and end-of-life fade are preserved (the supplied screenshot shows fade-out, not permanent low opacity). Shared gameplay/Lab counters; no currency balance/drop-rule change or phase transition. Build and existing collection feedback checks.
+
+
+## Faster level-up spectrum - 2026-11-14
+
+User requested faster looping upgrade-screen EXP colors. Reduced the decorative spectrum cycle from 4s to 1s (4x speed). Normal EXP fill, gameplay timing and reduced-motion static behavior unchanged; web visual tuning only. Build checked.
