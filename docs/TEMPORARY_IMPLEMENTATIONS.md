@@ -393,3 +393,7 @@ User requested using complete existing image/audio/effect data instead of merely
 Six weapons explicitly reference GeneralProjectileHit3790; their Hit effect rooms reuse the existing full7145/7001 particle layers/materials and textures, with an isolated hit-only manifest and same StaffView renderer (optional asset root, unchanged default). Fixture gives a visible effect/Hit2 on manual playback and silent deterministic scrubbing, no damage or native weapon attack timing. Aegis has no hit room; unavailable weapon-specific explosion/full procedural motion remains in backlog. Source package and game containers untouched; no extraction. Details/media provenance in WEAPON_MODEL_PREVIEWS.md and per-model media.json. No phase change.
 
 Validation: build/typecheck, model and media hashes/packaged paths, same hit data and two-layer-only loading, fixture pause/seek/reset, sample lifecycle, existing StaffView/game audio and combat regressions. No rendered/listening parity claim; user handles visual/audio/gameplay review.
+
+## Firestaff softer knockback and slightly wider hit area - 2026-11-13
+
+User reports the first hit pushes monsters too far, causing remaining burst shots to miss. Firestaff now uses knockback1.6 instead of the shared5 (68% lower), collision radius0.30→0.42 and compact damage radius0.90→1.05. Sword retains its prior5 knockback. Target range19.2, cadence, damage and visuals retain the user's prior tuning. These are web feel adjustments, not recovered native formulas. No extraction or phase change.

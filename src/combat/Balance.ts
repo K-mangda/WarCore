@@ -10,6 +10,6 @@ export const balance={
   // Verified FireStaff WeaponData burst settings; projectile motion remains web tuning.
   // User-requested visual tuning only; native layers and damage radius are retained.
   staffImpactVisualScale:.5,staffProjectileVisualScale:.8,
-  staffBurstTime:1,staffMinBurstInterval:.15,staffEndCooldown:.5,staffTargetRange:19.2,staffExplosionRadius:.9,staffCollisionRadius:.3,
+  staffBurstTime:1,staffMinBurstInterval:.15,staffEndCooldown:.5,staffTargetRange:19.2,staffExplosionRadius:1.05,staffCollisionRadius:.42,staffKnockback:1.6,
   goldSpawnHeight:.35,xpHoverHeight:.35,pickupRadius:1.4,magnetRadius:5,maxProjectiles:160,maxGems:400,
 } as const;

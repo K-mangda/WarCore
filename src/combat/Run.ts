@@ -73,9 +73,9 @@ export class Run {
     this.slashes.push({position:player.clone().add(new Vector3(0,.5,0)),direction:forward,life:balance.swordVisualDuration,duration:balance.swordVisualDuration,damage:this.state.damage,hits:new Set<number>()});
     this.sound('sword');return true;
   }
-  private applyHit(enemy:Enemy,damage:number,direction:Vector3){
+  private applyHit(enemy:Enemy,damage:number,direction:Vector3,knockback=5){
     // Enemy damage itself is silent; weapon hit effects own Hit2 dispatch.
-    enemy.health-=damage;enemy.flash=.15;enemy.velocity.copy(direction).normalize().multiplyScalar(5);
+    enemy.health-=damage;enemy.flash=.15;enemy.velocity.copy(direction).normalize().multiplyScalar(knockback);
     this.hits.push({position:enemy.position.clone().add(new Vector3(0,1.5,0)),damage,life:.6});if(enemy.health<=0)this.kill(enemy);
   }
   private hitEffect(enemy:Enemy,direction:Vector3,useAudio:boolean){
@@ -158,7 +158,7 @@ export class Run {
         // Compact web hit area requested by the user; native serialized radius is 5.
         for(const enemy of [...this.swarm.enemies]){
           const center=enemy.position.clone().add(new Vector3(0,.7,0));
-          if(center.distanceToSquared(impact)<=balance.staffExplosionRadius**2){this.hitEffect(enemy,direction,!hitAudioPlayed);hitAudioPlayed=true;this.applyHit(enemy,bolt.damage,center.sub(impact));}
+          if(center.distanceToSquared(impact)<=balance.staffExplosionRadius**2){this.hitEffect(enemy,direction,!hitAudioPlayed);hitAudioPlayed=true;this.applyHit(enemy,bolt.damage,center.sub(impact),balance.staffKnockback);}
         }
         bolt.life=0;
       }

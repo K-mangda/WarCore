@@ -56,6 +56,7 @@ const enemy=(id,x,z)=>({id,position:new Vector3(x,0,z),velocity:new Vector3(),he
 const front=enemy(1001,0,-2),behind=enemy(1002,0,2),far=enemy(1003,0,-10);
 sword.swarm.enemies.push(front,behind,far);sword.step(.02,player);
 assert.equal(front.health,90,'Sword must hit its forward sector');assert.equal(behind.health,100,'Sword must not hit behind a single sector');assert.equal(far.health,100,'Sword range must be bounded');assert.equal(sword.bolts.length,0,'Sword must not fire bolts');assert.equal(sword.slashes.length,1);
+assert.equal(front.velocity.length(),5,'Firestaff knockback tuning leaves Sword unchanged');
 assert.equal(sword.setWeapon('bolt'),false,'Weapon changes are restricted to a fresh run');
 for(let i=0;i<5;i++)sword.step(.02,player);assert.equal(front.health,90,'A persistent swing must hit each enemy once');
 for(let i=0;i<5;i++)sword.gems.push({position:player.clone()});sword.step(.02,player);
@@ -98,6 +99,14 @@ for(let i=0;i<5;i++)emptyStaff.gems.push({position:player.clone()});emptyStaff.s
 emptyStaff.swarm.enemies.push(enemy(2100,0,-12));emptyStaff.step(.02,player);assert.equal(emptyStaff.bolts.length,1,'Quantity must not create a simultaneous spread');
 for(let i=0;i<25;i++)emptyStaff.step(.02,player);assert.equal(staffEvents.filter(e=>e==='shot').length,3,'Quantity2 must produce two timed shots');
 console.log('Firestaff checks passed: targeted burst, source phase events, bounded explosion damage, no-target silence and reset.');
+
+const forgivingStaff=new Run(()=>0,()=>true,random),edgeTarget=enemy(2101,.36,-6),closeSplash=enemy(2102,1,-6),outsideSplash=enemy(2103,2,-6);
+forgivingStaff.swarm.enemies.push(edgeTarget,closeSplash,outsideSplash);
+forgivingStaff.bolts.push({position:new Vector3(0,.7,-5),velocity:new Vector3(0,0,-50),life:1,damage:1});forgivingStaff.step(.02,player);
+assert.equal(edgeTarget.health,99,'A slightly off-center Firestaff shot still connects');
+assert.equal(closeSplash.health,99,'Small damage-area increase reaches the nearby edge');
+assert.equal(outsideSplash.health,100,'Hit area remains compact');
+assert.ok(edgeTarget.velocity.length()>0&&edgeTarget.velocity.length()<2,'Firestaff hit gives a soft nudge rather than the old strong knockback');
 
 const pickups=new Run(()=>0,()=>true,()=>.5);
 for(let i=0;i<350;i++)pickups.spawnPickup('xp',new Vector3(i*20,0,0));
