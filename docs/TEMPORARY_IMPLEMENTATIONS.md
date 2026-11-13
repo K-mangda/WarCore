@@ -236,3 +236,8 @@ User requested shorter attack reach. staffTargetRange40 ->32m (20% shorter acqui
 ## Make gameplay gold drops visible - 2026-11-13
 
 Gold already spawned on every enemy death and used the shared Lab renderer. It overlapped EXP at the same point and nearby drops immediately followed/collected. Gold now spawns offset0.45X/0.15Z and waits0.18s before attraction/collection so the user can see the coin drop before it is collected. These are explicit visibility tuning, not native drop physics. No gold is granted until pickup; separate currency balance, sound and counters remain. Focused regression verifies the gameplay death -> gold entity -> collected balance path. Automatic delivery applies.
+
+
+## LEVEL UP lower head anchor and horizontal squeeze - 2026-11-13
+
+User refined placement/end motion: text anchor2.5 ->1.85m above player ground origin, near the character head. After its single-sided sway, the last0.16s compresses horizontal width quadratically to zero while retaining height/opacity, then removes the sprite at expiry. This replaces uniform shrink/fade; opening pop, color and strict pause behavior remain. Shared game/Lab web tuning; automatic delivery applies.

@@ -36,8 +36,10 @@ export class ProgressionView {
    sprite.material.toneMapped=false;
    const enter=1-Math.pow(1-T.MathUtils.clamp(age/.14,0,1),3);
    const exit=T.MathUtils.clamp((initial.startLifetime.scalar-age)/.16,0,1);
-   sprite.scale.multiplyScalar((.2+.8*enter)*exit);
-   sprite.material.opacity=exit;
+   sprite.scale.multiplyScalar(.2+.8*enter);
+   // End by squeezing left/right into the center, not shrinking vertically.
+   sprite.scale.x*=exit*exit;
+   sprite.material.opacity=1;
   }
   if(kind==='gold'||kind==='silver'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a;sprite.material.toneMapped=false;}
  }
@@ -47,7 +49,7 @@ export class ProgressionView {
    const initial=this.data.sprites[kind].particle.InitialModule;
    const count=kind==='text'?1:Math.min(32,this.data.sprites[kind].particle.EmissionModule.m_Bursts[0].countCurve.scalar);
    for(let i=0;i<count;i++){
-    const sprite=this.sprite(kind);if(!sprite)continue;sprite.position.copy(player).y+=kind==='text'?2.5:1;
+    const sprite=this.sprite(kind);if(!sprite)continue;sprite.position.copy(player).y+=kind==='text'?1.85:1;
     const life=initial.startLifetime.minMaxState===3?T.MathUtils.lerp(initial.startLifetime.minScalar,initial.startLifetime.scalar,Math.random()):initial.startLifetime.scalar;
     const angle=i/count*Math.PI*2,speed=kind==='text'?0:T.MathUtils.lerp(7,12,Math.random());
     if(kind==='text'){sprite.userData.anchor=sprite.position.clone();sprite.userData.sway=Math.random()<.5?-1:1;}
