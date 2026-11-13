@@ -42,7 +42,7 @@ const startPosition=text.sprite.position.clone();for(let i=0;i<10;i++)progressio
 assert.equal(text.age,0,'Paused rendering must not age the LEVEL UP effect');assert.ok(text.sprite.position.equals(startPosition));
 progression.update(fixture,new T.Vector3(),.14);assert.ok(text.sprite.scale.x>startScale,'Text must grow from small');
 const side=Math.sign(text.sprite.position.x);progression.update(fixture,new T.Vector3(),.2);assert.equal(Math.sign(text.sprite.position.x),side,'Sway must stay on its one chosen side');
-const shifted=new T.Vector3(3,2,0);progression.update(fixture,shifted,0);assert.ok(Math.abs(text.sprite.position.x-3)<.1,'LEVEL UP stays over a moving player');assert.ok(Math.abs(text.sprite.position.y-(2+1.85+text.age*.35))<.0001,'LEVEL UP follows its restored player-relative anchor');
+const shifted=new T.Vector3(3,2,0);progression.update(fixture,shifted,0);assert.ok(Math.abs(text.sprite.position.x-3)<.1,'LEVEL UP stays over a moving player');assert.ok(Math.abs(text.sprite.position.y-(2+2.5+text.age*.35))<.0001,'LEVEL UP follows its restored player-relative anchor');
 const fullScale=text.sprite.scale.x;progression.update(fixture,new T.Vector3(),.4);assert.ok(text.sprite.scale.x<fullScale,'Text shrinks before expiry');
 progression.update(fixture,new T.Vector3(),.1);assert.equal(progression.effects.length,0);progression.dispose();
 console.log('Level-up effect checks passed: zero-delta pause, small start, single-sided sway, shrink and expiry.');

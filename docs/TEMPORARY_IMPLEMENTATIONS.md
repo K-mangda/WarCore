@@ -316,3 +316,8 @@ User clarified40% reduction refers to letter height, not sign position. Restored
 User reported substantial FPS drop after enemy animation. Animation raises enemy frame batches1 ->up to8 but retains1694 vertices/1040 triangles per enemy; no measured attribution to a single cause is claimed. Optimizations: original89 trees become2 instanced trunk/crown batches instead of178 mesh draws; camera terrain raycasts (80,000 triangles) reduce3 ->1 per changed pose, with cache reuse when stationary; SkeletonView conservatively culls offscreen enemies/corpses, hides empty batches, reuses transform scratch values and marks dynamic buffers with occupied update ranges only; live enemies skip dissolve hash work in the shader. Native8-frame animation, source art, enemy count limits, game rules and pixel resolution remain. Instanced tree buffers dispose with Engine.
 
 Validation adds render-cost structure checks (identical tree transforms, camera cache/update count), occupied-instance upload checks and offscreen-culling regression. No GPU profiling or actual FPS uplift is claimed; user tests the deployed version. Automatic delivery applies.
+
+
+## LEVEL UP above-head placement correction - 2026-11-13
+
+User screenshot shows text at the character upper torso. Raised the player-relative text anchor1.85 ->2.5m at both spawn/follow updates. Letter width1.10/height0.60 overrides remain unchanged; this is position only. Current follow behavior prevents the earlier world-anchor drift. Shared game/Lab tuning; automatic delivery applies.
