@@ -123,3 +123,17 @@ assert.equal(root.children.length,3,'Rapid pickups must replace counters, not le
 const height=root.children[0].scale.y;camera.position.z=12;camera.lookAt(0,1,0);overlay.update(mock,0,player);assert.equal(root.children[0].scale.y,height,'Counter size must stay constant as camera distance changes');
 overlay.update(mock,2,player);assert.ok(root.children.every(s=>!s.visible),'Idle counters fade away');overlay.dispose();assert.equal(camera.children.length,0);
 console.log('Currency feedback checks passed: separate balances, bounded screen counters, distance-independent size, idle fade and disposal.');
+
+const meleeSounds=[];const meleeFx=new Run(()=>0,()=>true,()=>.5,event=>meleeSounds.push(event));meleeFx.setWeapon('sword');
+meleeFx.swarm.enemies.push({...enemy(3001,0,-2),health:1},{...enemy(3002,.3,-2),health:1});meleeFx.step(.02,player);
+assert.equal(meleeSounds.filter(e=>e==='staffHit').length,1,'Sword multi-target hit must emit Hit2 only once');
+assert.equal(meleeFx.staffEffects.filter(e=>e.kind==='hit').length,2,'Each damaged target gets its own hit visual');
+assert.equal(meleeFx.swarm.enemies.length,0,'Dead enemies must leave collision/target selection immediately');
+assert.equal(meleeFx.remains.length,2,'Dead enemies must remain visible for dissolution');assert.equal(meleeFx.snapshot().kills,2);
+const remainingLife=meleeFx.remains[0].life;for(let i=0;i<30;i++)meleeFx.step(.02,new Vector3(50,0,50));
+assert.equal(meleeFx.remains.length,0,'Dissolved corpses must expire');assert.ok(remainingLife>0);
+meleeFx.reset();assert.equal(meleeFx.remains.length,0);
+const aoeSounds=[];const aoe=new Run(()=>0,()=>true,()=>.5,event=>aoeSounds.push(event));aoe.setWeapon('sword');
+aoe.swarm.enemies.push(enemy(4001,0,-6),enemy(4002,.2,-6.2));aoe.bolts.push({position:new Vector3(0,.7,-5),velocity:new Vector3(0,0,-50),life:1,damage:1});aoe.step(.02,player);
+assert.equal(aoeSounds.filter(e=>e==='staffImpact').length,1);assert.equal(aoeSounds.filter(e=>e==='staffHit').length,1,'AoE emits one Hit2 for all targets');assert.equal(aoe.staffEffects.filter(e=>e.kind==='hit').length,2);
+console.log('Damage feedback checks passed: Sword/AoE single-hit audio, per-enemy VFX, immediate death removal and corpse expiry.');

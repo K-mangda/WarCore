@@ -69,7 +69,7 @@ export class GameAudio {
     }
     this.last.set(key,now);
     const source=context.createBufferSource();source.buffer=buffer;
-    const gain=context.createGain();gain.gain.value=key==='sword'||key==='staffImpact'||key==='staffImpactAlt'?.4:key==='shot'?.7:key==='staffHit'?.12:key==='xp'?.22:key==='gold'?.26:key==='silver'?.45:key==='level'?.6:key==='levelOpen'?.3:key==='levelAmbience'?.35:1;
+    const gain=context.createGain();gain.gain.value=key==='sword'||key==='staffImpact'||key==='staffImpactAlt'?.4:key==='shot'?.7:key==='staffHit'?.12:key==='xp'?.22:key==='gold'?.26:key==='silver'?.45:key==='level'?.6:key==='levelOpen'?.3:key==='levelAmbience'?.35:key==='hurt'?.17:key==='death'?.5:1;
     // Source SwordSwing endpoints are .9/1.1 and volume .4. Uniform pitch
     // sampling is provisional; native random-volume distribution is unknown.
     if(key==='sword'||key==='staffImpact'||key==='staffImpactAlt')source.playbackRate.value=.9+Math.random()*.2;

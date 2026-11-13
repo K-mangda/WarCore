@@ -74,7 +74,7 @@ export class StaffView {
     const base=assetUrl('weapons/staff/');const response=await fetch(base+'manifest.json');if(!response.ok)throw Error('Firestaff manifest failed to load');
     const manifest=await response.json() as Manifest;
     const paths=new Set<string>();for(const material of Object.values(manifest.materials))if(material.texture?.file)paths.add(material.texture.file);
-    await Promise.all([...paths].map(async path=>{const texture=await new T.TextureLoader().loadAsync(base+path);texture.colorSpace=T.SRGBColorSpace;texture.magFilter=T.LinearFilter;texture.minFilter=T.LinearFilter;texture.generateMipmaps=false;if(this.disposed)texture.dispose();else this.textures.set(path,texture);}));
+    await Promise.all([...paths].map(async path=>{const texture=await new T.TextureLoader().loadAsync(base+path);texture.colorSpace=T.SRGBColorSpace;texture.magFilter=T.NearestFilter;texture.minFilter=T.NearestFilter;texture.generateMipmaps=false;if(this.disposed)texture.dispose();else this.textures.set(path,texture);}));
     if(this.disposed)return;this.manifest=manifest;
     for(const phase of Object.values(manifest.phases))for(const layer of phase.particles)this.makeBatch(layer);
   }

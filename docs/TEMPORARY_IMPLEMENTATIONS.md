@@ -161,3 +161,19 @@ User screenshots supersede the upward-floating XP feedback. PickupNumbers now pr
 EXP size0.35 ->0.32 (about9% smaller); gold and silver billboards use the same0.32 base size rather than native1/1.5. Currency hover now matches EXP at ground+0.35m. Shared game/Lab changes; source artwork, separate currency sounds and wallet balances remain. Build and targeted feedback checks are required; rendered appearance/listening is left to user playtesting. No push/deploy.
 
 Currency sprite tint now consumes native InitialModule.startColor.maxColor: gold(1,0.9311,0.3538), silver(0.7333,0.7843,0.8510). Previously both were rendered without their distinct source tints.
+
+
+## Combat report follow-up: hit feedback, white flash and death dissolve - 2026-11-13
+
+External combat_vfx_audio_manifest.json and the latest native call-site report attribute GeneralProjectileHit3790/Hit2 to both Sword and Firestaff, with audio only for the first hit target per attack/explosion. Sword now emits the shared hit VFX per damaged enemy and Hit2 once per slash instance. Firestaff emits Hit2 only after an actual AoE damage target is found, once per explosion; hit VFX is placed on each target rather than only at the impact center. Existing explosion audio remains separate. The internal event name staffHit is retained for compatibility but is now generic. Native filter attenuation and random distributions remain unported.
+
+Direct UnityPy checks confirmed AudioSource1974 in sharedassets2: PlayerDamage volume0.17/pitch1; AudioSource8882 in level2: DeathImpact volume0.5/pitch1. GameAudio gains now match these source values before the existing web master gain. Direct Texture2D checks confirmed atlas01 PID711 and atlas02Custom PID545 are512x256 with filterMode0 (Point). StaffView now uses NearestFilter with existing half-texel inset/no mipmaps; native32px frames stay intentionally pixelated. No unsupported additive/premultiplied shader parity claim is made.
+
+The earlier red damage tint was a web hit flash, not a separate enemy species. Replaced it with a white material-style flash. Enemy death now removes gameplay collision/targeting immediately, awards drops once, and retains a bounded visual corpse for a pixel dissolve. Dissolve direction/noise pattern and duration0.45s are explicit web approximations of the reported EnemyDissolve behavior, not recovered native parameters. Corpses freeze with gameplay pause, expire after their duration and clear on reset. No monster death cry was added. The sandbox still uses one skeleton mesh; native enemy roster expansion is not part of this change.
+
+Build, combat, staff and mock-audio checks required; user handles visual/audio validation. No push/deploy.
+
+
+## Automatic Lab dummy damage numbers - 2026-11-13
+
+Sword Lab now uses the same anchored-dummy Run simulation as Firestaff rather than manually injecting a visual slash. Both weapon rooms automatically display actual Run.hits damage values at the hit positions, with rise/fade matching hit lifetimes. Playback emits the real swing/hit events; timeline scrubbing stays silent. Sword timeline extends to0.8s so impact numbers can rise and expire. The optional damage-sample button is retained as a separate font preview. Material clones for per-label opacity are reused/disposed without disposing shared font textures. No invented random damage values or extra duplicate audio is used. User requested pushing this update together with the combat feedback changes.

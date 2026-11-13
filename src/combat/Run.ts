@@ -8,19 +8,20 @@ export type RunEvent='sword'|'shot'|'staffImpact'|'staffHit'|'xp'|'gold'|'silver
 export type Upgrade='damage'|'haste'|'projectiles';
 export interface Projectile {position:Vector3;velocity:Vector3;life:number;damage:number;}
 export interface StaffEffect {kind:'muzzle'|'impact'|'hit';position:Vector3;direction:Vector3;life:number;duration:number;}
-export interface Slash {position:Vector3;direction:Vector3;life:number;duration:number;damage:number;hits:Set<number>;}
+export interface Slash {position:Vector3;direction:Vector3;life:number;duration:number;damage:number;hits:Set<number>;hitAudioPlayed?:boolean;}
+export interface EnemyRemains {position:Vector3;heading:number;life:number;duration:number;}
 export interface Gem extends Pickup {}
 export interface XpReceipt {position:Vector3;value:number;time:number;kind?:PickupKind;}
 export interface Hit {position:Vector3;damage:number;life:number;}
 export interface RunSnapshot {weapon:Weapon;gold:number;silver:number;health:number;maxHealth:number;level:number;xp:number;xpNeeded:number;kills:number;elapsed:number;enemyCount:number;pendingUpgrades:number;dead:boolean;damage:number;attackInterval:number;projectiles:number;}
 export const initialRun:RunSnapshot={weapon:'bolt',gold:0,silver:0,health:balance.maxHealth,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:5,kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1};
 export class Run {
-  readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly staffEffects:StaffEffect[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];readonly xpReceipts:XpReceipt[]=[];readonly currencyReceipts:XpReceipt[]=[];
+  readonly remains:EnemyRemains[]=[];readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly staffEffects:StaffEffect[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];readonly xpReceipts:XpReceipt[]=[];readonly currencyReceipts:XpReceipt[]=[];
   private state:RunSnapshot={...initialRun};private spawnClock=0;private attackClock=0;private hurtClock=0;private started=false;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
   constructor(private ground:(x:number,z:number)=>number,private visible:(point:Vector3)=>boolean,private random:()=>number=Math.random,private sound:(event:RunEvent)=>void=()=>{}){}
   get blocked(){return this.state.dead||this.state.pendingUpgrades>0;}
   snapshot():RunSnapshot{return {...this.state,enemyCount:this.swarm.enemies.length};}
-  reset(){this.state={...initialRun,weapon:this.state.weapon,attackInterval:this.state.weapon==='sword'?balance.attackInterval:balance.staffEndCooldown};this.spawnClock=0;this.attackClock=0;this.hurtClock=0;this.started=false;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
+  reset(){this.state={...initialRun,weapon:this.state.weapon,attackInterval:this.state.weapon==='sword'?balance.attackInterval:balance.staffEndCooldown};this.spawnClock=0;this.attackClock=0;this.hurtClock=0;this.started=false;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
   setWeapon(weapon:Weapon):boolean{
     if(this.state.elapsed!==0||(weapon!=='bolt'&&weapon!=='sword'))return false;
     this.state.weapon=weapon;this.state.attackInterval=weapon==='sword'?balance.attackInterval:balance.staffEndCooldown;return true;
@@ -35,6 +36,8 @@ export class Run {
   private kill(enemy:Enemy){
     const index=this.swarm.enemies.indexOf(enemy);if(index<0)return;
     this.swarm.enemies.splice(index,1);this.state.kills++;
+    this.remains.push({position:enemy.position.clone(),heading:Math.atan2(-enemy.velocity.x,-enemy.velocity.z),life:balance.enemyDissolveDuration,duration:balance.enemyDissolveDuration});
+    if(this.remains.length>balance.maxEnemies)this.remains.shift();
     this.spawnPickup('xp',enemy.position);
     // Explicit sandbox drop schedule, not a recovered native probability table.
     if(this.state.kills%5===0)this.spawnPickup('gold',enemy.position);
@@ -70,9 +73,14 @@ export class Run {
     this.sound('sword');return true;
   }
   private applyHit(enemy:Enemy,damage:number,direction:Vector3){
-    // Impact audio awaits verified weapon/enemy references; no universal Bonk.
+    // Enemy damage itself is silent; weapon hit effects own Hit2 dispatch.
     enemy.health-=damage;enemy.flash=.15;enemy.velocity.copy(direction).normalize().multiplyScalar(5);
     this.hits.push({position:enemy.position.clone().add(new Vector3(0,1.5,0)),damage,life:.6});if(enemy.health<=0)this.kill(enemy);
+  }
+  private hitEffect(enemy:Enemy,direction:Vector3,useAudio:boolean){
+    this.staffEffects.push({kind:'hit',position:enemy.position.clone().add(new Vector3(0,.7,0)),direction:direction.clone(),life:2,duration:2});
+    // Legacy event name; GeneralProjectileHit is shared by Sword and Firestaff.
+    if(useAudio)this.sound('staffHit');
   }
   private fire(player:Vector3){
     const origin=player.clone().add(new Vector3(0,1,0));
@@ -89,6 +97,7 @@ export class Run {
   }
   step(dt:number,player:Vector3,facing=new Vector3(0,0,-1)){
     if(this.blocked)return;
+    for(let i=this.remains.length-1;i>=0;i--){this.remains[i].life-=dt;if(this.remains[i].life<=0)this.remains.splice(i,1);}
     for(let i=this.staffEffects.length-1;i>=0;i--){this.staffEffects[i].life-=dt;if(this.staffEffects[i].life<=0)this.staffEffects.splice(i,1);}
     this.state.elapsed+=dt;this.hurtClock=Math.max(0,this.hurtClock-dt);
     if(!this.started){for(let i=0;i<balance.initialEnemies;i++)this.swarm.spawn(player,this.ground,this.visible,this.random);this.started=true;}
@@ -127,7 +136,7 @@ export class Run {
         if(Math.abs(offset.y)>balance.swordHeightTolerance)continue;
         offset.y=0;
         if(offset.length()<=balance.swordRange&&(offset.lengthSq()<.0001||offset.normalize().dot(slash.direction)>=Math.cos(balance.swordHalfAngle))){
-          slash.hits.add(enemy.id);this.applyHit(enemy,slash.damage,slash.direction);
+          slash.hits.add(enemy.id);this.hitEffect(enemy,slash.direction,!slash.hitAudioPlayed);slash.hitAudioPlayed=true;this.applyHit(enemy,slash.damage,slash.direction);
         }
       }
       slash.life-=dt;if(slash.life<=0)this.slashes.splice(i,1);
@@ -143,12 +152,12 @@ export class Run {
       }
       if(target){
         const impact=previous.clone().addScaledVector(segment,first),direction=bolt.velocity.clone().normalize();
-        this.staffEffects.push({kind:'impact',position:impact.clone(),direction,life:2,duration:2},{kind:'hit',position:impact,direction:direction.clone(),life:2,duration:2});
-        this.sound('staffImpact');this.sound('staffHit');
+        this.staffEffects.push({kind:'impact',position:impact.clone(),direction,life:2,duration:2});
+        this.sound('staffImpact');let hitAudioPlayed=false;
         // Compact web hit area requested by the user; native serialized radius is 5.
         for(const enemy of [...this.swarm.enemies]){
           const center=enemy.position.clone().add(new Vector3(0,.7,0));
-          if(center.distanceToSquared(impact)<=balance.staffExplosionRadius**2)this.applyHit(enemy,bolt.damage,center.sub(impact));
+          if(center.distanceToSquared(impact)<=balance.staffExplosionRadius**2){this.hitEffect(enemy,direction,!hitAudioPlayed);hitAudioPlayed=true;this.applyHit(enemy,bolt.damage,center.sub(impact));}
         }
         bolt.life=0;
       }

@@ -41,5 +41,7 @@ audio.setLevelModal(false);assert.equal(loop.stopped,true,'Closing the modal sto
 context.currentTime+=1;audio.play('xp');const preserved=started.at(-1);
 audio.stopGameplay(true);assert.equal(preserved.stopped,false,'Level-up pause must preserve the collection sound');
 audio.stopGameplay();assert.equal(preserved.stopped,true,'Ordinary stop/reset must still stop pickup audio');
+context.currentTime+=1;audio.play('hurt');assert.equal(started.at(-1).output.gain.value,.17,'PlayerDamage uses native source gain');
+audio.play('death');assert.equal(started.at(-1).output.gain.value,.5,'DeathImpact uses native source gain');
 audio.dispose();assert.ok(started.every(v=>v.stopped),'Dispose must stop every remaining voice');
 console.log('Audio event checks passed: consecutive swings, bounded priorities, pause notifications, mute and cleanup. Mock audio does not verify waveform or perceived loudness.');
