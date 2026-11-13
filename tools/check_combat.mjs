@@ -85,6 +85,7 @@ assert.equal(pickups.snapshot().xp,0,'Uncollected XP must remain in world');
 pickups.reset();pickups.spawnPickup('xp',new Vector3(0,0,-3),9);pickups.spawnPickup('xp',new Vector3(0,0,-3),1);
 assert.equal(pickups.gems.length,1);assert.equal(pickups.gems[0].value,10);
 pickups.reset();pickups.gems.push({kind:'gold',position:player.clone(),value:3},{kind:'silver',position:player.clone(),value:2});pickups.step(.02,player);
+for(let i=0;i<50;i++)pickups.step(.02,player);
 assert.equal(pickups.snapshot().gold,3);assert.equal(pickups.snapshot().silver,2);assert.equal(pickups.snapshot().xp,0);
 pickups.reset();assert.equal(pickups.snapshot().gold,0);assert.equal(pickups.snapshot().silver,0);
 const {movePickup,xpAppearance}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Pickups.js')));
@@ -102,10 +103,11 @@ console.log('XP feedback checks passed: actual total, collection sound dispatch,
 
 const currencies=new Run(()=>0,()=>true,()=>.5);
 currencies.gems.push({kind:'gold',position:player.clone(),value:4},{kind:'silver',position:player.clone(),value:7});currencies.step(.02,player);
+for(let i=0;i<50;i++)currencies.step(.02,player);
 assert.equal(currencies.snapshot().gold,4);assert.equal(currencies.snapshot().silver,7);assert.equal(currencies.currencyReceipts.length,2);
 assert.deepEqual(currencies.currencyReceipts.map(r=>r.kind).sort(),['gold','silver']);
 currencies.reset();assert.equal(currencies.currencyReceipts.length,0);
-currencies.spawnPickup('gold',new Vector3(0,5,0));assert.equal(currencies.gems[0].position.y,1.8,'Gold starts above the enemy head');
+currencies.spawnPickup('gold',new Vector3(0,5,0));assert.equal(currencies.gems[0].position.y,.35,'Gold starts near ground like EXP');
 for(const name of ['combat/PickupNumbers','combat/DamageNumbers','core/assetUrl']){
  const dest=resolve('.local-evidence/combat-check',name+'.js');mkdirSync(dirname(dest),{recursive:true});
  writeFileSync(dest,ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'"));
@@ -147,3 +149,10 @@ console.log('Gameplay gold drop checks passed: death spawn, visible separation/d
 const curvedGold={kind:'gold',position:new Vector3(4,1.8,0),following:true,speed:50};
 movePickup(curvedGold,new Vector3(0,.35,0),.02,5);const linearY=1.8+(.35-1.8)*curvedGold.pullProgress;
 assert.ok(curvedGold.position.y>linearY,'Gold attraction arches above the direct line');
+
+const remoteGold={kind:'gold',position:new Vector3(30,.35,0)};let remoteCollected=false;
+for(let i=0;i<100&&!remoteCollected;i++)remoteCollected=movePickup(remoteGold,new Vector3(0,.35,0),.02,5);
+assert.equal(remoteGold.following,true,'Gold automatically follows outside the magnet radius');assert.equal(remoteCollected,true);
+const remoteXp={kind:'xp',position:new Vector3(30,.35,0)};movePickup(remoteXp,new Vector3(0,.35,0),.02,5);assert.ok(!remoteXp.following,'EXP still requires magnet range');
+const nearGold={kind:'gold',position:new Vector3(.3,.35,0)};assert.equal(movePickup(nearGold,new Vector3(0,.35,0),.02,5),false,'Nearby Gold still performs its arc before collection');assert.ok(nearGold.position.y>.35);
+console.log('Gold automatic arc checks passed: distant collection, close-range launch and unchanged EXP magnet behavior.');

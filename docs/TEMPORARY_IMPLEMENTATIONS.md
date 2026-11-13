@@ -260,3 +260,10 @@ User additionally confirmed desired head-high curved collection. Gold spawn heig
 ## LEVEL UP quick center-collapse refinement - 2026-11-13
 
 User clarified closing motion: shrink toward the center of the word rapidly, rather than squeezing width alone. Both X/Y scale now collapse quadratically over the final0.09s (previous width-only0.16s). Sprite center remains0.5/0.5, preserving centered contraction. Existing head tracking, opening pop, one-sided sway, source gold/orange tint and strict gameplay pause remain. User-directed web visual tuning; automatic delivery applies.
+
+
+## Ground-born gold arcs and automatic collection - 2026-11-13
+
+User clarified Gold starts at the ground like EXP, rises then arcs directly to the player without walking into magnet range. goldSpawnHeight1.8 ->0.35m. After the existing0.18s spawn visibility delay Gold activates following at any distance. Its Bezier control midpoint is raised3m (about1.5m of arc lift), with minimum trajectory length3m so near-player coins can visibly launch. Gold does not collect at its starting point merely because it is already inside collection range; collection waits until the final20% of the trajectory or completion. Existing glow/shrink and separate currency award remain. EXP/Silver attraction unchanged. This is user-directed feel tuning, not a recovered native rule.
+
+Existing XP tiers are cyan values1..9, yellow10..49, red50+, with purple reserved for echo XP. Value belongs to each pickup; color follows value/echo state. Ordinary sandbox enemies still drop1 XP, so higher colors primarily arise through stacking. No extra tiers, fixed per-color award values or echo generation were invented in this adjustment. Automatic delivery applies.
