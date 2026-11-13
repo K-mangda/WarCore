@@ -38,5 +38,8 @@ audio.play('gold');assert.equal(started.at(-1).playbackRate.value,.92);assert.eq
 audio.setLevelModal(true);const loop=started.find(v=>v.loop&&!v.stopped);assert.ok(loop?.buffer.label.includes('LevelupAmbience'));
 const voices=started.length;audio.setLevelModal(true);assert.equal(started.length,voices,'Modal reconciliation must not duplicate ambience');
 audio.setLevelModal(false);assert.equal(loop.stopped,true,'Closing the modal stops ambience');
+context.currentTime+=1;audio.play('xp');const preserved=started.at(-1);
+audio.stopGameplay(true);assert.equal(preserved.stopped,false,'Level-up pause must preserve the collection sound');
+audio.stopGameplay();assert.equal(preserved.stopped,true,'Ordinary stop/reset must still stop pickup audio');
 audio.dispose();assert.ok(started.every(v=>v.stopped),'Dispose must stop every remaining voice');
 console.log('Audio event checks passed: consecutive swings, bounded priorities, pause notifications, mute and cleanup. Mock audio does not verify waveform or perceived loudness.');

@@ -1,3 +1,4 @@
+import {PickupNumbers} from '../combat/PickupNumbers';
 import {ProgressionView} from '../combat/ProgressionView';
 import './lab.css';
 import {assetUrl} from '../core/assetUrl';
@@ -20,7 +21,7 @@ const dummy=new T.Mesh(new T.CapsuleGeometry(.4,1,4,8),new T.MeshBasicMaterial({
 let seed=1;const random=()=>((seed=Math.imul(seed,1664525)+1013904223>>>0)/4294967296);
 const fox=new Fox();scene.add(fox.root);const sword=new SwordView(scene),staff=new StaffView(scene,random),audio=new GameAudio(),numbers=new DamageNumbers();
 let audible=false;
-const xpView=new XpView(scene),progression=new ProgressionView(scene);
+const xpView=new XpView(scene),progression=new ProgressionView(scene),pickupNumbers=new PickupNumbers(scene);
 const pickupRoom=()=>['xp','gold','silver','level'].includes(weapon.value);
 const run=new Run(()=>0,()=>true,random,event=>{if(audible)audio.play(event);});
 const origin=new T.Vector3(),facing=()=>{const yaw=Number(rotate.value)*Math.PI/180;return new T.Vector3(-Math.sin(yaw),0,-Math.cos(yaw));};
@@ -28,14 +29,14 @@ const frame=document.getElementById('frame') as HTMLInputElement,rotate=document
 const play=document.getElementById('play') as HTMLButtonElement,stop=document.getElementById('stop') as HTMLButtonElement,damage=document.getElementById('damage') as HTMLButtonElement;
 let animation=0,ticket=0,disposed=false;let label:T.Sprite|undefined;
 const target=()=>facing().multiplyScalar(weapon.value==='sword'?2.5:6);
-function resetStaff(){seed=1;run.reset();run.setWeapon('bolt');staff.reset();run.swarm.enemies.push({id:-1,position:target(),velocity:new T.Vector3(),health:1e6,flash:0});}
+function resetStaff(){seed=1;pickupNumbers.clear();run.reset();run.setWeapon('bolt');staff.reset();run.swarm.enemies.push({id:-1,position:target(),velocity:new T.Vector3(),health:1e6,flash:0});}
 function resetXp(){
- seed=1;run.reset();staff.reset();progression.clear();
+ seed=1;run.reset();staff.reset();progression.clear();pickupNumbers.clear();
  const kind=weapon.value==='gold'?'gold':weapon.value==='silver'?'silver':'xp';
  for(let i=0;i<(weapon.value==='level'?5:3);i++)run.gems.push({kind,position:weapon.value==='level'?origin.clone():new T.Vector3((i-1)*.6,1,-3-i*.5),value:kind==='xp'&&weapon.value!=='level'?[1,10,50][i]:1});
 }
 
-function advanceXp(age:number){while(!run.blocked&&run.snapshot().elapsed+1e-7<age){const dt=Math.min(.02,age-run.snapshot().elapsed);run.step(dt,origin,facing());xpView.update(run);if(weapon.value!=='level')while(run.blocked&&!run.snapshot().dead)run.choose('damage');}}
+function advanceXp(age:number){while(!run.blocked&&run.snapshot().elapsed+1e-7<age){const dt=Math.min(.02,age-run.snapshot().elapsed);run.step(dt,origin,facing());xpView.update(run);pickupNumbers.update(run,dt);if(weapon.value!=='level')while(run.blocked&&!run.snapshot().dead)run.choose('damage');}}
 function advanceStaff(age:number){
  while(run.snapshot().elapsed+1e-7<age){
   const dt=Math.min(.02,age-run.snapshot().elapsed);const enemy=run.swarm.enemies[0];if(enemy){enemy.position.copy(target());enemy.velocity.set(0,0,0);}
@@ -52,7 +53,7 @@ function paint(){
 }
 function inspect(){
  if(disposed)return;audible=false;const age=Number(frame.value);
- if(weapon.value==='sword'){staff.reset();run.reset();run.slashes.push({position:new T.Vector3(0,.5,0),direction:facing(),life:.3-age,duration:.3,damage:10,hits:new Set()});}
+ if(weapon.value==='sword'){staff.reset();pickupNumbers.clear();run.reset();run.slashes.push({position:new T.Vector3(0,.5,0),direction:facing(),life:.3-age,duration:.3,damage:10,hits:new Set()});}
  else if(pickupRoom()){resetXp();advanceXp(age);progression.update(run,origin,0);if(weapon.value==='level')progression.update(run,origin,age);}else{resetStaff();advanceStaff(age);}
  paint();
 }
@@ -79,9 +80,9 @@ play.addEventListener('click',async()=>{
 stop.addEventListener('click',halt);
 document.getElementById('mute')!.addEventListener('click',()=>{const muted=audio.toggle(),button=document.getElementById('mute')!;button.textContent=muted?'Sound off':'Sound on';button.setAttribute('aria-pressed',String(muted));});
 damage.addEventListener('click',()=>{if(label)label.visible=!label.visible;paint();});
-window.addEventListener('pagehide',()=>{disposed=true;halt();resize.disconnect();audio.dispose();sword.dispose();staff.dispose();xpView.dispose();progression.dispose();fox.dispose();numbers.dispose();dummy.geometry.dispose();dummy.material.dispose();renderer.dispose();});
+window.addEventListener('pagehide',()=>{disposed=true;halt();resize.disconnect();audio.dispose();sword.dispose();staff.dispose();xpView.dispose();progression.dispose();pickupNumbers.dispose();fox.dispose();numbers.dispose();dummy.geometry.dispose();dummy.material.dispose();renderer.dispose();});
 try{
- await Promise.all([fox.load(),sword.load(),staff.load(),xpView.load(),progression.load(),numbers.load()]);
+ await Promise.all([fox.load(),sword.load(),staff.load(),xpView.load(),progression.load(),pickupNumbers.load(),numbers.load()]);
  label=new T.Sprite(numbers.material(10));label.position.set(0,2.15,-1.5);label.scale.set(1.2,.75,1);label.visible=false;scene.add(label);
  play.disabled=false;stop.disabled=false;damage.disabled=false;selectRoom();document.getElementById('ready')!.textContent='Ready';
 }catch(error){document.getElementById('ready')!.textContent=`Could not load Lab: ${String(error)}`;}

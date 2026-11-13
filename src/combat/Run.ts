@@ -10,16 +10,17 @@ export interface Projectile {position:Vector3;velocity:Vector3;life:number;damag
 export interface StaffEffect {kind:'muzzle'|'impact'|'hit';position:Vector3;direction:Vector3;life:number;duration:number;}
 export interface Slash {position:Vector3;direction:Vector3;life:number;duration:number;damage:number;hits:Set<number>;}
 export interface Gem extends Pickup {}
+export interface XpReceipt {position:Vector3;value:number;time:number;}
 export interface Hit {position:Vector3;damage:number;life:number;}
 export interface RunSnapshot {weapon:Weapon;gold:number;silver:number;health:number;maxHealth:number;level:number;xp:number;xpNeeded:number;kills:number;elapsed:number;enemyCount:number;pendingUpgrades:number;dead:boolean;damage:number;attackInterval:number;projectiles:number;}
 export const initialRun:RunSnapshot={weapon:'bolt',gold:0,silver:0,health:balance.maxHealth,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:5,kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1};
 export class Run {
-  readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly staffEffects:StaffEffect[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];
+  readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly staffEffects:StaffEffect[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];readonly xpReceipts:XpReceipt[]=[];
   private state:RunSnapshot={...initialRun};private spawnClock=0;private attackClock=0;private hurtClock=0;private started=false;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
   constructor(private ground:(x:number,z:number)=>number,private visible:(point:Vector3)=>boolean,private random:()=>number=Math.random,private sound:(event:RunEvent)=>void=()=>{}){}
   get blocked(){return this.state.dead||this.state.pendingUpgrades>0;}
   snapshot():RunSnapshot{return {...this.state,enemyCount:this.swarm.enemies.length};}
-  reset(){this.state={...initialRun,weapon:this.state.weapon,attackInterval:this.state.weapon==='sword'?balance.attackInterval:balance.staffEndCooldown};this.spawnClock=0;this.attackClock=0;this.hurtClock=0;this.started=false;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;}
+  reset(){this.state={...initialRun,weapon:this.state.weapon,attackInterval:this.state.weapon==='sword'?balance.attackInterval:balance.staffEndCooldown};this.spawnClock=0;this.attackClock=0;this.hurtClock=0;this.started=false;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;}
   setWeapon(weapon:Weapon):boolean{
     if(this.state.elapsed!==0||(weapon!=='bolt'&&weapon!=='sword'))return false;
     this.state.weapon=weapon;this.state.attackInterval=weapon==='sword'?balance.attackInterval:balance.staffEndCooldown;return true;
@@ -50,7 +51,11 @@ export class Run {
     const xp=this.gems.filter(p=>(p.kind??'xp')==='xp');
     if(xp.length>300){const oldest=xp[0],next=xp[1];next.value=(next.value??1)+(oldest.value??1);this.gems.splice(this.gems.indexOf(oldest),1);}
   }
-  private gainXp(value=1){
+  private gainXp(value=1,player=new Vector3()){
+    const last=this.xpReceipts.at(-1);
+    if(last&&last.time===this.state.elapsed)last.value+=value;
+    else this.xpReceipts.push({position:player.clone().add(new Vector3(0,1.8,0)),value,time:this.state.elapsed});
+    if(this.xpReceipts.length>24)this.xpReceipts.shift();
     this.state.xp+=value;this.sound('xp');
     while(this.state.xp>=this.state.xpNeeded){this.state.xp-=this.state.xpNeeded;this.state.level++;this.state.xpNeeded=5+(this.state.level-1)*3;this.state.pendingUpgrades++;this.sound('level');}
   }
@@ -154,7 +159,7 @@ export class Run {
       const gem=this.gems[i];
       if(movePickup(gem,player.clone().add(new Vector3(0,.35,0)),dt,balance.magnetRadius)){
         this.gems.splice(i,1);const kind=gem.kind??'xp';
-        if(kind==='xp')this.gainXp(gem.value??1);
+        if(kind==='xp')this.gainXp(gem.value??1,player);
         else{this.state[kind]+=gem.value??1;this.sound(kind);}
       }
     }

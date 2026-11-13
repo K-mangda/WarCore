@@ -42,7 +42,7 @@ export class Engine {
     // Embedded browsers may reject pointer lock. Gameplay remains available.
     try { const request=this.renderer.domElement.requestPointerLock?.(); void request?.catch(()=>{}); } catch { /* Drag-to-look fallback. */ }
   };
-  private pause=()=>{this.audio.stopGameplay();this.active=false;this.input.clear();if(document.pointerLockElement===this.renderer.domElement)document.exitPointerLock();};
+  private pause=()=>{this.audio.stopGameplay(this.run.snapshot().pendingUpgrades>0&&!this.inLab);this.active=false;this.input.clear();if(document.pointerLockElement===this.renderer.domElement)document.exitPointerLock();};
   private lockChanged=()=>{const locked=document.pointerLockElement===this.renderer.domElement;if(this.hadLock&&!locked)this.pause();this.hadLock=locked;};
   pauseForLab=()=>{this.inLab=true;this.audio.stopProgression();this.pause();this.emit();};
   resumeFromLab=()=>{this.inLab=false;};

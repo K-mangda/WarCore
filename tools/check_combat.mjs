@@ -92,3 +92,10 @@ assert.equal(xpAppearance(9).tier,'low');assert.equal(xpAppearance(10).scale,1.2
 const magnet={position:new Vector3(0,0,-4)};movePickup(magnet,player,.02,5);assert.ok(magnet.speed>0);magnet.position.z=-20;movePickup(magnet,player,.02,5);assert.equal(magnet.following,true,'Attraction remains latched after leaving radius');
 assert.equal(movePickup({position:new Vector3(0,0,-1),following:true,speed:150},player,.1,5),true,'Fast pickups must not overshoot the player');
 console.log('Progression checks passed: stacking, conservation, tiers, attraction, money and reset.');
+
+const collected=[];const feedback=new Run(()=>0,()=>true,()=>.5,event=>collected.push(event));
+feedback.gems.push({position:player.clone(),value:2},{position:player.clone(),value:1});feedback.step(.02,player);
+assert.equal(feedback.xpReceipts.length,1,'Same-tick collection must produce one readable total');assert.equal(feedback.xpReceipts[0].value,3);assert.equal(collected.filter(e=>e==='xp').length,2,'Each collected entity must dispatch collection audio');
+assert.equal(feedback.xpReceipts[0].position.y,1.8,'XP feedback must appear above the player');
+feedback.step(.02,player);assert.equal(feedback.xpReceipts.length,1,'Empty steps must not repeat feedback');feedback.reset();assert.equal(feedback.xpReceipts.length,0,'New run must clear collection feedback');
+console.log('XP feedback checks passed: actual total, collection sound dispatch, no duplicates and reset.');

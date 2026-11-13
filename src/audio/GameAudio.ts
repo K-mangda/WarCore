@@ -93,8 +93,8 @@ export class GameAudio {
     for(const key of ['level','levelOpen','levelAmbience'] as Sound[])this.last.delete(key);
   }
   /** Stop stale run sounds while keeping UI, level-up and death feedback. */
-  stopGameplay(){
-    for(const voice of this.voices)if(gameplaySounds.has(voice.key))this.release(voice,true);
+  stopGameplay(preservePickups=false){
+    for(const voice of this.voices)if(gameplaySounds.has(voice.key)&&!(preservePickups&&['xp','gold','silver'].includes(voice.key)))this.release(voice,true);
     for(const key of gameplaySounds)this.last.delete(key);this.xpTimes=[];
   }
   dispose(){
