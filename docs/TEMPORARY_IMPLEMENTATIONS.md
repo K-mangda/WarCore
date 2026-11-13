@@ -331,3 +331,8 @@ User requested a longer banner but smaller text. Native lettering base multiplie
 ## Unify LEVEL UP lettering and border - 2026-11-13
 
 User reported letters did not follow the widened border. Removed the two separate procedural backing/border sprites added previously. The source atlas already contains a complete sign, so it is now rendered as one sprite with horizontal multiplier1.60 and vertical0.60 at base0.40. This preserves approximately the widened outer sign width while extending the letters with its border; native dark backing stays intact. Opening/sway/tilt/center-collapse now transform the whole sign together. No new textures or separate background layer. Automatic delivery applies.
+
+
+## Closer above-head LEVEL UP gap - 2026-11-13
+
+User screenshot shows2.5m anchor too far above the hat. Lowered only the text spawn/follow anchor to2.1m, leaving the latest unified sign proportions, motion and pause behavior unchanged. Shared game/Lab tuning; automatic delivery applies.

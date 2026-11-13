@@ -60,7 +60,7 @@ export class ProgressionView {
    const initial=this.data.sprites[kind].particle.InitialModule;
    const count=kind==='text'?1:Math.min(32,this.data.sprites[kind].particle.EmissionModule.m_Bursts[0].countCurve.scalar);
    for(let i=0;i<count;i++){
-    const sprite=this.sprite(kind);if(!sprite)continue;sprite.position.copy(player).y+=kind==='text'?2.5:1;
+    const sprite=this.sprite(kind);if(!sprite)continue;sprite.position.copy(player).y+=kind==='text'?2.1:1;
     const life=initial.startLifetime.minMaxState===3?T.MathUtils.lerp(initial.startLifetime.minScalar,initial.startLifetime.scalar,Math.random()):initial.startLifetime.scalar;
     const angle=i/count*Math.PI*2,speed=kind==='text'?0:T.MathUtils.lerp(7,12,Math.random());
     if(kind==='text'){sprite.userData.sway=Math.random()<.5?-1:1;}
@@ -86,7 +86,7 @@ export class ProgressionView {
   }
   for(let i=this.effects.length-1;i>=0;i--){const e=this.effects[i];e.age+=dt;if(e.age>=e.life){this.remove(e.sprite);this.effects.splice(i,1);continue;}e.sprite.position.addScaledVector(e.velocity,dt);
    if(e.kind==='text'){
-    e.sprite.position.copy(player).add(new T.Vector3(0,2.5,0));e.sprite.position.y+=e.age*.35;
+    e.sprite.position.copy(player).add(new T.Vector3(0,2.1,0));e.sprite.position.y+=e.age*.35;
     // Local camera-right sway stays sideways on screen at every viewing angle.
     const cameraRight=new T.Vector3(1,0,0).applyQuaternion(this.cameraRotation);
     e.sprite.position.addScaledVector(cameraRight,Math.sin(Math.PI*e.age/e.life)*.055*e.sprite.userData.sway);
