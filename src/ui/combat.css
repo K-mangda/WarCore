@@ -24,3 +24,5 @@
 @keyframes upgrade-ray-life{0%{opacity:0;transform:rotate(var(--angle)) scaleY(.25)}12%{opacity:.9;transform:rotate(var(--angle)) scaleY(1)}100%{opacity:0;transform:rotate(var(--angle)) scaleY(.02)}}
 .upgrade-particle.gem{width:60px;height:60px}
 @media(prefers-reduced-motion:reduce){.upgrade-ray{animation:none}}
+
+.stat-sheet h4{margin:10px 0 2px;font-size:.95em;color:#ffd88a;border-bottom:1px solid #605747}.stat-sheet .run-stats{font-size:.9em}.upgrade-player-stats .upgrade-side-body{max-height:62vh;overflow:auto}

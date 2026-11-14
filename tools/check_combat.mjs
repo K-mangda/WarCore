@@ -4,7 +4,7 @@ import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 import {Vector3} from 'three';
-for(const name of ['combat/Run','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm','combat/XpCurve','combat/Weapons','combat/Director','enemies/Roster','data/NativeData','player/Danger']){
+for(const name of ['combat/Run','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm','combat/XpCurve','player/StatSheet','combat/Weapons','combat/Director','enemies/Roster','data/NativeData','player/Danger']){
   const destination=resolve('.local-evidence/combat-check',name+'.js');mkdirSync(dirname(destination),{recursive:true});
   const code=ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'");writeFileSync(destination,code);
 }
@@ -233,6 +233,14 @@ assert.equal(weaponData('sword').burstTime,.5);assert.equal(weaponData('bolt').b
 const swordBase=new Run(()=>0,()=>false,()=>.5);assert.equal(swordBase.snapshot().damage,10);assert.equal(swordBase.setWeapon('sword'),true);
 assert.equal(swordBase.snapshot().damage,11,'Sword uses native base damage');assert.equal(swordBase.snapshot().attackInterval,.75,'Sword uses native end cooldown');
 swordBase.reset();assert.equal(swordBase.snapshot().damage,11,'Reset keeps the selected weapon base stats');assert.equal(swordBase.snapshot().attackInterval,.75);
+const {playerStats,rawStats,armorReduction,evasionChance,formatStat}=await import(pathToFileURL(resolve('.local-evidence/combat-check/player/StatSheet.js')));
+const none={damage:0,haste:0,projectiles:0},fox=playerStats('Fox',none),foxRaw=rawStats('Fox',none);
+assert.equal(fox.MaxHealth,100);assert.equal(fox.HealthRegen,10);assert.ok(Math.abs(foxRaw.Evasion-.06)<1e-9);assert.ok(Math.abs(fox.Evasion-.06/1.06*.999)<1e-9,'Fox evasion goes through e/(e+1)*0.999');
+assert.equal(fox.Armor,0);assert.equal(fox.PickupRange,9);assert.equal(fox.JumpHeight,8);assert.ok(Math.abs(fox.Luck-.15)<1e-9);assert.ok(Math.abs(fox.MoveSpeedMultiplier-1.04)<1e-9);assert.equal(fox.DamageMultiplier,1);assert.equal(fox.CritChance,.01);
+assert.ok(Math.abs(armorReduction(.75)-.4995)<1e-9&&armorReduction(0)===0&&armorReduction(1e9)<.999+1e-9,'Armor a/(a+0.75)*0.999');assert.ok(Math.abs(evasionChance(1)-.4995)<1e-9);
+const tomed=playerStats('Fox',{damage:2,haste:2,projectiles:3});assert.ok(Math.abs(tomed.DamageMultiplier-1.08*1.08)<1e-9);assert.ok(Math.abs(tomed.AttackSpeed-1.15)<1e-9);assert.equal(tomed.Projectiles,3);
+assert.equal(formatStat(.0566,'percent'),'5.7%');assert.equal(formatStat(1.04,'multiplier'),'x1.04');
+const dodger=new Run(()=>0,()=>false,()=>0);dodger.swarm.enemies.push({...enemy(7101,0,0),spec:enemySpec(goblin,0)});dodger.step(.02,player);assert.equal(dodger.snapshot().health,100,'A hit rolled under the evasion chance is dodged');assert.equal(dodger.evaded,1);
 console.log('Director checks passed: credit formulas, Forest 1 timeline, pool growth, cap, scaling, stand-in visuals and real contact damage.');
 const banditDeath=new Run(()=>0,()=>true,()=>.5);banditDeath.setWeapon('sword');banditDeath.swarm.enemies.push({...enemy(6001,0,-2),kind:'bandit',health:1});banditDeath.step(.02,player);
 assert.equal(banditDeath.remains[0].kind,'bandit','A dead Bandit retains its species for dissolution');assert.equal(banditDeath.snapshot().kills,1);banditDeath.reset();assert.equal(banditDeath.remains.length,0);

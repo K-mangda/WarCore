@@ -20,6 +20,7 @@ weapons = load('weapons.json')
 characters = load('characters.json')
 items = load('items.json')
 maps = load('maps.json')
+stat_base = load('stat_base_values.json')
 
 def r(v):
     return round(v, 4) if isinstance(v, float) else v
@@ -90,6 +91,7 @@ export const nativeWeapons:NativeWeapon[]={dump(weapon_rows)};
 export const nativeCharacters:NativeCharacter[]={dump(character_rows)};
 export const nativeItems:NativeItem[]={dump(item_rows)};
 export const nativeMaps:NativeMap[]={dump(map_rows)};
+export const nativeStatBase:Record<string,number>={dump(stat_base)};
 """
 Path('src/data').mkdir(exist_ok=True)
 Path('src/data/NativeData.ts').write_text(out, encoding='utf-8')

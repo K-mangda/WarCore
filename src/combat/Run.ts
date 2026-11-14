@@ -6,6 +6,7 @@ import {balance} from './Balance';
 import {xpForLevel} from './XpCurve';
 import {Director} from './Director';
 import {weaponCooldown,weaponDamage} from './Weapons';
+import {playerStats} from '../player/StatSheet';
 import {enemySpec} from '../enemies/Roster';
 import {initialDanger,stepDanger,type DangerState} from '../player/Danger';
 import {availableUpgrades,emptyUpgradeLevels,nextUpgrade,type Upgrade,type UpgradeLevels} from './Upgrades';
@@ -23,12 +24,12 @@ export interface RunSnapshot {weapon:Weapon;gold:number;silver:number;health:num
 export const initialRun:RunSnapshot={weapon:'bolt',gold:0,silver:0,health:balance.maxHealth,danger:0,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:xpForLevel(1),kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[]};
 export class Run {
   readonly remains:EnemyRemains[]=[];readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly staffEffects:StaffEffect[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];readonly xpReceipts:XpReceipt[]=[];readonly currencyReceipts:XpReceipt[]=[];
-  private state:RunSnapshot={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[]};private dangerState:DangerState=initialDanger();private director?:Director;private attackClock=0;private hurtClock=0;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
+  private state:RunSnapshot={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[]};private dangerState:DangerState=initialDanger();private director?:Director;evaded=0;private attackClock=0;private hurtClock=0;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
   constructor(private ground:(x:number,z:number)=>number,private visible:(point:Vector3)=>boolean,private random:()=>number=Math.random,private sound:(event:RunEvent)=>void=()=>{}){}
   private newDirector(){return new Director({stage:balance.stage,maxEnemies:balance.maxEnemies,random:this.random});}
   get blocked(){return this.state.dead||this.state.pendingUpgrades>0;}
   snapshot():RunSnapshot{return {...this.state,upgradeLevels:{...this.state.upgradeLevels},upgradeChoices:this.state.pendingUpgrades>0&&!this.state.dead?availableUpgrades(this.state):[],enemyCount:this.swarm.enemies.length};}
-  reset(){this.state={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],weapon:this.state.weapon,damage:weaponDamage(this.state.weapon),attackInterval:weaponCooldown(this.state.weapon)};this.dangerState=initialDanger();this.director=undefined;this.attackClock=0;this.hurtClock=0;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
+  reset(){this.state={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],weapon:this.state.weapon,damage:weaponDamage(this.state.weapon),attackInterval:weaponCooldown(this.state.weapon)};this.dangerState=initialDanger();this.director=undefined;this.evaded=0;this.attackClock=0;this.hurtClock=0;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
   setWeapon(weapon:Weapon):boolean{
     if(this.state.elapsed!==0||(weapon!=='bolt'&&weapon!=='sword'))return false;
     this.state.weapon=weapon;this.state.damage=weaponDamage(weapon);this.state.attackInterval=weaponCooldown(weapon);return true;
@@ -186,8 +187,16 @@ export class Run {
     if(this.hits.length>60)this.hits.splice(0,this.hits.length-60);
     const touching=this.hurtClock===0?this.swarm.enemies.find(enemy=>enemy.position.distanceTo(player)<1.1):undefined;
     if(touching){
-      this.sound('hurt');this.state.health=Math.max(0,this.state.health-(touching.spec?.damage??balance.contactDamage));this.hurtClock=balance.contactInterval;
-      if(this.state.health===0){this.state.dead=true;this.sound('death');}
+      // Evasion (e/(e+1)*0.999) dodges the whole hit; Armor (a/(a+0.75)*0.999) reduces it. CheckFinalValue is verified, the points where
+      // DamagePlayerExternal applies them are inferred (I). Fox is the only playable character.
+      const stats=playerStats(balance.character,this.state.upgradeLevels);
+      this.hurtClock=balance.contactInterval;
+      if(this.random()<stats.Evasion){this.evaded++;}
+      else{
+        const damage=Math.max(1,Math.round((touching.spec?.damage??balance.contactDamage)*(1-stats.Armor)));
+        this.sound('hurt');this.state.health=Math.max(0,this.state.health-damage);
+        if(this.state.health===0){this.state.dead=true;this.sound('death');}
+      }
     }
     this.dangerState=stepDanger(this.dangerState,this.state.health,this.state.maxHealth,dt);this.state.danger=this.dangerState.value;
   }
