@@ -32,7 +32,7 @@ export function UpgradeMenu({run,choose,hover}:{run:RunSnapshot;choose:(id:Upgra
      const upgrade=upgrades.find(upgrade=>upgrade.id===id)!,rarity=run.upgradeRarity[id]??(run.upgradeLevels[id]===0?'New':'Common'),multiplier=upgradeMultiplier[rarity];
      return <button key={id} className={`rarity-${rarity.toLowerCase()}`} style={{'--rarity':rarityColors[rarity]} as CSSProperties} onPointerEnter={hover} onClick={()=>choose(id)}>
       <span className="upgrade-offer-kind">{rarity}</span>
-      <img src={assetUrl(`game-ui/${upgrade.icon}.png`)} alt=""/><div className="upgrade-offer-description"><h3>{upgrade.name}</h3><strong className="upgrade-values">{upgradeValues(id,run,multiplier)}</strong><p>{upgradeDescription(id,multiplier)}</p></div>
+      <span className="upgrade-icon"><img src={assetUrl(`game-ui/${upgrade.icon}.png`)} alt=""/></span><div className="upgrade-offer-description"><h3>{upgrade.name}</h3><strong className="upgrade-values">{upgradeValues(id,run,multiplier)}</strong><p>{upgradeDescription(id,multiplier)}</p></div>
       <span className="tome-level">{run.upgradeLevels[id]===0?'NEW':`LVL ${run.upgradeLevels[id]}`}</span><small>{settings.numberUpgrades?`[${index+1}] SELECT`:'SELECT'}</small>
      </button>;
     })}</div>

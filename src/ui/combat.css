@@ -59,3 +59,12 @@
 .upgrade-cards button:hover{background:color-mix(in srgb,var(--rarity) 28%,#000)}
 .upgrade-player-stats .run-stats>div{display:flex!important;justify-content:space-between;align-items:baseline;gap:10px}
 .upgrade-player-stats .run-stats dt,.upgrade-player-stats .run-stats dd{margin:0}
+
+/* UpgradeButton.SetUpgrade (RVA 0x55f890, disassembled): t_rarity, iconBorder and iconBackground all take MyColorUtility.RarityToColor; the card
+   background takes GetRarityColorBackground. The icon-background gradient texture is not extracted (I: light top-left to darker bottom-right). */
+.upgrade-icon{flex-shrink:0;width:86px;height:86px;display:flex;align-items:center;justify-content:center;border:3px solid var(--rarity);background:linear-gradient(135deg,color-mix(in srgb,var(--rarity) 85%,#fff),color-mix(in srgb,var(--rarity) 55%,#000))}
+.upgrade-cards .upgrade-icon img{width:70px;height:70px}
+/* Frames: BorderWindow sprite (slice 20 of 64) drawn at the original's thickness. */
+.upgrade-side,.upgrade-offers{border-width:16px;border-image:url('/game-ui/BorderWindow.png') 20 stretch}
+.upgrade-cards button{border-width:11px;border-image:url('/game-ui/BorderWindow.png') 20 stretch}
+.upgrade-cards button[class*=rarity-]{border-image:url('/game-ui/BorderWindow.png') 20 stretch}
