@@ -26,7 +26,7 @@ function iconFor(kind:IconKind,name:string):string|undefined{
  */
 type Tab='Characters'|'Weapons'|'Tomes'|'Items'|'Hats';
 const playable=new Set(['Fox','FireStaff','Sword','Damage','Cooldown','Quantity']);
-export function TitleScreen({play,settings,history,lab}:{play:()=>void;settings:()=>void;history:()=>void;lab:()=>void}){
+export function TitleScreen({play,settings,history}:{play:()=>void;settings:()=>void;history:()=>void}){
   const profile=useSyncExternalStore(subscribeProfile,getProfile,getProfile);
   const [window,setWindow]=useState<'none'|'unlocks'|'shop'>('none');
   return <section className="title-screen">
@@ -41,7 +41,6 @@ export function TitleScreen({play,settings,history,lab}:{play:()=>void;settings:
     <nav className="title-side" aria-label="Options">
       <button onClick={settings}>SETTINGS</button>
       <button onClick={history}>RUN HISTORY</button>
-      <button onClick={lab}>LAB</button>
     </nav>
     {window==='unlocks'&&<Unlocks close={()=>setWindow('none')}/>}
     {window==='shop'&&<Shop close={()=>setWindow('none')}/>}

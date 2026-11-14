@@ -54,3 +54,16 @@ main:has(.title-screen) :is(.run-hud,main>header,.weapon-status,.settings-toggle
    linear-gradient(var(--c),var(--c)) bottom left/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom left/var(--w) var(--l),
    linear-gradient(var(--c),var(--c)) bottom right/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom right/var(--w) var(--l);
   background-repeat:no-repeat}
+/* Map selection (MapSelect.tsx) */
+.title-window.map-select .title-grid.maps{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+.map-tile .tile-icon{width:128px;height:96px;image-rendering:pixelated}
+.map-tile.silhouette .tile-icon{filter:brightness(0)}
+.map-tiers{display:flex;gap:8px;padding:8px 16px}
+.map-tiers button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:color-mix(in srgb,var(--tier) 35%,#111);border:2px solid transparent;color:#fff;font:inherit;padding:8px}
+.map-tiers button[aria-pressed=true]{background:var(--tier);border-color:#fff}
+.map-tiers img{width:14px;height:14px;image-rendering:pixelated}
+.title-window.map-select .title-grid.maps{flex:0 0 auto}
+.map-tiers{flex:1;align-items:flex-start}
+.title-window.map-select footer{display:flex;align-items:center;gap:18px}
+.title-window.map-select footer p{flex:1}
+.title-window.map-select footer .map-lab{background:#555d58}

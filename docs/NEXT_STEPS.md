@@ -16,6 +16,12 @@ Single list of what is done, what is ready to do now, and what waits for data. D
 | Death sequence look (DeathPP numbers known) | colour grading values verified; wipe shader unknown | partly possible |
 | Weapon level-up cards | data complete; effects of `DamageMultiplier Flat` unknown | blocked, see below |
 
+
+### Phase 1 progress (2026-11-14, Thai time)
+- Done: map selection after CONFIRM (src/ui/MapSelect.tsx; real <Map>IconBig icons, maps ordered by MapData.unlockOrder, Tier 1-3 with approximated colours (P), LAB button moved here). Character cards use the four-corner brackets; locked characters are black silhouettes.
+- Not done: real menu background from level1 (still the web test arena).
+- Parking lot: quest-based unlocks. Read each entry's real unlock requirement (CharacterData.numQuestsRequiredForVisibility, quest data in the dump), add quest progress tracking, show the requirement in the Unlocks footer, and move entries from silhouette to buyable/owned when met (Phase 6).
+
 ## Decompile job 3 finished (UpdateStat, Tome rarity scaling, AddUpgrade, max levels)
 
 Done from it: stat folding (verified), Tome linear accumulation, rarity per card with Luck, rarity colours, Round(value x multiplier, 2). Still open:

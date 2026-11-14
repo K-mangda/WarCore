@@ -16,13 +16,14 @@ import {getGamePreferences,hpColors,subscribeGamePreferences} from './core/GameP
 import {Crosshair,PerformanceHud} from './ui/GameHud';
 import {TopHud} from './ui/TopHud';
 import {TitleScreen} from './ui/TitleScreen';
+import {MapSelect} from './ui/MapSelect';
 import {addSilver} from './core/Profile';
 import './ui/title.css';
 import './ui/style.css';
 import './ui/combat.css';
 function App(){
   const host=useRef<HTMLDivElement>(null),engine=useRef<Engine|null>(null);
-  const [error,setError]=useState(''),[ready,setReady]=useState(false),[labOpen,setLabOpen]=useState(false),[settingsOpen,setSettingsOpen]=useState(false),[historyOpen,setHistoryOpen]=useState(false),[attempt,setAttempt]=useState(0),[characterOpen,setCharacterOpen]=useState(false);
+  const [error,setError]=useState(''),[ready,setReady]=useState(false),[labOpen,setLabOpen]=useState(false),[settingsOpen,setSettingsOpen]=useState(false),[historyOpen,setHistoryOpen]=useState(false),[attempt,setAttempt]=useState(0),[characterOpen,setCharacterOpen]=useState(false),[mapOpen,setMapOpen]=useState(false);
   const controls=useSyncExternalStore(subscribeControlPreferences,getControlPreferences,getControlPreferences);
   const audioPreferences=useSyncExternalStore(subscribeAudioPreferences,getAudioPreferences,getAudioPreferences);
   const gamePreferences=useSyncExternalStore(subscribeGamePreferences,getGamePreferences,getGamePreferences);
@@ -52,8 +53,9 @@ function App(){
     {data.pendingUpgrades>0&&!data.dead&&!settingsOpen&&!labOpen&&!historyOpen&&<UpgradeMenu run={data} choose={id=>engine.current?.chooseUpgrade(id)} hover={()=>engine.current?.audio.play('hover')}/>}
     {data.dead&&!settingsOpen&&!labOpen&&!historyOpen&&<EndPanel run={data} again={()=>{engine.current?.reset();setCharacterOpen(true);}} history={()=>setHistoryOpen(true)}/>}
     {!data.locked&&!data.dead&&data.pendingUpgrades===0&&!settingsOpen&&!labOpen&&!historyOpen&&data.elapsed>0&&<PausePanel run={data} resume={()=>engine.current?.lock()} settings={()=>setSettingsOpen(true)} lab={()=>{engine.current?.pauseForLab();setLabOpen(true);}} newRun={()=>{engine.current?.reset();setCharacterOpen(true);}} history={()=>setHistoryOpen(true)}/>}
-    {!data.locked&&!data.dead&&data.pendingUpgrades===0&&!settingsOpen&&!labOpen&&!historyOpen&&data.elapsed===0&&!characterOpen&&<TitleScreen play={()=>setCharacterOpen(true)} settings={()=>setSettingsOpen(true)} history={()=>setHistoryOpen(true)} lab={()=>{engine.current?.pauseForLab();setLabOpen(true);}}/>}
-    {characterOpen&&!data.locked&&!settingsOpen&&!labOpen&&!historyOpen&&data.elapsed===0&&<CharacterSelect weapon={data.weapon} ready={ready} error={error} onBack={()=>setCharacterOpen(false)} onRetry={()=>setAttempt(value=>value+1)} onHover={()=>engine.current?.audio.play('hover')} onWeapon={weapon=>engine.current?.setWeapon(weapon)} onStart={id=>{if(!canPlayCharacter(id)||!ready||error)return;engine.current?.lock();setCharacterOpen(false);}}/>}
+    {!data.locked&&!data.dead&&data.pendingUpgrades===0&&!settingsOpen&&!labOpen&&!historyOpen&&data.elapsed===0&&!characterOpen&&!mapOpen&&<TitleScreen play={()=>setCharacterOpen(true)} settings={()=>setSettingsOpen(true)} history={()=>setHistoryOpen(true)}/>}
+    {characterOpen&&!data.locked&&!settingsOpen&&!labOpen&&!historyOpen&&data.elapsed===0&&<CharacterSelect weapon={data.weapon} ready={ready} error={error} onBack={()=>setCharacterOpen(false)} onRetry={()=>setAttempt(value=>value+1)} onHover={()=>engine.current?.audio.play('hover')} onWeapon={weapon=>engine.current?.setWeapon(weapon)} onStart={id=>{if(!canPlayCharacter(id)||!ready||error)return;setCharacterOpen(false);setMapOpen(true);}}/>}
+    {mapOpen&&!data.locked&&!settingsOpen&&!labOpen&&data.elapsed===0&&<MapSelect onBack={()=>{setMapOpen(false);setCharacterOpen(true);}} onLab={()=>{setMapOpen(false);engine.current?.pauseForLab();setLabOpen(true);}} onStart={()=>{setMapOpen(false);engine.current?.lock();}}/>}
     {historyOpen&&<HistoryPanel close={()=>setHistoryOpen(false)}/>}
     {labOpen&&<section className="lab-overlay" role="dialog" aria-modal="true" aria-label="Weapon Lab"><div className="lab-toolbar"><strong>WARCORE LAB</strong><button onClick={()=>{engine.current?.resumeFromLab();setLabOpen(false);}}>BACK TO GAME</button></div><iframe title="Weapon Lab" src={assetUrl(`lab.html?embedded=1&build=${import.meta.env.VITE_BUILD_ID}`)}/></section>}
     {settingsOpen&&<AudioSettings onClose={()=>{engine.current?.audio.play('click');setSettingsOpen(false);}} onTestSound={()=>{void engine.current?.audio.prepare().then(()=>engine.current?.audio.play('click'));}} onInteract={()=>engine.current?.audio.unlock()} resolution={{width:data.renderWidth,height:data.renderHeight}}/>}
