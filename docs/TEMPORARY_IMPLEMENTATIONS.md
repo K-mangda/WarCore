@@ -493,3 +493,8 @@ User supplied a screenshot and requested brighter level-up color. Brightened the
 ## Brighter level-up sparkles - 2026-11-14
 
 User requested brighter golden level-up fragments. Lightened the burst tint and increased its additive glow; size, speed, sign and gameplay are unchanged. Shared game/Lab web visual tuning; no native shader claim or phase change.
+
+
+## Smaller EXP glow - 2026-11-14
+
+User requested a smaller glow around EXP. Reduced the soft halo plane from 2.4 to 1.7 times the crystal base size; crystal size, brightness, tier colors and glow opacity remain unchanged. Shared game/Lab web visual tuning; no phase change.

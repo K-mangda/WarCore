@@ -24,7 +24,7 @@ export class XpView {
    #include <tonemapping_fragment>
    #include <colorspace_fragment>
    }`});
-  const haloGeometry=new T.PlaneGeometry(data.size*xpVisual.scale*2.4,data.size*xpVisual.scale*2.4);
+  const haloGeometry=new T.PlaneGeometry(data.size*xpVisual.scale*1.7,data.size*xpVisual.scale*1.7);
   haloGeometry.setAttribute('pickupTint',new T.InstancedBufferAttribute(new Float32Array(balance.maxGems*3),3));haloGeometry.setAttribute('pickupScale',new T.InstancedBufferAttribute(new Float32Array(balance.maxGems),1));
   const haloMaterial=new T.ShaderMaterial({transparent:true,depthWrite:false,toneMapped:false,blending:T.AdditiveBlending,
    vertexShader:`attribute vec3 pickupTint;attribute float pickupScale;varying vec3 vTint;varying vec2 vUv;void main(){vTint=pickupTint;vUv=uv;vec4 center=modelViewMatrix*instanceMatrix*vec4(0.,0.,0.,1.);center.xy+=position.xy*pickupScale;gl_Position=projectionMatrix*center;}`,
