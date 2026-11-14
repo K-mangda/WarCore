@@ -25,7 +25,7 @@ export interface RunSnapshot {weapon:Weapon;gold:number;silver:number;health:num
 export const initialRun:RunSnapshot={weapon:'bolt',gold:0,silver:0,health:balance.maxHealth,danger:0,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:xpForLevel(1),kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{},damageBonus:0,attackSpeedBonus:0,projectileBonus:0};
 export class Run {
   readonly remains:EnemyRemains[]=[];readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly staffEffects:StaffEffect[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];readonly xpReceipts:XpReceipt[]=[];readonly currencyReceipts:XpReceipt[]=[];
-  private state:RunSnapshot={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{}};private dangerState:DangerState=initialDanger();private director?:Director;evaded=0;private attackClock=0;private hurtClock=0;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
+  private state:RunSnapshot={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{}};private dangerState:DangerState=initialDanger();private director?:Director;evaded=0;private regenCarry=0;private attackClock=0;private hurtClock=0;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
   constructor(private ground:(x:number,z:number)=>number,private visible:(point:Vector3)=>boolean,private random:()=>number=Math.random,private sound:(event:RunEvent)=>void=()=>{}){}
   /** Rarity is rolled per card with the player's Luck (UpgradeButton.SetUpgrade -> Rarity.GetEncounterOfferRarity(Luck)). */
   private rollOffers(){
@@ -40,7 +40,7 @@ export class Run {
   snapshot():RunSnapshot{return {...this.state,upgradeLevels:{...this.state.upgradeLevels},upgradeRarity:{...this.state.upgradeRarity},upgradeChoices:this.state.pendingUpgrades>0&&!this.state.dead?availableUpgrades(this.state):[],enemyCount:this.swarm.enemies.length};}
   /** Current stat sheet (base + character + Tomes). PickupRange drives the magnet radius, HealthRegen the passive healing. */
   liveStats(){return playerStats(balance.character,{damage:this.state.damageBonus,haste:this.state.attackSpeedBonus,projectiles:this.state.projectileBonus});}
-  reset(){this.state={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{},weapon:this.state.weapon,damage:weaponDamage(this.state.weapon),attackInterval:weaponCooldown(this.state.weapon)};this.dangerState=initialDanger();this.director=undefined;this.evaded=0;this.attackClock=0;this.hurtClock=0;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
+  reset(){this.state={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{},weapon:this.state.weapon,damage:weaponDamage(this.state.weapon),attackInterval:weaponCooldown(this.state.weapon)};this.dangerState=initialDanger();this.director=undefined;this.evaded=0;this.regenCarry=0;this.attackClock=0;this.hurtClock=0;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
   setWeapon(weapon:Weapon):boolean{
     if(this.state.elapsed!==0||(weapon!=='bolt'&&weapon!=='sword'))return false;
     this.state.weapon=weapon;this.state.damage=weaponDamage(weapon);this.state.attackInterval=weaponCooldown(weapon);return true;
@@ -212,7 +212,11 @@ export class Run {
       }
     }
     // HealthRegen is per minute (PlayerHealth.healingPerMinute 10, damage source "HealthRegen"); the exact tick cadence is unread (I), so it accrues smoothly.
-    if(!this.state.dead&&this.state.health<this.state.maxHealth)this.state.health=Math.min(this.state.maxHealth,this.state.health+this.liveStats().HealthRegen/60*dt);
+    if(!this.state.dead&&this.state.health<this.state.maxHealth){
+      // Accrue fractionally but apply whole HP only, so the HP readout and damage numbers stay integers.
+      this.regenCarry+=this.liveStats().HealthRegen/60*dt;
+      if(this.regenCarry>=1){const whole=Math.floor(this.regenCarry);this.regenCarry-=whole;this.state.health=Math.min(this.state.maxHealth,this.state.health+whole);}
+    }else this.regenCarry=0;
     this.dangerState=stepDanger(this.dangerState,this.state.health,this.state.maxHealth,dt);this.state.danger=this.dangerState.value;
   }
 }
