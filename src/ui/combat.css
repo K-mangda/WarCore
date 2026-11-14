@@ -89,3 +89,6 @@
 .upgrade-cards button:nth-child(1){animation-delay:.14s}.upgrade-cards button:nth-child(2){animation-delay:.22s}.upgrade-cards button:nth-child(3){animation-delay:.30s}.upgrade-cards button:nth-child(4){animation-delay:.38s}
 .upgrade-actions{animation:upgrade-fade .3s .42s ease-out both}
 @media(prefers-reduced-motion:reduce){.upgrade-screen,.upgrade-side,.upgrade-offers,.upgrade-cards button,.upgrade-actions{animation:none}}
+/* Bar thickness follows the real game's ~16 px at 1080p (measured from the user's screenshots), scaled with the viewport height. */
+.experience,.upgrade-spectrum{height:max(16px,1.55vh)}
+.experience>span{top:max(18px,1.8vh)}
