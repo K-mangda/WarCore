@@ -1,0 +1,15 @@
+/*
+ * Buttons as the real UI draws them: the MyButtonNew sprite (rounded face + bottom lip) tinted by the Image colour.
+ * Tints read from the scene (unity-dump asset-index usedBy colours, V): menu buttons 0.406 grey (B_Settings, B_Unlocks, B_Shop...),
+ * B_Confirm/B_Purchase (0.236,0.643,0.981), B_Buy (0.042,0.622,1), B_View green, B_BossTest red. Tinted copies: public/game-ui/button-*.png
+ * (sprite x tint, baked by a one-off script; Unity multiplies the sprite by the colour the same way). Loaded last so it wins.
+ */
+button{border:solid transparent;border-width:8px 8px 12px;border-image:url('/game-ui/button-grey.png') 10 fill stretch;background:none;border-radius:0;box-shadow:none;image-rendering:pixelated}
+.title-main button,.title-side button{background:none;box-shadow:none;border-radius:0}
+.character-start,.map-confirm,.title-window footer button,.upgrade-confirm{border-image-source:url('/game-ui/button-blue.png');background:none}
+.tile-price+button,.title-window footer button.buy{border-image-source:url('/game-ui/button-buy.png')}
+.weapon-select button[aria-pressed=true]{border-image-source:url('/game-ui/button-blue.png');background:none}
+.map-detail .map-lab{border-image-source:url('/game-ui/button-green.png');background:none}
+/* Buttons that are not MyButtonNew in the real UI keep their own look. */
+.title-grid .tile,.map-row,.map-tier-list button,.character-card,.title-tabs button,.settings-tabs button,.controls-switch button,.upgrade-cards button,.title-close,.character-heading button{border-image:none}
+.title-close,.character-heading button{background:none!important;border:0!important;color:#ff2a2a;font:bold 34px/1 Arial,sans-serif;padding:0 6px;width:auto;margin:0;text-shadow:none}

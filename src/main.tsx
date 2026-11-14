@@ -21,6 +21,7 @@ import {addSilver} from './core/Profile';
 import './ui/title.css';
 import './ui/style.css';
 import './ui/combat.css';
+import './ui/buttons.css';
 function App(){
   const host=useRef<HTMLDivElement>(null),engine=useRef<Engine|null>(null);
   const [error,setError]=useState(''),[ready,setReady]=useState(false),[labOpen,setLabOpen]=useState(false),[settingsOpen,setSettingsOpen]=useState(false),[historyOpen,setHistoryOpen]=useState(false),[attempt,setAttempt]=useState(0),[characterOpen,setCharacterOpen]=useState(false),[mapOpen,setMapOpen]=useState(false);
