@@ -17,6 +17,9 @@ enemies = load('enemies.json')
 stages = load('stages.json')
 tomes = load('tomes.json')
 weapons = load('weapons.json')
+characters = load('characters.json')
+items = load('items.json')
+maps = load('maps.json')
 
 def r(v):
     return round(v, 4) if isinstance(v, float) else v
@@ -44,6 +47,21 @@ weapon_rows = [{
     'source': w['source'],
 } for w in weapons]
 
+mods = lambda lst: [{'stat': m['stat'], 'op': m['op'], 'value': r(m['value'])} for m in lst]
+character_rows = [{
+    'character': c['character'], 'price': c['price'], 'startingWeapon': (c['startingWeapon'] or '').replace('Weapon', '', 1) or None,
+    'passive': c['passive'], 'statModifiers': mods(c['statModifiers']), 'colliderHeight': r(c['colliderHeight']),
+    'colliderWidth': r(c['colliderWidth']), 'numQuestsRequiredForVisibility': c['numQuestsRequiredForVisibility'], 'source': c['source'],
+} for c in characters]
+item_rows = [{
+    'item': i['item'], 'rarity': i['rarity'], 'inItemPool': i['inItemPool'], 'maxAmount': i['maxAmount'],
+    'maxAmountPerRun': i['maxAmountPerRun'], 'price': i['price'], 'source': i['source'],
+} for i in items]
+map_rows = [{
+    'name': m['name'], 'stages': m['stages'], 'stageDuration': r(m['stageDuration']), 'unlockOrder': m['unlockOrder'],
+    'numShrinesMultiplier': r(m['numShrinesMultiplier']), 'numChestsMultiplier': r(m['numChestsMultiplier']), 'source': m['source'],
+} for m in maps]
+
 meta = {
     'generatedBy': 'tools/build_web_data.py',
     'generatedOn': date.today().isoformat(),
@@ -61,11 +79,17 @@ export interface NativeStage {{name:string;stageTime:number;checkNewEnemyInterva
 export interface NativeStatModifier {{stat:string;op:'Addition'|'Multiplication'|'Flat';value:number;}}
 export interface NativeTome {{tome:string;description:string;stat:string;op:'Addition'|'Multiplication'|'Flat';value:number;source:string;}}
 export interface NativeWeapon {{weapon:string;damage:number;endCooldown:number;burstTime:number;minBurstInterval:number;projectiles:number;upgradePerLevel:NativeStatModifier[];source:string;}}
+export interface NativeCharacter {{character:string;price:number;startingWeapon:string|null;passive:string|null;statModifiers:NativeStatModifier[];colliderHeight:number;colliderWidth:number;numQuestsRequiredForVisibility:number;source:string;}}
+export interface NativeItem {{item:string;rarity:string;inItemPool:boolean;maxAmount:number;maxAmountPerRun:number;price:number;source:string;}}
+export interface NativeMap {{name:string;stages:string[];stageDuration:number;unlockOrder:number;numShrinesMultiplier:number;numChestsMultiplier:number;source:string;}}
 export const nativeDataMeta={dump(meta)} as const;
 export const nativeEnemies:NativeEnemy[]={dump(enemy_rows)};
 export const nativeStages:NativeStage[]={dump(stage_rows)};
 export const nativeTomes:NativeTome[]={dump(tome_rows)};
 export const nativeWeapons:NativeWeapon[]={dump(weapon_rows)};
+export const nativeCharacters:NativeCharacter[]={dump(character_rows)};
+export const nativeItems:NativeItem[]={dump(item_rows)};
+export const nativeMaps:NativeMap[]={dump(map_rows)};
 """
 Path('src/data').mkdir(exist_ok=True)
 Path('src/data/NativeData.ts').write_text(out, encoding='utf-8')
