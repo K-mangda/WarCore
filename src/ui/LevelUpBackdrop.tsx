@@ -48,6 +48,12 @@ export function LevelUpBackdrop(){
           }
           ctx.restore();
         }
+        for(const f of sim.flashes){
+          const t=f.age/f.life,radius=f.size*(.6+.4*(1-t)),mix=(a:number,b:number)=>Math.round((a+(b-a)*t)*255);
+          ctx.globalAlpha=1-t;ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.rotation);
+          ctx.fillStyle=`rgb(${mix(.824,.486)},${mix(.923,.69)},${mix(1,1)})`;
+          ctx.beginPath();for(let k=0;k<8;k++){const r=k%2?radius*.22:radius,a=k*Math.PI/4;ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r);}ctx.closePath();ctx.fill();ctx.restore();
+        }
         ctx.globalAlpha=1;frame=requestAnimationFrame(draw);
       };
       frame=requestAnimationFrame(draw);

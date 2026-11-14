@@ -38,12 +38,14 @@ const lerpCurve=(keys:[number,number][],t:number)=>{
 /** TreasureCircleRays uses separate-axis size over lifetime (two random-between curves each): width shrinks, length grows; startSize Y = 1 unit. */
 export const rayWidthMultiplier=(t:number,seed:number)=>{const max=lerpCurve([[0,1],[1,.227]],t),min=lerpCurve([[0,.23],[1,1]],t);return min+(max-min)*seed;};
 export const rayLengthMultiplier=(t:number,seed:number)=>{const max=lerpCurve([[0,.132],[1,1]],t),min=lerpCurve([[0,.51],[1,1]],t);return min+(max-min)*seed;};
+/** EndSparkle sub-emitter (burst of 1 when a crystal dies, life 0.2-0.3 s, tint 0.82/0.92/1 -> 0.49/0.69/1). Frame art not extracted; drawn as a spinning star (I). */
+export interface Flash {x:number;y:number;age:number;life:number;size:number;rotation:number;spin:number;}
 export interface Particle {emitter:number;x:number;y:number;vx:number;vy:number;age:number;life:number;size:number;rotation:number;spin:number;color:Rgb;direction:number;seed:number;}
 export const sizeAt=(config:EmitterConfig,t:number)=>lerpCurve(config.sizeCurve,t);
 export const alphaAt=(config:EmitterConfig,t:number)=>lerpCurve(config.alphaCurve,t);
 /** 1 unit of velocity/size in pixels, scaled by the canvas height against the 1080p reference. */
 export class BackdropSimulation {
-  readonly particles:Particle[]=[];
+  readonly particles:Particle[]=[];readonly flashes:Flash[]=[];
   private carry:number[]=emitters.map(()=>0);
   constructor(private random:()=>number=Math.random,private heightScale=1){}
   setHeight(height:number){this.heightScale=height/1080;}
@@ -64,9 +66,14 @@ export class BackdropSimulation {
       this.carry[index]+=c.rate*sim;
       while(this.carry[index]>=1){this.carry[index]--;this.spawn(index);}
     });
+    for(let i=this.flashes.length-1;i>=0;i--){const f=this.flashes[i];f.age+=dt;f.rotation+=f.spin*dt;if(f.age>=f.life)this.flashes.splice(i,1);}
     for(let i=this.particles.length-1;i>=0;i--){
       const p=this.particles[i],c=emitters[p.emitter],sim=dt*c.simulationSpeed;
-      p.age+=sim;if(p.age>=p.life){this.particles.splice(i,1);continue;}
+      p.age+=sim;
+      if(p.age>=p.life){
+        if(emitters[p.emitter].name==='CrystalBlueFountain')this.flashes.push({x:p.x,y:p.y,age:0,life:.2+this.random()*.1,size:p.size*1.6,rotation:p.rotation,spin:(this.random()*2-1)*6});
+        this.particles.splice(i,1);continue;
+      }
       // Gravity acts in world units, and in a screen-space-overlay canvas 1 world unit is 1 pixel, so it is NOT multiplied by the emitter scale (I).
       // (An earlier build multiplied by unitPx and the crystals fell off the screen far too fast.)
       p.vy+=c.gravity*9.81*this.heightScale*sim;
