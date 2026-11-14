@@ -20,6 +20,8 @@ Single list of what is done, what is ready to do now, and what waits for data. D
 ### Phase 1 progress (2026-11-14, Thai time)
 - Done: map selection after CONFIRM (src/ui/MapSelect.tsx; real <Map>IconBig icons, maps ordered by MapData.unlockOrder, Tier 1-3 with approximated colours (P), LAB button moved here). Character cards use the four-corner brackets; locked characters are black silhouettes.
 - Not done: real menu background from level1 (still the web test arena).
+- Map selection rebuilt to the real layout (map list with descriptions + lock/requirement, right panel with tiers 1x/1.1x/1.2x Silver, stages, CONFIRM). Buyable Unlocks tiles are plain blue + price.
+- Parking lot: whole-UI button/border styling still differs from the real game (dark grey face with bottom lip, window frames); main menu buttons partly adjusted. Map highscore/speedrun, CHALLENGES, music picker, character Rank/Runs and skins not built. Map descriptions copied from the screenshot until localisation is exported.
 - Parking lot: quest-based unlocks. Read each entry's real unlock requirement (CharacterData.numQuestsRequiredForVisibility, quest data in the dump), add quest progress tracking, show the requirement in the Unlocks footer, and move entries from silhouette to buyable/owned when met (Phase 6).
 
 ## Decompile job 3 finished (UpdateStat, Tome rarity scaling, AddUpgrade, max levels)

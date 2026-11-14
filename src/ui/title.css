@@ -54,16 +54,48 @@ main:has(.title-screen) :is(.run-hud,main>header,.weapon-status,.settings-toggle
    linear-gradient(var(--c),var(--c)) bottom left/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom left/var(--w) var(--l),
    linear-gradient(var(--c),var(--c)) bottom right/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom right/var(--w) var(--l);
   background-repeat:no-repeat}
-/* Map selection (MapSelect.tsx) */
-.title-window.map-select .title-grid.maps{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
-.map-tile .tile-icon{width:128px;height:96px;image-rendering:pixelated}
-.map-tile.silhouette .tile-icon{filter:brightness(0)}
-.map-tiers{display:flex;gap:8px;padding:8px 16px}
-.map-tiers button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:color-mix(in srgb,var(--tier) 35%,#111);border:2px solid transparent;color:#fff;font:inherit;padding:8px}
-.map-tiers button[aria-pressed=true]{background:var(--tier);border-color:#fff}
-.map-tiers img{width:14px;height:14px;image-rendering:pixelated}
-.title-window.map-select .title-grid.maps{flex:0 0 auto}
-.map-tiers{flex:1;align-items:flex-start}
-.title-window.map-select footer{display:flex;align-items:center;gap:18px}
-.title-window.map-select footer p{flex:1}
-.title-window.map-select footer .map-lab{background:#555d58}
+/* Map selection (MapSelect.tsx), layout from the real screen. */
+.map-screen{position:absolute;inset:0;z-index:35;display:flex;justify-content:space-between;align-items:flex-start;padding:12vh 4vw 6vh;pointer-events:none;color:#eee;text-shadow:2px 2px #000}
+.map-screen>*{pointer-events:auto}
+.map-list-window,.map-detail{background:#252e29;border:12px solid transparent;border-image:url('/game-ui/BorderWindow.png') 20 stretch;image-rendering:pixelated}
+.map-list-window{width:min(600px,40vw);height:76vh;display:flex;flex-direction:column}
+.map-list-window header{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;background:#2b4b3e;border-bottom:5px double #afa28e}
+.map-list-window h2{margin:0;font-weight:normal;font-size:28px}
+.map-list{padding:20px 22px;overflow:auto;display:flex;flex-direction:column;gap:14px}
+.map-row{position:relative;display:flex;gap:0;padding:0;margin:0;width:100%;text-align:left;border:0;border-image:none;background:#1f2622;overflow:visible}
+.map-row[aria-pressed=true]{background:#1d4f9c}
+.map-row::before{content:'';position:absolute;inset:-12px;pointer-events:none;opacity:0;--c:#fff;--l:12px;--w:3px;
+ background:linear-gradient(var(--c),var(--c)) top left/var(--l) var(--w),linear-gradient(var(--c),var(--c)) top left/var(--w) var(--l),linear-gradient(var(--c),var(--c)) top right/var(--l) var(--w),linear-gradient(var(--c),var(--c)) top right/var(--w) var(--l),linear-gradient(var(--c),var(--c)) bottom left/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom left/var(--w) var(--l),linear-gradient(var(--c),var(--c)) bottom right/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom right/var(--w) var(--l);background-repeat:no-repeat}
+.map-row[aria-pressed=true]::before,.map-row:not(.locked):hover::before{opacity:1}
+.map-row.locked{cursor:default}.map-row.locked:hover{filter:none}
+.map-thumb{flex:0 0 auto;display:flex;flex-direction:column;border:5px solid transparent;border-image:url('/game-ui/BorderWindow.png') 20 stretch;background:#111}
+.map-thumb img{width:180px;height:135px;object-fit:cover;image-rendering:pixelated;display:block}
+.map-thumb .map-lock{object-fit:none;transform:scale(3);background:#141414}
+.map-thumb b{font-weight:normal;text-align:center;font-size:17px;border-top:2px solid #8c9589;background:#1d2420}
+.map-text{padding:12px 16px;font-size:19px;line-height:1.3}
+.map-row.locked .map-text{font-size:16px}.map-text strong{display:block;font-weight:normal;font-size:19px}
+.map-detail{width:min(480px,30vw);display:flex;flex-direction:column;align-items:center;padding:16px 22px 22px;gap:14px}
+.map-detail-head{display:flex;gap:16px;align-self:stretch}
+.map-detail-head img{width:120px;height:120px;object-fit:cover;image-rendering:pixelated;border:3px solid #6a756f}
+.map-detail-head h3{margin:0;font-weight:normal;font-size:30px;color:#ffe035}.map-detail-head p{margin:2px 0;font-size:22px}
+.map-tier-list{align-self:stretch;border:3px solid #ddd;padding:6px;display:flex;flex-direction:column;gap:4px}
+.map-tier-list button{display:grid;grid-template-columns:32px 1fr 1fr 32px;align-items:center;gap:10px;margin:0;width:100%;border:0;border-image:none;background:#1c1f1d;padding:6px 10px;font-size:21px;text-align:left}
+.map-tier-list button img{width:16px;height:16px;vertical-align:-2px;margin-right:4px}
+.map-tier-list .map-check{width:28px;height:28px;filter:brightness(0) saturate(100%) invert(56%) sepia(92%) saturate(2700%) hue-rotate(185deg)}
+.map-box{width:22px;height:22px;border:2px solid #ddd;display:flex;align-items:center;justify-content:center}.map-box i{width:12px;height:12px;background:#fff}
+.map-stats{text-align:center;font-size:21px;margin:8px 0;line-height:1.5}.map-stats img{width:16px;height:16px;vertical-align:-2px}
+.map-detail .map-lab{width:auto;margin:0;background:#c47a16;font-size:24px;padding:8px 26px}
+.map-detail .map-confirm{width:auto;margin:0;background:#1572c2;font-size:28px;padding:10px 28px}
+/* Buyable tiles: plain blue with the Silver price and a faint silhouette, as in the real Character Selection/Unlocks. */
+.title-grid .tile.buyable{background:#1f4fb0;box-shadow:inset 0 0 0 2px #3f74d6}
+.title-grid .tile.buyable .tile-icon{filter:brightness(0);opacity:.18}
+.title-window .title-grid{min-height:0}.title-window footer{position:relative;z-index:1}
+/* Menu buttons closer to the real main menu (screenshot 2026-11-14): dark grey face, darker bottom lip, corner brackets on hover. */
+.title-main button,.title-side button{background-color:#4a4d4b;box-shadow:0 7px 0 #1c1e1d;border-radius:4px;color:#f2f2f2}
+.map-list-window{width:min(600px,46vw)}.map-detail{width:min(480px,36vw)}
+.map-list-window header{position:static}
+.map-thumb img{width:clamp(110px,11vw,180px);height:auto;aspect-ratio:4/3}
+.map-thumb .map-lock{transform:none;object-fit:contain;padding:18%;box-sizing:border-box}
+.map-text{flex:1;min-width:0;font-size:clamp(13px,1.1vw,19px)}
+.map-tier-list button{grid-template-columns:26px 1.3fr 1fr 28px;font-size:clamp(14px,1.2vw,21px);white-space:nowrap}
+.map-detail-head img{width:clamp(70px,7vw,120px);height:auto;aspect-ratio:1}
