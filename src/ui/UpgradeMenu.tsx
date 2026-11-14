@@ -2,6 +2,8 @@ import {Stats} from './PlayerStats';
 import {usePanelFocus} from './usePanelFocus';
 import {assetUrl} from '../core/assetUrl';
 import type {RunSnapshot,Upgrade} from '../combat/Run';
+import type {Upgrade as TomeUpgrade} from '../combat/Upgrades';
+import {describeModifier,offerWeapon,weaponDescriptions,weaponIcons,weaponNames,weaponNumbers,type WeaponSlot} from '../combat/WeaponUpgrades';
 import {upgradeDescription,upgrades,upgradeValues} from '../combat/Upgrades';
 import {rarityColors,upgradeMultiplier} from '../combat/Rarity';
 import {useEffect,useRef,useSyncExternalStore,type CSSProperties} from 'react';
@@ -23,17 +25,31 @@ export function UpgradeMenu({run,choose,hover}:{run:RunSnapshot;choose:(id:Upgra
   <div className="upgrade-spectrum" aria-hidden="true"/>
   <div className="upgrade-layout">
    <section className="upgrade-side upgrade-inventory" aria-labelledby="upgrade-inventory-title"><h2 id="upgrade-inventory-title">Inventory</h2><div className="upgrade-side-body">
-    <h3>Weapons</h3><SlotRow slots={4} entries={[{key:run.weapon,icon:run.weapon==='sword'?'weapons/knight-sword/vfx/textures/Sword_Icon.png':'game-ui/Firestaff.png',label:run.weapon==='sword'?'Sword':'Firestaff',level:'LVL 1'}]}/>
+    <h3>Weapons</h3><SlotRow slots={4} entries={run.weapons.map(w=>({key:w.id,icon:weaponIcons[w.id],label:weaponNames[w.id],level:`LVL ${w.level}`}))}/>
     <h3>Tomes</h3><SlotRow slots={4} entries={upgrades.filter(upgrade=>run.upgradeLevels[upgrade.id]>0).map(upgrade=>({key:upgrade.id,icon:`game-ui/${upgrade.icon}.png`,label:upgrade.name,level:`LVL ${run.upgradeLevels[upgrade.id]}`}))}/>
     <h3>Items</h3><SlotRow slots={4} entries={[]} open/><p className="upgrade-muted">Items are not available in this playtest.</p>
    </div></section>
    <section className="upgrade-offers"><h2 id="upgrade-title">UPGRADE OFFERS</h2><p className="sr-only">Level {run.level}, game paused{run.pendingUpgrades>1?`, ${run.pendingUpgrades} choices remaining`:''}</p>
     <div className="upgrade-cards">{run.upgradeChoices.map((id,index)=>{
-     const upgrade=upgrades.find(upgrade=>upgrade.id===id)!,rarity=run.upgradeRarity[id]??(run.upgradeLevels[id]===0?'New':'Common'),multiplier=upgradeMultiplier[rarity];
+     const weapon=offerWeapon(id),slot=weapon?run.weapons.find(w=>w.id===weapon):undefined;
+     const rarity=run.upgradeRarity[id]??'New',multiplier=upgradeMultiplier[rarity];
+     let name:string,icon:string,values:string,description:string,level:string;
+     if(weapon){
+      name=weaponNames[weapon];icon=weaponIcons[weapon];
+      if(slot){
+       const mods=run.weaponOffers[weapon]??[],before=weaponNumbers(slot,run),after=weaponNumbers({...slot,mods:[...slot.mods,...mods]} as WeaponSlot,run);
+       values=before.damage!==after.damage?`${before.damage} → ${after.damage} DMG`:before.projectiles!==after.projectiles?`${before.projectiles} → ${after.projectiles} attacks`:`LVL ${slot.level} → ${slot.level+1}`;
+       description=mods.map(describeModifier).join(' · ');level=`LVL ${slot.level}`;
+      }else{values='New weapon';description=weaponDescriptions[weapon];level='NEW';}
+     }else{
+      const tome=upgrades.find(upgrade=>upgrade.id===id)!,tid=id as TomeUpgrade;
+      name=tome.name;icon=`game-ui/${tome.icon}.png`;values=upgradeValues(tid,run,multiplier);description=upgradeDescription(tid,multiplier);
+      level=run.upgradeLevels[tid]===0?'NEW':`LVL ${run.upgradeLevels[tid]}`;
+     }
      return <button key={id} className={`rarity-${rarity.toLowerCase()}`} style={{'--rarity':rarityColors[rarity]} as CSSProperties} onPointerEnter={hover} onClick={()=>choose(id)}>
       <span className="upgrade-offer-kind">{rarity}</span>
-      <span className="upgrade-icon"><img src={assetUrl(`game-ui/${upgrade.icon}.png`)} alt=""/></span><div className="upgrade-offer-description"><h3>{upgrade.name}</h3><strong className="upgrade-values">{upgradeValues(id,run,multiplier)}</strong><p>{upgradeDescription(id,multiplier)}</p></div>
-      <span className="tome-level">{run.upgradeLevels[id]===0?'NEW':`LVL ${run.upgradeLevels[id]}`}</span><small>{settings.numberUpgrades?`[${index+1}] SELECT`:'SELECT'}</small>
+      <span className="upgrade-icon"><img src={assetUrl(icon)} alt=""/></span><div className="upgrade-offer-description"><h3>{name}</h3><strong className="upgrade-values">{values}</strong><p>{description}</p></div>
+      <span className="tome-level">{level}</span><small>{settings.numberUpgrades?`[${index+1}] SELECT`:'SELECT'}</small>
      </button>;
     })}</div>
     <div className="upgrade-actions" aria-label="Additional upgrade actions"><button disabled title="Not available yet">BANISH</button><button disabled title="Not available yet">SKIP</button><button disabled title="Not available yet">REFRESH</button><p>These actions are not available in this playtest.</p></div>

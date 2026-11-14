@@ -4,11 +4,12 @@ import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 import {Vector3} from 'three';
-for(const name of ['combat/Run','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm','combat/XpCurve','combat/Rarity','player/StatSheet','combat/Weapons','combat/Director','enemies/Roster','data/NativeData','player/Danger']){
+for(const name of ['combat/Run','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm','combat/XpCurve','combat/Rarity','combat/WeaponUpgrades','player/StatSheet','combat/Weapons','combat/Director','enemies/Roster','data/NativeData','player/Danger']){
   const destination=resolve('.local-evidence/combat-check',name+'.js');mkdirSync(dirname(destination),{recursive:true});
   const code=ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'");writeFileSync(destination,code);
 }
 const {Run}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Run.js')));
+const pick=(run,id)=>{run.forceOffers?.([id]);return run.choose(id);};
 const player=new Vector3();let seed=1;const random=()=>((seed=Math.imul(seed,1664525)+1013904223>>>0)/4294967296);
 const create=()=>new Run(()=>0,()=>false,random);
 const run=create();
@@ -21,7 +22,7 @@ const upgradeRun=create();for(let i=0;i<23;i++)upgradeRun.gems.push({position:pl
 assert.equal(upgradeRun.snapshot().level,3);assert.equal(upgradeRun.snapshot().pendingUpgrades,2,'Multiple earned levels must preserve both choices');
 const time=upgradeRun.snapshot().elapsed;const before=upgradeRun.swarm.enemies[0].position.clone();upgradeRun.step(10,player);
 assert.equal(upgradeRun.snapshot().elapsed,time);assert.ok(before.equals(upgradeRun.swarm.enemies[0].position),'Level choices must freeze the simulation');
-assert.equal(upgradeRun.choose('damage'),true);assert.equal(upgradeRun.blocked,true);assert.equal(upgradeRun.choose('projectiles'),true);assert.equal(upgradeRun.blocked,false);assert.equal(upgradeRun.choose('haste'),false,'Cannot grant a free upgrade');
+assert.equal(pick(upgradeRun,'damage'),true);assert.equal(upgradeRun.blocked,true);assert.equal(pick(upgradeRun,'projectiles'),true);assert.equal(upgradeRun.blocked,false);assert.equal(pick(upgradeRun,'haste'),false,'Cannot grant a free upgrade');
 const death=create();death.swarm.enemies.push({id:998,position:player.clone(),velocity:new Vector3(),health:Infinity,flash:0});
 death.step(.02,player);const health=death.snapshot().health;for(let i=0;i<20;i++)death.step(.02,player);assert.ok(Math.abs(death.snapshot().health-health)<.5,'Contact damage must respect invulnerability interval');
 for(let i=0;i<1000&&!death.blocked;i++)death.step(.02,player);assert.equal(death.snapshot().dead,true);assert.equal(death.snapshot().health,0);
@@ -31,21 +32,21 @@ console.log('Combat checks passed: auto-hit, drops, collection, queued upgrades,
 
 const tomes=new Run(()=>0,()=>true,random);
 tomes.gems.push({position:player.clone(),value:10000});tomes.step(.02,player);
-assert.deepEqual(tomes.snapshot().upgradeChoices,['damage','haste','projectiles']);
+assert.equal(tomes.snapshot().upgradeChoices.length,3,'Three cards per level-up (GetRandomUpgrades)');
 const queued=tomes.snapshot().pendingUpgrades,pausedAt=tomes.snapshot().elapsed;
-for(let i=0;i<7;i++)assert.equal(tomes.choose('projectiles'),true);
+for(let i=0;i<7;i++)assert.equal(pick(tomes,'projectiles'),true);
 assert.equal(tomes.snapshot().projectiles,8);assert.equal(tomes.snapshot().upgradeLevels.projectiles,7);
-assert.ok(!tomes.snapshot().upgradeChoices.includes('projectiles'));
-let remaining=tomes.snapshot().pendingUpgrades;assert.equal(tomes.choose('projectiles'),false);assert.equal(tomes.snapshot().pendingUpgrades,remaining,'Capped upgrade cannot consume a queued choice');
-while(tomes.snapshot().upgradeChoices.includes('haste'))assert.equal(tomes.choose('haste'),true);
+assert.ok(!Object.values(tomes.candidates()).flat().includes('projectiles'),'A capped Tome is no longer a candidate');
+let remaining=tomes.snapshot().pendingUpgrades;assert.equal(pick(tomes,'projectiles'),false);assert.equal(tomes.snapshot().pendingUpgrades,remaining,'Capped upgrade cannot consume a queued choice');
+while(Object.values(tomes.candidates()).flat().includes('haste'))assert.equal(pick(tomes,'haste'),true);
 assert.equal(tomes.snapshot().attackInterval,.15);remaining=tomes.snapshot().pendingUpgrades;
-assert.equal(tomes.choose('haste'),false);assert.equal(tomes.choose('unknown'),false);assert.equal(tomes.snapshot().pendingUpgrades,remaining);
-const snapshot=tomes.snapshot();snapshot.upgradeLevels.damage=99;snapshot.upgradeChoices.length=0;
-assert.equal(tomes.snapshot().upgradeLevels.damage,0);assert.deepEqual(tomes.snapshot().upgradeChoices,['damage'],'Snapshots cannot mutate run inventory/eligibility');
+assert.equal(pick(tomes,'haste'),false);assert.equal(pick(tomes,'unknown'),false);assert.equal(tomes.snapshot().pendingUpgrades,remaining);
+const choicesBefore=tomes.snapshot().upgradeChoices,snapshot=tomes.snapshot();snapshot.upgradeLevels.damage=99;snapshot.upgradeChoices.length=0;snapshot.weapons.length=0;
+assert.equal(tomes.snapshot().upgradeLevels.damage,0);assert.deepEqual(tomes.snapshot().upgradeChoices,choicesBefore,'Snapshots cannot mutate run inventory/eligibility');assert.equal(tomes.snapshot().weapons.length,1);
 tomes.step(5,player);assert.equal(tomes.snapshot().elapsed,pausedAt,'Queued choices keep the game paused');
-while(tomes.blocked)assert.equal(tomes.choose('damage'),true);
-const owned=Object.values(tomes.snapshot().upgradeLevels).reduce((sum,level)=>sum+level,0);assert.equal(owned,queued,'Every earned level grants exactly one choice');
-assert.equal(tomes.snapshot().upgradeChoices.length,0);assert.equal(tomes.choose('damage'),false,'Double click after the final choice cannot grant a free level');
+while(tomes.blocked)assert.equal(pick(tomes,'damage'),true);
+const owned=Object.values(tomes.snapshot().upgradeLevels).reduce((sum,level)=>sum+level,0)+tomes.snapshot().weapons.reduce((sum,w)=>sum+w.level-1,0)+tomes.snapshot().weapons.length-1;assert.equal(owned,queued,'Every earned level grants exactly one choice');
+assert.equal(tomes.snapshot().upgradeChoices.length,0);assert.equal(pick(tomes,'damage'),false,'Double click after the final choice cannot grant a free level');
 tomes.step(.02,player);assert.ok(tomes.snapshot().elapsed>pausedAt,'Simulation can resume after final choice');
 tomes.reset();assert.deepEqual(tomes.snapshot().upgradeLevels,{damage:0,haste:0,projectiles:0});assert.equal(tomes.snapshot().damage,10);assert.equal(tomes.snapshot().projectiles,1);
 assert.deepEqual(create().snapshot().upgradeLevels,{damage:0,haste:0,projectiles:0},'Tome inventory is isolated per run');
@@ -63,7 +64,7 @@ for(let i=0;i<5;i++)sword.step(.02,player);assert.equal(front.health,89,'A persi
 for(let i=0;i<7;i++)sword.gems.push({position:player.clone()});sword.step(.02,player);
 const slashLife=sword.slashes[0].life;sword.step(.1,player);assert.equal(sword.slashes[0].life,slashLife,'Upgrade pause must freeze slash age');
 sword.reset();assert.equal(sword.snapshot().weapon,'sword');assert.equal(sword.slashes.length,0);assert.equal(sword.snapshot().elapsed,0);assert.equal(sword.setWeapon('bolt'),true);
-const multi=new Run(()=>0,()=>true,random);multi.setWeapon('sword');for(let i=0;i<7;i++)multi.gems.push({position:player.clone()});multi.step(.02,player);multi.choose('projectiles');
+const multi=new Run(()=>0,()=>true,random);multi.setWeapon('sword');for(let i=0;i<7;i++)multi.gems.push({position:player.clone()});multi.step(.02,player);pick(multi,'projectiles');
 for(let i=0;i<44;i++)multi.step(.02,player);
 const shared=enemy(1004,0,-2);multi.swarm.enemies.push(shared);multi.step(.02,player);assert.equal(multi.slashes.length,1,'Quantity must not create a simultaneous side fan');assert.equal(shared.health,89);
 for(let i=0;i<14;i++)multi.step(.02,player);
@@ -96,7 +97,7 @@ assert.ok(staff.staffEffects.some(effect=>effect.kind==='muzzle'));assert.ok(sta
 assert.equal(staffEvents.filter(e=>e==='shot').length,1);assert.equal(staffEvents.filter(e=>e==='staffImpact').length,1);assert.equal(staffEvents.filter(e=>e==='staffHit').length,1);
 staff.reset();assert.equal(staff.staffEffects.length,0,'Reset must clear all Firestaff phases');
 const emptyStaff=new Run(()=>0,()=>true,random,event=>staffEvents.push(event));const eventCount=staffEvents.length;emptyStaff.step(.02,player);assert.equal(emptyStaff.bolts.length,0);assert.equal(staffEvents.length,eventCount,'No-target TryInit must not make a phantom shot sound');
-for(let i=0;i<7;i++)emptyStaff.gems.push({position:player.clone()});emptyStaff.step(.02,player);emptyStaff.choose('projectiles');
+for(let i=0;i<7;i++)emptyStaff.gems.push({position:player.clone()});emptyStaff.step(.02,player);pick(emptyStaff,'projectiles');
 emptyStaff.swarm.enemies.push(enemy(2100,0,-12));emptyStaff.step(.02,player);assert.equal(emptyStaff.bolts.length,1,'Quantity must not create a simultaneous spread');
 for(let i=0;i<25;i++)emptyStaff.step(.02,player);assert.equal(staffEvents.filter(e=>e==='shot').length,3,'Quantity2 must produce two timed shots');
 console.log('Firestaff checks passed: targeted burst, source phase events, bounded explosion damage, no-target silence and reset.');
@@ -251,14 +252,32 @@ let hs=base;for(let i=0;i<2;i++)hs=nextTome('haste',hs);assert.ok(Math.abs(hs.at
 const q=nextTome('projectiles',base,1.2);assert.equal(q.projectiles,2);assert.equal(q.projectileBonus,1.2);const q2=nextTome('projectiles',q,1.2);assert.equal(q2.projectiles,3,'1 + 2.4 floors to 3');
 const w=rarityWeights(upgradeWeights,0);assert.ok(Math.abs(w[0]-.7504)<1e-3&&Math.abs(w.reduce((a,b)=>a+b)-1)<1e-9);assert.equal(rollUpgradeRarity(0,0),'Common');assert.equal(rollUpgradeRarity(0,.9999),'Legendary');
 const offers=new Run(()=>0,()=>false,()=>.5);offers.gems.push({position:player.clone(),value:7});offers.step(.02,player);
-const snapOffers=offers.snapshot();assert.equal(snapOffers.pendingUpgrades,1);assert.deepEqual(Object.keys(snapOffers.upgradeRarity).sort(),['damage','haste','projectiles'],'Every offered card has a rolled rarity');
+const snapOffers=offers.snapshot();assert.equal(snapOffers.pendingUpgrades,1);assert.deepEqual(Object.keys(snapOffers.upgradeRarity).sort(),[...snapOffers.upgradeChoices].sort(),'Every offered card has a rolled rarity');
 assert.ok(Object.values(snapOffers.upgradeRarity).every(r=>['New','Common','Uncommon','Rare','Epic','Legendary'].includes(r)));
-const forced=new Run(()=>0,()=>false,()=>.9999);forced.gems.push({position:player.clone(),value:7});forced.step(.02,player);
+const forced=new Run(()=>0,()=>false,()=>.9999);forced.gems.push({position:player.clone(),value:7});forced.step(.02,player);forced.forceOffers(['damage']);
 assert.equal(forced.snapshot().upgradeRarity.damage,'New','An unowned offer is shown as rarity New');forced.choose('damage');assert.equal(forced.snapshot().damage,10.8,'New rarity applies x1 value');
-forced.gems.push({position:player.clone(),value:30});forced.step(.02,player);
+forced.gems.push({position:player.clone(),value:30});forced.step(.02,player);forced.forceOffers(['damage']);
 assert.equal(forced.snapshot().upgradeRarity.damage,'Legendary','High roll gives Legendary on an owned Tome');forced.choose('damage');assert.equal(forced.snapshot().damage,12.4,'Legendary Damage Tome level applies x2 value');
 console.log('Director checks passed: credit formulas, Forest 1 timeline, pool growth, cap, scaling, stand-in visuals and real contact damage.');
 const banditDeath=new Run(()=>0,()=>true,()=>.5);banditDeath.setWeapon('sword');banditDeath.swarm.enemies.push({...enemy(6001,0,-2),kind:'bandit',health:1});banditDeath.step(.02,player);
 assert.equal(banditDeath.remains[0].kind,'bandit','A dead Bandit retains its species for dissolution');assert.equal(banditDeath.snapshot().kills,1);banditDeath.reset();assert.equal(banditDeath.remains.length,0);
 console.log('Bandit death checks passed: species-preserving dissolution and reset.');
 {const regen=create();regen.state.health=50;for(let i=0;i<1500;i++){regen.swarm.enemies.length=0;regen.step(.02,player,0);}const healed=regen.snapshot().health-50;assert.ok(Number.isInteger(regen.snapshot().health),'Health stays an integer');assert.ok(Math.abs(healed-5)<=1,'HealthRegen 10/min heals ~5 HP in 30 s, got '+healed);assert.equal(regen.liveStats().PickupRange,9,'Pickup range comes from the stat sheet (base 5 + Fox 4)');console.log('Regen and pickup range checks passed.');}
+{
+  const {rollWeaponOffer,weaponNumbers,weaponStat}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/WeaponUpgrades.js')));
+  const seq=v=>{let i=0;return()=>v[i++%v.length];};
+  assert.equal(rollWeaponOffer('sword','Common',seq([0,0])).length,1,'Common weapon offer can hold one modifier (50%)');
+  const two=rollWeaponOffer('sword','Legendary',seq([.3,.3]));assert.equal(two.length,2,'Non-common offers hold two modifiers');assert.notEqual(two[0].stat,two[1].stat,'Picked without replacement');
+  assert.deepEqual(rollWeaponOffer('sword','Legendary',seq([.3,0])).map(m=>m.value),[4,.4],'Value = Round(modification x rarity multiplier, 2)');
+  assert.equal(weaponStat(11,[{stat:'DamageMultiplier',op:'Flat',value:2}],'DamageMultiplier'),13,'Flat DamageMultiplier adds base weapon damage');
+  assert.equal(weaponNumbers({id:'sword',level:2,mods:[{stat:'Projectiles',op:'Flat',value:1}]},{damageBonus:0,attackSpeedBonus:0,projectileBonus:1}).projectiles,3,'Quantity = weapon projectiles + player projectiles');
+  const events=[];const w=new Run(()=>0,()=>true,()=>.5,e=>events.push(e));for(let i=0;i<7;i++)w.gems.push({position:player.clone()});w.step(.02,player);
+  w.forceOffers(['weapon:sword']);assert.equal(w.snapshot().upgradeRarity['weapon:sword'],'New');assert.equal(w.choose('weapon:sword'),true);
+  assert.deepEqual(w.snapshot().weapons.map(s=>s.id),['bolt','sword'],'A new weapon takes the next slot');
+  w.swarm.enemies.push({id:7001,position:new Vector3(0,0,-1.2),velocity:new Vector3(),health:1e6,flash:0});
+  for(let i=0;i<150;i++)w.step(.02,player);assert.ok(events.includes('sword')&&events.includes('shot'),'Both weapons attack');
+  const lv=create();lv.setWeapon('sword');for(let i=0;i<7;i++)lv.gems.push({position:player.clone()});lv.step(.02,player);
+  lv.forceOffers(['weapon:sword']);const offer=lv.snapshot().weaponOffers.sword;assert.ok(offer&&offer.length>=1,'Owned weapon card carries rolled modifiers');
+  lv.choose('weapon:sword');assert.equal(lv.snapshot().weapons[0].level,2);assert.deepEqual(lv.snapshot().weapons[0].mods,offer,'Choosing applies exactly the offered modifiers');
+  console.log('Weapon level-up checks passed: offer roll, rarity scaling, stat fold, new weapon slot, two weapons firing, applied modifiers.');
+}

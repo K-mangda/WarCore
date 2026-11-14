@@ -49,7 +49,7 @@ Rule: when the user redirects, anything I had planned or promised goes here firs
 
 | Item | Trigger / blocker |
 |---|---|
-| Weapon cards on the level-up screen + second weapon slot in `Run` | decompile batch 6 (`.local-evidence/decompile6`, started 2026-11-14 05:47 UTC, 2,160 functions); read `key__*` files first |
+| ~~Weapon cards + weapon slots~~ DONE 2026-11-14: offers follow GetRandomUpgrades, weapon cards roll 1-2 modifiers from UpgradeData, Sword and Firestaff can be owned together (4 slots, level 40). Still open: size/knockback/projectile-speed modifiers are stored but not applied to the attacks; only 2 of 30 weapons exist in the web; HUD weapon panel shows slot 1 only | - |
 | Level-up crystal emission origin (user says they fall from behind the EXP bar at the top) | read parent RectTransform of the `Levelup` effects object; check EndSparkle flash visually |
 | Level-up open animation real timing | Animator/clip data unread; current timing is provisional (P) |
 | `audioLevel` / `audioShadyGuy` clips on the level-up screen | read from scene data |

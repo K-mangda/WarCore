@@ -4,6 +4,7 @@ import {Vector3} from 'three';
 import {Run,type Upgrade,type Weapon} from '../combat/Run';
 import {xpForLevel} from '../combat/XpCurve';
 import {upgrades} from '../combat/Upgrades';
+import {offerWeapon,weaponNames} from '../combat/WeaponUpgrades';
 import {UpgradeMenu} from '../ui/UpgradeMenu';
 import '../ui/style.css';
 import '../ui/combat.css';
@@ -31,8 +32,8 @@ function App(){
   const choose=(id:Upgrade)=>{
     const before=run.current.snapshot();
     if(!run.current.choose(id))return;
-    const after=run.current.snapshot(),name=upgrades.find(u=>u.id===id)!.name;
-    note(`Chose ${name}: damage ${before.damage} -> ${after.damage}, interval ${before.attackInterval.toFixed(3)}s -> ${after.attackInterval.toFixed(3)}s, attacks ${before.projectiles} -> ${after.projectiles}`);refresh();
+    const after=run.current.snapshot(),weapon=offerWeapon(id),name=weapon?`${weaponNames[weapon]} (weapon)`:upgrades.find(u=>u.id===id)!.name;
+    note(`Chose ${name}: weapons ${after.weapons.map(w=>`${weaponNames[w.id]} L${w.level}`).join(', ')}; damage ${before.damage} -> ${after.damage}, interval ${before.attackInterval.toFixed(3)}s -> ${after.attackInterval.toFixed(3)}s, attacks ${before.projectiles} -> ${after.projectiles}`);refresh();
   };
   const reset=(next:Weapon=weapon)=>{run.current=makeRun(next);setWeapon(next);setLog([]);refresh();};
   const need=xpForLevel(snap.level);

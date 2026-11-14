@@ -1,0 +1,786 @@
+{
+ "source": ".local-evidence/unity-dump (WeaponData.upgradeData -> UpgradeData.upgradeModifiers), tools/dump_all_unity.py",
+ "rule": "UpgradeData.GetUpgradeOffer RVA 0x44FB40 (decompiled): pick n modifiers without replacement; n = 1 or 2 (Common: 50% 1), else 2 when the pool has 2+; value = Round(modification x Rarity.GetMultiplier, 2)",
+ "weapons": {
+  "WeaponAegis": {
+   "eWeapon": "Aegis",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.15
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "KnockbackMultiplier",
+     "op": "Addition",
+     "value": 0.25
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    }
+   ]
+  },
+  "WeaponAura": {
+   "eWeapon": "Aura",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.14
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 1.4
+    }
+   ]
+  },
+  "WeaponAxe": {
+   "eWeapon": "Axe",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.1
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 1.5
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "DurationMultiplier",
+     "op": "Addition",
+     "value": 0.1
+    }
+   ]
+  },
+  "WeaponBananarang": {
+   "eWeapon": "Bananarang",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.14
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "ProjectileSpeedMultiplier",
+     "op": "Addition",
+     "value": 0.1
+    }
+   ]
+  },
+  "WeaponBlackHole": {
+   "eWeapon": "BlackHole",
+   "upgradeModifiers": [
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 1.25
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.13
+    },
+    {
+     "stat": "DurationMultiplier",
+     "op": "Flat",
+     "value": 0.12
+    }
+   ]
+  },
+  "WeaponBloodMagic": {
+   "eWeapon": "BloodMagic",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.15
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 1.5
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    }
+   ]
+  },
+  "WeaponBone": {
+   "eWeapon": "Bone",
+   "upgradeModifiers": [
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.5
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "ProjectileSpeedMultiplier",
+     "op": "Flat",
+     "value": 0.2
+    },
+    {
+     "stat": "ProjectileBounces",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "CritChance",
+     "op": "Flat",
+     "value": 0.12
+    },
+    {
+     "stat": "CritDamage",
+     "op": "Flat",
+     "value": 0.25
+    }
+   ]
+  },
+  "WeaponBow": {
+   "eWeapon": "Bow",
+   "upgradeModifiers": [
+    {
+     "stat": "ProjectileSpeedMultiplier",
+     "op": "Addition",
+     "value": 0.2
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 1.75
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "SizeMultiplier",
+     "op": "Flat",
+     "value": 0.15
+    },
+    {
+     "stat": "CritChance",
+     "op": "Flat",
+     "value": 0.08
+    },
+    {
+     "stat": "CritDamage",
+     "op": "Flat",
+     "value": 0.18
+    }
+   ]
+  },
+  "WeaponChunkers": {
+   "eWeapon": "Chunkers",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.2
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 3.0
+    },
+    {
+     "stat": "KnockbackMultiplier",
+     "op": "Addition",
+     "value": 0.25
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "ProjectileSpeedMultiplier",
+     "op": "Flat",
+     "value": 0.35
+    }
+   ]
+  },
+  "WeaponCorruptedSword": {
+   "eWeapon": "CorruptSword",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.15
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "ProjectileSpeedMultiplier",
+     "op": "Flat",
+     "value": 4.0
+    }
+   ]
+  },
+  "WeaponDexecutioner": {
+   "eWeapon": "Dexecutioner",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.2
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "CritChance",
+     "op": "Flat",
+     "value": 0.05
+    }
+   ]
+  },
+  "WeaponDice": {
+   "eWeapon": "Dice",
+   "upgradeModifiers": [
+    {
+     "stat": "ProjectileSpeedMultiplier",
+     "op": "Flat",
+     "value": 0.2
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.15
+    },
+    {
+     "stat": "CritChance",
+     "op": "Flat",
+     "value": 0.1
+    },
+    {
+     "stat": "CritDamage",
+     "op": "Flat",
+     "value": 0.2
+    }
+   ]
+  },
+  "WeaponDragonsBreath": {
+   "eWeapon": "DragonsBreath",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.15
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 4.0
+    },
+    {
+     "stat": "DurationMultiplier",
+     "op": "Flat",
+     "value": 0.2
+    }
+   ]
+  },
+  "WeaponFireStaff": {
+   "eWeapon": "FireStaff",
+   "upgradeModifiers": [
+    {
+     "stat": "ProjectileSpeedMultiplier",
+     "op": "Addition",
+     "value": 0.2
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.5
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.16
+    }
+   ]
+  },
+  "WeaponFlameWalker": {
+   "eWeapon": "Flamewalker",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.15
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "DurationMultiplier",
+     "op": "Addition",
+     "value": 0.12
+    }
+   ]
+  },
+  "WeaponFrostWalker": {
+   "eWeapon": "Frostwalker",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.1
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "DurationMultiplier",
+     "op": "Flat",
+     "value": 0.12
+    }
+   ]
+  },
+  "WeaponHeroSword": {
+   "eWeapon": "HeroSword",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.15
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "ProjectileSpeedMultiplier",
+     "op": "Flat",
+     "value": 4.0
+    }
+   ]
+  },
+  "WeaponKatana": {
+   "eWeapon": "Katana",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.2
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.2
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "CritChance",
+     "op": "Flat",
+     "value": 0.08
+    },
+    {
+     "stat": "CritDamage",
+     "op": "Flat",
+     "value": 0.2
+    }
+   ]
+  },
+  "WeaponLightningBolt": {
+   "eWeapon": "LightningStaff",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.2
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "ProjectileBounces",
+     "op": "Flat",
+     "value": 1.0
+    }
+   ]
+  },
+  "WeaponMines": {
+   "eWeapon": "Mine",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.15
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 3.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "DurationMultiplier",
+     "op": "Flat",
+     "value": 0.4
+    }
+   ]
+  },
+  "WeaponPoisonFlask": {
+   "eWeapon": "PoisonFlask",
+   "upgradeModifiers": [
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 0.5
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.15
+    },
+    {
+     "stat": "DurationMultiplier",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "ProjectileSpeedMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    }
+   ]
+  },
+  "WeaponRevolver": {
+   "eWeapon": "Revolver",
+   "upgradeModifiers": [
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.5
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "CritChance",
+     "op": "Flat",
+     "value": 0.1
+    },
+    {
+     "stat": "CritDamage",
+     "op": "Flat",
+     "value": 0.2
+    },
+    {
+     "stat": "ProjectileBounces",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "ProjectileSpeedMultiplier",
+     "op": "Addition",
+     "value": 0.2
+    }
+   ]
+  },
+  "WeaponScythe": {
+   "eWeapon": "Scythe",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.12
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 1.5
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "KnockbackMultiplier",
+     "op": "Addition",
+     "value": 0.15
+    }
+   ]
+  },
+  "WeaponShotgun": {
+   "eWeapon": "Shotgun",
+   "upgradeModifiers": [
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 3.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.15
+    },
+    {
+     "stat": "CritChance",
+     "op": "Flat",
+     "value": 0.1
+    },
+    {
+     "stat": "CritDamage",
+     "op": "Flat",
+     "value": 0.2
+    }
+   ]
+  },
+  "WeaponSluttyRocket": {
+   "eWeapon": "Rockets",
+   "upgradeModifiers": [
+    {
+     "stat": "ProjectileSpeedMultiplier",
+     "op": "Addition",
+     "value": 0.2
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "CritChance",
+     "op": "Flat",
+     "value": 0.08
+    }
+   ]
+  },
+  "WeaponSniper": {
+   "eWeapon": "Sniper",
+   "upgradeModifiers": [
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 4.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.13
+    }
+   ]
+  },
+  "WeaponSpaceNoodle": {
+   "eWeapon": "SpaceNoodle",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.2
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "DurationMultiplier",
+     "op": "Flat",
+     "value": 0.2
+    }
+   ]
+  },
+  "WeaponSword": {
+   "eWeapon": "Sword",
+   "upgradeModifiers": [
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.2
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "KnockbackMultiplier",
+     "op": "Addition",
+     "value": 0.25
+    }
+   ]
+  },
+  "WeaponTornado": {
+   "eWeapon": "Tornado",
+   "upgradeModifiers": [
+    {
+     "stat": "ProjectileSpeedMultiplier",
+     "op": "Addition",
+     "value": 0.2
+    },
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "KnockbackMultiplier",
+     "op": "Addition",
+     "value": 0.2
+    },
+    {
+     "stat": "SizeMultiplier",
+     "op": "Addition",
+     "value": 0.14
+    }
+   ]
+  },
+  "WeaponWirelessDagger": {
+   "eWeapon": "BluetoothDagger",
+   "upgradeModifiers": [
+    {
+     "stat": "DamageMultiplier",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "stat": "Projectiles",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "ProjectileBounces",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "stat": "ProjectileSpeedMultiplier",
+     "op": "Addition",
+     "value": 0.15
+    }
+   ]
+  }
+ }
+}

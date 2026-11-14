@@ -86,3 +86,11 @@ Ghidra, 45 minutes. The function is the **WeaponBase constructor** (called from 
 So a fresh weapon's seed stats are not in a separate table: they are the `baseStats` dictionary of its `WeaponData` plus the plain fields (`damage`, `critChance`, `projectiles`, ...) already extracted. Dictionaries are not Unity-serialized, so `baseStats` is filled in code (not yet located), which is why the asset readout lacks it.
 
 Still open: what `DamageMultiplier Flat 2.0` per weapon level means exactly (the helper at 0x431840 is the next function to read), and where `baseStats` is populated. Weapon cards in the web stay on hold; the web only owns one weapon at a time anyway.
+
+## Addendum: weapon level-ups (full decompile run, 2026-11-14) - applied in the web
+
+- `UpgradeData.GetUpgradeOffer(rarity, eWeapon)` (RVA 0x44FB40, V): copies the weapon's `upgradeModifiers`, n = 1 or 2 for Common (Random.Range(0,2)), else 2 when the pool has 2+, raised by a player-stat loop (stat id 41, not modelled); picks n entries without replacement; value = Round(modification x Rarity.GetMultiplier(rarity), 2).
+- `WeaponBase.Upgrade` (RVA 0x431F60, V): appends the modifiers, level + 1. `WeaponBase.UpdateStat` (RVA 0x431840, V): (base + flat) x (1 + additions) x product - same fold as the player.
+- `WeaponData.Init` (RVA 0x39D9F0, V): registers 10 weapon stats (AttackSpeed, DamageMultiplier, Knockback, Projectiles, ProjectileBounces, Duration, ProjectileSpeed, Size, CritChance, CritDamage); `GetBaseStat` reads them.
+- `WeaponUtility.GetWeaponDamage` (RVA 0x435C50, V): weapon damage = weapon stat DamageMultiplier, so `DamageMultiplier Flat 2` = +2 base damage (Aegis adds player Armor). `GetWeaponCooldown` (RVA 0x435A20, V): endCooldown / (max(0.01, weapon AttackSpeed) x player AttackSpeed) + burst. `GetAttackQuantity` (RVA 0x4346F0, V): weapon Projectiles + (int) player Projectiles, at least 1.
+- Pools of all 30 weapons: `docs/rea/weapon_upgrades.json`. Web: `src/combat/WeaponUpgrades.ts`, offers in `Run.rollOffers` (GetRandomUpgrades rule), tests in `tools/check_combat.mjs`.
