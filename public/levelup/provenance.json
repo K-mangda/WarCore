@@ -1,0 +1,15 @@
+{
+ "source": "Megabonk_Data/level2 (LevelupScreen.effects -> Levelup/Particles materials Atlas01Glow_UI / Atlas02_UI)",
+ "exportedBy": "tools/summarize_levelup_particles.py (UnityPy Texture2D.image)",
+ "files": {
+  "atlas01.png": {
+   "sha256": "9285865faf0c5e15f433700d3b5cdd1c997aed642178afdac9c0849d90ce4291",
+   "bytes": 42405
+  },
+  "atlas02.png": {
+   "sha256": "533271a25f67e2883d445d39337a85c014427f5ec273a661fc60f60abb3c2b8d",
+   "bytes": 32557
+  }
+ },
+ "note": "512x256 VFX atlases, white shapes tinted by particle colour; tiles 32x32 (atlas01) and 16x16 (atlas02)."
+}

@@ -22,6 +22,7 @@ jobs:
         run: |
           node tools/check_combat.mjs
           node tools/check_native_data.mjs
+          node tools/check_levelup_emitters.mjs
           node tools/check_sword_pose.mjs
           node tools/check_audio.mjs
           node tools/check_audio_settings.mjs

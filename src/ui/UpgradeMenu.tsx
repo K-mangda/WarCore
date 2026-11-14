@@ -3,20 +3,10 @@ import {usePanelFocus} from './usePanelFocus';
 import {assetUrl} from '../core/assetUrl';
 import type {RunSnapshot,Upgrade} from '../combat/Run';
 import {upgrades,upgradeValues} from '../combat/Upgrades';
-import {useEffect,useRef,useSyncExternalStore,type CSSProperties} from 'react';
-import {getEffectsPreferences,subscribeEffectsPreferences} from '../core/EffectsPreferences';
+import {useEffect,useRef,useSyncExternalStore} from 'react';
 import {getControlPreferences,subscribeControlPreferences} from '../core/ControlPreferences';
 import {upgradeHotkey} from '../core/UpgradeHotkeys';
-function UpgradeBackdrop(){
- const effects=useSyncExternalStore(subscribeEffectsPreferences,getEffectsPreferences,getEffectsPreferences);
- const pieces=Array.from({length:36},(_,i)=>{
-  const angle=(i*137.508)%360,distance=42+(i*17)%34,fast=i%3===0;
-  return <span key={i} className={`upgrade-particle ${i%5===0?'leaf':`gem gem-${i%3}`} ${fast?'fast':'slow'}`} style={{'--angle':`${angle}deg`,'--distance':`${distance}vmax`,'--delay':`${(i%9)*-.31}s`,'--spin':`${i%2?280:-300}deg`} as CSSProperties}>{fast&&<i className="upgrade-spark"/>}</span>;
- });
- return <div className="upgrade-backdrop" aria-hidden="true" style={{opacity:effects.particlesOpacity}}>
-  {Array.from({length:48},(_,i)=><i key={i} className="upgrade-ray" style={{'--angle':`${i*137.508}deg`,'--delay':`${-i*.173}s`,'--life':`${1.6+(i%7)*.19}s`,'--width':`${1.2+(i%5)*.65}deg`} as CSSProperties}/>)}{pieces}
- </div>;
-}
+import {LevelUpBackdrop} from './LevelUpBackdrop';
 export function UpgradeMenu({run,choose,hover}:{run:RunSnapshot;choose:(id:Upgrade)=>void;hover:()=>void}){
  const panel=usePanelFocus();
  const settings=useSyncExternalStore(subscribeControlPreferences,getControlPreferences,getControlPreferences);
@@ -28,7 +18,7 @@ export function UpgradeMenu({run,choose,hover}:{run:RunSnapshot;choose:(id:Upgra
   window.addEventListener('keydown',keydown);return ()=>window.removeEventListener('keydown',keydown);
  },[]);
  return <section ref={panel} className="upgrade-screen" role="dialog" aria-modal="true" aria-labelledby="upgrade-title">
-  <UpgradeBackdrop key={`${run.level}-${run.pendingUpgrades}`}/>
+  <LevelUpBackdrop key={`${run.level}-${run.pendingUpgrades}`}/>
   <div className="upgrade-spectrum" aria-hidden="true"><div className="upgrade-spectrum-track">{Array.from({length:12},(_,index)=><i key={index}/>)}</div></div>
   <div className="upgrade-layout">
    <section className="upgrade-side upgrade-inventory" aria-labelledby="upgrade-inventory-title"><h2 id="upgrade-inventory-title">Inventory</h2><div className="upgrade-side-body">

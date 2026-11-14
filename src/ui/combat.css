@@ -26,3 +26,5 @@
 @media(prefers-reduced-motion:reduce){.upgrade-ray{animation:none}}
 
 .stat-sheet h4{margin:10px 0 2px;font-size:.95em;color:#ffd88a;border-bottom:1px solid #605747}.stat-sheet .run-stats{font-size:.9em}.upgrade-player-stats .upgrade-side-body{max-height:62vh;overflow:auto}
+
+.upgrade-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
