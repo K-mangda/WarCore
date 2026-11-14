@@ -4,6 +4,8 @@ import {Vector3} from 'three';
 import {Swarm,type Enemy,type EnemyKind} from '../enemies/Swarm';
 import {balance} from './Balance';
 import {xpForLevel} from './XpCurve';
+import {Director} from './Director';
+import {enemySpec} from '../enemies/Roster';
 import {initialDanger,stepDanger,type DangerState} from '../player/Danger';
 import {availableUpgrades,emptyUpgradeLevels,nextUpgrade,type Upgrade,type UpgradeLevels} from './Upgrades';
 export type {Upgrade} from './Upgrades';
@@ -20,11 +22,12 @@ export interface RunSnapshot {weapon:Weapon;gold:number;silver:number;health:num
 export const initialRun:RunSnapshot={weapon:'bolt',gold:0,silver:0,health:balance.maxHealth,danger:0,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:xpForLevel(1),kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[]};
 export class Run {
   readonly remains:EnemyRemains[]=[];readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly staffEffects:StaffEffect[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];readonly xpReceipts:XpReceipt[]=[];readonly currencyReceipts:XpReceipt[]=[];
-  private state:RunSnapshot={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[]};private dangerState:DangerState=initialDanger();private spawnClock=0;private attackClock=0;private hurtClock=0;private started=false;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
+  private state:RunSnapshot={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[]};private dangerState:DangerState=initialDanger();private director?:Director;private attackClock=0;private hurtClock=0;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
   constructor(private ground:(x:number,z:number)=>number,private visible:(point:Vector3)=>boolean,private random:()=>number=Math.random,private sound:(event:RunEvent)=>void=()=>{}){}
+  private newDirector(){return new Director({stage:balance.stage,maxEnemies:balance.maxEnemies,random:this.random});}
   get blocked(){return this.state.dead||this.state.pendingUpgrades>0;}
   snapshot():RunSnapshot{return {...this.state,upgradeLevels:{...this.state.upgradeLevels},upgradeChoices:this.state.pendingUpgrades>0&&!this.state.dead?availableUpgrades(this.state):[],enemyCount:this.swarm.enemies.length};}
-  reset(){this.state={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],weapon:this.state.weapon,attackInterval:this.state.weapon==='sword'?balance.attackInterval:balance.staffEndCooldown};this.dangerState=initialDanger();this.spawnClock=0;this.attackClock=0;this.hurtClock=0;this.started=false;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
+  reset(){this.state={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],weapon:this.state.weapon,attackInterval:this.state.weapon==='sword'?balance.attackInterval:balance.staffEndCooldown};this.dangerState=initialDanger();this.director=undefined;this.attackClock=0;this.hurtClock=0;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
   setWeapon(weapon:Weapon):boolean{
     if(this.state.elapsed!==0||(weapon!=='bolt'&&weapon!=='sword'))return false;
     this.state.weapon=weapon;this.state.attackInterval=weapon==='sword'?balance.attackInterval:balance.staffEndCooldown;return true;
@@ -40,7 +43,7 @@ export class Run {
     this.swarm.enemies.splice(index,1);this.state.kills++;
     this.remains.push({kind:enemy.kind,id:enemy.id,animationTime:this.state.elapsed,position:enemy.position.clone(),heading:Math.atan2(-enemy.velocity.x,-enemy.velocity.z),life:balance.enemyDissolveDuration,duration:balance.enemyDissolveDuration});
     if(this.remains.length>balance.maxEnemies)this.remains.shift();
-    this.spawnPickup('xp',enemy.position);
+    this.spawnPickup('xp',enemy.position,enemy.spec?.xp??1);
     // User playtest rule: every enemy drops one gold; native value remains unverified.
     this.spawnPickup('gold',enemy.position);
     // Silver schedule remains provisional until its native condition is known.
@@ -103,9 +106,11 @@ export class Run {
     for(let i=this.remains.length-1;i>=0;i--){this.remains[i].life-=dt;if(this.remains[i].life<=0)this.remains.splice(i,1);}
     for(let i=this.staffEffects.length-1;i>=0;i--){this.staffEffects[i].life-=dt;if(this.staffEffects[i].life<=0)this.staffEffects.splice(i,1);}
     this.state.elapsed+=dt;this.hurtClock=Math.max(0,this.hurtClock-dt);
-    if(!this.started){for(let i=0;i<balance.initialEnemies;i++)this.swarm.spawn(player,this.ground,this.visible,this.random);this.started=true;}
-    this.spawnClock-=dt;
-    if(this.spawnClock<=0){this.swarm.spawn(player,this.ground,this.visible,this.random);this.spawnClock=balance.spawnInterval;}
+    // Credit director (docs/REA_RUNTIME_SYSTEMS.md): stage timeline + credits decide which enemies spawn and when.
+    this.director??=this.newDirector();
+    const minutes=this.state.elapsed/60;
+    for(const request of this.director.update(dt,this.state.elapsed,this.swarm.enemies.length))
+      this.swarm.spawn(player,this.ground,this.visible,this.random,enemySpec(request.enemy,minutes));
     this.swarm.step(dt,player,this.ground);
     this.attackClock=Math.max(0,this.attackClock-dt);
     if(this.state.weapon==='sword'){
@@ -178,8 +183,9 @@ export class Run {
     }
     for(let i=this.hits.length-1;i>=0;i--){const hit=this.hits[i];hit.life-=dt;hit.position.y+=dt;if(hit.life<=0)this.hits.splice(i,1);}
     if(this.hits.length>60)this.hits.splice(0,this.hits.length-60);
-    if(this.hurtClock===0&&this.swarm.enemies.some(enemy=>enemy.position.distanceTo(player)<1.1)){
-      this.sound('hurt');this.state.health=Math.max(0,this.state.health-balance.contactDamage);this.hurtClock=balance.contactInterval;
+    const touching=this.hurtClock===0?this.swarm.enemies.find(enemy=>enemy.position.distanceTo(player)<1.1):undefined;
+    if(touching){
+      this.sound('hurt');this.state.health=Math.max(0,this.state.health-(touching.spec?.damage??balance.contactDamage));this.hurtClock=balance.contactInterval;
       if(this.state.health===0){this.state.dead=true;this.sound('death');}
     }
     this.dangerState=stepDanger(this.dangerState,this.state.health,this.state.maxHealth,dt);this.state.danger=this.dangerState.value;

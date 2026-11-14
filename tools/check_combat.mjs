@@ -4,7 +4,7 @@ import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 import {Vector3} from 'three';
-for(const name of ['combat/Run','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm','combat/XpCurve','player/Danger']){
+for(const name of ['combat/Run','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm','combat/XpCurve','combat/Director','enemies/Roster','data/NativeData','player/Danger']){
   const destination=resolve('.local-evidence/combat-check',name+'.js');mkdirSync(dirname(destination),{recursive:true});
   const code=ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'");writeFileSync(destination,code);
 }
@@ -192,9 +192,35 @@ const remoteXp={kind:'xp',position:new Vector3(30,.35,0)};movePickup(remoteXp,ne
 const nearGold={kind:'gold',position:new Vector3(.3,.35,0)};assert.equal(movePickup(nearGold,new Vector3(0,.35,0),.02,5),false,'Nearby Gold still performs its arc before collection');assert.ok(nearGold.position.y>.35);
 console.log('Gold automatic arc checks passed: distant collection, close-range launch and unchanged EXP magnet behavior.');
 
-const mixed=new Run(()=>0,()=>false,()=>.5);
-for(let i=0;i<12;i++)mixed.swarm.spawn(player,()=>0,()=>false,()=>.5);
-assert.equal(mixed.swarm.enemies.filter(e=>e.kind==='bandit').length,3,'Bandit enters the existing spawn roster as every fourth enemy');assert.equal(mixed.swarm.enemies.length,12);
+const {Director,summonInterval,creditMultiplier,creditsPerSecond}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Director.js')));
+const {enemySpec}=await import(pathToFileURL(resolve('.local-evidence/combat-check/enemies/Roster.js')));
+assert.equal(summonInterval(0),2);assert.equal(summonInterval(2),.2,'Summon interval floors at 0.1 * 2');assert.equal(creditMultiplier(1,1),2.1);assert.equal(creditsPerSecond(1,4),3);
+let dseed=7;const drandom=()=>((dseed=Math.imul(dseed,1664525)+1013904223>>>0)/4294967296);
+const director=new Director({stage:'StageForest1',maxEnemies:120,random:drandom});
+const opening=director.update(.02,0,0);
+assert.ok(opening.length>=4&&opening.length<=8,'Opening cycle spends the initial credits');assert.ok(opening.every(r=>r.enemy.enemy==='Goblin'&&r.source==='stage'),'Forest 1 starts with Goblin only, never Bandit');
+const spawned=[...opening];
+for(let t=.02;t<175;t+=.02)spawned.push(...director.update(.02,t,0));
+assert.ok(!spawned.some(r=>r.source==='miniboss'),'No miniboss before minute 3');
+const minute3=director.update(.02,180.02,0).filter(r=>r.source==='miniboss').map(r=>r.enemy.enemy).sort();
+assert.deepEqual(minute3,['MinibossGolem','MinibossPig'],'Forest 1 miniboss event fires at 3 minutes');
+assert.equal(director.update(.02,200,0).filter(r=>r.source==='miniboss').length,0,'Timeline events fire once');
+assert.ok(director.cards.length>1&&director.cards.every(c=>c.maps.includes('Forest')),'Pool grows every 60 s with eligible Forest enemies');
+assert.ok(!director.cards.some(c=>c.creditCost>=40),'Minibosses never enter the regular card pool');
+const swarmStart=director.update(.02,240.02,0);let swarmCount=0;for(let t=240.04;t<250;t+=.02)swarmCount+=director.update(.02,t,0).filter(r=>r.source==='swarm').length;
+assert.ok(swarmCount>=40,'Minute-4 swarm spawns a large burst');
+const capped=new Director({stage:'StageForest1',maxEnemies:10,random:drandom});assert.equal(capped.update(5,5,10).length,0,'No spawning at the enemy cap');
+assert.throws(()=>new Director({stage:'Nope',maxEnemies:1}),/Unknown stage/);
+const rate=(from,to)=>{const d=new Director({stage:'StageForest1',maxEnemies:1000,random:drandom});let n=0;for(let t=0;t<to;t+=.02){const r=d.update(.02,t,0);if(t>=from)n+=r.length;}return n;};
+assert.ok(rate(170,230)>rate(0,60),'Credits per second grow with minutes');
+const goblin=director.cards.find(c=>c.enemy==='Goblin'),spec0=enemySpec(goblin,0),spec5=enemySpec(goblin,5);
+assert.equal(spec0.maxHealth,7);assert.equal(spec0.damage,15);assert.ok(spec5.maxHealth>spec0.maxHealth&&spec5.damage>spec0.damage,'Per-minute HP/damage scaling');assert.equal(spec0.visual,'skeleton');assert.equal(spec0.placeholderVisual,true);
+assert.equal(enemySpec(minute3.length?director.cards[0]:goblin,0).visual,'skeleton');
+const piggy=enemySpec({...goblin,enemy:'MinibossPig',creditCost:40,hp:250},0);assert.equal(piggy.visual,'bandit','Miniboss-class enemies borrow the Bandit model');
+const real=new Run(()=>0,()=>false,drandom);real.step(.02,player);assert.ok(real.swarm.enemies.length>=4&&real.swarm.enemies.every(e=>e.spec?.enemy==='Goblin'&&e.health===7),'Run spawns director enemies with real stats');
+const hurtRun=new Run(()=>0,()=>false,drandom);hurtRun.swarm.enemies.push({...enemy(7001,0,0),spec:enemySpec(goblin,0)});hurtRun.step(.02,player);
+assert.equal(hurtRun.snapshot().health,85,'Contact damage uses the enemy native damage (Goblin 15)');
+console.log('Director checks passed: credit formulas, Forest 1 timeline, pool growth, cap, scaling, stand-in visuals and real contact damage.');
 const banditDeath=new Run(()=>0,()=>true,()=>.5);banditDeath.setWeapon('sword');banditDeath.swarm.enemies.push({...enemy(6001,0,-2),kind:'bandit',health:1});banditDeath.step(.02,player);
 assert.equal(banditDeath.remains[0].kind,'bandit','A dead Bandit retains its species for dissolution');assert.equal(banditDeath.snapshot().kills,1);banditDeath.reset();assert.equal(banditDeath.remains.length,0);
-console.log('Bandit integration checks passed: bounded mixed spawn roster, species-preserving death and reset.');
+console.log('Bandit death checks passed: species-preserving dissolution and reset.');
