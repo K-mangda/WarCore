@@ -2,7 +2,7 @@ import './lab.css';
 import {dataCategories,dataTable,filterRows,provenanceLine,type DataCategory} from './NativeDataTables';
 const tabs=document.getElementById('data-tabs')!,search=document.getElementById('data-search') as HTMLInputElement,out=document.getElementById('data-table')!,note=document.getElementById('data-note')!,count=document.getElementById('data-count')!;
 document.getElementById('data-provenance')!.textContent=provenanceLine();
-if(new URLSearchParams(location.search).has('embedded'))document.getElementById('back')!.hidden=true;
+if(new URLSearchParams(location.search).has('embedded')){document.getElementById('back')!.hidden=true;(document.getElementById('to-lab') as HTMLAnchorElement).href='./lab.html?embedded=1';}
 let current:DataCategory='enemies';
 function render(){
   const table=dataTable(current),rows=filterRows(table,search.value);
