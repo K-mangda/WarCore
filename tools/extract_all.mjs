@@ -24,5 +24,6 @@ if(skip.has('--after-running-ghidra')){
   await new Promise(r=>setTimeout(r,15000));
 }
 if(!skip.has('--skip-ghidra'))await run('ghidra','node',['tools/rea_decompile_batch.mjs','.local-evidence/decompile6','.local-evidence/decompile-all-plan.json']);
+await run('normalize','python',['-I','tools/normalize_decompile.py','.local-evidence/decompile6']);
 await run('coverage','python',['-I','tools/coverage_report.py','docs/DECOMPILE_COVERAGE.md']);
 log('ALL DONE');
