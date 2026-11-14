@@ -19,3 +19,8 @@
 @keyframes upgrade-particle{0%{opacity:0;transform:rotate(var(--angle)) translateX(0) rotate(0) scale(.3)}10%{opacity:1}80%{opacity:.9}100%{opacity:0;transform:rotate(var(--angle)) translateX(var(--distance)) rotate(var(--spin)) scale(.25)}}
 @keyframes upgrade-spark{0%,55%,100%{opacity:0;transform:translate(-50%,-50%) scale(.2)}70%{opacity:.9;transform:translate(-50%,-50%) scale(1)}}
 @media(prefers-reduced-motion:reduce){.upgrade-backdrop{display:none}}
+
+.upgrade-ray{position:absolute;left:50%;top:50%;width:100vmax;height:12vmax;transform-origin:0 50%;margin-top:-6vmax;background:linear-gradient(90deg,#ffffbdc9,#fff7a74d 80%,transparent);clip-path:polygon(0 50%,100% 10%,100% 90%);animation:upgrade-ray-life var(--life) ease-out infinite;animation-delay:var(--delay);}
+@keyframes upgrade-ray-life{0%{opacity:0;transform:rotate(var(--angle)) scaleY(.25)}12%{opacity:.9;transform:rotate(var(--angle)) scaleY(1)}100%{opacity:0;transform:rotate(var(--angle)) scaleY(.02)}}
+.upgrade-particle.gem{width:60px;height:60px}
+@media(prefers-reduced-motion:reduce){.upgrade-ray{animation:none}}

@@ -14,7 +14,7 @@ function UpgradeBackdrop(){
   return <span key={i} className={`upgrade-particle ${i%5===0?'leaf':`gem gem-${i%3}`} ${fast?'fast':'slow'}`} style={{'--angle':`${angle}deg`,'--distance':`${distance}vmax`,'--delay':`${(i%9)*-.31}s`,'--spin':`${i%2?280:-300}deg`} as CSSProperties}>{fast&&<i className="upgrade-spark"/>}</span>;
  });
  return <div className="upgrade-backdrop" aria-hidden="true" style={{opacity:effects.particlesOpacity}}>
-  <div className="upgrade-rays"/>{pieces}
+  {Array.from({length:48},(_,i)=><i key={i} className="upgrade-ray" style={{'--angle':`${i*137.508}deg`,'--delay':`${-i*.173}s`,'--life':`${1.6+(i%7)*.19}s`,'--width':`${1.2+(i%5)*.65}deg`} as CSSProperties}/>)}{pieces}
  </div>;
 }
 export function UpgradeMenu({run,choose,hover}:{run:RunSnapshot;choose:(id:Upgrade)=>void;hover:()=>void}){

@@ -523,3 +523,8 @@ User reference and description: yellow rays shrink and fade; three-color crystal
 ## Repair CI dependency fixtures - 2026-11-14
 
 User reported Pages failure because the Character Lab test fixture did not transpile Fox's new EffectsPreferences dependency. Added the dependency to Character Lab and Character Select fixtures, and to Run Panels fixture for the upgrade backdrop's EffectsPreferences import. Production behavior and workflow checks are not weakened.
+
+
+## Independent upgrade rays and larger decorative EXP - 2026-11-14
+
+User correction: rays must emerge independently and be more numerous; decorative EXP was too small. Replaced synchronized conic rays with 48 separately staggered shrinking/fading rays and increased gem sprite boxes from 24px to 60px. Web visual tuning, no phase change.
