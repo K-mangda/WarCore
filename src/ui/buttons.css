@@ -25,3 +25,6 @@ button:focus-visible{outline:0}
 button{border-width:14px 14px 18px;padding:0 10px}
 .title-main button,.title-side button,.character-start,.map-confirm,.map-detail .map-lab{padding:2px 22px 0}
 .title-main button,.title-side button,.character-start,.map-confirm{color:#fff;text-shadow:0 2px 0 #1a1a1a,2px 0 0 #1a1a1a,-2px 0 0 #1a1a1a,0 -2px 0 #1a1a1a}
+/* Thicker BorderWindow frames (1:1 with the 20px slice, so the rivets and bevel read like the real windows). */
+.title-window,.character-window,.character-detail,.map-list-window,.map-detail,.run-window,.settings-window,.upgrade-side,.upgrade-offers{border-width:20px!important;border-image-slice:20!important}
+.character-card,.map-thumb,.character-portrait,.upgrade-cards button{border-width:10px!important}
