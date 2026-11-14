@@ -1,0 +1,11 @@
+{
+ "source": "Megabonk_Data/sharedassets1.assets Texture2D 'Vignette2' (path 626), used by LowHpUi.vignette RawImage in level2/level4",
+ "exportedBy": "tools/read_feedback_visuals.py + UnityPy",
+ "files": {
+  "low-hp-vignette.png": {
+   "sha256": "0c13e27d6852d44d5f801261d4e1eae70a83cefcf79700debdd4e1879d36ba08",
+   "bytes": 324955
+  }
+ },
+ "note": "1024x1024 RGBA; alpha 0 at the centre rising to 1 at the corners. The RawImage colour (0.217,0,0.0172) tints it and alpha = danger value."
+}

@@ -13,7 +13,7 @@ export class Fox {
   private model=new T.Group();
   private geometry:T.BufferGeometry|null=null;
   private material:T.MeshLambertMaterial|null=null;
-  private hitMaterial=new T.MeshBasicMaterial({color:0xee0800});private mesh:T.SkinnedMesh|null=null;private hitTime=0;
+  private hitMaterial=new T.MeshBasicMaterial({color:0xf10b00});private mesh:T.SkinnedMesh|null=null;private hitTime=0;
   private texture:T.Texture|null=null;
   private skeleton:T.Skeleton|null=null;
   private mixer:T.AnimationMixer|null=null;

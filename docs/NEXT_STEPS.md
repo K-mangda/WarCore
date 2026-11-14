@@ -12,7 +12,7 @@ Single list of what is done, what is ready to do now, and what waits for data. D
 |---|---|---|
 | Level-up screen look (backdrop rays/crystals/leaves, top bar, card frames) | `LevelupScreen.effects` GameObject and its particle/UI data can be read from the game files | backdrop done from the real particle data ([LEVELUP_SCREEN_EXTRACTION.md](LEVELUP_SCREEN_EXTRACTION.md)); spectrum bar, card frames/tints, open animation, `audioLevel` still to read |
 | Spawn portal sequence | order and timings in [REA_PLAYER_PRESENTATION.md](REA_PLAYER_PRESENTATION.md); three wait values and the portal VFX still missing, so web would use its own visuals | not started |
-| Damage flash colour, low-HP vignette colour/texture | serialized in scene assets | not started |
+| Damage flash colour, low-HP vignette colour/texture | read from scene data (see REA_PLAYER_PRESENTATION addendum) | done in web; status tints (freeze/mud/poison/shield) known, not applied |
 | Death sequence look (DeathPP numbers known) | colour grading values verified; wipe shader unknown | partly possible |
 | Weapon level-up cards | data complete; effects of `DamageMultiplier Flat` unknown | blocked, see below |
 

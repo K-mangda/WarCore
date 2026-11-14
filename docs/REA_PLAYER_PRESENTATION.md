@@ -96,3 +96,11 @@ So: a red vignette RawImage whose alpha follows `danger`, which rises quickly (Ã
 | Death UI timing | 1.2 s then 2.0 s waits, ScaleIn 2, OutCirc fade | `fadeInTime` default, `t_dead` animation data |
 
 Next trace targets (RVAs available through `docs/rea/dump_schema.json`): `PlayerCamera.StartPortalCamera`, `CinematicBars.InstaShow/Hide`, `CameraShakerController` signature, `TransitionUI`, `DamageNumbers`, `HealthUI.UpdateBars`, `PlayerHealth.Damage` (RVA 0x428220), prefab `SpawnPlayerPortal` serialized values (needs asset read).
+
+## Addendum 2026-11-14: feedback visuals read from scene data (V)
+
+Read by `tools/read_feedback_visuals.py` (UnityPy, level2/level4 + sharedassets1/2).
+
+- **Damage flash material** `DamageFlashPlayer` (sharedassets2 path 7): `_Color` = (0.9434, 0.0431, 0.0, 1), emission 0, sprite-style shader (unlit). Web: Fox hit material `0xf10b00`.
+- **Low-HP vignette** (`LowHpUi.vignette` RawImage): colour (0.217, 0, 0.0172) with alpha driven by `danger`; texture `Vignette2` 1024x1024 RGBA, alpha 0 at the centre rising to 1 at the corners. Web: `public/ui/hud/low-hp-vignette.png` as a CSS mask tinted `rgb(55,0,4)`, opacity = danger.
+- **Status tints on PlayerRenderer** (not applied yet): shield (0, 0.918, 1, 0.4), freeze (0.354, 0.979, 1, 1), mud (0.404, 0.290, 0.212, 0.937), poison (1, 0, 0.980, 0.4), none (0, 0, 0, 0).
