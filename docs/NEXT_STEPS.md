@@ -63,6 +63,7 @@ Rule: when the user redirects, anything I had planned or promised goes here firs
 | Chests, shrines, pots, quests | decompile batch 6 (interactables) |
 | **Enemy types** (53 in `docs/rea/enemies.json`: Skeleton variants, Bandit, Bee, BoomerSpider, Bush, CactusShooter, CalciumDad, Ent 1-3, Frogs, Ghost family, Ghoul, Goblins, Golem, miniboss Golem/Pig/Scorpion, Mummies, Pharaoh 1-3, Scorpions, Slime, Tumblebone, Wisp, Zombie, ...): per-type movement/attack behaviour (ranged, charge, summon, explode, invisible/invincible) and per-type models. Web only has Skeleton and Bandit models; the rest use stand-ins with the right HP/damage/speed. | decompile batch 6 (enemy classes) for behaviour; model extraction for visuals |
 | Boss behaviour (Ent, Pharaoh, GhostKing), 87 item effects, Tome details | decompile batch 6 |
+| **Title / main menu screen and maps**: front screen (play, shop, character select, stage/map select, unlocks, settings), the real maps/stages beyond the test arena (stage data for Forest, Graveyard, Desert etc. is in `docs/rea/maps.json` / `stages.json`; terrain/scene geometry not extracted), shop (also hosts Banish/Skip/Refresh charges) | scene extraction for map geometry; UI scene read for the title screen |
 | Models and animations: other enemies, 20 characters, 28 weapons | extraction pass (UnityPy + FBX), not started |
 | XP table rounding mode | unresolved (Round vs floor) |
 | `check_deploy` needs `MSYS_NO_PATHCONV=1` and a `--base=/WarCore/` build | run before relying on CI |

@@ -17,16 +17,16 @@ const client=new Client({name:'war-core-batch',version:'1.0.0'});
 const safe=s=>s.replace(/[^\w.-]/g,'_');
 try{
   await client.connect(transport);
-  await client.callTool({name:'update_analysis_settings',arguments:{changes:[{setting:'ghidra.startup_timeout_ms',action:'set',value:3600000}]}},undefined,{timeout:600000});
+  await client.callTool({name:'update_analysis_settings',arguments:{changes:[{setting:'ghidra.startup_timeout_ms',action:'set',value:3600000}]}},{timeout:600000});
   log('opening binary');
-  await client.callTool({name:'open_binary',arguments:{path:'C:/Program Files (x86)/Steam/steamapps/common/Megabonk/GameAssembly.dll',provider_id:'ghidra'}},undefined,{timeout:7200000});
+  await client.callTool({name:'open_binary',arguments:{path:'C:/Program Files (x86)/Steam/steamapps/common/Megabonk/GameAssembly.dll',provider_id:'ghidra'}},{timeout:7200000});
   log('binary open; '+plan.length+' functions');
   let done=0,failed=0;
   for(const {label,rva} of plan){
     const file=resolve(out,safe(label)+'.c');if(existsSync(file)){done++;continue;}
     const va='0x'+(0x180000000+parseInt(rva,16)).toString(16);
     try{
-      const r=await client.callTool({name:'analyze_function',arguments:{procedure:va,detail:'complete'}},undefined,{timeout:600000});
+      const r=await client.callTool({name:'analyze_function',arguments:{procedure:va,detail:'complete'}},{timeout:7200000});
       const text=r.content?.find(c=>c.type==='text')?.text??'';
       let code=text;try{code=JSON.parse(text).normalized_result?.procedure?.pseudocode??text;}catch{}
       writeFileSync(file,`// ${label} RVA 0x${rva}\n`+code);
