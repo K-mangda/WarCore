@@ -26,3 +26,17 @@ One run, no manual steps. Everything lands in `.local-evidence/` (git-ignored; t
 - Needs about 1.5 GB free RAM for Ghidra and roughly 2 GB of disk.
 - Not produced: FBX/glTF with skeleton and animation baked together (raw mesh + AnimationClip typetrees are there to build them), shader source.
 - A few MonoBehaviours cannot be decoded (see each `errors.log`).
+
+## Run of 2026-11-14 (Unity + audio part, 5 minutes, about 1 GB)
+
+50,473 objects; 3,305 unique files written; duplicates skipped: 50 sprites, 2 textures, 2 meshes; audio 311 clips (309 unique, 0 errors).
+Open problems: 236 MonoBehaviours not decoded (was 432 before loading every assembly), 20 meshes and 7 textures failed to export (see `exportError` in `objects.jsonl`).
+
+## Before using an image from the dump (images can look wrong)
+- Many UI/VFX textures are white or grey masks that the game tints at runtime (colour lives in the material, particle start colour or script). Take the colour from data, not from the PNG.
+- Sprites are crops of atlases; check `m_Rect`, pivot and border in the sprite's `data` before slicing or 9-slicing.
+- Some textures store data, not pictures (normal maps, masks in single channels, lookup ramps), and some have alpha only.
+- Always open the PNG and compare with a screenshot of the real game before wiring it in; record the source path and sha256 in a `provenance.json` next to it.
+
+## Handing over between models or sessions
+Nothing depends on chat memory: the pipeline is a script, state is on disk, and the plan is in `docs/NEXT_STEPS.md` (parking lot) and `docs/PORT_BRIEF.md`. A new model only needs: "read docs/PORT_BRIEF.md and docs/NEXT_STEPS.md, then continue".
