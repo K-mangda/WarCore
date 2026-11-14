@@ -65,5 +65,6 @@ Rule: when the user redirects, anything I had planned or promised goes here firs
 | Boss behaviour (Ent, Pharaoh, GhostKing), 87 item effects, Tome details | decompile batch 6 |
 | **Title / main menu screen and maps**: front screen (play, shop, character select, stage/map select, unlocks, settings), the real maps/stages beyond the test arena (stage data for Forest, Graveyard, Desert etc. is in `docs/rea/maps.json` / `stages.json`; terrain/scene geometry not extracted), shop (also hosts Banish/Skip/Refresh charges) | scene extraction for map geometry; UI scene read for the title screen |
 | Models and animations: other enemies, 20 characters, 28 weapons | extraction pass (UnityPy + FBX), not started |
+| **Extract everything (user request)**: decompile batch 7 = remaining game classes (3,250 functions; plan in `.local-evidence/decompile7-plan.json`, regenerate with the snippet in `tools/coverage_report.py` logic), run after batch 6 finishes (each run re-imports the binary, ~35 min). Coverage report: `docs/DECOMPILE_COVERAGE.md`. Non-code still to dump wholesale: all prefab/scene hierarchies, animations, audio clips, UI sprites, models. | batch 6 finishing |
 | XP table rounding mode | unresolved (Round vs floor) |
 | `check_deploy` needs `MSYS_NO_PATHCONV=1` and a `--base=/WarCore/` build | run before relying on CI |
