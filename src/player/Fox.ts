@@ -1,4 +1,5 @@
 import {assetUrl} from '../core/assetUrl';
+import {getEffectsPreferences} from '../core/EffectsPreferences';
 import {playtestMovement} from './Physics';
 import * as T from 'three';
 
@@ -12,6 +13,7 @@ export class Fox {
   private model=new T.Group();
   private geometry:T.BufferGeometry|null=null;
   private material:T.MeshLambertMaterial|null=null;
+  private hitMaterial=new T.MeshBasicMaterial({color:0xee0800});private mesh:T.SkinnedMesh|null=null;private hitTime=0;
   private texture:T.Texture|null=null;
   private skeleton:T.Skeleton|null=null;
   private mixer:T.AnimationMixer|null=null;
@@ -41,7 +43,7 @@ export class Fox {
     });
     rig.nodes.forEach((data,i)=>data.children.forEach(child=>nodes[i].add(nodes[child])));
     this.model.add(nodes[rig.root]);this.root.add(this.model);
-    const mesh=new T.SkinnedMesh(this.geometry,this.material);mesh.name='FoxDefault';mesh.frustumCulled=false;
+    const mesh=new T.SkinnedMesh(this.geometry,this.material);this.mesh=mesh;mesh.name='FoxDefault';mesh.frustumCulled=false;
     nodes[rig.meshNode].add(mesh);
     this.skeleton=new T.Skeleton(rig.joints.map(index=>nodes[index]),rig.inverseBindMatrices.map(matrix=>new T.Matrix4().fromArray(matrix)));
     this.model.updateMatrixWorld(true);mesh.bind(this.skeleton,new T.Matrix4());
@@ -75,11 +77,14 @@ export class Fox {
     const action=this.actions.get(name);if(!action||action===this.current)return;
     action.reset().fadeIn(.12).play();this.current?.fadeOut(.12);this.current=action;
   }
+  hit(){this.hitTime=.15;}
+  clearHit(){this.hitTime=0;if(this.mesh&&this.material)this.mesh.material=this.material;}
   update(position:T.Vector3,yaw:number,speed:number,grounded:boolean,vertical:number,dt:number){
     this.root.position.copy(position);this.root.rotation.y=yaw+Math.PI;
+    if(this.mesh&&this.material){this.mesh.material=this.hitTime>0&&getEffectsPreferences().damageFlash?this.hitMaterial:this.material;this.hitTime=Math.max(0,this.hitTime-dt);}
     this.play(!grounded?(vertical>0?'FoxJump4':'FoxFalling'):speed>.1?'FoxRun':'FoxIdle');
     this.current?.setEffectiveTimeScale(grounded?1:playtestMovement.airTimeScale);
     this.mixer?.update(dt);
   }
-  dispose(){this.disposed=true;this.mixer?.stopAllAction();this.mixer?.uncacheRoot(this.model);this.skeleton?.dispose();this.geometry?.dispose();this.material?.dispose();this.texture?.dispose();}
+  dispose(){this.disposed=true;this.mixer?.stopAllAction();this.mixer?.uncacheRoot(this.model);this.skeleton?.dispose();this.geometry?.dispose();this.material?.dispose();this.hitMaterial.dispose();this.texture?.dispose();}
 }

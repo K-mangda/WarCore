@@ -58,7 +58,7 @@ export class Engine {
   pauseForLab=()=>{this.inLab=true;this.audio.stopProgression();this.pause();this.emit();};
   resumeFromLab=()=>{this.inLab=false;};
   pauseForSettings=()=>{this.pause();this.emit();};
-  reset=(top=false)=>{this.recorder.reset(this.run.snapshot(),buildVersion);this.audio.stopProgression();this.audio.stopGameplay();this.motor.reset(top);this.run.reset();this.emit();};
+  reset=(top=false)=>{this.recorder.reset(this.run.snapshot(),buildVersion);this.audio.stopProgression();this.audio.stopGameplay();this.motor.reset(top);this.run.reset();this.fox.clearHit();this.combatView.clearPlayerHits();this.emit();};
   setWeapon=(weapon:Weapon)=>{if(this.active)return;this.run.setWeapon(weapon);this.emit();};
   restart=()=>{this.reset();this.lock();};
   chooseUpgrade=(upgrade:Upgrade)=>{if(!this.run.choose(upgrade))return;this.audio.unlock();this.audio.setLevelModal(this.run.blocked);this.audio.play('click');if(!this.run.blocked)this.lock(false);this.emit();};
@@ -69,7 +69,7 @@ export class Engine {
     const dt=Math.min(wallDelta,.1);this.previous=time;
     const locked=this.active;
     this.orbit.advanceLook(dt,this.input.keys);
-    if(locked&&!this.run.blocked){this.accumulator+=dt;while(this.accumulator>=physics.fixedStep){const wasGrounded=this.motor.grounded,jumps=this.motor.jumps;this.motor.step(physics.fixedStep,this.input,this.orbit.yaw);if(this.motor.jumps>jumps)this.audio.play('jump');if(!wasGrounded&&this.motor.grounded)this.audio.play('land');this.run.step(physics.fixedStep,this.motor.position,new T.Vector3(-Math.sin(this.orbit.yaw),0,-Math.cos(this.orbit.yaw)));this.accumulator-=physics.fixedStep;if(this.run.blocked){this.recorder.death(this.run.snapshot(),buildVersion);this.pause();this.accumulator=0;this.emit();break;}}}
+    if(locked&&!this.run.blocked){this.accumulator+=dt;while(this.accumulator>=physics.fixedStep){const wasGrounded=this.motor.grounded,jumps=this.motor.jumps;this.motor.step(physics.fixedStep,this.input,this.orbit.yaw);if(this.motor.jumps>jumps)this.audio.play('jump');if(!wasGrounded&&this.motor.grounded)this.audio.play('land');const healthBefore=this.run.snapshot().health;this.run.step(physics.fixedStep,this.motor.position,new T.Vector3(-Math.sin(this.orbit.yaw),0,-Math.cos(this.orbit.yaw)));const damage=healthBefore-this.run.snapshot().health;if(damage>0){this.fox.hit();this.combatView.playerHit(damage,this.motor.position);}this.accumulator-=physics.fixedStep;if(this.run.blocked){this.recorder.death(this.run.snapshot(),buildVersion);this.pause();this.accumulator=0;this.emit();break;}}}
     else this.accumulator=0;
     this.audio.setLevelModal(!this.inLab&&this.run.snapshot().pendingUpgrades>0);
     if(this.cadence.ready(time,getVideoPreferences().fpsLimit)){

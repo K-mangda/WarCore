@@ -508,3 +508,8 @@ User requested glow on coins too. Added soft compact additive halos for Gold and
 ## Gradient level-up sign and larger sparkles - 2026-11-14
 
 User supplied a close-up reference and requested a glowing gradient on the LEVEL UP sign and slightly larger gold sparkles. Applied a warm vertical gradient to bright lettering while retaining the dark source sign, increased its existing subtle glow, and adjusted burst size from 18% to 21%. Motion, timing and gameplay remain unchanged. Shared game/Lab web visual tuning; no native shader claim or phase change.
+
+
+## Player damage feedback and low health - 2026-11-14
+
+User supplied screenshots and described red player hit flash, floating red damage numbers, health bar underfoot and red screen edges near death. Added these using actual sandbox health loss and existing PlayerDamage sound; effects toggles apply to player flash/numbers. Low-health threshold 30%, flash .15s and visual placement are provisional web tuning, not recovered native rules. Portal and death transition remain documented in EXTRACTION_BACKLOG.md pending evidence. No phase change.
