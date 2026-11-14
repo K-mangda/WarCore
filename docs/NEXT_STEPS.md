@@ -42,3 +42,26 @@ Done from it: stat folding (verified), Tome linear accumulation, rarity per card
 ## Needs the user
 
 - Play-test the deployed build and report: enemy count at 3 minutes, level-up timing, hit frequency/damage, anything that feels off against the real game. Values marked inferred (I) or provisional (P) in the docs are the first candidates to retune.
+
+## Parking lot - things said or planned, not yet done (check this before answering "what next")
+
+Rule: when the user redirects, anything I had planned or promised goes here first, with its trigger, so it is not lost.
+
+| Item | Trigger / blocker |
+|---|---|
+| Weapon cards on the level-up screen + second weapon slot in `Run` | decompile batch 6 (`.local-evidence/decompile6`, started 2026-11-14 05:47 UTC, 2,160 functions); read `key__*` files first |
+| Level-up crystal emission origin (user says they fall from behind the EXP bar at the top) | read parent RectTransform of the `Levelup` effects object; check EndSparkle flash visually |
+| Level-up open animation real timing | Animator/clip data unread; current timing is provisional (P) |
+| `audioLevel` / `audioShadyGuy` clips on the level-up screen | read from scene data |
+| Icon-background gradient texture on cards | extract texture; current gradient is a guess (I) |
+| `New` rarity for unowned offers (x1, grey) | inferred from a screenshot; confirm in decompile |
+| Banish / Skip / Refresh charges and effects | user: comes with the shop on the title screen |
+| Move speed (Fox +0.04) and jump stats | with movement-parity work in `Motor.ts` |
+| Status tints (shield, freeze, mud, poison) | needs status effects in the web first; colours already known |
+| Spawn portal sequence visuals, death-screen look | three wait values still unknown; wipe shader unknown |
+| Silver drop rule (currently every 12 kills, provisional) | decompile batch 6 (`PickupManager`) |
+| Chests, shrines, pots, quests | decompile batch 6 (interactables) |
+| Enemy / boss behaviour, 87 item effects, Tome details | decompile batch 6 |
+| Models and animations: other enemies, 20 characters, 28 weapons | extraction pass (UnityPy + FBX), not started |
+| XP table rounding mode | unresolved (Round vs floor) |
+| `check_deploy` needs `MSYS_NO_PATHCONV=1` and a `--base=/WarCore/` build | run before relying on CI |
