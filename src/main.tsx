@@ -38,7 +38,7 @@ function App(){
     <section className="run-hud" aria-label="Run status">
       <div className="run-time">{time}<small>{data.kills} KILLS · {data.enemyCount} ENEMIES · {data.gold} GOLD · {data.silver} SILVER</small></div>
       <div className="health"><span>HP {data.health} / {data.maxHealth}</span><div role="progressbar" aria-label="Health" aria-valuenow={data.health} aria-valuemax={data.maxHealth} aria-valuemin={0}><b style={{width:`${data.health/data.maxHealth*100}%`,backgroundColor:hpColors[gamePreferences.hpColor]}}/></div></div>
-      <div className="experience"><span>LEVEL {data.level} <small>{data.xp} / {data.xpNeeded} XP</small></span><div role="progressbar" aria-label="Experience" aria-valuenow={data.xp} aria-valuemax={data.xpNeeded} aria-valuemin={0}><b style={{width:`${data.xp/data.xpNeeded*100}%`}}/></div></div>
+      <div className="experience"><span>LVL {data.level} <small>{data.xp} / {data.xpNeeded} XP</small></span><div role="progressbar" aria-label="Experience" aria-valuenow={data.xp} aria-valuemax={data.xpNeeded} aria-valuemin={0}><b style={{width:`${Math.min(1,data.xp/data.xpNeeded)*100}%`,backgroundSize:`${100/Math.max(.001,Math.min(1,data.xp/data.xpNeeded))}% 100%`}}/></div></div>
     </section>
     <Crosshair settings={gamePreferences}/>
     <aside className="weapon-status"><img src={assetUrl(data.weapon==='sword'?'weapons/knight-sword/vfx/textures/Sword_Icon.png':'game-ui/Firestaff.png')} alt=""/><span>{data.weapon==='sword'?'SWORD · KNIGHT ASSETS':'FIRESTAFF'}</span><strong>{data.damage} DMG · {data.attackInterval.toFixed(2)}s · ×{data.projectiles}</strong><small>{data.weapon==='sword'?'Swings automatically in your facing direction':'Targets nearby enemies automatically'}</small><TomeLoadout run={data}/></aside>

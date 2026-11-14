@@ -68,3 +68,12 @@
 .upgrade-side,.upgrade-offers{border-width:16px;border-image:url('/game-ui/BorderWindow.png') 20 stretch}
 .upgrade-cards button{border-width:11px;border-image:url('/game-ui/BorderWindow.png') 20 stretch}
 .upgrade-cards button[class*=rarity-]{border-image:url('/game-ui/BorderWindow.png') 20 stretch}
+
+/* The rainbow bar is the EXP bar: the HUD bar fills with it as XP rises, and the level-up screen shows it full (real game, user screenshots). Order red-orange-yellow-green-cyan-magenta. */
+:root{--exp-rainbow:linear-gradient(90deg,#f00 0 16.66%,#ffa000 0 33.33%,#ff0 0 50%,#00e000 0 66.66%,#00e5ff 0 83.33%,#f0f 0)}
+.experience{height:12px;border:2px solid #101010;background:#000a}
+.experience>span{inset:auto;left:10px;top:12px;width:auto;line-height:1;font-size:15px;text-align:left}
+.experience>div{height:100%}
+.experience b{background:var(--exp-rainbow);background-repeat:no-repeat}
+.upgrade-spectrum{height:12px;border:2px solid #101010;background:var(--exp-rainbow)}
+.upgrade-spectrum-track{display:none}

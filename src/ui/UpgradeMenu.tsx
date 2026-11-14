@@ -20,7 +20,7 @@ export function UpgradeMenu({run,choose,hover}:{run:RunSnapshot;choose:(id:Upgra
  },[]);
  return <section ref={panel} className="upgrade-screen" onKeyDown={event=>{if(event.key==='Tab'||event.key.startsWith('Arrow'))event.currentTarget.dataset.keys='1';}} onPointerMove={event=>{delete event.currentTarget.dataset.keys;}} role="dialog" aria-modal="true" aria-labelledby="upgrade-title">
   <LevelUpBackdrop key={`${run.level}-${run.pendingUpgrades}`}/>
-  <div className="upgrade-spectrum" aria-hidden="true"><div className="upgrade-spectrum-track">{Array.from({length:12},(_,index)=><i key={index}/>)}</div></div>
+  <div className="upgrade-spectrum" aria-hidden="true"/>
   <div className="upgrade-layout">
    <section className="upgrade-side upgrade-inventory" aria-labelledby="upgrade-inventory-title"><h2 id="upgrade-inventory-title">Inventory</h2><div className="upgrade-side-body">
     <h3>Weapons</h3><SlotRow slots={4} entries={[{key:run.weapon,icon:run.weapon==='sword'?'weapons/knight-sword/vfx/textures/Sword_Icon.png':'game-ui/Firestaff.png',label:run.weapon==='sword'?'Sword':'Firestaff',level:'LVL 1'}]}/>
