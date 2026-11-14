@@ -513,3 +513,13 @@ User supplied a close-up reference and requested a glowing gradient on the LEVEL
 ## Player damage feedback and low health - 2026-11-14
 
 User supplied screenshots and described red player hit flash, floating red damage numbers, health bar underfoot and red screen edges near death. Added these using actual sandbox health loss and existing PlayerDamage sound; effects toggles apply to player flash/numbers. Low-health threshold 30%, flash .15s and visual placement are provisional web tuning, not recovered native rules. Portal and death transition remain documented in EXTRACTION_BACKLOG.md pending evidence. No phase change.
+
+
+## Upgrade selection animated backdrop - 2026-11-14
+
+User reference and description: yellow rays shrink and fade; three-color crystals and rotating leaf-like shapes emerge from center; some faster ones have white bursts. Added decorative CSS approximation behind selection panels with existing XP atlas, no gameplay pickups or XP; particle opacity preference and reduced motion apply. Geometry, timings, colors and leaf/burst identity are web tuning pending native evidence, recorded in UPGRADE_SCREEN_REFERENCE.md. Existing upgrade choices, audio and spectrum timing unchanged; no phase change.
+
+
+## Repair CI dependency fixtures - 2026-11-14
+
+User reported Pages failure because the Character Lab test fixture did not transpile Fox's new EffectsPreferences dependency. Added the dependency to Character Lab and Character Select fixtures, and to Run Panels fixture for the upgrade backdrop's EffectsPreferences import. Production behavior and workflow checks are not weakened.

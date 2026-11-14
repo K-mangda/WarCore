@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';import ts from 'typescript';import * as T from 'three';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';import {resolve,dirname} from 'node:path';import {pathToFileURL} from 'node:url';
 const out=resolve('.local-evidence/character-lab-check');
-for(const name of ['core/assetUrl','player/Physics','player/Fox','dev/CharacterRooms']){const file=resolve(out,name+'.js');mkdirSync(dirname(file),{recursive:true});writeFileSync(file,ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'"));}
+for(const name of ['core/assetUrl','core/EffectsPreferences','player/Physics','player/Fox','dev/CharacterRooms']){const file=resolve(out,name+'.js');mkdirSync(dirname(file),{recursive:true});writeFileSync(file,ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'"));}
 const {characterRooms,characterClip}=await import(pathToFileURL(resolve(out,'dev/CharacterRooms.js')));const rig=JSON.parse(readFileSync('public/megabonk/fox-rig.json','utf8'));
 assert.equal(characterRooms.length,5);for(const [id,,clip] of characterRooms){assert.equal(characterClip(id),clip);assert.ok(rig.clips.some(c=>c.name===clip&&c.duration>0&&c.tracks.length),'Each room uses an actual supplied clip');}assert.equal(characterClip('unknown'),undefined);
 const {Fox}=await import(pathToFileURL(resolve(out,'player/Fox.js')));const fox=new Fox(),node=new T.Object3D();fox.model.add(node);fox.mixer=new T.AnimationMixer(fox.model);

@@ -22,3 +22,8 @@ User reference: codex-clipboard-8905d05b-cbc2-43e4-ae3a-7b28118429ff.png and use
 8. HUD: meaning of the two shown clocks (0:16 and 9:43), progression/countdown duration, gold/silver/chest counters, compass and health/icon placement. The web timer is actual elapsed time; no native countdown/chest count/compass is invented.
 
 Return raw references and source hashes; formulas need method-body evidence, with verified / inferred / unknown distinguished. The other AI owns extraction. See EXTRACTION_BACKLOG.md for the broader unimplemented item/interactable/weapon queues.
+
+
+## Selection backdrop user reference - 2026-11-14
+
+User provided codex-clipboard-1f859fdc-2ac0-43a9-beec-5ca6398d5142.png and codex-clipboard-13ff8dbf-f45a-4cf7-9357-0d994b79ed2d.png, describing yellow rays that shrink and fade, three-color crystals moving from center, rotating leaf-like objects with disappearance effects and white bursts accompanying some faster crystals. Web implementation is decorative approximation using existing XP atlas and CSS; does not add collectible XP. Request native backdrop sprites/materials, actual leaf identity, emission/trajectory/disappearance and burst conditions/timings, layering and pause/opacity rules; do not infer these from the screenshot.
