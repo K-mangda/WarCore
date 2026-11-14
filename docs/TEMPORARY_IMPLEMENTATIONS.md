@@ -15,6 +15,27 @@ Updated: 2026-11-14. This register describes the current web implementation, not
 - All values in Balance.ts are sandbox balance: health/damage, enemy speed, contact timing, spawn timing/range/caps, attack timing/range/projectile movement, pickup and magnet radii. Capacity limits are web safeguards, not native caps.
 - The automatic magic bolt, target selection, simultaneous multishot, enemy chase/contact/collision, damage labels and XP gem geometry are simplified implementations. XP color has source evidence; its shape and collection behavior are not verified.
 - **Updated 2026-11-14:** XP per level now follows the native table (XpCurve.ts; 7 XP for level 2, cumulative 23 for level 3; rounding of table entries unresolved). The three upgrades use native Tome values (Damage x1.08 per level, Cooldown +7.5% attack speed per level, Quantity +1; cap 8 and 0.15s floor are web safety limits; multi-level combination order and rarity scaling are inferred/unwired). Enemy spawning is the credit director in Director.ts (see DIRECTOR_IMPLEMENTATION.md); the Balance.ts spawn timing and Bandit-every-4 sandbox values were removed. Enemy HP/damage/speed come from serialized EnemyData; speed is relative to Skeleton and non-Skeleton species use stand-in models.
+- Current enemy visuals do not establish native animation or AI parity. Full weapon/item/enemy/encounter systems remain incomplete; consult PARITY_MATRIX.md and COMBAT_LOOP.md.
+
+## Movement and camera — src/player/Motor.ts, src/camera/Orbit.ts
+
+- Physics.ts distinguishes source-backed constants; do not label all movement constants as invented. MOVEMENT_REBUILD.md records the supporting evidence.
+- The browser motor still approximates native acceleration/friction/air control, heightfield contact and collision rather than Unity PhysX capsule solving. Contact tolerances, terrain-gradient sampling and arena clamps need parity verification.
+- Sliding is intentionally disabled (slideEnabled=false) and deferred, even though investigation code remains present. Do not present it as a finished native feature.
+- Camera offset, sensitivity, pitch bounds, terrain obstruction and drag fallback are web implementation choices, not verified native camera behavior.
+
+## Map, appearance and UI
+
+- src/environment/forest/Sandbox.ts is a test arena. Original map recreation is deferred by user instruction; do not expand the placeholder as if it were native terrain.
+- Lighting, fog, effects and rendering settings are provisional. Fox texture, rig and clips have extracted provenance (FOX_ASSETS.md); integration does not guarantee native state transitions/blending.
+- UI images and fonts under public/game-ui are extracted assets with provenance. Web CSS sizing/layout, colors, dialogs and interaction flow remain approximate. layout.json records selected original RectTransforms; it is evidence, not a complete native UI port.
+- Current UI uses original DamageTome/CooldownTome/QuantityTome icons for provisional upgrades and Firestaff for the provisional bolt. These associations are not proof of matching original mechanics.
+
+## Editing audio without re-extraction
+
+- Filenames in GameAudio.ts are editable references, not a baked or locked audio system. Change a mapping to another available clip, or replace a file and reload.
+- Gain, timing, overlapping voices and event triggers are code settings. Pitch/playback rate, fades, spatial position and mixer categories can also be implemented without re-extracting WAVs.
+- WAV waveforms can be edited in an audio editor; preserve the original and save a variant. Re-extraction is needed only for missing/wrong/damaged exports or additional original game content, not routine sound tuning.
 
 ## Sword integration — 2026-11-12
 
