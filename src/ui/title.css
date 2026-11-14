@@ -44,3 +44,13 @@ main:has(.title-screen) :is(.run-hud,main>header,.weapon-status,.settings-toggle
 .title-grid .tile.owned,.title-grid .tile.buyable{background:url('/ui/icons/tile-background.png') repeat,var(--tile,#a3aea9);background-size:64px 64px;image-rendering:pixelated}
 
 .title-grid.shop .tile{--tile:#a3aea9}
+/* Selection marker: four corner brackets like the real menus (one pseudo-element, corners drawn with gradients). */
+.title-grid .tile::after,.upgrade-cards button::after{display:none}
+.title-grid .tile::before,.upgrade-cards button::before{left:-12px;top:-12px;right:-12px;bottom:-12px;width:auto;height:auto;border:0;
+  --c:#fff;--l:14px;--w:3px;
+  background:
+   linear-gradient(var(--c),var(--c)) top left/var(--l) var(--w),linear-gradient(var(--c),var(--c)) top left/var(--w) var(--l),
+   linear-gradient(var(--c),var(--c)) top right/var(--l) var(--w),linear-gradient(var(--c),var(--c)) top right/var(--w) var(--l),
+   linear-gradient(var(--c),var(--c)) bottom left/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom left/var(--w) var(--l),
+   linear-gradient(var(--c),var(--c)) bottom right/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom right/var(--w) var(--l);
+  background-repeat:no-repeat}

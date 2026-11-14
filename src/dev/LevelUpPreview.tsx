@@ -8,6 +8,7 @@ import {offerWeapon,weaponNames} from '../combat/WeaponUpgrades';
 import {UpgradeMenu} from '../ui/UpgradeMenu';
 import '../ui/style.css';
 import '../ui/combat.css';
+import '../ui/title.css';
 import './levelup-preview.css';
 /**
  * Lab page for the level-up flow. It drives the REAL Run class (XP table, offers, Tome effects), so what you see here is what the
