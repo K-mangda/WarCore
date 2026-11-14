@@ -281,3 +281,17 @@ console.log('Bandit death checks passed: species-preserving dissolution and rese
   lv.choose('weapon:sword');assert.equal(lv.snapshot().weapons[0].level,2);assert.deepEqual(lv.snapshot().weapons[0].mods,offer,'Choosing applies exactly the offered modifiers');
   console.log('Weapon level-up checks passed: offer roll, rarity scaling, stat fold, new weapon slot, two weapons firing, applied modifiers.');
 }
+{
+  // Shop tools and slots (Profile.runLoadout -> Run.configure).
+  const {toolPrice}=await import(new URL('../.tmp-check/combat/Run.js',import.meta.url)).catch(()=>({toolPrice:undefined}));
+  const r=create();r.configure({weaponSlots:2,tomeSlots:2,refresh:2,skip:1,banish:1,disabled:['haste']});
+  const s0=r.snapshot();assert.equal(s0.weaponSlots,2);assert.deepEqual(s0.tools,{refresh:2,skip:1,banish:1});assert.ok(s0.banished.includes('haste'),'Toggled-off Tome starts banished');
+  const level=()=>{for(let i=0;i<20&&r.snapshot().pendingUpgrades===0;i++){r.gems.push({position:player.clone()});r.step(.02,player);}};
+  level();assert.ok(r.snapshot().pendingUpgrades>0);assert.ok(!r.snapshot().upgradeChoices.includes('haste'),'Banished never offered');
+  assert.ok(r.refresh(),'First refresh is free');assert.equal(r.snapshot().tools.refresh,1);
+  assert.ok(!r.refresh(),'Second refresh costs 5 gold, none held');
+  const before=r.snapshot().pendingUpgrades;assert.ok(r.skip());assert.equal(r.snapshot().pendingUpgrades,before-1,'Skip closes the level-up');
+  level();const card=r.snapshot().upgradeChoices[0];assert.ok(r.banish(card));assert.ok(r.snapshot().banished.includes(card));
+  if(toolPrice){assert.equal(toolPrice(0),0);assert.equal(toolPrice(1),5);assert.equal(toolPrice(3),35);}
+  console.log('Shop tool checks passed: charges, free first use, gold price, skip, banish, toggled-off entries, slots.');
+}

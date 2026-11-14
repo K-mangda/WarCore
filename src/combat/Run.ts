@@ -10,7 +10,7 @@ import {playerStats} from '../player/StatSheet';
 import {enemySpec} from '../enemies/Roster';
 import {initialDanger,stepDanger,type DangerState} from '../player/Danger';
 import {availableUpgrades,emptyUpgradeLevels,nextUpgrade,type Upgrade as TomeUpgrade,type UpgradeLevels} from './Upgrades';
-import {maxWeaponLevel,maxWeapons,offerWeapon,rollWeaponOffer,weaponNumbers,weaponOfferId,type WeaponModifier,type WeaponSlot} from './WeaponUpgrades';
+import {maxWeaponLevel,offerWeapon,rollWeaponOffer,weaponNumbers,weaponOfferId,type WeaponModifier,type WeaponSlot} from './WeaponUpgrades';
 import {rollUpgradeRarity,upgradeMultiplier,type UpgradeRarity} from './Rarity';
 export type Weapon='bolt'|'sword';
 /** A card on the level-up screen: a Tome id or a weapon (`weapon:sword`). */
@@ -25,15 +25,20 @@ export interface EnemyRemains {kind?:EnemyKind;id?:number;animationTime?:number;
 export interface Gem extends Pickup {}
 export interface XpReceipt {position:Vector3;value:number;time:number;kind?:PickupKind;pickups?:number;}
 export interface Hit {position:Vector3;damage:number;life:number;}
+export type Tool='refresh'|'skip'|'banish';
+/** Level-up tool price (LevelupScreen.GetShopToolPrice, RVA 0x54EE20, V): free the first time, then round(5 x k + 15 x (used - 1)) gold.
+ * k comes from a runtime call (FUN_1802ff020(2.0)) not resolved yet; taken as 1 (P). */
+export const toolPrice=(used:number)=>used===0?0:Math.round(5+15*(used-1));
+export interface Loadout {disabled?:string[];weaponSlots:number;tomeSlots:number;refresh:number;skip:number;banish:number;}
 export interface RunSnapshot {weapon:Weapon;gold:number;silver:number;health:number;danger:number;maxHealth:number;level:number;xp:number;xpNeeded:number;kills:number;elapsed:number;enemyCount:number;pendingUpgrades:number;dead:boolean;damage:number;attackInterval:number;projectiles:number;upgradeLevels:UpgradeLevels;upgradeChoices:Upgrade[];upgradeRarity:Partial<Record<Upgrade,UpgradeRarity>>;damageBonus:number;attackSpeedBonus:number;projectileBonus:number;
   /** Owned weapons in slot order (max 4) with their level and the modifiers picked on level-ups. */
   weapons:WeaponSlot[];
   /** Modifiers each weapon card would add, rolled with the card's rarity when the offers are made. */
-  weaponOffers:Partial<Record<Weapon,WeaponModifier[]>>;}
-export const initialRun:RunSnapshot={weapon:'bolt',gold:0,silver:0,health:balance.maxHealth,danger:0,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:xpForLevel(1),kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{},damageBonus:0,attackSpeedBonus:0,projectileBonus:0,weapons:[{id:'bolt',level:1,mods:[]}],weaponOffers:{}};
+  weaponOffers:Partial<Record<Weapon,WeaponModifier[]>>;tools:Record<Tool,number>;toolsUsed:Record<Tool,number>;banished:Upgrade[];weaponSlots:number;tomeSlots:number}
+export const initialRun:RunSnapshot={weapon:'bolt',gold:0,silver:0,health:balance.maxHealth,danger:0,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:xpForLevel(1),kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{},damageBonus:0,attackSpeedBonus:0,projectileBonus:0,weapons:[{id:'bolt',level:1,mods:[]}],weaponOffers:{},tools:{refresh:0,skip:0,banish:0},toolsUsed:{refresh:0,skip:0,banish:0},banished:[],weaponSlots:4,tomeSlots:4};
 export class Run {
   readonly remains:EnemyRemains[]=[];readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly staffEffects:StaffEffect[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];readonly xpReceipts:XpReceipt[]=[];readonly currencyReceipts:XpReceipt[]=[];
-  private state:RunSnapshot={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{},weapons:[{id:'bolt',level:1,mods:[]}],weaponOffers:{}};private swordClock=0;private dangerState:DangerState=initialDanger();private director?:Director;evaded=0;private regenCarry=0;private attackClock=0;private hurtClock=0;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
+  private state:RunSnapshot={...initialRun,tools:{refresh:0,skip:0,banish:0},toolsUsed:{refresh:0,skip:0,banish:0},banished:[],upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{},weapons:[{id:'bolt',level:1,mods:[]}],weaponOffers:{}};private swordClock=0;private dangerState:DangerState=initialDanger();private director?:Director;evaded=0;private regenCarry=0;private attackClock=0;private hurtClock=0;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
   constructor(private ground:(x:number,z:number)=>number,private visible:(point:Vector3)=>boolean,private random:()=>number=Math.random,private sound:(event:RunEvent)=>void=()=>{}){}
   /**
    * InventoryUtility.GetRandomUpgrades (RVA 0x420EF0, V): list A = not owned and a slot is free, list B = owned and below max level.
@@ -42,11 +47,12 @@ export class Run {
    */
   /** Candidate lists A (new, slot free) and B (owned, below max level). */
   candidates(){
-    const tomes=availableUpgrades(this.state),tomeSlotsFree=Object.values(this.state.upgradeLevels).filter(level=>level>0).length<4;
-    const owned=new Set(this.state.weapons.map(w=>w.id)),weaponSlotsFree=this.state.weapons.length<maxWeapons;
+    const tomes=availableUpgrades(this.state),tomeSlotsFree=Object.values(this.state.upgradeLevels).filter(level=>level>0).length<this.state.tomeSlots;
+    const owned=new Set(this.state.weapons.map(w=>w.id)),weaponSlotsFree=this.state.weapons.length<this.state.weaponSlots;
+    const banned=new Set(this.state.banished);
     const listA:Upgrade[]=[...tomes.filter(id=>this.state.upgradeLevels[id]===0&&tomeSlotsFree),...allWeapons.filter(w=>!owned.has(w)&&weaponSlotsFree).map(weaponOfferId)];
     const listB:Upgrade[]=[...tomes.filter(id=>this.state.upgradeLevels[id]>0),...this.state.weapons.filter(w=>w.level<maxWeaponLevel).map(w=>weaponOfferId(w.id))];
-    return {listA,listB};
+    return {listA:listA.filter(id=>!banned.has(id)),listB:listB.filter(id=>!banned.has(id))};
   }
   private rollOffers(){
     const {listA,listB}=this.candidates();
@@ -80,10 +86,26 @@ export class Run {
   weaponNumbers(id:Weapon){const slot=this.state.weapons.find(w=>w.id===id);return slot?weaponNumbers(slot,this.state):undefined;}
   private newDirector(){return new Director({stage:balance.stage,maxEnemies:balance.maxEnemies,random:this.random});}
   get blocked(){return this.state.dead||this.state.pendingUpgrades>0;}
-  snapshot():RunSnapshot{return {...this.state,upgradeLevels:{...this.state.upgradeLevels},upgradeRarity:{...this.state.upgradeRarity},upgradeChoices:this.state.pendingUpgrades>0&&!this.state.dead?[...this.state.upgradeChoices]:[],weapons:this.state.weapons.map(w=>({...w,mods:[...w.mods]})),weaponOffers:{...this.state.weaponOffers},enemyCount:this.swarm.enemies.length};}
+  snapshot():RunSnapshot{return {...this.state,upgradeLevels:{...this.state.upgradeLevels},upgradeRarity:{...this.state.upgradeRarity},upgradeChoices:this.state.pendingUpgrades>0&&!this.state.dead?[...this.state.upgradeChoices]:[],weapons:this.state.weapons.map(w=>({...w,mods:[...w.mods]})),weaponOffers:{...this.state.weaponOffers},tools:{...this.state.tools},toolsUsed:{...this.state.toolsUsed},banished:[...this.state.banished],enemyCount:this.swarm.enemies.length};}
   /** Current stat sheet (base + character + Tomes). PickupRange drives the magnet radius, HealthRegen the passive healing. */
   liveStats(){return playerStats(balance.character,{damage:this.state.damageBonus,haste:this.state.attackSpeedBonus,projectiles:this.state.projectileBonus});}
-  reset(){const start=this.state.weapons[0]?.id??this.state.weapon;this.state={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{},weapon:start,damage:weaponDamage(start),attackInterval:weaponCooldown(start),weapons:[{id:start,level:1,mods:[]}],weaponOffers:{}};this.swordClock=0;this.dangerState=initialDanger();this.director=undefined;this.evaded=0;this.regenCarry=0;this.attackClock=0;this.hurtClock=0;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
+  reset(){const start=this.state.weapons[0]?.id??this.state.weapon,l=this.loadout;this.state={...initialRun,tools:{refresh:l.refresh,skip:l.skip,banish:l.banish},toolsUsed:{refresh:0,skip:0,banish:0},banished:[...(l.disabled??[])] as Upgrade[],weaponSlots:l.weaponSlots,tomeSlots:l.tomeSlots,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{},weapon:start,damage:weaponDamage(start),attackInterval:weaponCooldown(start),weapons:[{id:start,level:1,mods:[]}],weaponOffers:{}};this.swordClock=0;this.dangerState=initialDanger();this.director=undefined;this.evaded=0;this.regenCarry=0;this.attackClock=0;this.hurtClock=0;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
+  private loadout:Loadout={weaponSlots:4,tomeSlots:4,refresh:0,skip:0,banish:0};
+  /** Shop effects for the next run (PlayerInventory.InitSkipRefreshBanish, InventoryUtility.GetNumAvailableWeapon/TomeSlots; see Profile.runLoadout). */
+  configure(loadout:Loadout){this.loadout=loadout;if(this.state.elapsed===0){const keep=this.state.weapons;this.reset();this.state.weapons=keep;}}
+  /** Pay for and spend one tool charge (LevelupScreen.Skip / Banish / refresh: needs a charge and enough gold, V). */
+  private spend(tool:Tool):boolean{
+    if(this.state.pendingUpgrades<=0||this.state.dead||this.state.tools[tool]<1)return false;
+    const price=toolPrice(this.state.toolsUsed[tool]);if(this.state.gold<price)return false;
+    this.state.gold-=price;this.state.tools[tool]--;this.state.toolsUsed[tool]++;return true;
+  }
+  private closeOne(){this.state.pendingUpgrades--;if(this.state.pendingUpgrades>0)this.rollOffers();else{this.state.upgradeRarity={};this.state.weaponOffers={};this.state.upgradeChoices=[];}}
+  /** Refresh: new offers for the same level-up. */
+  refresh():boolean{if(!this.spend('refresh'))return false;this.rollOffers();return true;}
+  /** Skip: close this level-up without taking anything (LevelupScreen.Skip -> CloseLevelupScreen, V). */
+  skip():boolean{if(!this.spend('skip'))return false;this.closeOne();return true;}
+  /** Banish: remove an offered upgrade for the rest of the run, then close the level-up (LevelupScreen.Banish -> CloseLevelupScreen, V). */
+  banish(id:Upgrade):boolean{if(!this.state.upgradeChoices.includes(id)||!this.spend('banish'))return false;this.state.banished.push(id);this.closeOne();return true;}
   setWeapon(weapon:Weapon):boolean{
     if(this.state.elapsed!==0||(weapon!=='bolt'&&weapon!=='sword'))return false;
     this.state.weapon=weapon;this.state.weapons=[{id:weapon,level:1,mods:[]}];this.state.damage=weaponDamage(weapon);this.state.attackInterval=weaponCooldown(weapon);return true;
@@ -94,14 +116,14 @@ export class Run {
     if(weapon){
       const slot=this.state.weapons.find(w=>w.id===weapon);
       if(slot){if(slot.level>=maxWeaponLevel)return false;slot.mods.push(...(this.state.weaponOffers[weapon]??[]));slot.level++;}
-      else{if(this.state.weapons.length>=maxWeapons)return false;this.state.weapons.push({id:weapon,level:1,mods:[]});}
+      else{if(this.state.weapons.length>=this.state.weaponSlots)return false;this.state.weapons.push({id:weapon,level:1,mods:[]});}
     }else{
       const multiplier=upgradeMultiplier[this.state.upgradeRarity[upgrade]??'Common'];
       const next=nextUpgrade(upgrade as TomeUpgrade,this.state,multiplier);if(!next)return false;
       Object.assign(this.state,next);this.state.upgradeLevels[upgrade as TomeUpgrade]++;
     }
     this.refreshWeaponNumbers();
-    this.state.pendingUpgrades--;if(this.state.pendingUpgrades>0)this.rollOffers();else{this.state.upgradeRarity={};this.state.weaponOffers={};this.state.upgradeChoices=[];}return true;
+    this.closeOne();return true;
   }
   private kill(enemy:Enemy){
     const index=this.swarm.enemies.indexOf(enemy);if(index<0)return;

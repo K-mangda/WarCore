@@ -16,7 +16,7 @@ import './levelup-preview.css';
  * Nothing here is a second simulation; the event log lists what was chosen and the resulting stats.
  */
 const origin=new Vector3();
-const makeRun=(weapon:Weapon)=>{const run=new Run(()=>0,()=>false,Math.random);run.setWeapon(weapon);return run;};
+const makeRun=(weapon:Weapon)=>{const run=new Run(()=>0,()=>false,Math.random);run.configure({weaponSlots:4,tomeSlots:4,refresh:3,skip:3,banish:3});run.setWeapon(weapon);return run;};
 function App(){
   const run=useRef<Run>(makeRun('bolt'));
   const [snap,setSnap]=useState(run.current.snapshot()),[log,setLog]=useState<string[]>([]),[weapon,setWeapon]=useState<Weapon>('bolt');
@@ -47,7 +47,7 @@ function App(){
       {!new URLSearchParams(location.search).has('embedded')&&<a href="./lab.html">Back to Lab</a>}
     </div>
     <ol className="levelup-log" aria-label="Event log">{log.length?log.map((line,index)=><li key={index}>{line}</li>):<li>Press "Give level-up" to open the real selection screen.</li>}</ol>
-    {snap.pendingUpgrades>0?<UpgradeMenu run={snap} choose={choose} hover={()=>undefined}/>:<p className="levelup-idle">No level-up pending. The screen opens when XP reaches {need}.</p>}
+    {snap.pendingUpgrades>0?<UpgradeMenu run={snap} choose={choose} tool={(t,id)=>{const r=run.current;if(t==='refresh')r.refresh();else if(t==='skip')r.skip();else if(id)r.banish(id);setSnap(r.snapshot());}} hover={()=>undefined}/>:<p className="levelup-idle">No level-up pending. The screen opens when XP reaches {need}.</p>}
   </main>;
 }
 createRoot(document.getElementById('root')!).render(<StrictMode><App/></StrictMode>);

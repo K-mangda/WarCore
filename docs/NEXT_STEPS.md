@@ -17,6 +17,15 @@ Single list of what is done, what is ready to do now, and what waits for data. D
 | Weapon level-up cards | data complete; effects of `DamageMultiplier Flat` unknown | blocked, see below |
 
 
+### Phase 2 (shop effects) done 2026-11-14 (Thai time)
+- Refresh / Skip / Banish on the level-up screen. Charges = shop level (PlayerInventory.InitSkipRefreshBanish 0x4E0380, V; the +1 bonus from an unread stat is not modelled, P).
+  Price per use (LevelupScreen.GetShopToolPrice 0x54EE20, V): first use free, then round(5k + 15(used-1)) gold with k from an unresolved runtime call taken as 1 (P).
+  Skip and Banish close the level-up (LevelupScreen.Skip/Banish -> CloseLevelupScreen, V). Banish: click BANISH, then a card; it never comes back this run.
+- Weapon and Tome slots = 2 + shop level (InventoryUtility.GetNumAvailableWeapon/TomeSlots, V). The slot rows on the level-up screen follow.
+- Silver banked at death = silver x tier multiplier (1/1.1/1.2, V) x (1 + 2.5% per Silver shop level; I).
+- Toggler: when bought, owned weapons/Tomes in Unlocks get TURN OFF/ON; off entries start each run banished.
+- Not done: Boombox (music player), rank tier icons. Tests: tools/check_combat.mjs "Shop tool checks". The Lab level-up page gives 3 charges of each tool.
+
 ### Phase 1 progress (2026-11-14, Thai time)
 - Done: map selection after CONFIRM (src/ui/MapSelect.tsx; real <Map>IconBig icons, maps ordered by MapData.unlockOrder, Tier 1-3 with approximated colours (P), LAB button moved here). Character cards use the four-corner brackets; locked characters are black silhouettes.
 - Not done: real menu background from level1 (still the web test arena).

@@ -18,7 +18,7 @@ export const shopItems:ShopItem[]=[
 ];
 export const shopPrice=(item:ShopItem,level:number)=>level===0?item.price:Math.round(item.price*Math.pow(item.exponentialMultiplier,level))+level*item.linearIncrease;
 export interface CharacterProgress {xp:number;runs:number;}
-export interface Profile {silver:number;shop:Partial<Record<ShopItemId,number>>;unlocked:string[];characters:Record<string,CharacterProgress>;}
+export interface Profile {silver:number;shop:Partial<Record<ShopItemId,number>>;unlocked:string[];characters:Record<string,CharacterProgress>;disabled?:string[];}
 const key='warcore.profile.v1';
 const fresh=():Profile=>({silver:0,shop:{},unlocked:[],characters:{}});
 let cache:Profile|undefined;const listeners=new Set<()=>void>();
@@ -44,3 +44,15 @@ export function unlock(id:string,cost:number):boolean{const p=getProfile();if(p.
  */
 export function recordRun(character:string,runXp:number){const p=getProfile(),c=p.characters?.[character]??{xp:0,runs:0};save({...p,characters:{...p.characters,[character]:{xp:c.xp+Math.round(runXp),runs:c.runs+1}}});}
 export function characterRank(xp:number,xpForLevel:(level:number)=>number){let level=1,total=0;while(level<240){const need=xpForLevel(level);if(xp<total+need)break;total+=need;level++;}return {rank:level,progress:(xp-total)/xpForLevel(level)};}
+/**
+ * Shop effects for a run. Charges: PlayerInventory.InitSkipRefreshBanish (RVA 0x4E0380, V) = min(level, maxLevel) of Refresh/Skip/Banish
+ * (+1 each from an unread achievement-style stat; not modelled, P). Slots: InventoryUtility.GetNumAvailableWeapon/TomeSlots (V) = 2 + level.
+ */
+export function runLoadout(){const l=(id:ShopItemId)=>Math.min(shopLevel(id),shopItems.find(i=>i.id===id)!.maxLevel);const off=(getProfile().disabled??[]).map(id=>({'t:Damage':'damage','t:Cooldown':'haste','t:Quantity':'projectiles','w:FireStaff':'weapon:bolt','w:Sword':'weapon:sword'} as Record<string,string>)[id]).filter(Boolean);
+  return {disabled:off,weaponSlots:2+l('Weapons'),tomeSlots:2+l('Tomes'),refresh:l('Refresh'),skip:l('Skip'),banish:l('Banish')};}
+/** Silver kept at the end of a run: tier multiplier (RunConfig.GetSilverMultiplier; 1x/1.1x/1.2x shown on the map screen, V) x shop Silver bonus
+ * (+2.5% per level from ShopItemData.value 2.5; how the value is applied is inferred, I). */
+export const silverMultiplier=(tier:number)=>[1,1.1,1.2][tier]??1;
+export const bankedSilver=(silver:number,tier:number)=>Math.floor(silver*silverMultiplier(tier)*(1+.025*shopLevel('SilverMultiplier')));
+/** Toggler (shop item): switch an unlocked weapon/Tome/item off so it never appears in level-up offers. */
+export function toggleDisabled(id:string){const p=getProfile(),d=p.disabled??[];save({...p,disabled:d.includes(id)?d.filter(x=>x!==id):[...d,id]});}

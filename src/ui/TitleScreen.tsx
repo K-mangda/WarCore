@@ -2,7 +2,7 @@ import {useState,useSyncExternalStore,type CSSProperties} from 'react';
 /** Item tile colour by item rarity (MyColorUtility item colours; mapping Common green, Rare blue, Epic magenta, Legendary yellow read from the real Unlocks window, I). */
 const itemTile:Record<string,string>={Common:'#4dff97',Rare:'#0ca7fa',Epic:'#FF00F4',Legendary:'#FFE300'};
 import {nativeCharacters,nativeItems,nativeTomes,nativeWeapons} from '../data/NativeData';
-import {buyShopItem,getProfile,shopItems,shopLevel,shopPrice,subscribeProfile,unlock} from '../core/Profile';
+import {toggleDisabled,buyShopItem,getProfile,shopItems,shopLevel,shopPrice,subscribeProfile,unlock} from '../core/Profile';
 import {assetUrl} from '../core/assetUrl';
 import {gameIcons} from '../data/Icons';
 type IconKind=keyof typeof gameIcons;
@@ -62,10 +62,10 @@ function Unlocks({close}:{close:()=>void}){
   const current=entries.find(e=>e.id===selected)??entries[0];
   return <div className="title-window" role="dialog" aria-label="Unlocks"><header><h2>UNLOCKS</h2><button className="title-close" onClick={close} aria-label="Close">✕</button></header>
     <div className="title-tabs">{(['Characters','Weapons','Tomes','Items','Hats'] as Tab[]).map(t=><button key={t} aria-pressed={t===tab} onClick={()=>{setTab(t);setSelected('');}}>{t.toUpperCase()}</button>)}</div>
-    <div className="title-grid">{entries.map(e=><button key={e.id} className={`tile ${state(e)}`} style={{'--tile':itemTile[e.rarity??'']??'#a3aea9'} as CSSProperties} aria-pressed={current?.id===e.id} onClick={()=>setSelected(e.id)} title={e.name}>
+    <div className="title-grid">{entries.map(e=><button key={e.id} className={`tile ${state(e)}${profile.disabled?.includes(e.id)?' disabled-entry':''}`} style={{'--tile':itemTile[e.rarity??'']??'#a3aea9'} as CSSProperties} aria-pressed={current?.id===e.id} onClick={()=>setSelected(e.id)} title={e.name}>
       {iconFor(kind,e.name)?<img className="tile-icon" src={iconFor(kind,e.name)} alt=""/>:<span>{e.name.slice(0,10)}</span>}{state(e)==='buyable'&&<span className="tile-price"><img src={assetUrl('ui/hud/silver.png')} alt=""/>{e.price}</span>}{playable.has(e.id.slice(2))&&<i>PLAYABLE</i>}
     </button>)}</div>
-    {current&&<footer>{iconFor(kind,current.name)&&<img className="footer-icon" src={iconFor(kind,current.name)} alt=""/>}<strong>{current.name}</strong><p>{current.note||' '}</p>{!owned(current)&&<button onClick={()=>unlock(current.id,current.price)} disabled={profile.silver<current.price}>BUY {current.price}</button>}{!playable.has(current.id.slice(2))&&<small>Not in the web game yet.</small>}</footer>}
+    {current&&<footer>{iconFor(kind,current.name)&&<img className="footer-icon" src={iconFor(kind,current.name)} alt=""/>}<strong>{current.name}</strong><p>{current.note||' '}</p>{!owned(current)&&<button onClick={()=>unlock(current.id,current.price)} disabled={profile.silver<current.price}>BUY {current.price}</button>}{(profile.shop.Toggler??0)>0&&owned(current)&&!current.id.startsWith('c:')&&<button className="toggle" onClick={()=>toggleDisabled(current.id)}>{profile.disabled?.includes(current.id)?'TURN ON':'TURN OFF'}</button>}{!playable.has(current.id.slice(2))&&<small>Not in the web game yet.</small>}</footer>}
   </div>;
 }
 function Shop({close}:{close:()=>void}){
@@ -76,6 +76,6 @@ function Shop({close}:{close:()=>void}){
     <div className="title-grid shop">{shopItems.map(i=>{const l=profile.shop[i.id]??0;return <button key={i.id} className="tile owned" aria-pressed={i.id===selected} onClick={()=>setSelected(i.id)}>
       <img className="tile-icon" src={iconFor('shop',i.id)} alt=""/><span className="pips">{Array.from({length:i.maxLevel},(_,k)=><b key={k} className={k<l?'on':''}/>)}</span></button>;})}</div>
     <footer><img className="footer-icon" src={iconFor('shop',item.id)} alt=""/><strong>{item.name}</strong><p>{item.description}</p>{maxed?<em>MAX</em>:<button onClick={()=>buyShopItem(item.id)} disabled={profile.silver<cost}>BUY {cost}</button>}
-      <small>{item.id==='Refresh'||item.id==='Skip'||item.id==='Banish'?'Charges are not used by the level-up screen yet.':'Effect not built yet.'}</small></footer>
+      <small>{item.id==='Boombox'?'Music player not built yet.':'Active in the web game.'}</small></footer>
   </div>;
 }

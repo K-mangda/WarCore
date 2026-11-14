@@ -15,7 +15,7 @@ import { makeSandbox } from '../environment/forest/Sandbox';
 import { EMovementState } from '../types/movement';
 import { physics } from '../player/Physics';
 import { Fox } from '../player/Fox';
-import {Run,type RunSnapshot,type Upgrade,type Weapon} from '../combat/Run';
+import {Run,type Loadout,type RunSnapshot,type Tool,type Upgrade,type Weapon} from '../combat/Run';
 import {CombatView} from '../combat/View';
 import {heightAt} from '../environment/forest/Sandbox';
 export interface Telemetry extends RunSnapshot { speed:number; fps:number; state:string; jumps:number; locked:boolean;renderWidth:number;renderHeight:number; }
@@ -59,6 +59,10 @@ export class Engine {
   resumeFromLab=()=>{this.inLab=false;};
   pauseForSettings=()=>{this.pause();this.emit();};
   reset=(top=false)=>{this.recorder.reset(this.run.snapshot(),buildVersion);this.audio.stopProgression();this.audio.stopGameplay();this.motor.reset(top);this.run.reset();this.fox.clearHit();this.combatView.clearPlayerHits();this.emit();};
+  /** Shop effects for the next run (Profile.runLoadout). Applied before the run starts. */
+  configureRun=(loadout:Loadout)=>{if(this.active)return;this.run.configure(loadout);this.emit();};
+  /** Level-up tools: refresh, skip, banish (with the card to banish). */
+  useTool=(tool:Tool,id?:Upgrade)=>{const ok=tool==='refresh'?this.run.refresh():tool==='skip'?this.run.skip():id?this.run.banish(id):false;if(!ok)return;this.audio.play('click');this.audio.setLevelModal(this.run.blocked);if(!this.run.blocked)this.lock(false);this.emit();};
   setWeapon=(weapon:Weapon)=>{if(this.active)return;this.run.setWeapon(weapon);this.emit();};
   restart=()=>{this.reset();this.lock();};
   chooseUpgrade=(upgrade:Upgrade)=>{if(!this.run.choose(upgrade))return;this.audio.unlock();this.audio.setLevelModal(this.run.blocked);this.audio.play('click');if(!this.run.blocked)this.lock(false);this.emit();};

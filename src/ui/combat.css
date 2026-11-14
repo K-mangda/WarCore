@@ -106,3 +106,7 @@
 .top-hud-right strong{font-size:44px;font-weight:normal}
 .top-hud .top-hud-skull{width:28px;height:28px}
 header{top:88px}.audio-toggle{top:88px}.lab-toggle{top:140px}.settings-toggle{top:140px}
+/* Level-up tools (Refresh/Skip/Banish): charges left and the gold price of the next use. */
+.upgrade-actions button small{opacity:.8;margin-left:4px}.tool-price{display:block;font-size:13px}.tool-price img{width:13px;height:13px;vertical-align:-2px;image-rendering:pixelated}
+.upgrade-actions button.banishing{border-image-source:url('/game-ui/button-red.png')}
+.upgrade-cards.banish-mode button{filter:sepia(.6) hue-rotate(-30deg) saturate(2)}
