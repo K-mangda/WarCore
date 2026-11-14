@@ -8,7 +8,7 @@ type Data=Record<string,any>;
 export class ProgressionView {
  private data?:Data;private textures=new Map<string,T.Texture>();private coins=new Map<Gem,T.Sprite>();
  private effects:{sprite:T.Sprite;age:number;life:number;velocity:T.Vector3;kind:string}[]=[];
- private cameraRotation=new T.Quaternion();
+ private cameraRotation=new T.Quaternion();private coinGlowTexture?:T.DataTexture;
  private level=1;private previous=0;private disposed=false;
  constructor(private scene:T.Scene){
   // Sprite onBeforeRender supplies the actual rendering camera in game and Lab.
@@ -17,12 +17,24 @@ export class ProgressionView {
   const r=await fetch(assetUrl('progression/manifest.json'));if(!r.ok)throw Error('Progression manifest unavailable');this.data=await r.json();
   await Promise.all(['gold','silver','burst','text'].map(async kind=>{const texture=await new T.TextureLoader().loadAsync(assetUrl(`progression/${kind}.png`));if(this.disposed){texture.dispose();return;}texture.colorSpace=T.SRGBColorSpace;texture.magFilter=T.NearestFilter;texture.minFilter=T.NearestFilter;texture.generateMipmaps=false;this.textures.set(kind,texture);}));
  }
+ private coinGlow(){
+  if(!this.coinGlowTexture){
+   const size=32,pixels=new Uint8Array(size*size*4);
+   for(let y=0;y<size;y++)for(let x=0;x<size;x++){const i=(y*size+x)*4,d=Math.hypot((x+.5)/size-.5,(y+.5)/size-.5)*2;pixels[i]=pixels[i+1]=pixels[i+2]=255;pixels[i+3]=Math.round(Math.pow(Math.max(0,1-d),2)*255);}
+   this.coinGlowTexture=new T.DataTexture(pixels,size,size,T.RGBAFormat);this.coinGlowTexture.needsUpdate=true;this.coinGlowTexture.magFilter=T.LinearFilter;this.coinGlowTexture.minFilter=T.LinearFilter;
+  }
+  return this.coinGlowTexture;
+ }
  private sprite(kind:string){
   const texture=this.textures.get(kind)?.clone();if(!texture)return;
   texture.needsUpdate=true;const sprite=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));sprite.onBeforeRender=(_renderer,_scene,camera)=>{this.cameraRotation.copy(camera.quaternion);};
   if(kind==='text'||kind==='burst'){
    const glow=new T.Sprite(new T.SpriteMaterial({map:texture,color:0xffdf8a,opacity:kind==='text'?.2:.4,transparent:true,depthWrite:false,toneMapped:false,blending:T.AdditiveBlending}));
    glow.scale.setScalar(kind==='text'?1.045:1.35);glow.renderOrder=1;sprite.renderOrder=2;sprite.add(glow);
+  }
+  if(kind==='gold'||kind==='silver'){
+   const glow=new T.Sprite(new T.SpriteMaterial({map:this.coinGlow(),color:kind==='gold'?0xffd75b:0xdbeaff,opacity:.28,transparent:true,depthWrite:false,toneMapped:false,blending:T.AdditiveBlending}));
+   glow.scale.setScalar(1.7);glow.renderOrder=1;sprite.renderOrder=2;sprite.add(glow);
   }
   this.scene.add(sprite);return sprite;
  }
@@ -46,7 +58,7 @@ export class ProgressionView {
    sprite.material.opacity=1;
   }
   if(kind==='burst'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(1,1,.88,T.SRGBColorSpace);sprite.material.opacity=c.a*getEffectsPreferences().particlesOpacity;sprite.material.toneMapped=false;}
-  for(const child of sprite.children)if(child instanceof T.Sprite){child.material.opacity=(kind==='text'?.2:.4)*sprite.material.opacity;child.material.rotation=sprite.material.rotation;}
+  if(kind==='text'||kind==='burst')for(const child of sprite.children)if(child instanceof T.Sprite){child.material.opacity=(kind==='text'?.2:.4)*sprite.material.opacity;child.material.rotation=sprite.material.rotation;}
   if(kind==='gold'||kind==='silver'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a;sprite.material.toneMapped=false;}
  }
  burst(player:T.Vector3){
@@ -91,5 +103,5 @@ export class ProgressionView {
    this.frame(e.sprite,e.kind,e.age);}
  }
  clear(){this.level=1;this.previous=0;for(const sprite of this.coins.values())this.remove(sprite);this.coins.clear();for(const e of this.effects)this.remove(e.sprite);this.effects=[];}
- dispose(){this.disposed=true;this.clear();for(const texture of this.textures.values())texture.dispose();this.textures.clear();}
+ dispose(){this.disposed=true;this.clear();this.coinGlowTexture?.dispose();for(const texture of this.textures.values())texture.dispose();this.textures.clear();}
 }

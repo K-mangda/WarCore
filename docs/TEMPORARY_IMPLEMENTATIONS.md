@@ -498,3 +498,8 @@ User requested brighter golden level-up fragments. Lightened the burst tint and 
 ## Smaller EXP glow - 2026-11-14
 
 User requested a smaller glow around EXP. Reduced the soft halo plane from 2.4 to 1.7 times the crystal base size; crystal size, brightness, tier colors and glow opacity remain unchanged. Shared game/Lab web visual tuning; no phase change.
+
+
+## Compact coin glow - 2026-11-14
+
+User requested glow on coins too. Added soft compact additive halos for Gold and Silver, tinted to each coin, matching the EXP halo size ratio. Gold attraction shrink also scales its glow; existing coin sizes, motion and collection remain unchanged. Shared game/Lab web visual tuning; supersedes the earlier no-coin-glow request. No native shader claim or phase change.
