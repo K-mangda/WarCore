@@ -6,6 +6,6 @@ export const xpColors={
   high:[1,0.34433960914611816,0.36265894770622253] as const,
   echo:[0.9154030084609985,0.5235849022865295,1] as const,
 };
-// User tuning: compact crystal; glow removed on 2026-11-14.
+// User tuning: compact crystal with brighter color and a soft glow.
 // These are web visual settings, not recovered native shader parameters.
-export const xpVisual={scale:.32,brightness:1};
+export const xpVisual={scale:.32,brightness:1.35};
