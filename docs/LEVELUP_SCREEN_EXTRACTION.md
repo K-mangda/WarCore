@@ -35,3 +35,7 @@ Read by `tools/read_levelup_cards.py` (UnityPy, level2 first `UpgradeButton`).
 - **Card background colour (V, `MyColorUtility.GetRarityColorBackground(ERarity)` RVA 0x3c3180, Capstone):** the rarity colour (`newColor`/`commonColor`..`legendaryColor`) lerped 80 % towards black with alpha 1, i.e. RGB x 0.2. Web: `color-mix(in srgb, var(--rarity) 20%, #000)`.
 - Still unread: spectrum bar, open animation, how iconBorder/iconBackground are tinted (`UpgradeButton.SetUpgrade` RVA 0x55F890 body).
 - **Tint wiring (V, `UpgradeButton.SetUpgrade` RVA 0x55f890, Capstone):** `t_rarity` (+0x78), `iconBorder` (+0x80) and `iconBackground` (+0x88) all receive `MyColorUtility.RarityToColor(rarity)`; `background` (+0x90) receives `GetRarityColorBackground`. The gradient texture of `iconBackground` is not extracted (web: light-to-dark gradient of the rarity colour, I). Frames use the `BorderWindow` sprite (border 20 of 64); web draws it 16 px (windows) / 11 px (cards) at 1080p.
+
+## Addendum: gravity fix (user report: crystals fell fast and piled at the bottom)
+
+Unity applies the `gravity` modifier in world units, and in a screen-space-overlay canvas 1 world unit = 1 pixel, so it must not be multiplied by the emitter scale (200). The web did that, giving ~2500 px/s^2. Now ~13 px/s^2 (x height scale), so crystals drift outward and fall slowly (I). Not modelled yet: the `Sparkle` / `EndSparkle` sub-emitters (small spinning flashes when a crystal ends, the "light scatter" the user describes) and any emission origin other than the screen centre.

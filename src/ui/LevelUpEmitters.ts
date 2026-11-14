@@ -67,7 +67,9 @@ export class BackdropSimulation {
     for(let i=this.particles.length-1;i>=0;i--){
       const p=this.particles[i],c=emitters[p.emitter],sim=dt*c.simulationSpeed;
       p.age+=sim;if(p.age>=p.life){this.particles.splice(i,1);continue;}
-      p.vy+=c.gravity*9.81*c.unitPx*this.heightScale*sim;
+      // Gravity acts in world units, and in a screen-space-overlay canvas 1 world unit is 1 pixel, so it is NOT multiplied by the emitter scale (I).
+      // (An earlier build multiplied by unitPx and the crystals fell off the screen far too fast.)
+      p.vy+=c.gravity*9.81*this.heightScale*sim;
       p.x+=p.vx*sim;p.y+=p.vy*sim;p.rotation+=p.spin*sim;
     }
   }
