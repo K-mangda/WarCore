@@ -89,7 +89,7 @@ export class ProgressionView {
   const present=new Set(run.gems);
   for(const [gem,sprite] of this.coins)if(!present.has(gem)){this.remove(sprite);this.coins.delete(gem);}
   for(const gem of run.gems){const kind=gem.kind;if(!kind||kind==='xp')continue;let sprite=this.coins.get(gem);if(!sprite){sprite=this.sprite(kind);if(!sprite)continue;this.coins.set(gem,sprite);sprite.userData.born=snapshot.elapsed;}sprite.position.copy(gem.position);this.frame(sprite,kind,snapshot.elapsed-sprite.userData.born);
-   if(kind==='gold'&&gem.following){
+   if((kind==='gold'||kind==='silver')&&gem.following){
     const distance=gem.position.distanceTo(player.clone().add(new T.Vector3(0,.35,0)));
     sprite.userData.pullDistance??=Math.max(.6,distance);
     const progress=T.MathUtils.clamp((distance-.5)/(sprite.userData.pullDistance-.5),0,1);

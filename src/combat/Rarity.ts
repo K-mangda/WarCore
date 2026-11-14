@@ -1,17 +1,19 @@
 // Native rarity roll (Rarity.CalculateRarityWeights RVA 0x42D1B0, GetUpgradeOfferRarity RVA 0x42D2C0, GetItemRarity RVA 0x42D3F0).
 // Base weights: upgrade/encounter offers come from a static float[5] in global-metadata (offset 0x748388); item rarities are immediates.
 // Luck factor: log helper at 0x300CD0 is a natural log (ln2 split-constant polynomial), so c = 1.5 * ln(1 + luck).
-export type UpgradeRarity='Common'|'Uncommon'|'Rare'|'Epic'|'Legendary';
+/** ERarity: New(0) is shown on offers for something not owned yet; it is never rolled (multiplier 1, colour white). */
+export type RolledRarity='Common'|'Uncommon'|'Rare'|'Epic'|'Legendary';
+export type UpgradeRarity=RolledRarity|'New';
 export type ItemRarity='Common'|'Rare'|'Epic'|'Legendary';
-export const upgradeRarities:UpgradeRarity[]=['Common','Uncommon','Rare','Epic','Legendary'];
+export const upgradeRarities:RolledRarity[]=['Common','Uncommon','Rare','Epic','Legendary'];
 export const upgradeWeights=[1.5,.3,.15,.04,.009] as const;
 export const itemRarities:ItemRarity[]=['Common','Rare','Epic','Legendary'];
 export const itemWeights=[70,15,6,1.5] as const;
 /** Rarity.GetMultiplier: numeric effect multiplier for a rolled upgrade rarity. */
-export const upgradeMultiplier:Record<UpgradeRarity,number>={Common:1,Uncommon:1.2,Rare:1.4,Epic:1.6,Legendary:2};
+export const upgradeMultiplier:Record<UpgradeRarity,number>={New:1,Common:1,Uncommon:1.2,Rare:1.4,Epic:1.6,Legendary:2};
 
 /** Card/label colours from MyColorUtility..cctor (docs/rea/ui_colors.json): newColor, commonColor, uncommonColor, rareColor, epicColor, legendaryColor. */
-export const rarityColors:Record<UpgradeRarity,string>={Common:'#4dff97',Uncommon:'#0ca7fa',Rare:'#FF00F4',Epic:'#ff2929',Legendary:'#FFE300'};
+export const rarityColors:Record<UpgradeRarity,string>={New:'#FFFFFF',Common:'#4dff97',Uncommon:'#0ca7fa',Rare:'#FF00F4',Epic:'#ff2929',Legendary:'#FFE300'};
 /** Applies Luck: w[i] *= 1.5^(-c*(n-1-i)), c=1.5*ln(1+luck), then normalises (index 0 = commonest). */
 export function rarityWeights(base:readonly number[],luck:number):number[]{
   const c=1.5*Math.log(1+luck),n=base.length;
@@ -24,5 +26,5 @@ function roll<T>(items:readonly T[],weights:number[],random:number):T{
   for(let i=0;i<items.length;i++){acc+=weights[i];if(random<=acc)return items[i];}
   return items[items.length-1];
 }
-export const rollUpgradeRarity=(luck:number,random=Math.random()):UpgradeRarity=>roll(upgradeRarities,rarityWeights(upgradeWeights,luck),random);
+export const rollUpgradeRarity=(luck:number,random=Math.random()):RolledRarity=>roll(upgradeRarities,rarityWeights(upgradeWeights,luck),random);
 export const rollItemRarity=(luck:number,random=Math.random()):ItemRarity=>roll(itemRarities,rarityWeights(itemWeights,luck),random);

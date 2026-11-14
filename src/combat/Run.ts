@@ -31,7 +31,9 @@ export class Run {
   private rollOffers(){
     const luck=playerStats(balance.character,{damage:this.state.damageBonus,haste:this.state.attackSpeedBonus,projectiles:this.state.projectileBonus}).Luck;
     this.state.upgradeRarity={};
-    for(const id of availableUpgrades(this.state))this.state.upgradeRarity[id]=rollUpgradeRarity(luck,this.random());
+    for(const id of availableUpgrades(this.state)){const rolled=rollUpgradeRarity(luck,this.random());
+      // An offer for something not owned yet is shown as rarity New (white card); the roll is still consumed so the random stream is unchanged. (I)
+      this.state.upgradeRarity[id]=this.state.upgradeLevels[id]===0?'New':rolled;}
   }
   private newDirector(){return new Director({stage:balance.stage,maxEnemies:balance.maxEnemies,random:this.random});}
   get blocked(){return this.state.dead||this.state.pendingUpgrades>0;}
@@ -63,12 +65,12 @@ export class Run {
   }
   spawnPickup(kind:PickupKind,position:Vector3,value=1,echo=false){
     if(!Number.isFinite(value)||value<=0)return;
-    const spot=position.clone();if(kind==='gold'){spot.x+=.45;spot.z+=.15;}spot.y=this.ground(spot.x,spot.z)+(kind==='gold'?balance.goldSpawnHeight:balance.xpHoverHeight);
+    const spot=position.clone();if(kind==='gold'){spot.x+=.45;spot.z+=.15;}else if(kind==='silver'){spot.x-=.45;spot.z+=.15;}spot.y=this.ground(spot.x,spot.z)+(kind==='xp'?balance.xpHoverHeight:balance.goldSpawnHeight);
     const radius=.5+7.5*Math.min(1,this.state.elapsed/900);
     const existing=kind==='xp'?this.gems.find(p=>(p.kind??'xp')==='xp'&&!p.following&&!!p.echo===echo&&(p.value??1)<500&&p.position.distanceToSquared(spot)<=radius*radius):undefined;
     if(existing){existing.value=(existing.value??1)+value;if(existing.value>=500){this.gems.splice(this.gems.indexOf(existing),1);this.gems.push(existing);}return;}
     if(kind!=='xp'&&this.gems.filter(p=>p.kind===kind).length>=100){const first=this.gems.find(p=>p.kind===kind)!;first.value=(first.value??1)+value;return;}
-    this.gems.push({kind,position:spot,value,echo,speed:0,collectDelay:kind==='gold'?.18:0});
+    this.gems.push({kind,position:spot,value,echo,speed:0,collectDelay:kind==='xp'?0:.18});
     const xp=this.gems.filter(p=>(p.kind??'xp')==='xp');
     if(xp.length>300){const oldest=xp[0],next=xp[1];next.value=(next.value??1)+(oldest.value??1);this.gems.splice(this.gems.indexOf(oldest),1);}
   }

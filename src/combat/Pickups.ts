@@ -6,12 +6,13 @@ export interface Pickup {position:Vector3;kind?:PickupKind;value?:number;echo?:b
 export function movePickup(p:Pickup,target:Vector3,dt:number,activationRadius:number){
  if((p.collectDelay??0)>0){p.collectDelay=Math.max(0,p.collectDelay!-dt);return false;}
  const distance=p.position.distanceTo(target);
- if(p.kind==='gold'||distance<activationRadius)p.following=true;
+ const coin=p.kind==='gold'||p.kind==='silver';
+ if(coin||distance<activationRadius)p.following=true;
  const range=(p.speed??0)>50?1:.5;
- if(p.kind!=='gold'&&distance<=range)return true;
+ if(!coin&&distance<=range)return true;
  if(!p.following)return false;
  p.speed=(p.speed??0)+((distance>10?150:50)-(p.speed??0))*Math.min(1,(distance>10?4:2.5)*dt);
- if(p.kind==='gold'){
+ if(coin){
   p.pullStart??=p.position.clone();p.pullLength??=Math.max(3,distance);
   p.pullProgress=Math.min(1,(p.pullProgress??0)+p.speed*dt*.6/p.pullLength);
   const t=p.pullProgress,u=1-t,control=p.pullStart.clone().lerp(target,.5).add(new Vector3(0,3,0));

@@ -244,7 +244,7 @@ const dodger=new Run(()=>0,()=>false,()=>0);dodger.swarm.enemies.push({...enemy(
 const {roundHalfEven2,tomeLevelValue,nextUpgrade:nextTome,upgradeDescription}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Upgrades.js')));
 const {rarityColors,upgradeMultiplier,rollUpgradeRarity,rarityWeights,upgradeWeights}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Rarity.js')));
 assert.equal(roundHalfEven2(.096),.1);assert.equal(roundHalfEven2(.105),.1,'Ties round to even');assert.equal(roundHalfEven2(.115),.12);assert.equal(tomeLevelValue('damage',2),.16);assert.equal(tomeLevelValue('haste',1.2),.09);assert.equal(tomeLevelValue('projectiles',1.4),1.4);
-assert.equal(upgradeDescription('damage',2),'+16% damage');assert.deepEqual(Object.keys(rarityColors),['Common','Uncommon','Rare','Epic','Legendary']);assert.equal(rarityColors.Legendary,'#FFE300');assert.equal(upgradeMultiplier.Epic,1.6);
+assert.equal(upgradeDescription('damage',2),'+16% damage');assert.deepEqual(Object.keys(rarityColors),['New','Common','Uncommon','Rare','Epic','Legendary']);assert.equal(rarityColors.Legendary,'#FFE300');assert.equal(upgradeMultiplier.Epic,1.6);
 const base={damage:10,attackInterval:.5,projectiles:1};let acc=base;for(let i=0;i<3;i++)acc=nextTome('damage',acc);assert.ok(Math.abs(acc.damage-12.4)<1e-9,'Three Common Damage levels: 10 x (1 + 3 x 0.08) = 12.4, not compounding');assert.equal(acc.damageBonus,.24);
 const legendary=nextTome('damage',base,upgradeMultiplier.Legendary);assert.equal(legendary.damage,11.6,'Legendary x2 -> +0.16 -> 11.6');
 let hs=base;for(let i=0;i<2;i++)hs=nextTome('haste',hs);assert.ok(Math.abs(hs.attackInterval-.5/1.16)<1e-3,'Cooldown: interval / (1 + n x Round(0.075, 2) = 0.08)');
@@ -252,9 +252,11 @@ const q=nextTome('projectiles',base,1.2);assert.equal(q.projectiles,2);assert.eq
 const w=rarityWeights(upgradeWeights,0);assert.ok(Math.abs(w[0]-.7504)<1e-3&&Math.abs(w.reduce((a,b)=>a+b)-1)<1e-9);assert.equal(rollUpgradeRarity(0,0),'Common');assert.equal(rollUpgradeRarity(0,.9999),'Legendary');
 const offers=new Run(()=>0,()=>false,()=>.5);offers.gems.push({position:player.clone(),value:7});offers.step(.02,player);
 const snapOffers=offers.snapshot();assert.equal(snapOffers.pendingUpgrades,1);assert.deepEqual(Object.keys(snapOffers.upgradeRarity).sort(),['damage','haste','projectiles'],'Every offered card has a rolled rarity');
-assert.ok(Object.values(snapOffers.upgradeRarity).every(r=>['Common','Uncommon','Rare','Epic','Legendary'].includes(r)));
+assert.ok(Object.values(snapOffers.upgradeRarity).every(r=>['New','Common','Uncommon','Rare','Epic','Legendary'].includes(r)));
 const forced=new Run(()=>0,()=>false,()=>.9999);forced.gems.push({position:player.clone(),value:7});forced.step(.02,player);
-assert.equal(forced.snapshot().upgradeRarity.damage,'Legendary','High roll gives Legendary');forced.choose('damage');assert.equal(forced.snapshot().damage,11.6,'Legendary Damage Tome applies x2 value');assert.deepEqual(forced.snapshot().upgradeRarity,{},'No stale rarity after the last choice');
+assert.equal(forced.snapshot().upgradeRarity.damage,'New','An unowned offer is shown as rarity New');forced.choose('damage');assert.equal(forced.snapshot().damage,10.8,'New rarity applies x1 value');
+forced.gems.push({position:player.clone(),value:30});forced.step(.02,player);
+assert.equal(forced.snapshot().upgradeRarity.damage,'Legendary','High roll gives Legendary on an owned Tome');forced.choose('damage');assert.equal(forced.snapshot().damage,12.4,'Legendary Damage Tome level applies x2 value');
 console.log('Director checks passed: credit formulas, Forest 1 timeline, pool growth, cap, scaling, stand-in visuals and real contact damage.');
 const banditDeath=new Run(()=>0,()=>true,()=>.5);banditDeath.setWeapon('sword');banditDeath.swarm.enemies.push({...enemy(6001,0,-2),kind:'bandit',health:1});banditDeath.step(.02,player);
 assert.equal(banditDeath.remains[0].kind,'bandit','A dead Bandit retains its species for dissolution');assert.equal(banditDeath.snapshot().kills,1);banditDeath.reset();assert.equal(banditDeath.remains.length,0);

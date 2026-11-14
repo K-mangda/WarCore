@@ -24,6 +24,11 @@ Done from it: stat folding (verified), Tome linear accumulation, rarity per card
 - Stat hooks: HP regen (stat/60 per second, tick cadence inferred) and Pickup range (magnet radius = stat, Fox 5+4 = 9) now drive gameplay. Luck already drives rarity. Still display-only: Move speed (Fox +0.04) and Jump height/extra jumps, which belong to the movement parity work in `Motor.ts`.
 - Slot caps 4 / 4, weapon max level 40, Tome max level 99 are known; the web has one weapon and three Tomes so they do not bind yet.
 
+## UI parity round 2026-11-14 (from user screenshots of the real game)
+
+- Done: thin spectrum bar, Weapons / Tomes / Items rows with 4 slots (Items uncapped), compact stat list without group titles/scroll, brackets only on hover (no stuck focus frame), rarity label top-left, `New` rarity (white, x1, grey card) for unowned offers (inferred from the screenshot), silver now collected like gold (auto arc, delay, same pull).
+- Still different: ornate window frame sprites (`BorderWindow` is approximated), icon frame/gradient behind card icons, Banish/Skip/Refresh charge badges (3/2/3 in the real game; sources unknown), weapon offers (needs weapon cards and a second weapon slot in Run), the in-world XP gem seen near the bottom centre while paused (not yet reproduced).
+
 ## Blocked on extraction (no data yet)
 
 - Models, rigs and animations for every enemy other than Skeleton/Bandit, the other 20 characters and the other 28 weapons (stand-in visuals are used meanwhile).
