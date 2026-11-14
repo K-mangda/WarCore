@@ -5,6 +5,7 @@ import {Swarm,type Enemy,type EnemyKind} from '../enemies/Swarm';
 import {balance} from './Balance';
 import {xpForLevel} from './XpCurve';
 import {Director} from './Director';
+import {weaponCooldown,weaponDamage} from './Weapons';
 import {enemySpec} from '../enemies/Roster';
 import {initialDanger,stepDanger,type DangerState} from '../player/Danger';
 import {availableUpgrades,emptyUpgradeLevels,nextUpgrade,type Upgrade,type UpgradeLevels} from './Upgrades';
@@ -27,10 +28,10 @@ export class Run {
   private newDirector(){return new Director({stage:balance.stage,maxEnemies:balance.maxEnemies,random:this.random});}
   get blocked(){return this.state.dead||this.state.pendingUpgrades>0;}
   snapshot():RunSnapshot{return {...this.state,upgradeLevels:{...this.state.upgradeLevels},upgradeChoices:this.state.pendingUpgrades>0&&!this.state.dead?availableUpgrades(this.state):[],enemyCount:this.swarm.enemies.length};}
-  reset(){this.state={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],weapon:this.state.weapon,attackInterval:this.state.weapon==='sword'?balance.attackInterval:balance.staffEndCooldown};this.dangerState=initialDanger();this.director=undefined;this.attackClock=0;this.hurtClock=0;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
+  reset(){this.state={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],weapon:this.state.weapon,damage:weaponDamage(this.state.weapon),attackInterval:weaponCooldown(this.state.weapon)};this.dangerState=initialDanger();this.director=undefined;this.attackClock=0;this.hurtClock=0;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
   setWeapon(weapon:Weapon):boolean{
     if(this.state.elapsed!==0||(weapon!=='bolt'&&weapon!=='sword'))return false;
-    this.state.weapon=weapon;this.state.attackInterval=weapon==='sword'?balance.attackInterval:balance.staffEndCooldown;return true;
+    this.state.weapon=weapon;this.state.damage=weaponDamage(weapon);this.state.attackInterval=weaponCooldown(weapon);return true;
   }
   choose(upgrade:Upgrade):boolean{
     if(this.state.pendingUpgrades<=0||this.state.dead)return false;
@@ -118,7 +119,7 @@ export class Run {
         this.swordPending=this.state.projectiles;this.swordBurstClock=0;
         // Native interval formula; web haste maps to an effective AttackSpeed
         // multiplier while the full native player-stat system remains incomplete.
-        const attackSpeed=balance.attackInterval/this.state.attackInterval;
+        const attackSpeed=weaponCooldown('sword')/this.state.attackInterval;
         this.swordBurstInterval=burstInterval(balance.swordBurstTime,balance.swordMinBurstInterval,this.swordPending,attackSpeed,dt);
       }
       this.swordBurstClock=Math.max(0,this.swordBurstClock-dt);

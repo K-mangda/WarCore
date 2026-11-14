@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 import ts from 'typescript';
 import * as T from 'three';
 const folder=resolve('.local-evidence/media-check');
-for(const name of ['audio/AudioPreferences','core/EffectsPreferences','dev/WeaponSoundPreview','dev/SharedHitPreview','dev/WeaponModels','combat/Run','combat/XpCurve','combat/Director','enemies/Roster','data/NativeData','player/Danger','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','combat/StaffView','core/assetUrl','enemies/Swarm','player/Physics']){
+for(const name of ['audio/AudioPreferences','core/EffectsPreferences','dev/WeaponSoundPreview','dev/SharedHitPreview','dev/WeaponModels','combat/Run','combat/XpCurve','combat/Weapons','combat/Director','enemies/Roster','data/NativeData','player/Danger','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','combat/StaffView','core/assetUrl','enemies/Swarm','player/Physics']){
  const file=resolve(folder,name+'.js');mkdirSync(dirname(file),{recursive:true});
  writeFileSync(file,ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'"));
 }

@@ -30,9 +30,11 @@ Stats are the serialized `EnemyData` (hp, damage, xp). Per-minute scaling uses `
 
 Values come from `nativeTomes`: Damage `DamageMultiplier` Multiplication 0.08 (compounds per level, I), Cooldown `AttackSpeed` Addition 0.075 (attack-speed multiplier `1 + 0.075 n`, I), Quantity `Projectiles` Flat 1. Cap 8 projectiles and 0.15 s interval floor remain web safety limits. **Waiting for data:** `PlayerStatsNew.GetStat` combination order (Ghidra decompile pending), rarity roll wiring (`Rarity.ts` exists, unused by UI), the other 23 Tomes.
 
-## Weapons
+## Weapons - `src/combat/Weapons.ts`
 
-`nativeWeapons` holds all 30 weapons with `upgradePerLevel`; the web still has Sword/Firestaff with `balance.damage = 10` for both (native Sword 11). Applying per-weapon base stats and weapon level-ups is the next step.
+Base stats of the two playable weapons now come from serialized `WeaponData`: **FireStaff** (web id `bolt`) damage 10, end cooldown 0.5 s, burst 1.0 s / min interval 0.15 s (unchanged, was already native); **Sword** damage **11** (was 10) and end cooldown **0.75 s** (was the sandbox 0.85 s), burst 0.5 s / min interval 0.1 s. `setWeapon` and `reset` apply them; the Tome stat panel measures gains against the selected weapon. Targeting, projectile motion, hit shapes and sword/staff VFX remain web tuning.
+
+`nativeWeapons` also holds all 30 weapons with `upgradePerLevel` (e.g. Sword: +0.2 Size, DamageMultiplier Flat 2.0, +1 Projectile, +0.25 Knockback; FireStaff: +0.2 ProjectileSpeed, DamageMultiplier Flat 2.5, +1 Projectile, +0.16 Size). **Not applied yet:** the offer screen has no weapon-level cards, and the meaning of `DamageMultiplier` + `Flat` (likely +N damage per level) and the combination order depend on the undecoded `PlayerStatsNew.GetStat`. Next step once decoded: add weapon cards (3 offers drawn from weapons + Tomes, `GetRandomUpgrades`) with rarity rolls from `Rarity.ts`.
 
 ## Verification
 

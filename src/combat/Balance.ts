@@ -2,7 +2,7 @@
 export const balance={
   enemyDissolveDuration:.45,maxHealth:100,enemyHealth:20,enemySpeed:3.2,contactDamage:8,contactInterval:1,
   stage:'StageForest1',maxEnemies:120,spawnRadius:27,
-  damage:10,attackInterval:.85,attackRange:35,projectileSpeed:25,projectileLifetime:2,
+  damage:10,attackRange:35,projectileSpeed:25,projectileLifetime:2,
   // Provisional melee damage window/range. Native Sword uses a temporal quantity burst, not a fan.
   // User-requested smaller web slash; does not modify extracted particle data.
   swordVisualScale:.55,

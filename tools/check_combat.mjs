@@ -4,7 +4,7 @@ import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 import {Vector3} from 'three';
-for(const name of ['combat/Run','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm','combat/XpCurve','combat/Director','enemies/Roster','data/NativeData','player/Danger']){
+for(const name of ['combat/Run','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm','combat/XpCurve','combat/Weapons','combat/Director','enemies/Roster','data/NativeData','player/Danger']){
   const destination=resolve('.local-evidence/combat-check',name+'.js');mkdirSync(dirname(destination),{recursive:true});
   const code=ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'");writeFileSync(destination,code);
 }
@@ -56,18 +56,18 @@ assert.equal(sword.setWeapon('sword'),true);
 const enemy=(id,x,z)=>({id,position:new Vector3(x,0,z),velocity:new Vector3(),health:100,flash:0});
 const front=enemy(1001,0,-2),behind=enemy(1002,0,2),far=enemy(1003,0,-10);
 sword.swarm.enemies.push(front,behind,far);sword.step(.02,player);
-assert.equal(front.health,90,'Sword must hit its forward sector');assert.equal(behind.health,100,'Sword must not hit behind a single sector');assert.equal(far.health,100,'Sword range must be bounded');assert.equal(sword.bolts.length,0,'Sword must not fire bolts');assert.equal(sword.slashes.length,1);
+assert.equal(front.health,89,'Sword must hit its forward sector');assert.equal(behind.health,100,'Sword must not hit behind a single sector');assert.equal(far.health,100,'Sword range must be bounded');assert.equal(sword.bolts.length,0,'Sword must not fire bolts');assert.equal(sword.slashes.length,1);
 assert.equal(front.velocity.length(),5,'Firestaff knockback tuning leaves Sword unchanged');
 assert.equal(sword.setWeapon('bolt'),false,'Weapon changes are restricted to a fresh run');
-for(let i=0;i<5;i++)sword.step(.02,player);assert.equal(front.health,90,'A persistent swing must hit each enemy once');
+for(let i=0;i<5;i++)sword.step(.02,player);assert.equal(front.health,89,'A persistent swing must hit each enemy once');
 for(let i=0;i<7;i++)sword.gems.push({position:player.clone()});sword.step(.02,player);
 const slashLife=sword.slashes[0].life;sword.step(.1,player);assert.equal(sword.slashes[0].life,slashLife,'Upgrade pause must freeze slash age');
 sword.reset();assert.equal(sword.snapshot().weapon,'sword');assert.equal(sword.slashes.length,0);assert.equal(sword.snapshot().elapsed,0);assert.equal(sword.setWeapon('bolt'),true);
 const multi=new Run(()=>0,()=>true,random);multi.setWeapon('sword');for(let i=0;i<7;i++)multi.gems.push({position:player.clone()});multi.step(.02,player);multi.choose('projectiles');
 for(let i=0;i<44;i++)multi.step(.02,player);
-const shared=enemy(1004,0,-2);multi.swarm.enemies.push(shared);multi.step(.02,player);assert.equal(multi.slashes.length,1,'Quantity must not create a simultaneous side fan');assert.equal(shared.health,90);
+const shared=enemy(1004,0,-2);multi.swarm.enemies.push(shared);multi.step(.02,player);assert.equal(multi.slashes.length,1,'Quantity must not create a simultaneous side fan');assert.equal(shared.health,89);
 for(let i=0;i<14;i++)multi.step(.02,player);
-assert.equal(shared.health,80,'A later slash in the burst must be able to hit the same enemy again');
+assert.equal(shared.health,78,'A later slash in the burst must be able to hit the same enemy again');
 assert.ok(multi.slashes.every(slash=>slash.direction.equals(new Vector3(0,0,-1))),'Extra quantity must preserve forward direction');
 console.log('Sword checks passed: sector, range, single-hit window, bolt isolation, selection, pause, reset and sequential repeat hits.');
 
@@ -220,6 +220,12 @@ const piggy=enemySpec({...goblin,enemy:'MinibossPig',creditCost:40,hp:250},0);as
 const real=new Run(()=>0,()=>false,drandom);real.step(.02,player);assert.ok(real.swarm.enemies.length>=4&&real.swarm.enemies.every(e=>e.spec?.enemy==='Goblin'&&e.health===7),'Run spawns director enemies with real stats');
 const hurtRun=new Run(()=>0,()=>false,drandom);hurtRun.swarm.enemies.push({...enemy(7001,0,0),spec:enemySpec(goblin,0)});hurtRun.step(.02,player);
 assert.equal(hurtRun.snapshot().health,85,'Contact damage uses the enemy native damage (Goblin 15)');
+const {weaponData,weaponDamage,weaponCooldown}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Weapons.js')));
+assert.equal(weaponDamage('bolt'),10);assert.equal(weaponCooldown('bolt'),.5);assert.equal(weaponDamage('sword'),11);assert.equal(weaponCooldown('sword'),.75);
+assert.equal(weaponData('sword').burstTime,.5);assert.equal(weaponData('bolt').burstTime,1);assert.equal(weaponData('bolt').minBurstInterval,.15);
+const swordBase=new Run(()=>0,()=>false,()=>.5);assert.equal(swordBase.snapshot().damage,10);assert.equal(swordBase.setWeapon('sword'),true);
+assert.equal(swordBase.snapshot().damage,11,'Sword uses native base damage');assert.equal(swordBase.snapshot().attackInterval,.75,'Sword uses native end cooldown');
+swordBase.reset();assert.equal(swordBase.snapshot().damage,11,'Reset keeps the selected weapon base stats');assert.equal(swordBase.snapshot().attackInterval,.75);
 console.log('Director checks passed: credit formulas, Forest 1 timeline, pool growth, cap, scaling, stand-in visuals and real contact damage.');
 const banditDeath=new Run(()=>0,()=>true,()=>.5);banditDeath.setWeapon('sword');banditDeath.swarm.enemies.push({...enemy(6001,0,-2),kind:'bandit',health:1});banditDeath.step(.02,player);
 assert.equal(banditDeath.remains[0].kind,'bandit','A dead Bandit retains its species for dissolution');assert.equal(banditDeath.snapshot().kills,1);banditDeath.reset();assert.equal(banditDeath.remains.length,0);
