@@ -92,3 +92,8 @@
 /* Bar thickness follows the real game's ~16 px at 1080p (measured from the user's screenshots), scaled with the viewport height. */
 .experience,.upgrade-spectrum{height:max(16px,1.55vh)}
 .experience>span{top:max(18px,1.8vh)}
+/* Correction from a real-game HUD screenshot: the EXP bar fills cyan (~#00b4ff) on a black track, about 25 px high at 1080p; the rainbow only appears full-width on the level-up screen. */
+.experience{height:max(20px,2.3vh);border:0;background:#000}
+.experience b{background:#00b4ff!important;background-size:auto!important}
+.upgrade-spectrum{height:max(20px,2.3vh);border:0}
+.experience>span{top:max(24px,2.6vh)}
