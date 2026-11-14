@@ -20,7 +20,7 @@ Single list of what is done, what is ready to do now, and what waits for data. D
 
 Done from it: stat folding (verified), Tome linear accumulation, rarity per card with Luck, rarity colours, Round(value x multiplier, 2). Still open:
 
-- Weapon cards and their effect: the seed values of a fresh weapon's StatComponents are unread, so `DamageMultiplier Flat 2.0` per level is unclear. A short follow-up decompile of `WeaponInventory` entry creation (RVA 0x432260) would settle it.
+- Weapon cards and their effect: the seed values of a fresh weapon's StatComponents are unread, so `DamageMultiplier Flat 2.0` per level is unclear. Decompile job 4 (RVA 0x432260, the WeaponBase constructor) is done: seeds come from `WeaponData.baseStats` applied through the helper at RVA 0x431840, which is the next function to read (see REA_PROGRESSION_FINDINGS addendum).
 - Stat hooks: HP regen (stat/60 per second, tick cadence inferred) and Pickup range (magnet radius = stat, Fox 5+4 = 9) now drive gameplay. Luck already drives rarity. Still display-only: Move speed (Fox +0.04) and Jump height/extra jumps, which belong to the movement parity work in `Motor.ts`.
 - Slot caps 4 / 4, weapon max level 40, Tome max level 99 are known; the web has one weapon and three Tomes so they do not bind yet.
 

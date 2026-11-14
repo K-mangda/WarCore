@@ -73,3 +73,16 @@ The weighted pick inside `GetRandomUpgrades` (owned-vs-new rule); Banish/Skip/Re
 - **Rarity colours (`MyColorUtility..cctor`, parsed with `ColorUtility.TryParseHtmlString`, V, `docs/rea/ui_colors.json`):** New `#FFFFFF`, **Common `#4dff97`**, **Uncommon `#0ca7fa`**, **Rare `#FF00F4`**, **Epic `#ff2929`**, **Legendary `#FFE300`**. Other UI colours in the same file: tier 1/2/3 `#3EBE71 / #177FFF / #FF8100`, haste `#00B4FF`, magnet `#FF7F19`, shield `#00FF41`, time freeze `#00FF97`, health `#FF1800`, rage `#FF42F0`, stonks `#FFF814`, aegis `#ffcd29`, fire `#fc9d3d`, poison `#d063ff`, echo `#42ff91`, difficulty easy/medium/hard `#CCFFD0 / #009DFF / #FF1027`.
 - **Max levels (`InventoryUtility.GetWeaponMaxLevel/GetTomeMaxLevel`, V):** weapon **40** (+ an inventory stat bonus), Tome **99** (+ bonus).
 - **Weapon level-up path:** `WeaponInventory.AddUpgrade` (RVA 0x4325E0) creates/increments a per-weapon entry (level at `+0x20`) and folds the offered modifiers into the weapon's StatComponents; weapon damage = `baseDamage x GetFinalValue(player DamageMultiplier components, weapon components)` where the product of `(additive sum) x (flat sum) x (mult product)` uses the same accumulators. The seed values of a fresh weapon's components are still unread, so `DamageMultiplier Flat 2.0` per weapon level is still **U** (it adds 2.0 to the flat sum of the weapon's own components).
+
+## Addendum: decompile job 4 (weapon object construction, RVA 0x432260)
+
+Ghidra, 45 minutes. The function is the **WeaponBase constructor** (called from `WeaponInventory.AddWeapon`):
+
+- stores the `WeaponData` (+0x18) and creates the weapon's stat container (+0x28) and a second helper object (+0x30);
+- sets level field (+0x20) = 1 and a flag (+0x40) = 1;
+- for `eWeapon` 0x18 and 0x1a it builds a dedicated attack-behaviour object (constants 0.05 / 0.005 and a cooldown from a static float divided by 60) - these are special weapons with their own logic;
+- then loops over **`WeaponData.baseStats` (Dictionary<EStat,float>, +0x68)** and applies every entry through one helper (`FUN_180431840`, RVA 0x431840) with value 0.
+
+So a fresh weapon's seed stats are not in a separate table: they are the `baseStats` dictionary of its `WeaponData` plus the plain fields (`damage`, `critChance`, `projectiles`, ...) already extracted. Dictionaries are not Unity-serialized, so `baseStats` is filled in code (not yet located), which is why the asset readout lacks it.
+
+Still open: what `DamageMultiplier Flat 2.0` per weapon level means exactly (the helper at 0x431840 is the next function to read), and where `baseStats` is populated. Weapon cards in the web stay on hold; the web only owns one weapon at a time anyway.
