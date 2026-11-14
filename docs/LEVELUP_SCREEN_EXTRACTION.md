@@ -23,3 +23,14 @@ Rays width curve (random between): max 1.0 -> 0.227, min 0.23 -> 1.0; length cur
 `src/ui/LevelUpEmitters.ts` (data + pure simulation) and `src/ui/LevelUpBackdrop.tsx` (canvas, additive blending) replace the earlier CSS decoration in the upgrade screen; the particle opacity setting still scales it. Textures: `public/levelup/atlas01.png`, `atlas02.png` with `provenance.json` (hashes). Checks: `tools/check_levelup_emitters.mjs`.
 
 Inferred (I): the cone axis points along the UI Z axis (both the transform and the shape rotation are -90 deg about X for the fountain), so only the lateral part of the velocity is visible and gravity pulls the crystals down; the crystal frame animation is approximated as a looping 8-frame spin at 12 fps; Sparkle/EndSparkle sub-emitters are not drawn. **Not extracted yet:** the top spectrum bar, card frame/rarity tints, `audioLevel` clip, open animation timings.
+
+## Addendum 2026-11-14: card frame data (V unless marked)
+
+Read by `tools/read_levelup_cards.py` (UnityPy, level2 first `UpgradeButton`).
+
+- `background` Image: sprite `MyButtonOverlay` (54x54 white rounded square, **Sliced**, pixelsPerUnitMultiplier 1.4), scene colour (0.152, 0, 0.217) - a placeholder that code overwrites.
+- `backgroundOverlay` Image: same sprite, black alpha 0.549 (dimming overlay; use unknown, I: hover/disabled).
+- `iconBorder` RawImage (1, 0, 0.712) and `iconBackground` RawImage (1, 0.495, 0.947): placeholder colours, overwritten at runtime (rarity tint, I).
+- `hoverScale` 1.03 (scale on hover).
+- **Card background colour (V, `MyColorUtility.GetRarityColorBackground(ERarity)` RVA 0x3c3180, Capstone):** the rarity colour (`newColor`/`commonColor`..`legendaryColor`) lerped 80 % towards black with alpha 1, i.e. RGB x 0.2. Web: `color-mix(in srgb, var(--rarity) 20%, #000)`.
+- Still unread: spectrum bar, open animation, how iconBorder/iconBackground are tinted (`UpgradeButton.SetUpgrade` RVA 0x55F890 body).

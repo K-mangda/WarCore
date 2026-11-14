@@ -30,3 +30,5 @@
 .upgrade-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 
 .upgrade-cards button[class*=rarity-]{border-color:var(--rarity)}.upgrade-cards .upgrade-rarity{position:absolute;right:76px;top:8px;font-size:.85em;color:var(--rarity);text-shadow:1px 1px #000}.upgrade-cards button.rarity-legendary{box-shadow:0 0 14px var(--rarity)}
+/* MyColorUtility.GetRarityColorBackground (RVA 0x3c3180, disassembled): background = rarity colour lerped 80% towards black, alpha 1. */
+.upgrade-cards button[class*=rarity-]{background:color-mix(in srgb,var(--rarity) 20%,#000)}
