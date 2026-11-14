@@ -31,3 +31,8 @@ button{border-width:14px 14px 18px;padding:0 10px}
 /* Corner brackets breathe in and out like the real selection marker. */
 @keyframes bracket-pulse{0%,100%{transform:scale(1)}50%{transform:scale(.94)}}
 button::after,.title-grid .tile::before,.map-row::before,.character-card::before,.upgrade-cards button::before{animation:bracket-pulse .8s ease-in-out infinite}
+/* More room between the brackets and the button/tile. */
+button:not(.tile):not(.map-row):not(.character-card):not(.title-close)::after{inset:-22px}
+.title-grid .tile::before,.upgrade-cards button::before{left:-18px;top:-18px;right:-18px;bottom:-18px}
+.map-row::before,.character-card::before{inset:-16px}
+@keyframes bracket-pulse{0%,100%{transform:scale(1)}50%{transform:scale(.96)}}
