@@ -44,6 +44,18 @@ for (f,pid),r in objs.items():
     if r['type']=='Texture2D':
         target=r.get('file') or r.get('duplicateOf')
         index[f'{f}#{pid}']={'name':r.get('name'),'size':r.get('size'),'png':target,'kind':classify(dump/target) if target else 'not-exported','usedBy':[]}
+# Sampling settings straight from the game: the port must draw each texture the same way (Point = pixel-sharp, no smoothing).
+FILTER={0:'point',1:'bilinear',2:'trilinear'};WRAP={0:'repeat',1:'clamp',2:'mirror',3:'mirror-once'}
+FORMAT={1:'Alpha8 (lossless)',3:'RGB24 (lossless)',4:'RGBA32 (lossless)',5:'ARGB32 (lossless)',10:'DXT1/BC1 (block-compressed in the game itself)',12:'DXT5/BC3 (block-compressed in the game itself)',25:'BC7 (block-compressed in the game itself)'}
+for f in files:
+    try:env=UnityPy.load(str(data/f))
+    except Exception:continue
+    for o in env.objects:
+        if o.type.name!='Texture2D' or f'{f}#{o.path_id}' not in index:continue
+        try:
+            r=o.read();ts=r.m_TextureSettings;fm=int(r.m_TextureFormat)
+            index[f'{f}#{o.path_id}'].update(filter=FILTER.get(ts.m_FilterMode,ts.m_FilterMode),wrap=WRAP.get(ts.m_WrapU,ts.m_WrapU),mipmaps=getattr(r,'m_MipCount',1)>1,format=FORMAT.get(fm,str(fm)))
+        except Exception:pass
 def use(key,entry):
     k=f'{key[0]}#{key[1]}'
     if k in index and len(index[k]['usedBy'])<40:index[k]['usedBy'].append(entry)
@@ -85,4 +97,6 @@ kinds={}
 for v in index.values():kinds[v['kind']]=kinds.get(v['kind'],0)+1
 (dump/'asset-index.json').write_text(json.dumps(index,indent=0),encoding='utf-8')
 unused=sum(1 for v in index.values() if not v['usedBy'])
-print(len(index),'textures',kinds,'| no recorded user:',unused)
+filters={}
+for v in index.values():filters[v.get('filter','?')]=filters.get(v.get('filter','?'),0)+1
+print(len(index),'textures',kinds,'| filter',filters,'| no recorded user:',unused)

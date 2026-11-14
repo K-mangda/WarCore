@@ -45,3 +45,12 @@ Nothing depends on chat memory: the pipeline is a script, state is on disk, and 
 
 `tools/build_asset_index.py` (runs inside `extract_all`, or alone in seconds; it only reads the dump) writes `unity-dump/asset-index.json`: for each of the 1,172 textures its `kind` (760 picture, 346 greyscale, 55 mask-white, ...) and every user found in the data - materials with colour properties, UI Image/RawImage objects with their `m_Color`, sprites with rect/border/pivot, and script fields that reference it (for example `WeaponData.icon`). Only 1 texture has no recorded user.
 Example: `icon_coin` is greyscale and is drawn by `CoinIcon` with colour (1, 0.995, 0.061) - that is the gold coin. Colours set purely by code at runtime (rarity tints) are not in the index; those come from the decompile.
+
+## Image quality: the textures are not degraded, the game is pixel art
+
+Measured on all 1,168 textures: 994 use **Point** filtering (pixel-sharp, no smoothing), 503 are 32 px or smaller, 396 are 33-128 px. 676 are stored lossless (RGBA32); 299 are DXT1/DXT5 block-compressed inside the game itself, so their small artefacts are in the original too. The export is the exact pixels the game uploads to the GPU.
+Small images look "low quality" only when a browser or three.js scales them with smoothing. Rules for the port:
+- three.js: `texture.magFilter = texture.minFilter = THREE.NearestFilter`, `generateMipmaps = false` for every texture whose `filter` in `asset-index.json` is `point`; keep `colorSpace = SRGBColorSpace` for pictures.
+- HTML/CSS: `image-rendering: pixelated` and integer scale factors (x2, x3, x4) where possible.
+- Do not upscale or "enhance" (AI upscalers, smoothing) - it changes the look away from the original.
+- Use `asset-index.json` fields `filter`, `wrap`, `mipmaps`, `format` instead of guessing.
