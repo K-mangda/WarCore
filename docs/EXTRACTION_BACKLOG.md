@@ -180,3 +180,12 @@ Fox now has Idle / Run / Jump / Falling / Grind clip rooms using the existing we
 ## Full level-up / Inventory / Stats reference — 2026-11-14
 
 New user screenshot and top-bar animation observation recorded in [UPGRADE_SCREEN_REFERENCE.md](UPGRADE_SCREEN_REFERENCE.md). Three-column UI now uses supported web values only. Missing work includes full stat schema/formulas, pool/rarity/eligibility, weapon/item upgrades, Banish/Skip/Refresh charges and behavior, inventory capacities, spectrum material/timing, selection backdrop VFX and HUD clocks/counters. Existing icons/models/audio are not missing solely because the gameplay system is not connected. No screenshot stats/charges become defaults.
+
+
+## Player spawn, damage and death presentation - 2026-11-14
+
+User requests the player spawn sequence, damage feedback and death sequence. Inspect the existing exports first; do not re-extract assets already available or modify the web repo.
+
+Already available/connected: Fox rig and Idle/Run/Jump/Falling/Grind clips in public/megabonk; PlayerDamage and DeathImpact WAVs in public/game-audio (serialized source gains .17/.50); sandbox health/damage/death events and a reference-based post-death summary screen. These assets or sandbox event bindings do not establish the original visual sequences or sound event timing. The current web immediately blocks the run on death and shows the summary; it does not implement a verified player death animation/transition.
+
+Request evidence separately for (1) initial spawn/respawn, (2) nonlethal player damage, and (3) lethal damage/death through the summary transition: exact triggers, state/animation clips, rig bindings and playback rates, VFX prefab/material/texture/shader dependencies, screen overlays and camera effects, audio event bindings and timing, duration, movement/input/simulation and pause behavior, and any character-specific differences. Distinguish absent effects from missing evidence; include provenance, call sites and a playable export/manifest for assets not already present. Do not infer behavior from names alone.
