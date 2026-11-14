@@ -14,6 +14,7 @@ import {AudioSettings} from './ui/AudioSettings';
 import {getAudioPreferences,subscribeAudioPreferences} from './audio/AudioPreferences';
 import {getGamePreferences,hpColors,subscribeGamePreferences} from './core/GamePreferences';
 import {Crosshair,PerformanceHud} from './ui/GameHud';
+import {TopHud} from './ui/TopHud';
 import './ui/style.css';
 import './ui/combat.css';
 function App(){
@@ -28,7 +29,6 @@ function App(){
     try{instance=new Engine(host.current,setData);engine.current=instance;void instance.ready.then(()=>{if(mounted)setReady(true);}).catch(e=>{if(mounted)setError(String(e));});}catch(e){setError(String(e));}
     return()=>{mounted=false;instance?.dispose();if(engine.current===instance)engine.current=null;};
   },[attempt]);
-  const time=`${Math.floor(data.elapsed/60).toString().padStart(2,'0')}:${Math.floor(data.elapsed%60).toString().padStart(2,'0')}`;
   return <main>
     <div ref={host} className="world"/><div className="vignette"/>{data.elapsed>0&&!data.dead&&data.danger>.001&&<div className="low-health-vignette" style={{opacity:Math.min(1,data.danger),maskImage:`url(${assetUrl('ui/hud/low-hp-vignette.png')})`,WebkitMaskImage:`url(${assetUrl('ui/hud/low-hp-vignette.png')})`}} aria-hidden="true"/>}
     <header><img className="game-logo" src={assetUrl('branding/warcore-logo-transparent.png')} alt="WARCORE"/><span className="build">WEB PLAYTEST · PROVISIONAL BALANCE</span></header>
@@ -36,9 +36,9 @@ function App(){
     <button className="settings-toggle" onClick={()=>{engine.current?.audio.unlock();engine.current?.audio.play('click');engine.current?.pauseForSettings();setSettingsOpen(true);}}>SETTINGS</button>
     <button className="lab-toggle" onClick={()=>{engine.current?.pauseForLab();setLabOpen(true);}}>LAB</button>
     <section className="run-hud" aria-label="Run status">
-      <div className="run-time">{time}<small>{data.kills} KILLS · {data.enemyCount} ENEMIES · {data.gold} GOLD · {data.silver} SILVER</small></div>
+      <TopHud run={data}/>
       <div className="health"><span>HP {data.health} / {data.maxHealth}</span><div role="progressbar" aria-label="Health" aria-valuenow={data.health} aria-valuemax={data.maxHealth} aria-valuemin={0}><b style={{width:`${data.health/data.maxHealth*100}%`,backgroundColor:hpColors[gamePreferences.hpColor]}}/></div></div>
-      <div className="experience"><span>LVL {data.level} <small>{data.xp} / {data.xpNeeded} XP</small></span><div role="progressbar" aria-label="Experience" aria-valuenow={data.xp} aria-valuemax={data.xpNeeded} aria-valuemin={0}><b style={{width:`${Math.min(1,data.xp/data.xpNeeded)*100}%`,backgroundSize:`${100/Math.max(.001,Math.min(1,data.xp/data.xpNeeded))}% 100%`}}/></div></div>
+      <div className="experience"><span className="sr-only">Level {data.level}, {data.xp} of {data.xpNeeded} XP</span><div role="progressbar" aria-label="Experience" aria-valuenow={data.xp} aria-valuemax={data.xpNeeded} aria-valuemin={0}><b style={{width:`${Math.min(1,data.xp/data.xpNeeded)*100}%`,backgroundSize:`${100/Math.max(.001,Math.min(1,data.xp/data.xpNeeded))}% 100%`}}/></div></div>
     </section>
     <Crosshair settings={gamePreferences}/>
     <aside className="weapon-status"><img src={assetUrl(data.weapon==='sword'?'weapons/knight-sword/vfx/textures/Sword_Icon.png':'game-ui/Firestaff.png')} alt=""/><span>{data.weapon==='sword'?'SWORD · KNIGHT ASSETS':'FIRESTAFF'}</span><strong>{data.damage} DMG · {data.attackInterval.toFixed(2)}s · ×{data.projectiles}</strong><small>{data.weapon==='sword'?'Swings automatically in your facing direction':'Targets nearby enemies automatically'}</small><TomeLoadout run={data}/></aside>

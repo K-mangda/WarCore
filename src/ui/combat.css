@@ -97,3 +97,12 @@
 .experience b{background:#00b4ff!important;background-size:auto!important}
 .upgrade-spectrum{height:max(20px,2.3vh);border:0}
 .experience>span{top:max(24px,2.6vh)}
+
+/* Top HUD (real-game layout): EXP bar, then clock / silver / gold / kills on the left, stage countdown centred, chest price + level on the right. */
+.top-hud{position:absolute;left:0;right:0;top:max(20px,2.3vh);height:56px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 22px;font-size:26px;text-shadow:2px 2px #000;pointer-events:none}
+.top-hud svg,.top-hud img{width:26px;height:26px;margin-right:8px;vertical-align:-5px;image-rendering:pixelated}
+.top-hud-left{display:flex;gap:min(4.5vw,86px)}.top-hud-right{display:flex;justify-content:flex-end;align-items:center;gap:26px}
+.top-hud-stage{font-size:40px;text-align:center}.top-hud-stage.low{color:#ff3b30}
+.top-hud-right strong{font-size:44px;font-weight:normal}
+.top-hud .top-hud-skull{width:28px;height:28px}
+header{top:88px}.audio-toggle{top:88px}.lab-toggle{top:140px}.settings-toggle{top:140px}

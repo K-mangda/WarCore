@@ -11,6 +11,8 @@ import {nativeEnemies,nativeStages,type MapFlag,type NativeEnemy,type NativeStag
  */
 export interface SpawnRequest {enemy:NativeEnemy;source:'stage'|'swarm'|'miniboss';elite:boolean;}
 interface Card {enemy:NativeEnemy;elite:boolean;cost:number;weight:number;}
+/** Stage length in seconds used by the director and the HUD countdown (600 s = the 10 min boss mark; value inferred, P). */
+export const defaultStageDuration=600;
 export interface DirectorOptions {stage:string;difficulty?:number;enemyAmount?:number;eliteSpawnIncrease?:number;stageDuration?:number;maxEnemies:number;random?:()=>number;}
 const mapOf=(stage:string):MapFlag=>stage.startsWith('StageDesert')?'Desert':stage.startsWith('StageGraveyard')?'Graveyard':stage.startsWith('StageHell')?'Hell':'Forest';
 const byEnemy=new Map(nativeEnemies.map(e=>[e.enemy,e]));
@@ -36,7 +38,7 @@ export class Director {
   constructor(options:DirectorOptions){
     const stage=nativeStages.find(s=>s.name===options.stage);if(!stage)throw new Error(`Unknown stage ${options.stage}`);
     this.stage=stage;this.map=mapOf(stage.name);this.difficulty=options.difficulty??0;this.enemyAmount=options.enemyAmount??1;
-    this.stageDuration=options.stageDuration??600;this.eliteSpawnIncrease=options.eliteSpawnIncrease??1;this.maxEnemies=options.maxEnemies;this.random=options.random??Math.random;
+    this.stageDuration=options.stageDuration??defaultStageDuration;this.eliteSpawnIncrease=options.eliteSpawnIncrease??1;this.maxEnemies=options.maxEnemies;this.random=options.random??Math.random;
     // First summon cycle fires immediately: 4 initial + 2 earned credits = about the 6 opening enemies of the previous sandbox (P).
     this.summonClock=summonInterval(this.difficulty);
     this.pool=stage.startEnemies.map(name=>byEnemy.get(name)).filter((e):e is NativeEnemy=>!!e);
