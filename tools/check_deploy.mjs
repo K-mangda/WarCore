@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {existsSync,readFileSync,readdirSync} from 'node:fs';
 import {join} from 'node:path';
 const base=process.argv[2]??'/WarCore/';
-for(const entry of ['index.html','lab.html','data.html']){
+for(const entry of ['index.html','lab.html','data.html','levelup.html']){
  const html=readFileSync(join('dist',entry),'utf8');
  for(const [,url] of html.matchAll(/(?:src|href)="([^"]+)"/g)){
   if(url==='./'||url.startsWith('http'))continue;

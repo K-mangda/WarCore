@@ -42,6 +42,10 @@ Base stats of the two playable weapons now come from serialized `WeaponData`: **
 
 `data.html` (linked from the Lab header as **Native data**, built as a Vite entry) lists everything in `NativeData.ts` with search: enemies (53), stage timelines (9), weapons (30, with per-level modifiers), Tomes (26), items (87), characters (21) and maps (5). Each tab has a note saying what the web uses and what is still unverified, and the footer shows the provenance hashes. The row builders are pure (`src/dev/NativeDataTables.ts`) and covered by `tools/check_native_data.mjs`. The existing Lab rooms (weapon models, pickups, effects, character clips, enemy previews) are unchanged; enemies/characters without extracted models only appear in this data view.
 
+## Lab - "Level-up screen" page
+
+`levelup.html` (Lab header link **Level-up screen**) renders the real `UpgradeMenu` driven by the real `Run`: **Give level-up** feeds exactly the XP the native table needs, the selection screen opens with the real offers, choosing applies the real Tome effect and the event log prints the stat change (damage, interval, attacks). Weapon (Firestaff/Sword) can be switched and the run reset. Use it to check the look and the numbers by hand; it is not a separate simulation. The existing Lab room Effects -> Level up (LEVEL UP sign, burst, EXP pickup) is unchanged and was fixed after the XP curve change (it fed 5 XP, now 7).
+
 ## Verification
 
 `tsc --noEmit`, `vite build` and all `tools/check_*.mjs` scripts pass locally (new Director checks in `check_combat.mjs`). Not play-tested; balance versus the original needs side-by-side measurement (kills and enemy count at 3 min, level-up times).

@@ -1,0 +1,6 @@
+.levelup-lab{position:relative;min-height:100vh;background:#121b20;color:#f4ead2}
+.levelup-controls{position:fixed;left:0;right:0;top:0;z-index:60;display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:10px 16px;background:#29281f;border-bottom:2px solid #605747;font:16px Alagard,serif}
+.levelup-controls select,.levelup-controls button{font:inherit;color:#fff1d8;background:#3a3826;border:1px solid #b6a383;padding:5px 10px;cursor:pointer}
+.levelup-controls a{color:#ffd88a;margin-left:auto}
+.levelup-log{position:fixed;left:16px;bottom:12px;z-index:60;max-width:min(560px,60vw);margin:0;padding:8px 12px 8px 28px;background:#000a;border:1px solid #605747;font:13px/1.4 monospace;color:#d8ffd8;max-height:30vh;overflow:auto}
+.levelup-idle{padding:90px 24px;text-align:center;font:20px Alagard,serif}
