@@ -17,6 +17,11 @@ for p in parts:
     for rva,meth in re.findall(r'// RVA: 0x([0-9A-F]+) Offset: \w+ VA: \w+(?: Slot: \d+)?\n\t(?:public|private|protected|internal)[^\n]*? (\w+)\(',p):
         if re.match(r'(get_|set_|add_|remove_)',meth):continue
         rows[tier].append({'label':f'{tier}__{name}.{meth}_{rva}','rva':rva})
-plan=[x for k in [t[0] for t in tiers]+['game'] for x in rows[k]]
+# IL2CPP shares one body between many methods (same RVA): decompile each RVA once, keep the other names as aliases.
+plan=[];by_rva={}
+for k in [t[0] for t in tiers]+['game']:
+    for x in rows[k]:
+        if x['rva'] in by_rva:by_rva[x['rva']].setdefault('aliases',[]).append(x['label'])
+        else:by_rva[x['rva']]=x;plan.append(x)
 json.dump(plan,open(sys.argv[1],'w'))
-print({k:len(v) for k,v in rows.items()},'total',len(plan))
+print({k:len(v) for k,v in rows.items()},'methods',sum(len(v) for v in rows.values()),'unique functions',len(plan))
