@@ -98,7 +98,17 @@ function inspect(){
 }
 function halt(){ticket++;cancelAnimationFrame(animation);playbackCadence.reset();audible=false;soundPreview.stop();audio.stopProgression();audio.stopGameplay();}
 frame.addEventListener('input',()=>{halt();inspect();});rotate.addEventListener('input',()=>{halt();inspect();});
+const screenFrame=document.createElement('iframe');screenFrame.title='Level-up selection screen';screenFrame.style.cssText='display:none;width:100%;height:78vh;min-height:560px;border:1px solid #605747;background:#121b20';host.after(screenFrame);
+/** The selection screen is a React page (levelup.html) that drives the real Run/UpgradeMenu; shown here as its own room instead of a separate link. */
+function showScreenRoom(on:boolean){host.style.display=on?'none':'';screenFrame.style.display=on?'block':'none';if(on&&!screenFrame.src)screenFrame.src=assetUrl('levelup.html?embedded=1');}
 async function selectRoom(){
+ if(weapon.value==='levelup-screen'){
+  halt();loadTicket++;roomReady=false;showScreenRoom(true);renderer.clear();sharedHit.reset();soundPanel.style.display='none';soundPanel.replaceChildren();retry.hidden=true;
+  play.disabled=true;stop.disabled=true;frame.disabled=true;rotate.disabled=true;
+  readiness.textContent='Real selection screen driven by the real game Run: press "Give level-up" inside it, pick a card and read the log. Banish/Skip/Refresh stay disabled until their rules are known.';
+  document.getElementById('room-title')!.textContent='WARCORE LAB · LEVEL-UP SCREEN';document.getElementById('ready')!.textContent='Ready · Selection screen';return;
+ }
+ showScreenRoom(false);
  retry.hidden=true;readiness.textContent=roomReadiness(weapon.value);
  const request=++loadTicket;roomReady=false;play.disabled=true;stop.disabled=true;frame.disabled=true;rotate.disabled=true;sharedHit.reset();soundPanel.style.display='none';soundPanel.replaceChildren();
  const status=document.getElementById('ready')!;status.textContent='Loading room…';renderer.clear();
@@ -124,7 +134,7 @@ const categories={
  characters:characterRooms.map(([id,label])=>[id,label] as const),
  weapons:[['sword','Sword - Combat'],['bolt','Firestaff - Combat'],...weaponModelRooms],
  pickups:[['xp','EXP tiers'],['gold','Gold'],['silver','Silver']],
- effects:[['level','Level up']],
+ effects:[['level','Level up'],['levelup-screen','Level-up selection screen']],
  enemies:[['skeleton-walk','Skeleton - Walk'],['skeleton-hit','Skeleton - Hit'],['skeleton-death','Skeleton - Death'],['bandit-walk','Bandit - Walk'],['bandit-hit','Bandit - Hit'],['bandit-death','Bandit - Death']],
 } as const;
 type Category=keyof typeof categories;

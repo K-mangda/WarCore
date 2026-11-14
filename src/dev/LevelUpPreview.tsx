@@ -42,7 +42,7 @@ function App(){
       <label>Weapon<select value={weapon} onChange={event=>reset(event.target.value as Weapon)}><option value="bolt">Firestaff</option><option value="sword">Sword</option></select></label>
       <button onClick={()=>give(1)}>Give level-up</button><button onClick={()=>give(3)}>Give 3 level-ups</button><button onClick={()=>reset()}>Reset run</button>
       <span>Level {snap.level} · {snap.xp} / {need} XP · {snap.pendingUpgrades} pending</span>
-      <a href="./lab.html?embedded=1">Back to Lab</a>
+      {!new URLSearchParams(location.search).has('embedded')&&<a href="./lab.html">Back to Lab</a>}
     </div>
     <ol className="levelup-log" aria-label="Event log">{log.length?log.map((line,index)=><li key={index}>{line}</li>):<li>Press "Give level-up" to open the real selection screen.</li>}</ol>
     {snap.pendingUpgrades>0?<UpgradeMenu run={snap} choose={choose} hover={()=>undefined}/>:<p className="levelup-idle">No level-up pending. The screen opens when XP reaches {need}.</p>}
