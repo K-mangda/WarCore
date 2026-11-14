@@ -40,3 +40,8 @@ Open problems: 236 MonoBehaviours not decoded (was 432 before loading every asse
 
 ## Handing over between models or sessions
 Nothing depends on chat memory: the pipeline is a script, state is on disk, and the plan is in `docs/NEXT_STEPS.md` (parking lot) and `docs/PORT_BRIEF.md`. A new model only needs: "read docs/PORT_BRIEF.md and docs/NEXT_STEPS.md, then continue".
+
+## asset-index.json (answers "what colour / which crop is this image really?")
+
+`tools/build_asset_index.py` (runs inside `extract_all`, or alone in seconds; it only reads the dump) writes `unity-dump/asset-index.json`: for each of the 1,172 textures its `kind` (760 picture, 346 greyscale, 55 mask-white, ...) and every user found in the data - materials with colour properties, UI Image/RawImage objects with their `m_Color`, sprites with rect/border/pivot, and script fields that reference it (for example `WeaponData.icon`). Only 1 texture has no recorded user.
+Example: `icon_coin` is greyscale and is drawn by `CoinIcon` with colour (1, 0.995, 0.061) - that is the gold coin. Colours set purely by code at runtime (rarity tints) are not in the index; those come from the decompile.

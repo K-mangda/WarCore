@@ -3,8 +3,8 @@
  "exportedBy": "tools/read_feedback_visuals.py + UnityPy",
  "files": {
   "gold.png": {
-   "sha256": "5557c69a2e411406962b84ae3bb8e21b5e7ecfea8744ee904a21996dd9d2188d",
-   "bytes": 384
+   "sha256": "baa0cd20873f823a15fc6a2e37ddff378c5a23ecaf748671ed2134d55651ecc8",
+   "bytes": 371
   },
   "silver.png": {
    "sha256": "fc82843b470df63aece8d296cad1792642f657de4a273c0bfc287580643b4c5f",
@@ -22,7 +22,7 @@
  "note": "1024x1024 RGBA; alpha 0 at the centre rising to 1 at the corners. The RawImage colour (0.217,0,0.0172) tints it and alpha = danger value.",
  "notes": {
   "silver.png": "sharedassets1 Texture2D Silver (path 766), the Coin image under the HUD hierarchy (tools/read_hud_icons.py)",
-  "gold.png": "icon_coin (greyscale, sharedassets1 path 1408) multiplied by (1,0.9,0.17); the game tints it at runtime, exact tint unread (I)",
+  "gold.png": "icon_coin (greyscale, sharedassets1 path 1408) multiplied by the CoinIcon RawImage colour (1, 0.995, 0.061) from asset-index.json (V)",
   "skull.png": "32x32 crop of atlas_emojis_PSD (sharedassets1 path 1169) at (352,128)",
   "clock and chest icons": "not located in the texture list; drawn as SVG in src/ui/TopHud.tsx"
  }

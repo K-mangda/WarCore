@@ -16,6 +16,7 @@ const run=(label,cmd,args)=>new Promise(resolve=>{
 await run('plan','python',['-I','tools/build_decompile_plan.py','.local-evidence/decompile-all-plan.json']);
 if(!skip.has('--skip-unity'))await run('unity-dump','python',['-I','tools/dump_all_unity.py','.local-evidence/unity-dump']);
 if(!skip.has('--skip-unity'))await run('audio','python',['-I','tools/dump_audio.py','.local-evidence/unity-dump']);
+if(!skip.has('--skip-unity'))await run('asset-index','python',['-I','-W','ignore','tools/build_asset_index.py','.local-evidence/unity-dump']);
 if(skip.has('--after-running-ghidra')){
   // A Ghidra batch is already running into decompile6: wait for it to end (two imports do not fit in memory), then continue with the full plan.
   const {readFileSync,existsSync}=await import('node:fs');log('waiting for the running Ghidra batch to finish');
