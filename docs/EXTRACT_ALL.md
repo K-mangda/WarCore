@@ -54,3 +54,10 @@ Small images look "low quality" only when a browser or three.js scales them with
 - HTML/CSS: `image-rendering: pixelated` and integer scale factors (x2, x3, x4) where possible.
 - Do not upscale or "enhance" (AI upscalers, smoothing) - it changes the look away from the original.
 - Use `asset-index.json` fields `filter`, `wrap`, `mipmaps`, `format` instead of guessing.
+
+## Decompile run of 2026-11-14 and the retry
+
+First full pass: 4,575 unique functions attempted, 4,659 files with real pseudocode (including the earlier batch). 787 replies were errors that the old script saved as if they were code:
+- 432 "complete MCP response exceeded" (very large functions with `analyze_function` detail=complete);
+- 355 "No procedure exists at the requested address" (Ghidra did not create a function at that IL2CPP entry).
+Fix: the batch now uses `procedure_pseudo_code` (pseudocode only), retries by file offset (from dump.cs), then falls back to the containing function, and treats any error reply as a failure (logged in `failures.log`, no file written, retried on the next run). The 787 error files were deleted and a retry run started (one more binary import).

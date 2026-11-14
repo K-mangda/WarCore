@@ -14,9 +14,9 @@ for p in parts:
     name=m.group(1)
     if noise.search(name):continue
     tier=next((k for k,rx in tiers if re.match(rx,name)),'game')
-    for rva,meth in re.findall(r'// RVA: 0x([0-9A-F]+) Offset: \w+ VA: \w+(?: Slot: \d+)?\n\t(?:public|private|protected|internal)[^\n]*? (\w+)\(',p):
+    for rva,off,meth in re.findall(r'// RVA: 0x([0-9A-F]+) Offset: 0x([0-9A-F]+) VA: \w+(?: Slot: \d+)?\n\t(?:public|private|protected|internal)[^\n]*? (\w+)\(',p):
         if re.match(r'(get_|set_|add_|remove_)',meth):continue
-        rows[tier].append({'label':f'{tier}__{name}.{meth}_{rva}','rva':rva})
+        rows[tier].append({'label':f'{tier}__{name}.{meth}_{rva}','rva':rva,'offset':off})
 # IL2CPP shares one body between many methods (same RVA): decompile each RVA once, keep the other names as aliases.
 plan=[];by_rva={}
 for k in [t[0] for t in tiers]+['game']:

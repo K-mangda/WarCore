@@ -27,15 +27,29 @@ try{
   // Resume by RVA, not by label: a function already decompiled under another name (earlier plan, alias) is not done twice.
   const have=new Set(readdirSync(out).map(f=>/_([0-9A-Fa-f]+)\.c$/.exec(f)?.[1]?.toUpperCase()).filter(Boolean));
   let done=0,failed=0;
-  for(const {label,rva,aliases} of plan){
+  // Pseudocode only (procedure_pseudo_code keeps responses small). When Ghidra has no function starting at the RVA, retry by file offset,
+  // then fall back to the function that contains the address. Error replies are failures: nothing is written, so a re-run retries them.
+  const text=r=>r?.content?.find(c=>c.type==='text')?.text??'';
+  const isError=t=>!t||/^\s*\{\s*"error"/.test(t);
+  const code=t=>{try{const j=JSON.parse(t);return pseudo(j)??j.normalized_result?.pseudo_code??j.pseudocode??j.pseudo_code??t;}catch{return t;}};
+  const call=async(name,args)=>text(await client.callTool({name,arguments:args},{timeout:7200000}));
+  for(const {label,rva,offset,aliases} of plan){
     const file=resolve(out,safe(label)+'.c');if(existsSync(file)||have.has(rva.toUpperCase())){done++;continue;}
     const va='0x'+(0x180000000+parseInt(rva,16)).toString(16);
     try{
-      const r=await client.callTool({name:'analyze_function',arguments:{procedure:va,detail:'complete'}},{timeout:7200000});
-      const text=r.content?.find(c=>c.type==='text')?.text??'';
-      let code=text;try{code=pseudo(JSON.parse(text))??text;}catch{}
-      writeFileSync(file,`// ${label} RVA 0x${rva}\n`+(aliases?.length?`// same body as: ${aliases.join(', ')}\n`:'')+code);
-    }catch(e){failed++;appendFileSync(resolve(out,'failures.log'),`${label} 0x${rva} ${String(e).slice(0,200)}\n`);}  // no .c file, so a re-run retries it
+      let how='address',t=await call('procedure_pseudo_code',{procedure:va});
+      if(isError(t)&&offset){how='file-offset';t=await call('procedure_pseudo_code',{procedure:'file-offset:0x'+offset});}
+      if(isError(t)){
+        const c=await call('resolve_containing_procedure',{address:va});
+        const m=/"(?:address|entry|start)"\s*:\s*"(0x[0-9a-fA-F]+)"/.exec(c);
+        if(m){how='containing function '+m[1];t=await call('procedure_pseudo_code',{procedure:m[1]});}
+      }
+      if(isError(t))throw new Error((t||'empty reply').slice(0,300));
+      writeFileSync(file,`// ${label} RVA 0x${rva} (found by ${how})
+`+(aliases?.length?`// same body as: ${aliases.join(', ')}
+`:'')+code(t));
+    }catch(e){failed++;appendFileSync(resolve(out,'failures.log'),`${label} 0x${rva} ${String(e).slice(0,300).replace(/\s+/g,' ')}
+`);}
     done++;if(done%25===0)log(`${done}/${plan.length} (failed ${failed})`);
   }
   log(`finished ${done}/${plan.length} (failed ${failed})`);
