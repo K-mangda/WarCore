@@ -503,3 +503,8 @@ User requested a smaller glow around EXP. Reduced the soft halo plane from 2.4 t
 ## Compact coin glow - 2026-11-14
 
 User requested glow on coins too. Added soft compact additive halos for Gold and Silver, tinted to each coin, matching the EXP halo size ratio. Gold attraction shrink also scales its glow; existing coin sizes, motion and collection remain unchanged. Shared game/Lab web visual tuning; supersedes the earlier no-coin-glow request. No native shader claim or phase change.
+
+
+## Gradient level-up sign and larger sparkles - 2026-11-14
+
+User supplied a close-up reference and requested a glowing gradient on the LEVEL UP sign and slightly larger gold sparkles. Applied a warm vertical gradient to bright lettering while retaining the dark source sign, increased its existing subtle glow, and adjusted burst size from 18% to 21%. Motion, timing and gameplay remain unchanged. Shared game/Lab web visual tuning; no native shader claim or phase change.

@@ -28,8 +28,15 @@ export class ProgressionView {
  private sprite(kind:string){
   const texture=this.textures.get(kind)?.clone();if(!texture)return;
   texture.needsUpdate=true;const sprite=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));sprite.onBeforeRender=(_renderer,_scene,camera)=>{this.cameraRotation.copy(camera.quaternion);};
+  if(kind==='text'){
+   // Color the bright lettering while retaining the dark sign in the source atlas.
+   sprite.material.onBeforeCompile=shader=>{shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>',`#include <map_fragment>
+    float letter=smoothstep(.18,.6,max(max(diffuseColor.r,diffuseColor.g),diffuseColor.b));
+    vec3 gold=mix(vec3(1.0,.38,.035),vec3(1.0,.94,.38),clamp(vMapUv.y,0.0,1.0));
+    diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*gold*1.6,letter);`);};
+  }
   if(kind==='text'||kind==='burst'){
-   const glow=new T.Sprite(new T.SpriteMaterial({map:texture,color:0xffdf8a,opacity:kind==='text'?.2:.4,transparent:true,depthWrite:false,toneMapped:false,blending:T.AdditiveBlending}));
+   const glow=new T.Sprite(new T.SpriteMaterial({map:texture,color:0xffdf8a,opacity:kind==='text'?.3:.4,transparent:true,depthWrite:false,toneMapped:false,blending:T.AdditiveBlending}));
    glow.scale.setScalar(kind==='text'?1.045:1.35);glow.renderOrder=1;sprite.renderOrder=2;sprite.add(glow);
   }
   if(kind==='gold'||kind==='silver'){
@@ -44,11 +51,9 @@ export class ProgressionView {
   const coin=kind==='gold'||kind==='silver',activeFrames=Math.max(1,Math.ceil(uv.frameOverTime.scalar*count));
   const selectedFrame=coin?start+Math.floor(age/initial.startLifetime.scalar*activeFrames)%activeFrames:frame;
   sprite.material.map!.repeat.set(1/count,1);sprite.material.map!.offset.set(selectedFrame/count,0);
-  sprite.scale.setScalar(kind==='gold'?xpVisual.scale*.8:kind==='silver'?xpVisual.scale:initial.startSize.scalar*(kind==='text'?.4:kind==='burst'?.18:1));
+  sprite.scale.setScalar(kind==='gold'?xpVisual.scale*.8:kind==='silver'?xpVisual.scale:initial.startSize.scalar*(kind==='text'?.4:kind==='burst'?.21:1));
   if(kind==='text'){
-   const g=p.ColorModule.gradient.maxGradient;
-   const t=T.MathUtils.clamp(age/initial.startLifetime.scalar/(g.ctime1/65535),0,1);
-   sprite.material.color.setRGB(1,T.MathUtils.lerp(1,.96,t),T.MathUtils.lerp(.78,.64,t),T.SRGBColorSpace);
+   sprite.material.color.setRGB(1,1,1,T.SRGBColorSpace);
    sprite.material.toneMapped=false;
    const enter=1-Math.pow(1-T.MathUtils.clamp(age/.14,0,1),3);
    const exit=T.MathUtils.clamp((initial.startLifetime.scalar-age)/.09,0,1);
@@ -58,7 +63,7 @@ export class ProgressionView {
    sprite.material.opacity=1;
   }
   if(kind==='burst'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(1,1,.88,T.SRGBColorSpace);sprite.material.opacity=c.a*getEffectsPreferences().particlesOpacity;sprite.material.toneMapped=false;}
-  if(kind==='text'||kind==='burst')for(const child of sprite.children)if(child instanceof T.Sprite){child.material.opacity=(kind==='text'?.2:.4)*sprite.material.opacity;child.material.rotation=sprite.material.rotation;}
+  if(kind==='text'||kind==='burst')for(const child of sprite.children)if(child instanceof T.Sprite){child.material.opacity=(kind==='text'?.3:.4)*sprite.material.opacity;child.material.rotation=sprite.material.rotation;}
   if(kind==='gold'||kind==='silver'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a;sprite.material.toneMapped=false;}
  }
  burst(player:T.Vector3){
