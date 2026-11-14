@@ -43,6 +43,13 @@ Done from it: stat folding (verified), Tome linear accumulation, rarity per card
 
 - Play-test the deployed build and report: enemy count at 3 minutes, level-up timing, hit frequency/damage, anything that feels off against the real game. Values marked inferred (I) or provisional (P) in the docs are the first candidates to retune.
 
+## Status at 2026-11-14 16:00 (Thai time) - read this first after a compact or a new session
+
+- Extraction is COMPLETE: `.local-evidence/unity-dump` (all Unity data, icons, audio, asset-index.json) and `.local-evidence/decompile6` (all 4,575 planned functions: 4,255 Ghidra pseudocode + 320 Capstone `.asm.c`). Do not re-extract unless the game updates; then run `node tools/extract_all.mjs`. See docs/EXTRACT_ALL.md and docs/PORT_BRIEF.md.
+- Built today: weapon cards + 4 weapon slots, rainbow/cyan EXP bar, real top HUD, title screen (Play/Unlocks/Shop/Lab), Unlocks with real icons, rarity tile colours, silhouettes and 4-corner selection, Shop with verified price formula, Silver banked between runs.
+- Waiting on the user's choice of the next task. Offered, in order: (1) character select + map select from the user's screenshots, (2) make shop items work (Refresh/Skip/Banish charges, extra slots, Silver multiplier), (3) real menu scene from level1 (the title screen currently shows the web test arena behind it - user noticed), (4) apply weapon size/knockback/projectile-speed modifiers, (5) other enemy types for Forest.
+- Times in chat were given in UTC; the user is on Thai time (UTC+7).
+
 ## Parking lot - things said or planned, not yet done (check this before answering "what next")
 
 Rule: when the user redirects, anything I had planned or promised goes here first, with its trigger, so it is not lost.
