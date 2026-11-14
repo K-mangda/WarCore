@@ -198,7 +198,7 @@ assert.equal(summonInterval(0),2);assert.equal(summonInterval(2),.2,'Summon inte
 let dseed=7;const drandom=()=>((dseed=Math.imul(dseed,1664525)+1013904223>>>0)/4294967296);
 const director=new Director({stage:'StageForest1',maxEnemies:120,random:drandom});
 const opening=director.update(.02,0,0);
-assert.ok(opening.length>=4&&opening.length<=8,'Opening cycle spends the initial credits');assert.ok(opening.every(r=>r.enemy.enemy==='Goblin'&&r.source==='stage'),'Forest 1 starts with Goblin only, never Bandit');
+assert.ok(opening.length>=3&&opening.length<=5,'Opening cycle is capped by the native target population (5 at t=0)');assert.ok(opening.every(r=>r.enemy.enemy==='Goblin'&&r.source==='stage'),'Forest 1 starts with Goblin only, never Bandit');
 const spawned=[...opening];
 for(let t=.02;t<175;t+=.02)spawned.push(...director.update(.02,t,0));
 assert.ok(!spawned.some(r=>r.source==='miniboss'),'No miniboss before minute 3');
@@ -213,11 +213,18 @@ const capped=new Director({stage:'StageForest1',maxEnemies:10,random:drandom});a
 assert.throws(()=>new Director({stage:'Nope',maxEnemies:1}),/Unknown stage/);
 const rate=(from,to)=>{const d=new Director({stage:'StageForest1',maxEnemies:1000,random:drandom});let n=0;for(let t=0;t<to;t+=.02){const r=d.update(.02,t,0);if(t>=from)n+=r.length;}return n;};
 assert.ok(rate(170,230)>rate(0,60),'Credits per second grow with minutes');
+const {targetEnemies,eliteWeight}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Director.js')));
+assert.equal(targetEnemies(0,600,1,1),5,'Target population starts at 5');assert.equal(targetEnemies(300,600,1,1),105);assert.equal(targetEnemies(600,600,1,1),205);assert.equal(targetEnemies(900,600,1,1),205,'Target saturates at stage length');assert.equal(targetEnemies(0,600,2,1.7),17);
+assert.equal(eliteWeight(1),.04);
+let elites=0,regulars=0;const eliteDirector=new Director({stage:'StageForest1',maxEnemies:1000,random:drandom});for(let t=0;t<600;t+=.02)for(const r of eliteDirector.update(.02,t,0)){if(r.source==='stage'){if(r.elite)elites++;else regulars++;}}
+assert.ok(elites>0&&elites<regulars*.2,'Elite cards appear rarely (cost x2, weight 0.04)');
+const capTarget=new Director({stage:'StageForest1',maxEnemies:1000,random:drandom});assert.ok(capTarget.update(5,0,5).length===0,'No spawning once the target population is reached');
 const goblin=director.cards.find(c=>c.enemy==='Goblin'),spec0=enemySpec(goblin,0),spec5=enemySpec(goblin,5);
 assert.equal(spec0.maxHealth,7);assert.equal(spec0.damage,15);assert.ok(spec5.maxHealth>spec0.maxHealth&&spec5.damage>spec0.damage,'Per-minute HP/damage scaling');assert.equal(spec0.visual,'skeleton');assert.equal(spec0.placeholderVisual,true);
 assert.equal(enemySpec(minute3.length?director.cards[0]:goblin,0).visual,'skeleton');
+const eliteGoblin=enemySpec(goblin,0,true);assert.equal(eliteGoblin.maxHealth,70,'Elite HP x10');assert.equal(eliteGoblin.damage,23,'Elite damage x1.5 (15 -> 22.5 rounds to 23)');assert.equal(eliteGoblin.xp,10,'Elite XP x10');assert.equal(eliteGoblin.elite,true);
 const piggy=enemySpec({...goblin,enemy:'MinibossPig',creditCost:40,hp:250},0);assert.equal(piggy.visual,'bandit','Miniboss-class enemies borrow the Bandit model');
-const real=new Run(()=>0,()=>false,drandom);real.step(.02,player);assert.ok(real.swarm.enemies.length>=4&&real.swarm.enemies.every(e=>e.spec?.enemy==='Goblin'&&e.health===7),'Run spawns director enemies with real stats');
+const real=new Run(()=>0,()=>false,drandom);real.step(.02,player);assert.ok(real.swarm.enemies.length>=3&&real.swarm.enemies.length<=5&&real.swarm.enemies.every(e=>e.spec?.enemy==='Goblin'&&e.health===(e.spec.elite?70:7)),'Run spawns director enemies with real stats');
 const hurtRun=new Run(()=>0,()=>false,drandom);hurtRun.swarm.enemies.push({...enemy(7001,0,0),spec:enemySpec(goblin,0)});hurtRun.step(.02,player);
 assert.equal(hurtRun.snapshot().health,85,'Contact damage uses the enemy native damage (Goblin 15)');
 const {weaponData,weaponDamage,weaponCooldown}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Weapons.js')));

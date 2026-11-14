@@ -18,9 +18,11 @@ Web implementation of Phase A items 1-2 from the gap analysis. Source evidence: 
 | Pool check every `checkNewEnemyInterval` (60 s) adds the cheapest eligible regular map enemy (`canSpawnAfterTime`, `minStage`, cost <= 4) | **P** | native `AddEnemyToPoolAndPickNewCard` undecoded |
 | Initial credits 4 (first cycle fires at t=0, ~6 opening enemies) | **P** | `GetInitialCredits` undecoded |
 | Swarm: batches of 3 per 0.5 s up to 50 enemies | **P** | interval 0.5 s is V; target/rate partly decoded |
-| Elite cards (cost x2, weight 0.04), elite chance `0.006 x EliteSpawnIncrease`, boss at stage end | not built | needs elite HP multiplier mapping and a boss model/behaviour |
+| Target population `round((clamp01(t/stageDuration)*200+5) x multiplier x EnemyAmount)` caps spawning | V | Ghidra decompile of RVA 0x4862E0; 5 enemies at t=0, 65 at 3 min, 205 at 10 min (web cap 120) |
+| Elite cards: cost x2, weight 0.04 x EliteSpawnIncrease; elite HP x10, damage x1.5, XP x10 | V | `RefreshWeightAndCost`, `GetHp`/`GetDamage`/`GetEliteXp`; **no elite visual marker yet** (web has no elite shader) |
+| Boss at stage end, `0.006 x EliteSpawnIncrease` elite roll | not built | needs a boss model/behaviour |
 
-`Run.step` feeds the director with elapsed time and live enemy count; spawn positions still use the sandbox ring around the player.
+The opening burst is now at most 5 enemies (the t=0 target) instead of 6. `Run.step` feeds the director with elapsed time and live enemy count; spawn positions still use the sandbox ring around the player.
 
 ## Enemies — `src/enemies/Roster.ts`
 

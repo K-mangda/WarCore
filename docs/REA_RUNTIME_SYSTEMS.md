@@ -99,3 +99,13 @@ Table (values straight from the assets; times in seconds):
 ## Still open
 
 Gold/Silver kill rewards; `Enemy.GetXp`; `GetNumTargetEnemies` exact; SpecialSkeletonSummoner; boss `EnemySpecialAttack*` prefab behaviours; weapon attack prefabs; item/passive code; level-up pool (`EEncounter.Levelup`, rarity roll, Banish/Skip/Refresh); audio mixer routing; settings fields; movement parity gaps.
+
+
+## Addendum 2026-11-14 - Ghidra decompile (REA `analyze_function`, tool `tools/rea_decompile.mjs`)
+
+The Ghidra provider finished importing `GameAssembly.dll` once the startup timeout was raised (`ghidra.startup_timeout_ms`); pseudocode below is **V** (read from decompiler output; raw output stays in `.local-evidence/decompile1/`, not committed).
+
+- **`StageSummoner.GetNumTargetEnemies` (RVA 0x4862E0), exact:** `target = round((clamp01(elapsed / MapData.stageDuration) * 200 + 5) * multiplier * EnemyAmount)` where `multiplier = 1 + 0.7*Difficulty + 0.4*stageNumber` (1 if the summoner does not use it). So the population target rises linearly from 5 to 205 over the stage (600 s for Forest). The director stops spending credits when the population reaches it.
+- **`EnemyStats.GetHp` (RVA 0x41B5E0), exact structure:** `hp = hpScale(baseHp) x (1 + hpAddition + 1.1 x Difficulty) x EnemyHpMultiplier`, then `x15` if EliteChallenge, `x10` if Elite, `x7` if Challenge; bosses additionally `x2.5` (tier 1) or `x5` (tier 2). `baseHp` is `EnemyData.hp`, except a few special ghost/boss enemies (`(n + 0x19) * 0x14`, `n + 0x1E`, infinite for GhostInvincible). `hpAddition` is the `CombatScaling.GetHpMultiplierAddition` sum documented above. This confirms the Difficulty term is `1.1 x Difficulty` (not a global 1.1).
+- **`PlayerHealth.Damage` (RVA 0x428220):** hits are refused while `damageCooldown > 0.1`; after a hit `damageCooldown = DamageCooldownMultiplier x 0.15`. Order: if shield > 0 the shield alone absorbs the hit (`shield = max(0, shield - dmg)`, excess is lost); otherwise overheal (+0x18) absorbs first, the remainder reduces HP; at HP < 1 an extra-life style check (status 0x19) can restore HP; `PlayerHealth.PlayerDied` fires when HP stays < 1. Armor/evasion are applied before this (in `DamagePlayerExternal`, not decoded).
+- **`PlayerStatsNew.GetStat` (RVA 0x445A40)** is only a cached dictionary lookup (`FUN_180dd2840`); stat modifiers are folded elsewhere, so the Tome combination order is still **U**.

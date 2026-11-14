@@ -30,6 +30,14 @@ So a normal kill gives **1 XP**, an elite **10 XP**; player-side `PlayerXp.AddXp
 - `Rarity.GetMultiplier(ERarity)` (RVA 0x42DA00, jump table decoded): **New 1.0, Common 1.0, Uncommon 1.2, Rare 1.4, Epic 1.6, Legendary 2.0** — the multiplier on an upgrade's numeric effect for the rolled rarity.
 - `EncounterUtility.GetRandomStatValue(stat, out type)` (RVA 0x436B10) contains the shrine/encounter stat magnitudes `15, 20, 5, 0.12, 0.06, 0.08, 0.2, 0.15, 0.1, 0.05, 1, 0.075` (per-stat mapping **U**); the stat pools (`upgradableStatsShrines`, `…ChaosAndGamble`, `…BalanceShrine`) are built in `EncounterUtility..cctor` (stat IDs read from immediates, e.g. 0x0A..0x1F, 0x27–0x29, 0x2E; exact lists **U** until the sequential `Add` calls are decoded).
 
+### Pool selection - `InventoryUtility.GetRandomUpgrades` (RVA 0x420EF0), now decoded from the Ghidra pseudocode (V)
+
+1. Candidates are all available weapons and Tomes (`UnlockUtility.GetAvailableWeapons/Tomes`) that are not at max level. Each has `GetLevel()` and `GetMaxLevel()`.
+2. **List A** = not owned (level < 1) and `CanUnlockItem` (a free weapon/Tome slot exists). **List B** = owned and below max level.
+3. Offers `n = 3` (`n = |A|+|B|` if fewer than 4 exist; empty -> no offer). `p = 1/3` (or `1/n` when fewer than 4 candidates).
+4. For each offer: if A is empty take a random entry of B; else if B is non-empty and `random < p` take a random entry of B; otherwise take a random entry of A. The pick is removed from its list. So new items are favoured about 2:1 over levelling owned ones.
+Rarity is rolled per card afterwards (`GetUpgradeOfferRarity`, section 3). The web's three Tomes always satisfy this rule (all offers are available), so no code change was needed; it becomes relevant when weapon cards are added.
+
 ## 4. What this changes for the web upgrade screen
 
 | Topic | Now verified | Replace provisional web value |

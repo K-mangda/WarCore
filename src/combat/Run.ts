@@ -111,7 +111,7 @@ export class Run {
     this.director??=this.newDirector();
     const minutes=this.state.elapsed/60;
     for(const request of this.director.update(dt,this.state.elapsed,this.swarm.enemies.length))
-      this.swarm.spawn(player,this.ground,this.visible,this.random,enemySpec(request.enemy,minutes));
+      this.swarm.spawn(player,this.ground,this.visible,this.random,enemySpec(request.enemy,minutes,request.elite));
     this.swarm.step(dt,player,this.ground);
     this.attackClock=Math.max(0,this.attackClock-dt);
     if(this.state.weapon==='sword'){
