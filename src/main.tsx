@@ -17,7 +17,8 @@ import {Crosshair,PerformanceHud} from './ui/GameHud';
 import {TopHud} from './ui/TopHud';
 import {TitleScreen} from './ui/TitleScreen';
 import {MapSelect} from './ui/MapSelect';
-import {addSilver} from './core/Profile';
+import {addSilver,recordRun} from './core/Profile';
+import {xpForLevel} from './combat/XpCurve';
 import './ui/title.css';
 import './ui/style.css';
 import './ui/combat.css';
@@ -37,7 +38,7 @@ function App(){
   },[attempt]);
   // Silver collected in a run is banked into the profile when the run ends in death (ProgressionSaveFile, web: localStorage).
   const banked=useRef(false);
-  useEffect(()=>{if(data.dead&&!banked.current){banked.current=true;addSilver(data.silver);}if(!data.dead&&data.elapsed===0)banked.current=false;},[data.dead,data.elapsed,data.silver]);
+  useEffect(()=>{if(data.dead&&!banked.current){banked.current=true;addSilver(data.silver);let runXp=data.xp;for(let l=1;l<data.level;l++)runXp+=xpForLevel(l);recordRun('fox',runXp);}if(!data.dead&&data.elapsed===0)banked.current=false;},[data.dead,data.elapsed,data.silver]);
   return <main>
     <div ref={host} className="world"/><div className="vignette"/>{data.elapsed>0&&!data.dead&&data.danger>.001&&<div className="low-health-vignette" style={{opacity:Math.min(1,data.danger),maskImage:`url(${assetUrl('ui/hud/low-hp-vignette.png')})`,WebkitMaskImage:`url(${assetUrl('ui/hud/low-hp-vignette.png')})`}} aria-hidden="true"/>}
     <header><img className="game-logo" src={assetUrl('branding/warcore-logo-transparent.png')} alt="WARCORE"/><span className="build">WEB PLAYTEST · PROVISIONAL BALANCE</span></header>

@@ -6,7 +6,7 @@ import json,shutil,hashlib,re
 from pathlib import Path
 dump=Path('.local-evidence/unity-dump');out=Path('public/ui/icons');out.mkdir(parents=True,exist_ok=True)
 index=json.loads((dump/'asset-index.json').read_text(encoding='utf-8'))
-kinds={'CharacterData':'characters','WeaponData':'weapons','TomeData':'tomes','ItemData':'items','HatData':'hats','ShopItemData':'shop'}
+kinds={'CharacterData':'characters','WeaponData':'weapons','TomeData':'tomes','ItemData':'items','HatData':'hats','ShopItemData':'shop','PassiveData':'passives','SkinData':'skins'}
 icons={k:{} for k in kinds.values()};prov={}
 safe=lambda s:re.sub(r'[^\w-]','_',s)
 for key,tex in index.items():

@@ -17,9 +17,10 @@ export const shopItems:ShopItem[]=[
   {id:'Toggler',name:'Toggler',description:'Toggle weapons, Tomes and items on or off',icon:'🔒',price:50,maxLevel:1,linearIncrease:0,exponentialMultiplier:1,canRefund:false},
 ];
 export const shopPrice=(item:ShopItem,level:number)=>level===0?item.price:Math.round(item.price*Math.pow(item.exponentialMultiplier,level))+level*item.linearIncrease;
-export interface Profile {silver:number;shop:Partial<Record<ShopItemId,number>>;unlocked:string[];}
+export interface CharacterProgress {xp:number;runs:number;}
+export interface Profile {silver:number;shop:Partial<Record<ShopItemId,number>>;unlocked:string[];characters:Record<string,CharacterProgress>;}
 const key='warcore.profile.v1';
-const fresh=():Profile=>({silver:0,shop:{},unlocked:[]});
+const fresh=():Profile=>({silver:0,shop:{},unlocked:[],characters:{}});
 let cache:Profile|undefined;const listeners=new Set<()=>void>();
 export function getProfile():Profile{
   if(cache)return cache;
@@ -36,3 +37,10 @@ export function buyShopItem(id:ShopItemId):boolean{
 }
 export function addSilver(amount:number){if(amount>0)save({...getProfile(),silver:getProfile().silver+Math.floor(amount)});}
 export function unlock(id:string,cost:number):boolean{const p=getProfile();if(p.unlocked.includes(id)||p.silver<cost)return false;save({...p,silver:p.silver-cost,unlocked:[...p.unlocked,id]});return true;}
+/**
+ * Character rank (CharacterProgression, V): OnRunFinished(xp) adds round(xp x xpModifier) and counts a run;
+ * GetRank = XpUtility.XpToLevel(xp) + 1, the same XP table as in-run levels (XpToLevel walks xpForLevelsTable, cumulative).
+ * Ranks go to 240 in 6 tiers of 40 (Ranks.maxRank/numRankTiers). The XP the game passes per run is assumed to be the run's total XP (P); xpModifier taken as 1 (P).
+ */
+export function recordRun(character:string,runXp:number){const p=getProfile(),c=p.characters?.[character]??{xp:0,runs:0};save({...p,characters:{...p.characters,[character]:{xp:c.xp+Math.round(runXp),runs:c.runs+1}}});}
+export function characterRank(xp:number,xpForLevel:(level:number)=>number){let level=1,total=0;while(level<240){const need=xpForLevel(level);if(xp<total+need)break;total+=need;level++;}return {rank:level,progress:(xp-total)/xpForLevel(level)};}

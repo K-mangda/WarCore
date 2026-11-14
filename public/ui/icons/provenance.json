@@ -1,6 +1,18 @@
 {
  "from": "Megabonk_Data via tools/dump_all_unity.py + tools/export_icons.py",
  "files": {
+  "skins/OgreDefault.png": {
+   "source": "sharedassets1.assets#468",
+   "texture": "Ogre1",
+   "sha256": "3695d3fa5a6163fd25d8f07876581bba33a95d63a7e8926dd0291f05415778f0",
+   "filter": "point"
+  },
+  "passives/Curse.png": {
+   "source": "sharedassets1.assets#469",
+   "texture": "Curse",
+   "sha256": "b5c7303ad03a825fa2a419a51b26a681bf78c05530109304badf93b48e869446",
+   "filter": "point"
+  },
   "hats/FrogHat3.png": {
    "source": "sharedassets1.assets#470",
    "texture": "HatFrogRed",
@@ -13,10 +25,40 @@
    "sha256": "49b9ddf0872bb1850a77fbe1e4ed27fd5956778f8c70ee49a03cc1da915c607b",
    "filter": "point"
   },
+  "skins/RobinetteBlack.png": {
+   "source": "sharedassets1.assets#474",
+   "texture": "RobinetteBlack",
+   "sha256": "4dd459624e0b8c93ab94918ba7ab42c22ef695b78e8728f157946a11dee02525",
+   "filter": "point"
+  },
+  "skins/AstroGreen.png": {
+   "source": "sharedassets1.assets#475",
+   "texture": "AstroGreen",
+   "sha256": "04d910299a151e20cd4f8d07193629322d89d95b4713834c2e303510954cfba1",
+   "filter": "point"
+  },
+  "skins/DiceheadRed.png": {
+   "source": "sharedassets1.assets#476",
+   "texture": "DiceheadRed",
+   "sha256": "24982042fc49e98b6fd036870af603d49b37422afa7c200b28877511e9d2d116",
+   "filter": "point"
+  },
   "tomes/TomeSilver.png": {
    "source": "sharedassets1.assets#477",
    "texture": "SilverTome",
    "sha256": "45c96941efc97c159bd67d1b5fe994d4541aacce487c1d3147cac1364ea3679a",
+   "filter": "point"
+  },
+  "skins/CorruptedDefault.png": {
+   "source": "sharedassets1.assets#479",
+   "texture": "CorruptDefault",
+   "sha256": "59c7496b276e726ea8b5fc0399f72f7a5b8d5659543dff5b5ce5bb238ca78558",
+   "filter": "point"
+  },
+  "passives/Crit_Happens.png": {
+   "source": "sharedassets1.assets#483",
+   "texture": "Crit Happens",
+   "sha256": "009eb3ad48aaec210b451aaa2e6ef87ac4d712e6cad83bcf1813c6fb0383d14e",
    "filter": "point"
   },
   "items/Leeching_Crystal.png": {
@@ -29,6 +71,12 @@
    "source": "sharedassets1.assets#488",
    "texture": "HatShadyBlue",
    "sha256": "8435a9b324d94688ba9d64e3cf1296b0db6927f71410ef669853f9e7572c0d1d",
+   "filter": "point"
+  },
+  "skins/CorruptedToxic.png": {
+   "source": "sharedassets1.assets#492",
+   "texture": "CorruptToxic",
+   "sha256": "7a883762bcc3a7f2e7ca8a403fea95628255d275004fbf6ba63a613f1fe92fad",
    "filter": "point"
   },
   "items/Beacon.png": {
@@ -97,6 +145,12 @@
    "sha256": "bdae7c93afa38897ec4ef3e07bfcf178c13c39b019f0681d13169d7b4ef8a678",
    "filter": "point"
   },
+  "skins/MonkeStreet.png": {
+   "source": "sharedassets1.assets#535",
+   "texture": "MonkeDad",
+   "sha256": "91a80cc46fdc4b58258d92ba2644ee87606d2e3bf20a56c851753582f251e1ed",
+   "filter": "point"
+  },
   "characters/Bush.png": {
    "source": "sharedassets1.assets#542",
    "texture": "Bush",
@@ -127,10 +181,46 @@
    "sha256": "8ed1af5d8b4d850c93ce58ff9af35e7e967ba4ff3636a913e01ed0014c0dcf72",
    "filter": "point"
   },
+  "passives/Warrior.png": {
+   "source": "sharedassets1.assets#556",
+   "texture": "Warrior",
+   "sha256": "24b2b180dde4dce2b5634d7a04d6f382d96f7f725eff23cf854904c20ea54bd6",
+   "filter": "point"
+  },
+  "skins/DiceheadJester.png": {
+   "source": "sharedassets1.assets#557",
+   "texture": "DiceheadJester",
+   "sha256": "55421135f66d001cdc0626c6cd55f622999c54b3a41358ff0826fccef19556ff",
+   "filter": "point"
+  },
+  "skins/NinjaCrimson.png": {
+   "source": "sharedassets1.assets#561",
+   "texture": "NinjaCrimson",
+   "sha256": "3410de89188600b678229465f8880239c894dabad59ef4b74898f7977691e034",
+   "filter": "point"
+  },
   "items/Flappy_Feathers.png": {
    "source": "sharedassets1.assets#569",
    "texture": "ItemFeathers",
    "sha256": "2058f92ad5841f163e772503a5bb0e5763d4d4886da8af84322dcb43330424c1",
+   "filter": "point"
+  },
+  "skins/KnightWhite.png": {
+   "source": "sharedassets1.assets#570",
+   "texture": "KnightWhite",
+   "sha256": "99fe8e262fe6da5fca11eeecedb3e1944ddeecedf375477cf44f753cb7cd8ec4",
+   "filter": "point"
+  },
+  "skins/HoverDefault.png": {
+   "source": "sharedassets1.assets#573",
+   "texture": "HoverDefault",
+   "sha256": "2ac3ca745540640cf47f8013d257ad229f177f9b5dfa4aa2fd620d8bc260f536",
+   "filter": "point"
+  },
+  "skins/GhostAcid.png": {
+   "source": "sharedassets1.assets#577",
+   "texture": "GhostAcid",
+   "sha256": "4da84c76b6e5175f069d81a2836dd005a3d3bb0e64fe8749148b04ad5eecf908",
    "filter": "point"
   },
   "items/UnstableTransfusion.png": {
@@ -157,10 +247,28 @@
    "sha256": "423e249029ff8d0b0ecacfb3b6c9a835a50bdc66e6602ead6b810ea8dda02058",
    "filter": "point"
   },
+  "skins/AmogBlue.png": {
+   "source": "sharedassets1.assets#592",
+   "texture": "AmogBlue",
+   "sha256": "0a5f44ea59de50376c74943d5f1615d1881d38db7b4f770dc824ae59b9bc863f",
+   "filter": "point"
+  },
   "items/CryptKey.png": {
    "source": "sharedassets1.assets#593",
    "texture": "ItemCryptKey",
    "sha256": "8e89f76a67477336a5cb499d8fd3454699e6eee044ab8a3595788be21e5e2e4e",
+   "filter": "point"
+  },
+  "skins/ClankBlaze.png": {
+   "source": "sharedassets1.assets#601",
+   "texture": "ClankBlaze",
+   "sha256": "f8af4ab3bccfc9e10c503a16b2fd8b82abfcccd9199712d3e7882160b40eae11",
+   "filter": "point"
+  },
+  "passives/Flex.png": {
+   "source": "sharedassets1.assets#605",
+   "texture": "Flex",
+   "sha256": "58721803e4324ef05f851978da21dd1d435cd21fb77b2af02162f1546f96e4ce",
    "filter": "point"
   },
   "items/Glove_Poison.png": {
@@ -175,10 +283,22 @@
    "sha256": "cce3ab2f1a7e750f28909f9f0be17d7bd4a0fc7a6e14460f3beb5d2090c0be4c",
    "filter": "point"
   },
+  "skins/HoverEdgy.png": {
+   "source": "sharedassets1.assets#608",
+   "texture": "HoverEdgelord",
+   "sha256": "9a57f5a4f2aa0896516ba02da0eb41cb7082245d4dbb974280267f1c3bb5cd3f",
+   "filter": "point"
+  },
   "items/Boss_Buster.png": {
    "source": "sharedassets1.assets#609",
    "texture": "ItemBossBuster",
    "sha256": "088a0ecc8218afc1bb4df801409dec10831326d841178fa9e8858bf70fa4b16f",
+   "filter": "point"
+  },
+  "skins/AmogToxic.png": {
+   "source": "sharedassets1.assets#613",
+   "texture": "AmogToxic",
+   "sha256": "e984e3b2c80cf568d82774870be114cc32215ee1de196b10d672ef51b6471617",
    "filter": "point"
   },
   "weapons/WeaponHeroSword.png": {
@@ -193,10 +313,22 @@
    "sha256": "e235b07c221ce7e233433fa2ebc3ea640c0b00ab08f4e1c92183af83a4639f25",
    "filter": "point"
   },
+  "skins/AmogBubbleGum.png": {
+   "source": "sharedassets1.assets#625",
+   "texture": "AmogBubble",
+   "sha256": "2d0460092b16c29c36518cae6eea8f1f58f42a10846b80cb1e5bf54197262e74",
+   "filter": "point"
+  },
   "items/Eagle_Claw.png": {
    "source": "sharedassets1.assets#627",
    "texture": "ItemEagleClaw",
    "sha256": "cdca3e1fbdd1322f5e66c30224928f167089b3ed25972af516f0fc81fb275ccf",
+   "filter": "point"
+  },
+  "skins/RobinetteBlue.png": {
+   "source": "sharedassets1.assets#630",
+   "texture": "RobinetteBlue",
+   "sha256": "fa65d8fb6de7134223e69e6de2920dd0068574d003a6ed4358cb3a7f622e122d",
    "filter": "point"
   },
   "tomes/TomeXP.png": {
@@ -205,16 +337,34 @@
    "sha256": "53690a9c4a653559400ab7d5d337137e76cbbb43bd79995474c4fe17b4fbbf0a",
    "filter": "point"
   },
+  "skins/AstroDefault.png": {
+   "source": "sharedassets1.assets#633",
+   "texture": "AstroDefault",
+   "sha256": "e3a658c5eaef51b84f8fd48b5fc835d12487a46308b12b5208a9115730e09d7a",
+   "filter": "point"
+  },
   "tomes/TomeBalance.png": {
    "source": "sharedassets1.assets#634",
    "texture": "Balance Tome",
    "sha256": "a733651e0adcd208f4aa5aa6563bc715b2447d98d71fc04a1c27411fc055ff91",
    "filter": "point"
   },
+  "passives/WallClimb.png": {
+   "source": "sharedassets1.assets#635",
+   "texture": "WallClimb",
+   "sha256": "3dfe7dc3c6f31d27522e30a79f4e9303f60ee138511524fd1e68eadef7185e3b",
+   "filter": "point"
+  },
   "tomes/TomeAttraction.png": {
    "source": "sharedassets1.assets#638",
    "texture": "AttractionTome",
    "sha256": "fbd68cf507761c82642fdb72662934b15695a098797ba68889a2018f49158028",
+   "filter": "point"
+  },
+  "skins/AthenaDefault.png": {
+   "source": "sharedassets1.assets#639",
+   "texture": "Athena1",
+   "sha256": "d2d8cd16630582b26677df65334504c081b397bca7218135402f3cde600d82eb",
    "filter": "point"
   },
   "tomes/TomeCooldown.png": {
@@ -235,6 +385,12 @@
    "sha256": "d3d1a67b864d5206a8c0e4ce79228bc6b507406b5eee7d06d549e548864275a6",
    "filter": "point"
   },
+  "passives/Gamba.png": {
+   "source": "sharedassets1.assets#651",
+   "texture": "Gamba",
+   "sha256": "3b9a648c7f845a876f3e4d03794ec34178f211d1aaeaaf5597a167a918ed1f37",
+   "filter": "point"
+  },
   "items/Tactical_Glasses.png": {
    "source": "sharedassets1.assets#652",
    "texture": "ItemTacticalGoggles",
@@ -247,16 +403,46 @@
    "sha256": "e4e260ce216034a3fc444e39288510447bf72c49aeb17a0bf6b0e8bb08e102d8",
    "filter": "point"
   },
+  "passives/Speed_Demon.png": {
+   "source": "sharedassets1.assets#666",
+   "texture": "Speed Demon",
+   "sha256": "fc12f00b406168212e177251a7fd66cec3e09f7c84276a8479d1c6b246bb44fb",
+   "filter": "point"
+  },
   "items/Speed_Boi.png": {
    "source": "sharedassets1.assets#669",
    "texture": "Speed boi",
    "sha256": "255f56e7e0440a2fb050fd14393f2c15ce06f68784c256aca8ea03477ed71d85",
    "filter": "point"
   },
+  "skins/NoelleWinter.png": {
+   "source": "sharedassets1.assets#672",
+   "texture": "NoelleSnow",
+   "sha256": "0a3894e1170942e35e983ed8bc7984802708a1d1c01852bc25346be5b66cf063",
+   "filter": "point"
+  },
   "weapons/WeaponShotgun.png": {
    "source": "sharedassets1.assets#673",
    "texture": "Shotgun",
    "sha256": "ffbdd468018d0fe252534ac7813c53c08653ecb7e0da62f5d6092e458394d511",
+   "filter": "point"
+  },
+  "skins/FoxIce.png": {
+   "source": "sharedassets1.assets#675",
+   "texture": "Fox2",
+   "sha256": "4d195ab8aa5d7109004932dcdeaebd27a1101799cb12e056ca686e92df9f1118",
+   "filter": "point"
+  },
+  "skins/BirdoBlue.png": {
+   "source": "sharedassets1.assets#677",
+   "texture": "BirdoBlue",
+   "sha256": "ddcd1be1e1ad79c4e5f75c31e6f363753165c79898c88c8e87d0106efb526154",
+   "filter": "point"
+  },
+  "skins/banditForest.png": {
+   "source": "sharedassets1.assets#678",
+   "texture": "BanditForest",
+   "sha256": "b1db8b54ed960bc101bb2514592a10cf9f1f586b66cd96b3547f1fd9b52ffcfd",
    "filter": "point"
   },
   "hats/TopHatLong.png": {
@@ -271,10 +457,28 @@
    "sha256": "a41d48ecbb5c27e6f4adc53212b04f60ca2f062483a4d4a8af40ba4535450743",
    "filter": "point"
   },
+  "skins/AmoguDefault.png": {
+   "source": "sharedassets1.assets#684",
+   "texture": "AmogDefault",
+   "sha256": "4a7eb730948e96b292db2596eccc2207348ae1ea9184f7bfde6fa54a5a48f32d",
+   "filter": "point"
+  },
   "items/Scarf.png": {
    "source": "sharedassets1.assets#690",
    "texture": "ItemScarf",
    "sha256": "fb48ac364fdd23cea1fbbe33b4d107bc6bac250dd5d855a191edf46af94aa9a9",
+   "filter": "point"
+  },
+  "skins/ClankFuturistic.png": {
+   "source": "sharedassets1.assets#694",
+   "texture": "ClankFuturistic",
+   "sha256": "5c2956c09667cd1f84b050eb0300aabd23b45ae0c06e0a405d11b6e9ad0f42f4",
+   "filter": "point"
+  },
+  "skins/AmogWhite.png": {
+   "source": "sharedassets1.assets#695",
+   "texture": "AmogWhite",
+   "sha256": "cc675b53832cc32583dca117dbefb6513231ea125ccb9eb762b183c47d1e6b9b",
    "filter": "point"
   },
   "items/CreditCardGreen.png": {
@@ -289,6 +493,18 @@
    "sha256": "2ad738c3d628b94b5402ca31d901af4d9187a6e77b681654709bc6a2eb74bc33",
    "filter": "point"
   },
+  "skins/BushDefault.png": {
+   "source": "sharedassets1.assets#710",
+   "texture": "Bush1",
+   "sha256": "94d2aa1af04b17027d091675546cd2e00ffa7a20cbd06b61b3561522244d0da4",
+   "filter": "point"
+  },
+  "passives/Vampire.png": {
+   "source": "sharedassets1.assets#727",
+   "texture": "Vampire",
+   "sha256": "5145e057523d7832d7c84aff5ca680cd92aafa4d96ea2bdd719e8850ae00786b",
+   "filter": "point"
+  },
   "tomes/TomeChaos.png": {
    "source": "sharedassets1.assets#729",
    "texture": "ChaosTome",
@@ -301,10 +517,142 @@
    "sha256": "4584e027cc88e9ef8b073733f5639d27353360cf16c0f23e00dc80b053c76632",
    "filter": "point"
   },
+  "skins/AmogGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/AstroGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/AthenaGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/BanditGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/BirdoGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/BloodGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/CalciumGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/ClankGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/CorruptedGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/DiceheadGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/FoxGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/BushGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/HoverGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/KnightGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/MegachadGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/MonkeGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/NinjaGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/NoelleGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/OgreGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/GhostGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
+  "skins/RobinetteGold.png": {
+   "source": "sharedassets1.assets#736",
+   "texture": "Gold",
+   "sha256": "ed7321b3bd37d3e45a1328ed0b5d8dcbad2547faedbd81412d2f0ef481a12218",
+   "filter": "point"
+  },
   "items/Cowards_Cloak.png": {
    "source": "sharedassets1.assets#743",
    "texture": "ItemSpeedyCloak",
    "sha256": "e8413f45067a6dbf650eed3b9d2d9fbce322b75e545592276b6467bdbbdd4a57",
+   "filter": "point"
+  },
+  "skins/NinjaDefault.png": {
+   "source": "sharedassets1.assets#744",
+   "texture": "NinjaDefault",
+   "sha256": "cbfc6eac42b0e28b273ad173b78ff6b095ca2bd54e54fa7dc1c32608de0b6891",
    "filter": "point"
   },
   "hats/ShadyHatBlack.png": {
@@ -313,16 +661,46 @@
    "sha256": "210cf954fbd85e8eff8140217472c9aae330c814a576b396afe055ac35d96333",
    "filter": "point"
   },
+  "passives/Hoarder.png": {
+   "source": "sharedassets1.assets#748",
+   "texture": "Hoarder",
+   "sha256": "6ef9cbba415f9c144381ff4c2050a97f3ad155625604f8ef72de6dab6abad15c",
+   "filter": "point"
+  },
   "items/Pumpkin.png": {
    "source": "sharedassets1.assets#749",
    "texture": "ItemPumpkin",
    "sha256": "f2ac3e0543699cfdd0dddbf9463673a9ea6955cbe7ad6e664784b1e694195d53",
    "filter": "point"
   },
+  "skins/NoelleDefault.png": {
+   "source": "sharedassets1.assets#752",
+   "texture": "NoelleDefault",
+   "sha256": "c44e4591fcffc263a0e7ca6944ad71d974864bf4205f8f114223960e209ad58d",
+   "filter": "point"
+  },
   "items/Battery.png": {
    "source": "sharedassets1.assets#767",
    "texture": "ItemBattery",
    "sha256": "2ebf5ea799109fcf208d1638e4d27fc52ba2f179cc7548b2ee61b93eaf3e400a",
+   "filter": "point"
+  },
+  "skins/BloodScarecrow.png": {
+   "source": "sharedassets1.assets#777",
+   "texture": "BloodScarecrow",
+   "sha256": "da19607340d2421ef93ade39ec4e557c0f83e9a8a2062df66395bb902ea8a71e",
+   "filter": "point"
+  },
+  "skins/banditDefault.png": {
+   "source": "sharedassets1.assets#779",
+   "texture": "BanditDefault",
+   "sha256": "02f20d3d9628da34e9ee607f3e11d0cf7b81f3d9adc8c43cc67b2f5823dd86ef",
+   "filter": "point"
+  },
+  "skins/GhostBlack.png": {
+   "source": "sharedassets1.assets#785",
+   "texture": "GhostBlack",
+   "sha256": "63a8521ef17958ba7142b125950881c49f51a04b6746b1e3d4b93d6ca259e5fb",
    "filter": "point"
   },
   "tomes/TomeKnockback.png": {
@@ -349,6 +727,24 @@
    "sha256": "92017f8f9b32eaed148f858f4962aeeee300a4129ad0440a172b03cf40fbb9e1",
    "filter": "point"
   },
+  "skins/NinjaShinobi.png": {
+   "source": "sharedassets1.assets#794",
+   "texture": "NinjaShinobi",
+   "sha256": "fd095084577ed83f593b18b502a7fec0714790710d1adf41989884e07fcee9bf",
+   "filter": "point"
+  },
+  "skins/MegachadGiga.png": {
+   "source": "sharedassets1.assets#798",
+   "texture": "MegachadGiga",
+   "sha256": "7b385150ee5daa4590a99acfb2671f90a84f663bfa374d2e9345ba54d774a6d6",
+   "filter": "point"
+  },
+  "skins/MonkeDefault.png": {
+   "source": "sharedassets1.assets#799",
+   "texture": "MonkeDefault",
+   "sha256": "ac4fef0a44efe735c9cdda45ed30988583706d1c3f03047f5190f7f9cd0892a8",
+   "filter": "point"
+  },
   "tomes/TomeHealth.png": {
    "source": "sharedassets1.assets#801",
    "texture": "HealthTome",
@@ -373,6 +769,24 @@
    "sha256": "8ba3eac73517b100255bcc2013c28a48b7156ab5aa0c017522e60f6c974e5cb7",
    "filter": "point"
   },
+  "skins/BirdoAcid.png": {
+   "source": "sharedassets1.assets#811",
+   "texture": "BirdoAcid",
+   "sha256": "205b4a2d9b76aa6692c464cffc7b529afb6b35e9cd5fbb05630a9e5a253ac7ce",
+   "filter": "point"
+  },
+  "passives/LockIn.png": {
+   "source": "sharedassets1.assets#815",
+   "texture": "LockIn",
+   "sha256": "dd8b3c49e3c3d756cd35485a9abc72f6078005f5d25d9f39609c8c823b64d638",
+   "filter": "point"
+  },
+  "skins/RobinetteBubble.png": {
+   "source": "sharedassets1.assets#816",
+   "texture": "RobinetteBubblegum",
+   "sha256": "96ddf29af354929fa20854db1ae38bb671bc08c8907e276f190eaf20953f81e2",
+   "filter": "point"
+  },
   "items/Spicy_Meatball.png": {
    "source": "sharedassets1.assets#817",
    "texture": "ItemSpicyMeatball",
@@ -389,6 +803,12 @@
    "source": "sharedassets1.assets#823",
    "texture": "JoesDagger",
    "sha256": "90f0884766f6460b447d73c4fe6c182e09263625f1efee894772360ca6e8b418",
+   "filter": "point"
+  },
+  "skins/AthenaObsidian.png": {
+   "source": "sharedassets1.assets#837",
+   "texture": "AthenaObsidian",
+   "sha256": "77391ed3c81ed02ca7b950db40c1bc4c321f1bc2aa6278aa943c58e7df58701b",
    "filter": "point"
   },
   "items/Gloves_Cursed.png": {
@@ -409,6 +829,18 @@
    "sha256": "08fc003d199a3d5b6b285028413804718d5f95aeecf2f56a16b0b848f9dbdde9",
    "filter": "point"
   },
+  "skins/BirdoWhite.png": {
+   "source": "sharedassets1.assets#848",
+   "texture": "BirdoObsidian",
+   "sha256": "bed1da476c43d1624dc24f7ed8adf648c20fe3a40627d6df95e57ae1dfe6090d",
+   "filter": "point"
+  },
+  "skins/NoelleJuice.png": {
+   "source": "sharedassets1.assets#854",
+   "texture": "NoelleJuice",
+   "sha256": "38dfc8a183e70213a6ea9d3ddc6e4e1bb981ca0182337e9e9b33256c7f3a85bc",
+   "filter": "point"
+  },
   "tomes/TomeArmor.png": {
    "source": "sharedassets1.assets#855",
    "texture": "ArmorTome",
@@ -421,10 +853,34 @@
    "sha256": "8f8dbf7ba31defc84183f4282284fa4c31885dcbc626397818b154885db3263d",
    "filter": "point"
   },
+  "skins/ClankDark.png": {
+   "source": "sharedassets1.assets#858",
+   "texture": "ClankDark",
+   "sha256": "256cbb3d87be2100140aab8dc441ee38977bc7b713a9347c7126a7258f2b4b59",
+   "filter": "point"
+  },
+  "skins/HoverSakura.png": {
+   "source": "sharedassets1.assets#861",
+   "texture": "HoverRikki",
+   "sha256": "cdf70fd3636a7c40a6cf078123ff040bf60287c73c769a12b1e1c63aa2b04724",
+   "filter": "point"
+  },
+  "skins/MegachadGrandpa.png": {
+   "source": "sharedassets1.assets#862",
+   "texture": "MegachadGrandpa",
+   "sha256": "b4aac88266a59165b6278705bc70b96b05a83bb8380a7421ee369c57454adc88",
+   "filter": "point"
+  },
   "tomes/TomeRegen.png": {
    "source": "sharedassets1.assets#864",
    "texture": "RegenerationTome",
    "sha256": "da949fb2853e3943ef67d9fcb1e98e55b2db2cdeb88d7f6554783d8d2ccc5680",
+   "filter": "point"
+  },
+  "passives/Rng_Blessing.png": {
+   "source": "sharedassets1.assets#871",
+   "texture": "RNG Blessing",
+   "sha256": "7ff8c0625b64e6f92dd2697795ee02f326fdbe72b4b69425f0cc27ef6b355808",
    "filter": "point"
   },
   "items/Oats.png": {
@@ -443,6 +899,12 @@
    "source": "sharedassets1.assets#879",
    "texture": "HatCheese",
    "sha256": "5e6098fbb60121527c1921b69484aa5d6eae20909bcea05d36e40da2338276fb",
+   "filter": "point"
+  },
+  "skins/OgreWinter.png": {
+   "source": "sharedassets1.assets#885",
+   "texture": "OgreWinter",
+   "sha256": "ea5e017dca889bd7329a9874357e79483f919ea945de360529e93d08c1a020d5",
    "filter": "point"
   },
   "tomes/TomeLuck.png": {
@@ -469,10 +931,22 @@
    "sha256": "6dbcc5e55f759ddd76854583c7935176f4d6c01c82598620d5bc78687412e227",
    "filter": "point"
   },
+  "skins/NoelleBubbleGum.png": {
+   "source": "sharedassets1.assets#897",
+   "texture": "NoelleBubblegum",
+   "sha256": "e3ce08ebd6ac99c9045da1d26125445d5135079ff2cd95708a036cf4a05e70a3",
+   "filter": "point"
+  },
   "weapons/WeaponDragonsBreath.png": {
    "source": "sharedassets1.assets#899",
    "texture": "DragonsBreath",
    "sha256": "0fb12be8eddd93edb86755ca056464b6bc052a8a03bee25909bf42d8205c75dd",
+   "filter": "point"
+  },
+  "skins/MegachadKevin.png": {
+   "source": "sharedassets1.assets#900",
+   "texture": "MegachadKevin",
+   "sha256": "7c81370d17f9ec00b661335d3b62ceebe73ca47a46e4fd0a9274cea0fea53afd",
    "filter": "point"
   },
   "shop/Toggler.png": {
@@ -487,6 +961,18 @@
    "sha256": "bd32b108c0a2195c3db6f3c0e7f0a19f80221164ac68fb9e2d0104476178e9b3",
    "filter": "point"
   },
+  "skins/MegachadZesty.png": {
+   "source": "sharedassets1.assets#917",
+   "texture": "MegachadZesty",
+   "sha256": "6326d342a04a15b4a2e9ab175a12c02b2f57740d8d3a97d144d21b7956341c45",
+   "filter": "point"
+  },
+  "skins/DiceheadDefault.png": {
+   "source": "sharedassets1.assets#918",
+   "texture": "DiceheadDefault",
+   "sha256": "e15665656422b284fbefb4c9de63774d41d7bf10ed571c4291e9c233523cd5fa",
+   "filter": "point"
+  },
   "weapons/WeaponSpaceNoodle.png": {
    "source": "sharedassets1.assets#926",
    "texture": "Space Noodle",
@@ -497,6 +983,12 @@
    "source": "sharedassets1.assets#927",
    "texture": "ToxicBarrel",
    "sha256": "11c8bafa9643e84127f31acae950667fdabd607a6d159bfeed1e3d4f9d3a39b7",
+   "filter": "point"
+  },
+  "skins/OgreEarthy.png": {
+   "source": "sharedassets1.assets#928",
+   "texture": "OgreEarthy",
+   "sha256": "119a7c1a9fbcdd19b1851f01c9b7d29eebfa9ee22357620ae016ada28929c09c",
    "filter": "point"
   },
   "weapons/WeaponMines.png": {
@@ -511,6 +1003,24 @@
    "sha256": "a834a761b14a7a87865a0b8fa85db04112c0fd7a705919873ac06cf7d0537644",
    "filter": "point"
   },
+  "passives/Bullseye.png": {
+   "source": "sharedassets1.assets#935",
+   "texture": "Bullseye",
+   "sha256": "f574e28d665f2133a04153926eaf1efd09b013af42f83ae9599b42c78d733924",
+   "filter": "point"
+  },
+  "passives/Shadowstep.png": {
+   "source": "sharedassets1.assets#936",
+   "texture": "Shadowstep",
+   "sha256": "64f4019784b8aa6c4a59fcaa42156afa0a4292a827cc033c016bf47dd0acdbaf",
+   "filter": "point"
+  },
+  "skins/BloodDark.png": {
+   "source": "sharedassets1.assets#939",
+   "texture": "BloodDark",
+   "sha256": "205ad42fb8fdf08309d373e13f4171d599bebf4ceeacac9aafdec98866be74e7",
+   "filter": "point"
+  },
   "items/GymSauce.png": {
    "source": "sharedassets1.assets#940",
    "texture": "ItemGymSauce",
@@ -523,10 +1033,22 @@
    "sha256": "abe12a36c73589cad23be6092c38110eb2fff7baf7ce64e521709f504a615d78",
    "filter": "point"
   },
+  "skins/BushBlue.png": {
+   "source": "sharedassets1.assets#944",
+   "texture": "BushBlue",
+   "sha256": "2441ee58fd663d6582706f6997ae10567cce994838849e7ac060f826a8205deb",
+   "filter": "point"
+  },
   "tomes/TomeProjectileSpeed.png": {
    "source": "sharedassets1.assets#945",
    "texture": "ProjectileSpeedTOme",
    "sha256": "aad85efc608298894f73498261d20ca0950e28e73aa9c2785aebafa34d76725d",
+   "filter": "point"
+  },
+  "skins/RobinetteDefault.png": {
+   "source": "sharedassets1.assets#948",
+   "texture": "RobinetteDefault",
+   "sha256": "963d36e142d21b0f71681ca8e672cbf72ce59a5ce728d72d6137d6fad7676910",
    "filter": "point"
   },
   "items/Shattered_Knowledge.png": {
@@ -547,16 +1069,40 @@
    "sha256": "90d7e48483fac164ab3c77857b20700f9d81c5ecd2fed4ea5d81da7434180fd4",
    "filter": "point"
   },
+  "skins/BanditWhite.png": {
+   "source": "sharedassets1.assets#964",
+   "texture": "BanditWhite",
+   "sha256": "c1fbc9747f7e11bf837985dc97cb24e9a2e1839613c82923ed01a8c8d2ecccf6",
+   "filter": "point"
+  },
+  "skins/GhostPurple.png": {
+   "source": "sharedassets1.assets#965",
+   "texture": "GhostPurple",
+   "sha256": "56ed69556e6cf45c5b47648711e3aa375815025d54d2b4aaddfd54d8b0cd1c42",
+   "filter": "point"
+  },
   "shop/Skip.png": {
    "source": "sharedassets1.assets#966",
    "texture": "Skip2",
    "sha256": "f3ba98fe4fb8abe722352bd5dfbd0211f757208aabf56e6ba3a4a4d1e8ccfa8b",
    "filter": "point"
   },
+  "skins/KnightBlack.png": {
+   "source": "sharedassets1.assets#970",
+   "texture": "KnightBlack",
+   "sha256": "5cddfd4ac31391af85154687927c7523aed85e907700172b20850db739201b25",
+   "filter": "point"
+  },
   "items/OldMask.png": {
    "source": "sharedassets1.assets#972",
    "texture": "ItemOldMask",
    "sha256": "dd2e3ecb4f31612b916d6262e7401c151af7efee11e4db17ca802895c8bfb75e",
+   "filter": "point"
+  },
+  "skins/CalciumAcid.png": {
+   "source": "sharedassets1.assets#973",
+   "texture": "CalciumAcid",
+   "sha256": "779bc3e725d91015275291d79e42e02ce016454c952a2e709c16e34434dea07e",
    "filter": "point"
   },
   "items/Skuleg.png": {
@@ -569,6 +1115,12 @@
    "source": "sharedassets1.assets#976",
    "texture": "DurationTome",
    "sha256": "c2a3f227d7e435e42f5dd93610fc9147a2be1a4908877f46f5aabf3ee57bdbb3",
+   "filter": "point"
+  },
+  "skins/MonkeFire.png": {
+   "source": "sharedassets1.assets#977",
+   "texture": "MonkeHot",
+   "sha256": "4aa457301721868cf5c6e5e4426a9dcd06ff4d716e43f168365ee8602a6c2378",
    "filter": "point"
   },
   "hats/Clown.png": {
@@ -613,6 +1165,18 @@
    "sha256": "4472c9c3ee1aa773b01cadf8ed8128ea460d03eabdf20af2b1d55f063c0f3579",
    "filter": "point"
   },
+  "skins/HoverFuture.png": {
+   "source": "sharedassets1.assets#1024",
+   "texture": "HoverFuture",
+   "sha256": "70f3eadcb58d0c1f3d8b82891a65cd809e565491cf22df28bd44b35a363ec392",
+   "filter": "point"
+  },
+  "skins/AthenaBubble.png": {
+   "source": "sharedassets1.assets#1027",
+   "texture": "AthenaBubblegum",
+   "sha256": "dc5c7c07cf53b39aedded0440d036d94d09e3edbdc7a2955a35231efe8b5c8f0",
+   "filter": "point"
+  },
   "characters/Noelle.png": {
    "source": "sharedassets1.assets#1028",
    "texture": "Noelle",
@@ -631,10 +1195,28 @@
    "sha256": "559deedcbb53427f0037b480fbeb932f05dbe5caec42278c4871dd54b61a2a29",
    "filter": "point"
   },
+  "skins/AthenaCrimson.png": {
+   "source": "sharedassets1.assets#1031",
+   "texture": "AthenaCrimson",
+   "sha256": "031dda52f7f740b9f9230e3d058528c84cca109d5814c6952df64f2e659a9db2",
+   "filter": "point"
+  },
   "items/Holy_Book.png": {
    "source": "sharedassets1.assets#1033",
    "texture": "ItemHolyBook",
    "sha256": "7472d0a6a386f8cce207cba4aaae34156dd3bdd1460ab990a837dddae8d60c98",
+   "filter": "point"
+  },
+  "skins/ClankDefault.png": {
+   "source": "sharedassets1.assets#1036",
+   "texture": "Clank1",
+   "sha256": "dac0d5f712d1adcf209e6e49e398e1b1daed40fadce7e9f53358b7cdf724380a",
+   "filter": "point"
+  },
+  "skins/BloodBurnt.png": {
+   "source": "sharedassets1.assets#1038",
+   "texture": "BloodBurnt",
+   "sha256": "d185f40fa0ca0cb8563daf6eb52f12d5802cfdcdf5b3d9ba77a83423756ab855",
    "filter": "point"
   },
   "shop/SilverMultiplier.png": {
@@ -653,6 +1235,12 @@
    "source": "sharedassets1.assets#1045",
    "texture": "Dice",
    "sha256": "8f17975441445d6488a0b94c2c449fcd16d26b3ad9684c7d73404ac94184c905",
+   "filter": "point"
+  },
+  "passives/Reinforced.png": {
+   "source": "sharedassets1.assets#1048",
+   "texture": "Reinforced",
+   "sha256": "e9880f3efcb7f7d0bf24a41285bf5af1f06dadfe570e3f6c73900835dc9087a1",
    "filter": "point"
   },
   "hats/FrogHat2.png": {
@@ -691,6 +1279,18 @@
    "sha256": "589d5cf3f88f5730e0974ec95b52f47ea3fbe0e17279e12b8aabe87e2d5def5e",
    "filter": "point"
   },
+  "skins/KnightDefault.png": {
+   "source": "sharedassets1.assets#1083",
+   "texture": "Knight1",
+   "sha256": "a802d1a6142cd541d95350113d748492ecb540f6b99e5970ce31de453b125a7a",
+   "filter": "point"
+  },
+  "skins/BushSakura.png": {
+   "source": "sharedassets1.assets#1085",
+   "texture": "BushSakura",
+   "sha256": "c12049c44a3d905675c66fb9b23d385f73403ea4aaa8874f4631ef4c44f55321",
+   "filter": "point"
+  },
   "items/Demonic_Soul.png": {
    "source": "sharedassets1.assets#1088",
    "texture": "ItemDemonSoul",
@@ -715,6 +1315,12 @@
    "sha256": "41c9d81a473eec029c0d72afc1de259b2c610f760266c1686ed1b97ef8b76799",
    "filter": "point"
   },
+  "skins/AmogSus.png": {
+   "source": "sharedassets1.assets#1106",
+   "texture": "AmogRed",
+   "sha256": "1bcb1d0a5ce6a7b55c3fcff4275d06aa4ddd6ab6da691f3c3da87406c74c069f",
+   "filter": "point"
+  },
   "tomes/TomePrecision.png": {
    "source": "sharedassets1.assets#1107",
    "texture": "PrecisionTome",
@@ -733,6 +1339,12 @@
    "sha256": "67a43cbaf66e946ec2a7fb13d2de3397fbaed0159ed3e15b585a64a1ec05da1d",
    "filter": "point"
   },
+  "passives/Enduring.png": {
+   "source": "sharedassets1.assets#1123",
+   "texture": "Enduring",
+   "sha256": "eb0ec4bbe92b6a67231f37cb3636dec7f89b542a5c96df6121092533b696ab33",
+   "filter": "point"
+  },
   "items/IdleJuice.png": {
    "source": "sharedassets1.assets#1125",
    "texture": "IdleJuice",
@@ -743,6 +1355,12 @@
    "source": "sharedassets1.assets#1127",
    "texture": "ItemDragonfire",
    "sha256": "2110508bc0396c9ee55ea9f4da871ec301f04576147ac9af78c89f19e8e3cfa0",
+   "filter": "point"
+  },
+  "skins/MegachadDefault.png": {
+   "source": "sharedassets1.assets#1128",
+   "texture": "Megachad1",
+   "sha256": "1890948d938128fa3e988fee1eebad2dbe3c9b2b9da4afd20dc33a387b848704",
    "filter": "point"
   },
   "shop/Weapons.png": {
@@ -781,6 +1399,18 @@
    "sha256": "07eb0101fd50ecbd865bf7ee1a5d645ae47af2b4ad84b253b9c1ecabcf2abf7c",
    "filter": "point"
   },
+  "passives/Float.png": {
+   "source": "sharedassets1.assets#1161",
+   "texture": "Float",
+   "sha256": "d0a138f8a184f44233c2e95be7d1f39053d3aba4d6f79cead2bd94f9e8327ae3",
+   "filter": "point"
+  },
+  "passives/Zoombonk.png": {
+   "source": "sharedassets1.assets#1164",
+   "texture": "Zoombonk",
+   "sha256": "feb5e510def2ab71c09d71dcca0f96c6018c802634f2592e4d33b117d0716ee6",
+   "filter": "point"
+  },
   "characters/Vlad.png": {
    "source": "sharedassets1.assets#1167",
    "texture": "BloodMage",
@@ -817,6 +1447,12 @@
    "sha256": "51757e0925aa8ed1c6c97f2260fa6672500353f05bd4a1667475be81f7546f5c",
    "filter": "point"
   },
+  "skins/MonkeIce.png": {
+   "source": "sharedassets1.assets#1179",
+   "texture": "MonkeCold",
+   "sha256": "967fe2cf1c80fdfbc4f477a0b3a52ef95eec2da4855af25f39b94eb1181816b2",
+   "filter": "point"
+  },
   "hats/MedievalHat.png": {
    "source": "sharedassets1.assets#1180",
    "texture": "HatMedieval",
@@ -835,10 +1471,34 @@
    "sha256": "58897be6e883c4a6939da175d54eb934c7626928d984a17a2e8843ea37ed932f",
    "filter": "point"
   },
+  "skins/BirdoDefault.png": {
+   "source": "sharedassets1.assets#1191",
+   "texture": "Birdo1",
+   "sha256": "58a0c41dc7260f8517807c44ddad77408dff4507fd8b7b637734824efb993db6",
+   "filter": "point"
+  },
   "hats/CrownHat.png": {
    "source": "sharedassets1.assets#1199",
    "texture": "HatCrown",
    "sha256": "97a1aac79244d7effc3a3dd43fb35dd85d41927d2536b95e5bdab5281beaeaeb",
+   "filter": "point"
+  },
+  "skins/CalciumDark.png": {
+   "source": "sharedassets1.assets#1205",
+   "texture": "CalciumDark",
+   "sha256": "78774dc10445d3b5c8e72061e12d40c6c4ec409a28ba30ad3506aca9562e6ac5",
+   "filter": "point"
+  },
+  "skins/FoxLight.png": {
+   "source": "sharedassets1.assets#1211",
+   "texture": "Fox4",
+   "sha256": "42186ecc92c336045db49ce47c48693d662fba3150f1c249f813e1a1356d7598",
+   "filter": "point"
+  },
+  "skins/FoxDefault.png": {
+   "source": "sharedassets1.assets#1215",
+   "texture": "Fox1",
+   "sha256": "a847ddaf945c423a072c51e4cef70b79e678ad77fd5d6dd71d40ebe7571a3f04",
    "filter": "point"
   },
   "items/Kevin.png": {
@@ -865,6 +1525,12 @@
    "sha256": "fc010a64d133f7ab5e45b467d82f7dde354d881ef20324ba3a12ef4954a35282",
    "filter": "point"
   },
+  "skins/NinjaWhite.png": {
+   "source": "sharedassets1.assets#1224",
+   "texture": "NinjaWhite",
+   "sha256": "e97584a8faac4c2d5a4d2683bcdfbd97a02d855e31b7ffcdfed9d427d8f3756e",
+   "filter": "point"
+  },
   "characters/Knight.png": {
    "source": "sharedassets1.assets#1229",
    "texture": "Knight",
@@ -889,6 +1555,12 @@
    "sha256": "0f4699670d6f184e846ec63fd66a14d8d379b9349e2b1323be7c2a51fe8a1605",
    "filter": "point"
   },
+  "skins/HoverGalaxy.png": {
+   "source": "sharedassets1.assets#1246",
+   "texture": "HoverGalaxy",
+   "sha256": "ebe3c419aa73e7d732655eb8292f430c43769b31c8febf65b09f875565d61958",
+   "filter": "point"
+  },
   "items/Turbo_Skates.png": {
    "source": "sharedassets1.assets#1247",
    "texture": "ItemRollerblades",
@@ -901,6 +1573,12 @@
    "sha256": "7fd988273659490051e0db91dffb42fc72fa17c72c48270a26fa79f9713c7f8b",
    "filter": "point"
   },
+  "skins/GhostDefault.png": {
+   "source": "sharedassets1.assets#1249",
+   "texture": "GhostDefault",
+   "sha256": "3cff7465b41bcdec5fb6ecd4d118a73178a4aed7148aef2671c45844619f7160",
+   "filter": "point"
+  },
   "weapons/WeaponPoisonFlask.png": {
    "source": "sharedassets1.assets#1250",
    "texture": "Poison Flask",
@@ -911,6 +1589,12 @@
    "source": "sharedassets1.assets#1256",
    "texture": "Robinette",
    "sha256": "9474afd3d724c20ffe0a8e54940a36e35f726eecf9129de5e7c93111504a33eb",
+   "filter": "point"
+  },
+  "passives/Quantum.png": {
+   "source": "sharedassets1.assets#1261",
+   "texture": "QuantumXp",
+   "sha256": "f851909facab9fd6c18dc7bc79e18ecfdcfe4a7aca231a2546ce24caf16e7844",
    "filter": "point"
   },
   "items/Quins_Mask.png": {
@@ -967,10 +1651,22 @@
    "sha256": "e8e523a22c2d59e4d1f0869a4d9c3ef9c156db31736363051ac6beaaca4c570b",
    "filter": "point"
   },
+  "skins/CorruptedBlue.png": {
+   "source": "sharedassets1.assets#1290",
+   "texture": "CorruptBlue",
+   "sha256": "34b026acac0833e6d42da3faacf58f78bb99bb137316a940c64535145f4219f9",
+   "filter": "point"
+  },
   "weapons/WeaponLightningBolt.png": {
    "source": "sharedassets1.assets#1292",
    "texture": "LightningStaff",
    "sha256": "a929a44b1b738971efce2760bc9f39d6448273b89a80152f08c97177a88664e6",
+   "filter": "point"
+  },
+  "skins/DiceheadYakuza.png": {
+   "source": "sharedassets1.assets#1293",
+   "texture": "DiceheadYakuza",
+   "sha256": "2e7f9531a466c16dc667c5754ac4d5ec5198cbc19714ae2d42a9388196069ca8",
    "filter": "point"
   },
   "tomes/TomeGolden.png": {
@@ -989,6 +1685,18 @@
    "source": "sharedassets1.assets#1298",
    "texture": "Chonkplate",
    "sha256": "763fe565f39fe9fa26f36e36977a9b897ae33f7b601475f8f21db2bb78ccd734",
+   "filter": "point"
+  },
+  "skins/BushObsidian.png": {
+   "source": "sharedassets1.assets#1299",
+   "texture": "BushObsidian",
+   "sha256": "129659bdf1e74f73f6c42abc5bd09d92365253b9d75a79d48c181fa2c710279f",
+   "filter": "point"
+  },
+  "passives/Flowstate.png": {
+   "source": "sharedassets1.assets#1302",
+   "texture": "Flowstate",
+   "sha256": "9cd558249abaea77d22bc3fe95b0e587cd129b009e8e3c2dd8c207774e7119b5",
    "filter": "point"
   },
   "items/Demonic_Blood.png": {
@@ -1015,6 +1723,24 @@
    "sha256": "42b4cea8d7301fd87954473ce25fdf3e560b3c1256eca2b6c7e8de8676a38f7e",
    "filter": "point"
   },
+  "skins/CorruptedGalaxy.png": {
+   "source": "sharedassets1.assets#1318",
+   "texture": "CorruptGalaxy",
+   "sha256": "fa52427e72c6e8b61db91978986040f8c6d20292e98d8604ecc4e01aef4699b8",
+   "filter": "point"
+  },
+  "skins/AstroRed.png": {
+   "source": "sharedassets1.assets#1320",
+   "texture": "AstroRed",
+   "sha256": "3410de89188600b678229465f8880239c894dabad59ef4b74898f7977691e034",
+   "filter": "point"
+  },
+  "skins/AstroDark.png": {
+   "source": "sharedassets1.assets#1323",
+   "texture": "AstronautDark",
+   "sha256": "a0835597a852cbd20eb747a9dfe9c44a602cb13c494b46c29d5e3875d6416ba9",
+   "filter": "point"
+  },
   "weapons/WeaponSluttyRocket.png": {
    "source": "sharedassets1.assets#1329",
    "texture": "SluttyRocket",
@@ -1033,10 +1759,22 @@
    "sha256": "93958e800df448ca85e0744171bedaafa079b936c1501315fcb238c9afac7824",
    "filter": "point"
   },
+  "skins/CalciumFire.png": {
+   "source": "sharedassets1.assets#1339",
+   "texture": "CalciumHot",
+   "sha256": "fc94767a072231cac6a365dcd87ba05c77a28a359c416227aecc879814cf72f3",
+   "filter": "point"
+  },
   "hats/TopHat.png": {
    "source": "sharedassets1.assets#1342",
    "texture": "HatTopHat",
    "sha256": "550d5fc030a5d31194386bb354c33cdc79e8c96022dc823d93c29feb56126e18",
+   "filter": "point"
+  },
+  "skins/BloodDefault.png": {
+   "source": "sharedassets1.assets#1345",
+   "texture": "BloodMageDefault",
+   "sha256": "25f608f3390c6e155253343b4fa29eb175a44a4bfae3ec7996d8cbf01a4e421d",
    "filter": "point"
   },
   "characters/Athena.png": {
@@ -1055,6 +1793,138 @@
    "source": "sharedassets1.assets#1348",
    "texture": "HatMicrowave",
    "sha256": "4b33758fdbe39c77f2db1d0613f2b5b86da13ec93418054374814091c53985c8",
+   "filter": "point"
+  },
+  "skins/FoxDark.png": {
+   "source": "sharedassets1.assets#1350",
+   "texture": "Fox3",
+   "sha256": "bb156f1e56e592e0b1c5a71074ad8df7daa0df6786583336fee1f71f1f0a0415",
+   "filter": "point"
+  },
+  "skins/AmogGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/AstroGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/AthenaGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/BanditGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/BirdoGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/BloodGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/CalciumGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/ClankGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/CorruptedGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/DiceheadGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/FoxGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/BushGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/HoverGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/KnightGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/MegachadGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/MonkeGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/NinjaGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/NoelleGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/OgreGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/GhostGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
+   "filter": "point"
+  },
+  "skins/RobinetteGhost.png": {
+   "source": "sharedassets1.assets#1351",
+   "texture": "_Ghost",
+   "sha256": "755895eb4d8829c7365bbddc01a13118472915a3573370c49378596a5ccd3d59",
    "filter": "point"
   },
   "shop/Boombox.png": {
@@ -1093,10 +1963,34 @@
    "sha256": "0872a4c4041005083af403294502f0d39a2d5bcbcae1be0bc52c066f8e0b8457",
    "filter": "point"
   },
+  "skins/GhostRed.png": {
+   "source": "sharedassets1.assets#1372",
+   "texture": "GhostRed",
+   "sha256": "b5e6cb1049462c89d56accce355e82b96e4071f789dc1ac8fd16fbe5c25a629a",
+   "filter": "point"
+  },
+  "skins/DiceheadAttorney.png": {
+   "source": "sharedassets1.assets#1375",
+   "texture": "DiceheadAttorney",
+   "sha256": "d4d122498abf2fa3d22db060e75e33e62cd2235760afefa9762dbbe88a765c37",
+   "filter": "point"
+  },
   "items/Backpack.png": {
    "source": "sharedassets1.assets#1377",
    "texture": "ItemBackpack",
    "sha256": "b932ba71eb0b7392645c61968fa4b611102773c4763a64b9f9ce6718692b9394",
+   "filter": "point"
+  },
+  "skins/HoverRed.png": {
+   "source": "sharedassets1.assets#1378",
+   "texture": "HoverDudi",
+   "sha256": "73a5cfe9f337814ede25a4f29b465571b45335ab1521fcd44107a3805b082c6e",
+   "filter": "point"
+  },
+  "skins/OgreRed.png": {
+   "source": "sharedassets1.assets#1383",
+   "texture": "OgreRed",
+   "sha256": "a8aad9bfc54e93e11709a2c62a5690b7dc4a61dc443f10a4609a2f632d3f4028",
    "filter": "point"
   },
   "characters/Fox.png": {
@@ -1111,10 +2005,28 @@
    "sha256": "a7549c77c45e63bf627f1d9524eab685afe6bab38eaf54f670974f1fa5558762",
    "filter": "point"
   },
+  "passives/Plague.png": {
+   "source": "sharedassets1.assets#1389",
+   "texture": "Plague",
+   "sha256": "880bbdf54652b79b8e51a086c11fb20d635611d85b8e15aac16aad83da25618c",
+   "filter": "point"
+  },
+  "skins/CalciumDefault.png": {
+   "source": "sharedassets1.assets#1390",
+   "texture": "Calcium1",
+   "sha256": "b8b4aa020f2264787726782c0fa52c8656911b4e8eff9cb0fd1d6851e5ed7145",
+   "filter": "point"
+  },
   "items/Snek.png": {
    "source": "sharedassets1.assets#1393",
    "texture": "ItemSnek",
    "sha256": "6472d6b030e98c70272a0cf929d73126fd7a7456863e7167b54b554f3c411fe9",
+   "filter": "point"
+  },
+  "skins/KnightFire.png": {
+   "source": "sharedassets1.assets#1396",
+   "texture": "KnightFire",
+   "sha256": "b86249683e6d0f2f8dc564cde37b99551e91651e144568d3cc606ada07709c4a",
    "filter": "point"
   },
   "characters/Ninja.png": {
@@ -1123,10 +2035,22 @@
    "sha256": "d8a854fb4ca8bf5a50cd3c7da50181af42d39967ee3738edd6aab2a0c5d176d7",
    "filter": "point"
   },
+  "passives/Stonks.png": {
+   "source": "sharedassets1.assets#1405",
+   "texture": "Stonks",
+   "sha256": "10547cb3d3e2d1e6613f69ae7bd3738e39871f78db00b2997040f30745abeaf9",
+   "filter": "point"
+  },
   "hats/WizardHat.png": {
    "source": "sharedassets1.assets#1406",
    "texture": "HatWizard",
    "sha256": "5c515fb60ea235c320d94147e118b7044ce2c5b7477162e8bf637498bd7f994d",
+   "filter": "point"
+  },
+  "skins/banditCrimson.png": {
+   "source": "sharedassets1.assets#1410",
+   "texture": "BanditCrimson",
+   "sha256": "d150e510c1817bbb4390eccc2d83b5864e1bfb6d874b3b34b5e314747d568356",
    "filter": "point"
   },
   "hats/Headset.png": {

@@ -21,3 +21,7 @@ button:not(.tile):not(.map-row):not(.character-card):not(.title-close):focus-vis
  background:linear-gradient(var(--c),var(--c)) top left/var(--l) var(--w),linear-gradient(var(--c),var(--c)) top left/var(--w) var(--l),linear-gradient(var(--c),var(--c)) top right/var(--l) var(--w),linear-gradient(var(--c),var(--c)) top right/var(--w) var(--l),linear-gradient(var(--c),var(--c)) bottom left/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom left/var(--w) var(--l),linear-gradient(var(--c),var(--c)) bottom right/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom right/var(--w) var(--l);background-repeat:no-repeat}
 .title-grid .tile:focus-visible::before,.map-row:focus-visible::before,.character-card:focus-visible::before{opacity:1}
 button:focus-visible{outline:0}
+/* Show the sprite's pixel-rounded corners and lip at 2x like the real menu (32px sprite, ~2x on screen). */
+button{border-width:14px 14px 18px;padding:0 10px}
+.title-main button,.title-side button,.character-start,.map-confirm,.map-detail .map-lab{padding:2px 22px 0}
+.title-main button,.title-side button,.character-start,.map-confirm{color:#fff;text-shadow:0 2px 0 #1a1a1a,2px 0 0 #1a1a1a,-2px 0 0 #1a1a1a,0 -2px 0 #1a1a1a}
