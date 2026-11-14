@@ -28,3 +28,5 @@
 .stat-sheet h4{margin:10px 0 2px;font-size:.95em;color:#ffd88a;border-bottom:1px solid #605747}.stat-sheet .run-stats{font-size:.9em}.upgrade-player-stats .upgrade-side-body{max-height:62vh;overflow:auto}
 
 .upgrade-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+.upgrade-cards button[class*=rarity-]{border-color:var(--rarity)}.upgrade-cards .upgrade-rarity{position:absolute;right:76px;top:8px;font-size:.85em;color:var(--rarity);text-shadow:1px 1px #000}.upgrade-cards button.rarity-legendary{box-shadow:0 0 14px var(--rarity)}

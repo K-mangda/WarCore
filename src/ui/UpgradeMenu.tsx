@@ -2,8 +2,9 @@ import {Stats} from './PlayerStats';
 import {usePanelFocus} from './usePanelFocus';
 import {assetUrl} from '../core/assetUrl';
 import type {RunSnapshot,Upgrade} from '../combat/Run';
-import {upgrades,upgradeValues} from '../combat/Upgrades';
-import {useEffect,useRef,useSyncExternalStore} from 'react';
+import {upgradeDescription,upgrades,upgradeValues} from '../combat/Upgrades';
+import {rarityColors,upgradeMultiplier} from '../combat/Rarity';
+import {useEffect,useRef,useSyncExternalStore,type CSSProperties} from 'react';
 import {getControlPreferences,subscribeControlPreferences} from '../core/ControlPreferences';
 import {upgradeHotkey} from '../core/UpgradeHotkeys';
 import {LevelUpBackdrop} from './LevelUpBackdrop';
@@ -28,10 +29,10 @@ export function UpgradeMenu({run,choose,hover}:{run:RunSnapshot;choose:(id:Upgra
    </div></section>
    <section className="upgrade-offers"><h2 id="upgrade-title">UPGRADE OFFERS</h2><p className="upgrade-context">LEVEL {run.level} · GAME PAUSED{run.pendingUpgrades>1?` · ${run.pendingUpgrades} choices remaining`:''}</p>
     <div className="upgrade-cards">{run.upgradeChoices.map((id,index)=>{
-     const upgrade=upgrades.find(upgrade=>upgrade.id===id)!;
-     return <button key={id} onPointerEnter={hover} onClick={()=>choose(id)}>
-      <span className="upgrade-offer-kind">{run.upgradeLevels[id]===0?'New Tome':'Tome upgrade'}</span>
-      <img src={assetUrl(`game-ui/${upgrade.icon}.png`)} alt=""/><div className="upgrade-offer-description"><h3>{upgrade.name}</h3><strong className="upgrade-values">{upgradeValues(id,run)}</strong><p>{upgrade.description}</p></div>
+     const upgrade=upgrades.find(upgrade=>upgrade.id===id)!,rarity=run.upgradeRarity[id]??'Common',multiplier=upgradeMultiplier[rarity];
+     return <button key={id} className={`rarity-${rarity.toLowerCase()}`} style={{'--rarity':rarityColors[rarity]} as CSSProperties} onPointerEnter={hover} onClick={()=>choose(id)}>
+      <span className="upgrade-offer-kind">{run.upgradeLevels[id]===0?'New Tome':'Tome upgrade'}</span><span className="upgrade-rarity">{rarity}</span>
+      <img src={assetUrl(`game-ui/${upgrade.icon}.png`)} alt=""/><div className="upgrade-offer-description"><h3>{upgrade.name}</h3><strong className="upgrade-values">{upgradeValues(id,run,multiplier)}</strong><p>{upgradeDescription(id,multiplier)}</p></div>
       <span className="tome-level">{run.upgradeLevels[id]===0?'NEW':`LVL ${run.upgradeLevels[id]}`}</span><small>{settings.numberUpgrades?`[${index+1}] SELECT`:'SELECT'}</small>
      </button>;
     })}</div>

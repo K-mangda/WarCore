@@ -16,12 +16,13 @@ Single list of what is done, what is ready to do now, and what waits for data. D
 | Death sequence look (DeathPP numbers known) | colour grading values verified; wipe shader unknown | partly possible |
 | Weapon level-up cards | data complete; effects of `DamageMultiplier Flat` unknown | blocked, see below |
 
-## Blocked on the Ghidra decompile (job `decompile3`: PlayerStatsNew.UpdateStat, tome rarity scaling, WeaponInventory/TomeInventory AddUpgrade, weapon max level)
+## Decompile job 3 finished (UpdateStat, Tome rarity scaling, AddUpgrade, max levels)
 
-- Weapon cards on the offer screen and their effect on damage/size/knockback.
-- Rarity on cards (Tome value scaling at rarity > 0 is in an unread helper) and rarity colours/labels.
-- Slot caps (4 weapons / 4 Tomes) and weapon/Tome max level.
-- Exact stat folding order (flat/additive/multiplicative) so Luck, HP regen, Pickup range and the other display-only stats can start working.
+Done from it: stat folding (verified), Tome linear accumulation, rarity per card with Luck, rarity colours, Round(value x multiplier, 2). Still open:
+
+- Weapon cards and their effect: the seed values of a fresh weapon's StatComponents are unread, so `DamageMultiplier Flat 2.0` per level is unclear. A short follow-up decompile of `WeaponInventory` entry creation (RVA 0x432260) would settle it.
+- Making the display-only stats work in game (HP regen, Luck effects, Pickup range, Move speed, Jump) - the sheet is verified, the gameplay hooks are not written.
+- Slot caps 4 / 4, weapon max level 40, Tome max level 99 are known; the web has one weapon and three Tomes so they do not bind yet.
 
 ## Blocked on extraction (no data yet)
 

@@ -4,7 +4,7 @@ import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 import * as T from 'three';
-for(const name of ['combat/Run','combat/XpCurve','player/StatSheet','combat/Weapons','combat/Director','enemies/Roster','data/NativeData','player/Danger','core/EffectsPreferences','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','combat/StaffView','combat/ProgressionView','combat/XpAppearance','core/assetUrl','enemies/Swarm','player/Physics']){
+for(const name of ['combat/Run','combat/XpCurve','combat/Rarity','player/StatSheet','combat/Weapons','combat/Director','enemies/Roster','data/NativeData','player/Danger','core/EffectsPreferences','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','combat/StaffView','combat/ProgressionView','combat/XpAppearance','core/assetUrl','enemies/Swarm','player/Physics']){
  const path=resolve('.local-evidence/staff-check',name+'.js');mkdirSync(dirname(path),{recursive:true});
  writeFileSync(path,ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'"));
 }

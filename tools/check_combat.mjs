@@ -4,7 +4,7 @@ import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 import {Vector3} from 'three';
-for(const name of ['combat/Run','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm','combat/XpCurve','player/StatSheet','combat/Weapons','combat/Director','enemies/Roster','data/NativeData','player/Danger']){
+for(const name of ['combat/Run','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm','combat/XpCurve','combat/Rarity','player/StatSheet','combat/Weapons','combat/Director','enemies/Roster','data/NativeData','player/Danger']){
   const destination=resolve('.local-evidence/combat-check',name+'.js');mkdirSync(dirname(destination),{recursive:true});
   const code=ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'");writeFileSync(destination,code);
 }
@@ -238,9 +238,23 @@ const none={damage:0,haste:0,projectiles:0},fox=playerStats('Fox',none),foxRaw=r
 assert.equal(fox.MaxHealth,100);assert.equal(fox.HealthRegen,10);assert.ok(Math.abs(foxRaw.Evasion-.06)<1e-9);assert.ok(Math.abs(fox.Evasion-.06/1.06*.999)<1e-9,'Fox evasion goes through e/(e+1)*0.999');
 assert.equal(fox.Armor,0);assert.equal(fox.PickupRange,9);assert.equal(fox.JumpHeight,8);assert.ok(Math.abs(fox.Luck-.15)<1e-9);assert.ok(Math.abs(fox.MoveSpeedMultiplier-1.04)<1e-9);assert.equal(fox.DamageMultiplier,1);assert.equal(fox.CritChance,.01);
 assert.ok(Math.abs(armorReduction(.75)-.4995)<1e-9&&armorReduction(0)===0&&armorReduction(1e9)<.999+1e-9,'Armor a/(a+0.75)*0.999');assert.ok(Math.abs(evasionChance(1)-.4995)<1e-9);
-const tomed=playerStats('Fox',{damage:2,haste:2,projectiles:3});assert.ok(Math.abs(tomed.DamageMultiplier-1.08*1.08)<1e-9);assert.ok(Math.abs(tomed.AttackSpeed-1.15)<1e-9);assert.equal(tomed.Projectiles,3);
+const tomed=playerStats('Fox',{damage:.16,haste:.15,projectiles:3});assert.ok(Math.abs(tomed.DamageMultiplier-1.16)<1e-9,'Damage Tome accumulates linearly: 1 + sum of level values');assert.ok(Math.abs(tomed.AttackSpeed-1.15)<1e-9);assert.equal(tomed.Projectiles,3);
 assert.equal(formatStat(.0566,'percent'),'5.7%');assert.equal(formatStat(1.04,'multiplier'),'x1.04');
 const dodger=new Run(()=>0,()=>false,()=>0);dodger.swarm.enemies.push({...enemy(7101,0,0),spec:enemySpec(goblin,0)});dodger.step(.02,player);assert.equal(dodger.snapshot().health,100,'A hit rolled under the evasion chance is dodged');assert.equal(dodger.evaded,1);
+const {roundHalfEven2,tomeLevelValue,nextUpgrade:nextTome,upgradeDescription}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Upgrades.js')));
+const {rarityColors,upgradeMultiplier,rollUpgradeRarity,rarityWeights,upgradeWeights}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Rarity.js')));
+assert.equal(roundHalfEven2(.096),.1);assert.equal(roundHalfEven2(.105),.1,'Ties round to even');assert.equal(roundHalfEven2(.115),.12);assert.equal(tomeLevelValue('damage',2),.16);assert.equal(tomeLevelValue('haste',1.2),.09);assert.equal(tomeLevelValue('projectiles',1.4),1.4);
+assert.equal(upgradeDescription('damage',2),'+16% damage');assert.deepEqual(Object.keys(rarityColors),['Common','Uncommon','Rare','Epic','Legendary']);assert.equal(rarityColors.Legendary,'#FFE300');assert.equal(upgradeMultiplier.Epic,1.6);
+const base={damage:10,attackInterval:.5,projectiles:1};let acc=base;for(let i=0;i<3;i++)acc=nextTome('damage',acc);assert.ok(Math.abs(acc.damage-12.4)<1e-9,'Three Common Damage levels: 10 x (1 + 3 x 0.08) = 12.4, not compounding');assert.equal(acc.damageBonus,.24);
+const legendary=nextTome('damage',base,upgradeMultiplier.Legendary);assert.equal(legendary.damage,11.6,'Legendary x2 -> +0.16 -> 11.6');
+let hs=base;for(let i=0;i<2;i++)hs=nextTome('haste',hs);assert.ok(Math.abs(hs.attackInterval-.5/1.16)<1e-3,'Cooldown: interval / (1 + n x Round(0.075, 2) = 0.08)');
+const q=nextTome('projectiles',base,1.2);assert.equal(q.projectiles,2);assert.equal(q.projectileBonus,1.2);const q2=nextTome('projectiles',q,1.2);assert.equal(q2.projectiles,3,'1 + 2.4 floors to 3');
+const w=rarityWeights(upgradeWeights,0);assert.ok(Math.abs(w[0]-.7504)<1e-3&&Math.abs(w.reduce((a,b)=>a+b)-1)<1e-9);assert.equal(rollUpgradeRarity(0,0),'Common');assert.equal(rollUpgradeRarity(0,.9999),'Legendary');
+const offers=new Run(()=>0,()=>false,()=>.5);offers.gems.push({position:player.clone(),value:7});offers.step(.02,player);
+const snapOffers=offers.snapshot();assert.equal(snapOffers.pendingUpgrades,1);assert.deepEqual(Object.keys(snapOffers.upgradeRarity).sort(),['damage','haste','projectiles'],'Every offered card has a rolled rarity');
+assert.ok(Object.values(snapOffers.upgradeRarity).every(r=>['Common','Uncommon','Rare','Epic','Legendary'].includes(r)));
+const forced=new Run(()=>0,()=>false,()=>.9999);forced.gems.push({position:player.clone(),value:7});forced.step(.02,player);
+assert.equal(forced.snapshot().upgradeRarity.damage,'Legendary','High roll gives Legendary');forced.choose('damage');assert.equal(forced.snapshot().damage,11.6,'Legendary Damage Tome applies x2 value');assert.deepEqual(forced.snapshot().upgradeRarity,{},'No stale rarity after the last choice');
 console.log('Director checks passed: credit formulas, Forest 1 timeline, pool growth, cap, scaling, stand-in visuals and real contact damage.');
 const banditDeath=new Run(()=>0,()=>true,()=>.5);banditDeath.setWeapon('sword');banditDeath.swarm.enemies.push({...enemy(6001,0,-2),kind:'bandit',health:1});banditDeath.step(.02,player);
 assert.equal(banditDeath.remains[0].kind,'bandit','A dead Bandit retains its species for dissolution');assert.equal(banditDeath.snapshot().kills,1);banditDeath.reset();assert.equal(banditDeath.remains.length,0);

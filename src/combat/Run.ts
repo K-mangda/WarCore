@@ -10,6 +10,7 @@ import {playerStats} from '../player/StatSheet';
 import {enemySpec} from '../enemies/Roster';
 import {initialDanger,stepDanger,type DangerState} from '../player/Danger';
 import {availableUpgrades,emptyUpgradeLevels,nextUpgrade,type Upgrade,type UpgradeLevels} from './Upgrades';
+import {rollUpgradeRarity,upgradeMultiplier,type UpgradeRarity} from './Rarity';
 export type {Upgrade} from './Upgrades';
 export type Weapon='bolt'|'sword';
 export type RunEvent='sword'|'shot'|'staffImpact'|'staffHit'|'xp'|'gold'|'silver'|'level'|'hurt'|'death';
@@ -20,25 +21,32 @@ export interface EnemyRemains {kind?:EnemyKind;id?:number;animationTime?:number;
 export interface Gem extends Pickup {}
 export interface XpReceipt {position:Vector3;value:number;time:number;kind?:PickupKind;pickups?:number;}
 export interface Hit {position:Vector3;damage:number;life:number;}
-export interface RunSnapshot {weapon:Weapon;gold:number;silver:number;health:number;danger:number;maxHealth:number;level:number;xp:number;xpNeeded:number;kills:number;elapsed:number;enemyCount:number;pendingUpgrades:number;dead:boolean;damage:number;attackInterval:number;projectiles:number;upgradeLevels:UpgradeLevels;upgradeChoices:Upgrade[];}
-export const initialRun:RunSnapshot={weapon:'bolt',gold:0,silver:0,health:balance.maxHealth,danger:0,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:xpForLevel(1),kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[]};
+export interface RunSnapshot {weapon:Weapon;gold:number;silver:number;health:number;danger:number;maxHealth:number;level:number;xp:number;xpNeeded:number;kills:number;elapsed:number;enemyCount:number;pendingUpgrades:number;dead:boolean;damage:number;attackInterval:number;projectiles:number;upgradeLevels:UpgradeLevels;upgradeChoices:Upgrade[];upgradeRarity:Partial<Record<Upgrade,UpgradeRarity>>;damageBonus:number;attackSpeedBonus:number;projectileBonus:number;}
+export const initialRun:RunSnapshot={weapon:'bolt',gold:0,silver:0,health:balance.maxHealth,danger:0,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:xpForLevel(1),kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{},damageBonus:0,attackSpeedBonus:0,projectileBonus:0};
 export class Run {
   readonly remains:EnemyRemains[]=[];readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly staffEffects:StaffEffect[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];readonly xpReceipts:XpReceipt[]=[];readonly currencyReceipts:XpReceipt[]=[];
-  private state:RunSnapshot={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[]};private dangerState:DangerState=initialDanger();private director?:Director;evaded=0;private attackClock=0;private hurtClock=0;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
+  private state:RunSnapshot={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{}};private dangerState:DangerState=initialDanger();private director?:Director;evaded=0;private attackClock=0;private hurtClock=0;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
   constructor(private ground:(x:number,z:number)=>number,private visible:(point:Vector3)=>boolean,private random:()=>number=Math.random,private sound:(event:RunEvent)=>void=()=>{}){}
+  /** Rarity is rolled per card with the player's Luck (UpgradeButton.SetUpgrade -> Rarity.GetEncounterOfferRarity(Luck)). */
+  private rollOffers(){
+    const luck=playerStats(balance.character,{damage:this.state.damageBonus,haste:this.state.attackSpeedBonus,projectiles:this.state.projectileBonus}).Luck;
+    this.state.upgradeRarity={};
+    for(const id of availableUpgrades(this.state))this.state.upgradeRarity[id]=rollUpgradeRarity(luck,this.random());
+  }
   private newDirector(){return new Director({stage:balance.stage,maxEnemies:balance.maxEnemies,random:this.random});}
   get blocked(){return this.state.dead||this.state.pendingUpgrades>0;}
-  snapshot():RunSnapshot{return {...this.state,upgradeLevels:{...this.state.upgradeLevels},upgradeChoices:this.state.pendingUpgrades>0&&!this.state.dead?availableUpgrades(this.state):[],enemyCount:this.swarm.enemies.length};}
-  reset(){this.state={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],weapon:this.state.weapon,damage:weaponDamage(this.state.weapon),attackInterval:weaponCooldown(this.state.weapon)};this.dangerState=initialDanger();this.director=undefined;this.evaded=0;this.attackClock=0;this.hurtClock=0;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
+  snapshot():RunSnapshot{return {...this.state,upgradeLevels:{...this.state.upgradeLevels},upgradeRarity:{...this.state.upgradeRarity},upgradeChoices:this.state.pendingUpgrades>0&&!this.state.dead?availableUpgrades(this.state):[],enemyCount:this.swarm.enemies.length};}
+  reset(){this.state={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{},weapon:this.state.weapon,damage:weaponDamage(this.state.weapon),attackInterval:weaponCooldown(this.state.weapon)};this.dangerState=initialDanger();this.director=undefined;this.evaded=0;this.attackClock=0;this.hurtClock=0;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
   setWeapon(weapon:Weapon):boolean{
     if(this.state.elapsed!==0||(weapon!=='bolt'&&weapon!=='sword'))return false;
     this.state.weapon=weapon;this.state.damage=weaponDamage(weapon);this.state.attackInterval=weaponCooldown(weapon);return true;
   }
   choose(upgrade:Upgrade):boolean{
     if(this.state.pendingUpgrades<=0||this.state.dead)return false;
-    const next=nextUpgrade(upgrade,this.state);if(!next)return false;
+    const multiplier=upgradeMultiplier[this.state.upgradeRarity[upgrade]??'Common'];
+    const next=nextUpgrade(upgrade,this.state,multiplier);if(!next)return false;
     Object.assign(this.state,next);this.state.upgradeLevels[upgrade]++;
-    this.state.pendingUpgrades--;return true;
+    this.state.pendingUpgrades--;if(this.state.pendingUpgrades>0)this.rollOffers();else this.state.upgradeRarity={};return true;
   }
   private kill(enemy:Enemy){
     const index=this.swarm.enemies.indexOf(enemy);if(index<0)return;
@@ -69,6 +77,7 @@ export class Run {
     if(this.xpReceipts.length>24)this.xpReceipts.shift();
     this.state.xp+=value;this.sound('xp');
     while(this.state.xp>=this.state.xpNeeded){this.state.xp-=this.state.xpNeeded;this.state.level++;this.state.xpNeeded=xpForLevel(this.state.level);this.state.pendingUpgrades++;this.sound('level');}
+    if(this.state.pendingUpgrades>0&&Object.keys(this.state.upgradeRarity).length===0)this.rollOffers();
   }
   /** Sandbox melee sector; native swing trajectory and hit timing are not reconstructed. */
   private swing(player:Vector3,facing:Vector3){
@@ -189,7 +198,7 @@ export class Run {
     if(touching){
       // Evasion (e/(e+1)*0.999) dodges the whole hit; Armor (a/(a+0.75)*0.999) reduces it. CheckFinalValue is verified, the points where
       // DamagePlayerExternal applies them are inferred (I). Fox is the only playable character.
-      const stats=playerStats(balance.character,this.state.upgradeLevels);
+      const stats=playerStats(balance.character,{damage:this.state.damageBonus,haste:this.state.attackSpeedBonus,projectiles:this.state.projectileBonus});
       this.hurtClock=balance.contactInterval;
       if(this.random()<stats.Evasion){this.evaded++;}
       else{

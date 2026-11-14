@@ -10,6 +10,8 @@ export const itemWeights=[70,15,6,1.5] as const;
 /** Rarity.GetMultiplier: numeric effect multiplier for a rolled upgrade rarity. */
 export const upgradeMultiplier:Record<UpgradeRarity,number>={Common:1,Uncommon:1.2,Rare:1.4,Epic:1.6,Legendary:2};
 
+/** Card/label colours from MyColorUtility..cctor (docs/rea/ui_colors.json): newColor, commonColor, uncommonColor, rareColor, epicColor, legendaryColor. */
+export const rarityColors:Record<UpgradeRarity,string>={Common:'#4dff97',Uncommon:'#0ca7fa',Rare:'#FF00F4',Epic:'#ff2929',Legendary:'#FFE300'};
 /** Applies Luck: w[i] *= 1.5^(-c*(n-1-i)), c=1.5*ln(1+luck), then normalises (index 0 = commonest). */
 export function rarityWeights(base:readonly number[],luck:number):number[]{
   const c=1.5*Math.log(1+luck),n=base.length;

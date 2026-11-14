@@ -28,9 +28,9 @@ The opening burst is now at most 5 enemies (the t=0 target) instead of 6. `Run.s
 
 Stats are the serialized `EnemyData` (hp, damage, xp). Per-minute scaling uses `CombatScaling` constants (HP +10 %/min, damage +2.8 %/min; swarm and stage terms **not** applied - I). Speed is `native speed / 5.5` relative to the tuned Skeleton speed (I). Contact damage uses the touching enemy's damage. XP per kill = EnemyData xp (1). Only Skeleton and Bandit have baked models, so all other species render with a stand-in (`placeholderVisual`): regular -> Skeleton, miniboss-class (creditCost >= 40) -> Bandit. **Waiting for data:** baked models/animation for Goblin, Golem, Pig, Slime, Bee, etc.
 
-## Tomes — `src/combat/Upgrades.ts`
+## Tomes - `src/combat/Upgrades.ts`
 
-Values come from `nativeTomes`: Damage `DamageMultiplier` Multiplication 0.08 (compounds per level, I), Cooldown `AttackSpeed` Addition 0.075 (attack-speed multiplier `1 + 0.075 n`, I), Quantity `Projectiles` Flat 1. Cap 8 projectiles and 0.15 s interval floor remain web safety limits. **Waiting for data:** `PlayerStatsNew.GetStat` combination order (Ghidra decompile pending), rarity roll wiring (`Rarity.ts` exists, unused by UI), the other 23 Tomes.
+Values come from `nativeTomes` and the verified accumulation rule (REA_PROGRESSION_FINDINGS.md addendum): Damage = `1 + sum(level values)` (linear), Cooldown adds to the attack-speed sum (interval = base / (1 + sum)), Quantity adds to the extra projectiles (floored). Each offered card rolls a rarity with the player's Luck (Fox 0.15) and the level value is `Round(value x Rarity.GetMultiplier, 2)`: Common Damage +0.08, Cooldown +0.08 (0.075 rounds to 0.08), Quantity +1; Uncommon x1.2, Rare x1.4, Epic x1.6, Legendary x2. The card shows the rarity name and its colour (`#4dff97 / #0ca7fa / #FF00F4 / #ff2929 / #FFE300`). Cap 8 projectiles and the 0.15 s interval floor remain web safety limits.
 
 ## Weapons - `src/combat/Weapons.ts`
 
