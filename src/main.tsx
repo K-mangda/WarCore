@@ -22,6 +22,7 @@ import './ui/title.css';
 import './ui/style.css';
 import './ui/combat.css';
 import './ui/buttons.css';
+import {installMenuKeys} from './ui/menuKeys';
 function App(){
   const host=useRef<HTMLDivElement>(null),engine=useRef<Engine|null>(null);
   const [error,setError]=useState(''),[ready,setReady]=useState(false),[labOpen,setLabOpen]=useState(false),[settingsOpen,setSettingsOpen]=useState(false),[historyOpen,setHistoryOpen]=useState(false),[attempt,setAttempt]=useState(0),[characterOpen,setCharacterOpen]=useState(false),[mapOpen,setMapOpen]=useState(false);
@@ -64,4 +65,5 @@ function App(){
     <footer><div className="controls"><span><kbd>{['forward','left','backward','right'].map(key=>bindingLabel(controls.bindings[key as keyof typeof controls.bindings])).join(' ')}</kbd> MOVE</span><span><kbd>{bindingLabel(controls.bindings.jump)}</kbd> JUMP</span><span><kbd>MOUSE</kbd> LOOK</span><span><kbd>ESC</kbd> PAUSE</span></div><div className="notice">TEST ARENA · ORIGINAL MAP DEFERRED</div></footer>
   </main>;
 }
+installMenuKeys();
 createRoot(document.getElementById('root')!).render(<App/>);

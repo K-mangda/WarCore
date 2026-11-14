@@ -13,3 +13,11 @@ button{border:solid transparent;border-width:8px 8px 12px;border-image:url('/gam
 /* Buttons that are not MyButtonNew in the real UI keep their own look. */
 .title-grid .tile,.map-row,.map-tier-list button,.character-card,.title-tabs button,.settings-tabs button,.controls-switch button,.upgrade-cards button,.title-close,.character-heading button{border-image:none}
 .title-close,.character-heading button{background:none!important;border:0!important;color:#ff2a2a;font:bold 34px/1 Arial,sans-serif;padding:0 6px;width:auto;margin:0;text-shadow:none}
+/* Keyboard/hover selection: four white corner brackets around the button, like the real menus. */
+button{position:relative}
+button:not(.tile):not(.map-row):not(.character-card):not(.title-close):focus-visible::after,
+.title-main button:hover::after,.title-side button:hover::after,.map-detail button:hover::after,.character-start:hover::after{
+ content:'';position:absolute;inset:-14px;pointer-events:none;display:block;--c:#fff;--l:12px;--w:3px;
+ background:linear-gradient(var(--c),var(--c)) top left/var(--l) var(--w),linear-gradient(var(--c),var(--c)) top left/var(--w) var(--l),linear-gradient(var(--c),var(--c)) top right/var(--l) var(--w),linear-gradient(var(--c),var(--c)) top right/var(--w) var(--l),linear-gradient(var(--c),var(--c)) bottom left/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom left/var(--w) var(--l),linear-gradient(var(--c),var(--c)) bottom right/var(--l) var(--w),linear-gradient(var(--c),var(--c)) bottom right/var(--w) var(--l);background-repeat:no-repeat}
+.title-grid .tile:focus-visible::before,.map-row:focus-visible::before,.character-card:focus-visible::before{opacity:1}
+button:focus-visible{outline:0}
