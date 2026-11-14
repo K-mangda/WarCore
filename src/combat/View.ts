@@ -27,14 +27,15 @@ export class CombatView {
     if(!getEffectsPreferences().damageNumbers)return;
     const material=this.numbers.material(`-${amount}`,'#ff0000');const sprite=new T.Sprite(material);sprite.position.copy(player).y+=2.2;sprite.scale.set((material.map!.image as HTMLCanvasElement).width/128*1.2,.75,1);this.scene.add(sprite);this.playerHits.push({sprite,age:0});
   }
-  update(run:Run,player:T.Vector3,dt=0){
+  /** `realDt` keeps the level-up burst/sign animating while the game is paused for the selection screen (otherwise they freeze behind the menu). */
+  update(run:Run,player:T.Vector3,dt=0,realDt=dt){
     const state=run.snapshot(),ratio=T.MathUtils.clamp(state.health/state.maxHealth,0,1),right=new T.Vector3(1,0,0).applyQuaternion(this.camera.quaternion);
     this.healthBack.visible=this.healthFill.visible=state.elapsed>0&&!state.dead;
     this.healthBack.position.copy(player).add(new T.Vector3(0,.05,0));this.healthBack.scale.set(1,.1,1);
     this.healthFill.position.copy(this.healthBack.position).addScaledVector(right,-(1-ratio)*.5);this.healthFill.scale.set(ratio,.075,1);this.healthFill.material.color.set(hpColors[getGamePreferences().hpColor]);
     for(let i=this.playerHits.length-1;i>=0;i--){const hit=this.playerHits[i];hit.age+=dt;hit.sprite.position.y+=dt;hit.sprite.visible=getEffectsPreferences().damageNumbers;if(hit.age>=.6){this.scene.remove(hit.sprite);this.playerHits.splice(i,1);}}
 
-    this.progression.update(run,player,dt);this.pickupNumbers.update(run,dt,player);
+    this.progression.update(run,player,realDt);this.pickupNumbers.update(run,dt,player);
     this.sword.update(run);
     const elapsed=run.snapshot().elapsed;this.staff.update(run,Math.max(0,elapsed-this.previousElapsed));this.previousElapsed=elapsed;
     for(const view of this.enemies)view.update(run,player);

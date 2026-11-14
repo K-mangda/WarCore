@@ -77,7 +77,7 @@ export class Engine {
       const animate=this.active&&!this.run.blocked,slide=this.motor.state===EMovementState.Sliding;
       this.fox.update(this.motor.position,this.orbit.yaw,this.motor.speed,this.motor.grounded,this.motor.velocity.y,animate?visualDelta:0);
       this.orbit.update(this.motor.position,this.terrain,3.6+getVideoPreferences().cameraDistance);this.camera.updateMatrixWorld();
-      this.combatView.update(this.run,this.motor.position,animate?visualDelta:0);
+      this.combatView.update(this.run,this.motor.position,animate?visualDelta:0,this.active||this.run.snapshot().pendingUpgrades>0?visualDelta:0);
       this.effects.update(animate?visualDelta:0,this.motor.position,animate&&slide,this.motor.speed);this.renderer.render(this.scene,this.camera);this.frames++;
     }
     this.sample+=wallDelta;if(this.sample>=.2){this.fps=Math.round(this.frames/this.sample);this.frames=0;this.sample=0;this.emit();}
