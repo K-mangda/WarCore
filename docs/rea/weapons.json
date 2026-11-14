@@ -1,0 +1,1772 @@
+[
+ {
+  "source": "sharedassets1.assets#8606",
+  "name": "WeaponAegis",
+  "weapon": "Aegis",
+  "price": 5,
+  "damage": 10.0,
+  "knockback": 3.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 2,
+  "projectileBounces": 1,
+  "attackDuration": 0.0,
+  "maxDuration": -1.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 1.0,
+  "endCooldown": 1.5,
+  "burstTime": 0.0,
+  "minBurstInterval": 0.0,
+  "canBounce": false,
+  "amplificationMode": "ShieldStack",
+  "procCoefficient": 1.0,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 0.0,
+  "isAura": true,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.5,
+   "z": 2.5
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "KnockbackMultiplier",
+    "op": "Addition",
+    "value": 0.25
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   }
+  ],
+  "attackPrefabPathID": 4149,
+  "iconPathID": 1061
+ },
+ {
+  "source": "sharedassets1.assets#8607",
+  "name": "WeaponAura",
+  "weapon": "Aura",
+  "price": 5,
+  "damage": 6.0,
+  "knockback": 0.5,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 0,
+  "projectileBounces": 0,
+  "attackDuration": 0.0,
+  "maxDuration": -1.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 0.0,
+  "endCooldown": 0.30000001192092896,
+  "burstTime": 0.0,
+  "minBurstInterval": 0.0,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.699999988079071,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 0.0,
+  "isAura": true,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.0,
+   "z": 0.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.14000000059604645
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 1.399999976158142
+   }
+  ],
+  "attackPrefabPathID": 4150,
+  "iconPathID": 518
+ },
+ {
+  "source": "sharedassets1.assets#8608",
+  "name": "WeaponAxe",
+  "weapon": "Axe",
+  "price": 5,
+  "damage": 6.0,
+  "knockback": 1.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 2,
+  "projectileBounces": 0,
+  "attackDuration": 0.8199999928474426,
+  "maxDuration": 8.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 0.5,
+  "endCooldown": 1.399999976158142,
+  "burstTime": 0.0,
+  "minBurstInterval": 0.0,
+  "canBounce": true,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.699999988079071,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.0,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.10000000149011612
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 1.5
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "DurationMultiplier",
+    "op": "Addition",
+    "value": 0.10000000149011612
+   }
+  ],
+  "attackPrefabPathID": 4269,
+  "iconPathID": 915
+ },
+ {
+  "source": "sharedassets1.assets#8609",
+  "name": "WeaponBananarang",
+  "weapon": "Bananarang",
+  "price": 5,
+  "damage": 9.0,
+  "knockback": 1.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 999,
+  "attackDuration": 3.0,
+  "maxDuration": 10.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 1.0,
+  "endCooldown": 0.800000011920929,
+  "burstTime": 0.8999999761581421,
+  "minBurstInterval": 0.10000000149011612,
+  "canBounce": false,
+  "amplificationMode": "Pierce",
+  "procCoefficient": 1.0,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": true,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 1.0,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.14000000059604645
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "ProjectileSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.10000000149011612
+   }
+  ],
+  "attackPrefabPathID": 4271,
+  "iconPathID": 1367
+ },
+ {
+  "source": "sharedassets1.assets#8610",
+  "name": "WeaponBlackHole",
+  "weapon": "BlackHole",
+  "price": 13,
+  "damage": 4.5,
+  "knockback": 6.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 2.0,
+  "maxDuration": 7.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 0.0,
+  "projectileSpeed": 20.0,
+  "endCooldown": 1.0,
+  "burstTime": 1.5,
+  "minBurstInterval": 0.5,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.699999988079071,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": true,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.0,
+   "z": 0.5
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 1.25
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.12999999523162842
+   },
+   {
+    "stat": "DurationMultiplier",
+    "op": "Flat",
+    "value": 0.11999999731779099
+   }
+  ],
+  "attackPrefabPathID": 4270,
+  "iconPathID": 618
+ },
+ {
+  "source": "sharedassets1.assets#8611",
+  "name": "WeaponBloodMagic",
+  "weapon": "BloodMagic",
+  "price": 13,
+  "damage": 9.0,
+  "knockback": 1.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 999,
+  "attackDuration": 0.75,
+  "maxDuration": 0.75,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 0.0,
+  "projectileSpeed": 1.0,
+  "endCooldown": 1.5,
+  "burstTime": 0.019999999552965164,
+  "minBurstInterval": 0.019999999552965164,
+  "canBounce": false,
+  "amplificationMode": "Pierce",
+  "procCoefficient": 1.0,
+  "useVision": false,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 50.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": true,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 1.0,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 1.5
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   }
+  ],
+  "attackPrefabPathID": 3200,
+  "iconPathID": 793
+ },
+ {
+  "source": "sharedassets1.assets#8635",
+  "name": "WeaponWirelessDagger",
+  "weapon": "BluetoothDagger",
+  "price": 10,
+  "damage": 9.0,
+  "knockback": 0.4000000059604645,
+  "critChance": 0.0,
+  "element": "Lightning",
+  "projectiles": 1,
+  "projectileBounces": 1,
+  "attackDuration": 2.5,
+  "maxDuration": 8.0,
+  "maxSizeMultiplier": 3.5,
+  "effectDuration": 0.0,
+  "projectileSpeed": 0.75,
+  "endCooldown": 0.5,
+  "burstTime": 1.100000023841858,
+  "minBurstInterval": 0.019999999552965164,
+  "canBounce": true,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.8999999761581421,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": true,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 1.0,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "ProjectileBounces",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "ProjectileSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   }
+  ],
+  "attackPrefabPathID": 3801,
+  "iconPathID": 1181
+ },
+ {
+  "source": "sharedassets1.assets#8612",
+  "name": "WeaponBone",
+  "weapon": "Bone",
+  "price": 0,
+  "damage": 11.0,
+  "knockback": 1.5,
+  "critChance": 0.10000000149011612,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 1,
+  "attackDuration": 3.0,
+  "maxDuration": 10.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 0.3499999940395355,
+  "endCooldown": 0.4000000059604645,
+  "burstTime": 1.0,
+  "minBurstInterval": 0.10000000149011612,
+  "canBounce": true,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 1.0,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": true,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 1.0,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.5
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "ProjectileSpeedMultiplier",
+    "op": "Flat",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "ProjectileBounces",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "CritChance",
+    "op": "Flat",
+    "value": 0.11999999731779099
+   },
+   {
+    "stat": "CritDamage",
+    "op": "Flat",
+    "value": 0.25
+   }
+  ],
+  "attackPrefabPathID": 4211,
+  "iconPathID": 607
+ },
+ {
+  "source": "sharedassets1.assets#8613",
+  "name": "WeaponBow",
+  "weapon": "Bow",
+  "price": 0,
+  "damage": 9.0,
+  "knockback": 0.5,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 99,
+  "attackDuration": 0.5,
+  "maxDuration": 1.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 1.5,
+  "endCooldown": 0.9200000166893005,
+  "burstTime": 0.0,
+  "minBurstInterval": 0.0,
+  "canBounce": false,
+  "amplificationMode": "Pierce",
+  "procCoefficient": 1.0,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": true,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 1.0,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "ProjectileSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 1.75
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "SizeMultiplier",
+    "op": "Flat",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "CritChance",
+    "op": "Flat",
+    "value": 0.07999999821186066
+   },
+   {
+    "stat": "CritDamage",
+    "op": "Flat",
+    "value": 0.18000000715255737
+   }
+  ],
+  "attackPrefabPathID": 4268,
+  "iconPathID": 1336
+ },
+ {
+  "source": "sharedassets1.assets#8614",
+  "name": "WeaponChunkers",
+  "weapon": "Chunkers",
+  "price": 0,
+  "damage": 12.0,
+  "knockback": 2.5,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 3,
+  "projectileBounces": 0,
+  "attackDuration": 3.0,
+  "maxDuration": -1.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 0.0,
+  "projectileSpeed": 1.5,
+  "endCooldown": 1.5,
+  "burstTime": 0.0,
+  "minBurstInterval": 0.0,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.800000011920929,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 0.0,
+  "isAura": true,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.5,
+   "z": 2.5
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 3.0
+   },
+   {
+    "stat": "KnockbackMultiplier",
+    "op": "Addition",
+    "value": 0.25
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "ProjectileSpeedMultiplier",
+    "op": "Flat",
+    "value": 0.3499999940395355
+   }
+  ],
+  "attackPrefabPathID": 3439,
+  "iconPathID": 1335
+ },
+ {
+  "source": "sharedassets1.assets#8615",
+  "name": "WeaponCorruptedSword",
+  "weapon": "CorruptSword",
+  "price": 21,
+  "damage": 12.0,
+  "knockback": 2.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 0.5,
+  "maxDuration": 5.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 30.0,
+  "endCooldown": 0.800000011920929,
+  "burstTime": 0.800000011920929,
+  "minBurstInterval": 0.14000000059604645,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.800000011920929,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.5,
+   "z": 2.5
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "ProjectileSpeedMultiplier",
+    "op": "Flat",
+    "value": 4.0
+   }
+  ],
+  "attackPrefabPathID": 4142,
+  "iconPathID": 582
+ },
+ {
+  "source": "sharedassets1.assets#8616",
+  "name": "WeaponDexecutioner",
+  "weapon": "Dexecutioner",
+  "price": 12,
+  "damage": 9.0,
+  "knockback": 1.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 0.5,
+  "maxDuration": 0.5,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 1.0,
+  "endCooldown": 0.800000011920929,
+  "burstTime": 0.800000011920929,
+  "minBurstInterval": 0.03999999910593033,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 1.0,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 0.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.5,
+   "z": 2.5
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "CritChance",
+    "op": "Flat",
+    "value": 0.05000000074505806
+   }
+  ],
+  "attackPrefabPathID": 4141,
+  "iconPathID": 1387
+ },
+ {
+  "source": "sharedassets1.assets#8617",
+  "name": "WeaponDice",
+  "weapon": "Dice",
+  "price": 19,
+  "damage": 0.0,
+  "knockback": 2.5,
+  "critChance": 0.10000000149011612,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 2.0,
+  "maxDuration": 5.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 0.6000000238418579,
+  "endCooldown": 0.5,
+  "burstTime": 1.0,
+  "minBurstInterval": 0.15000000596046448,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 1.0,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 1.0,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "ProjectileSpeedMultiplier",
+    "op": "Flat",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "CritChance",
+    "op": "Flat",
+    "value": 0.10000000149011612
+   },
+   {
+    "stat": "CritDamage",
+    "op": "Flat",
+    "value": 0.20000000298023224
+   }
+  ],
+  "attackPrefabPathID": 3196,
+  "iconPathID": 1045
+ },
+ {
+  "source": "sharedassets1.assets#8618",
+  "name": "WeaponDragonsBreath",
+  "weapon": "DragonsBreath",
+  "price": 18,
+  "damage": 16.0,
+  "knockback": 0.5,
+  "critChance": 0.0,
+  "element": "Fire",
+  "projectiles": 0,
+  "projectileBounces": 0,
+  "attackDuration": 1.5,
+  "maxDuration": -1.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 0.0,
+  "projectileSpeed": 0.0,
+  "endCooldown": 2.0,
+  "burstTime": 0.0,
+  "minBurstInterval": 0.0,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.699999988079071,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 0.0,
+  "isAura": true,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.0,
+   "z": 0.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 4.0
+   },
+   {
+    "stat": "DurationMultiplier",
+    "op": "Flat",
+    "value": 0.20000000298023224
+   }
+  ],
+  "attackPrefabPathID": 3121,
+  "iconPathID": 899
+ },
+ {
+  "source": "sharedassets1.assets#8619",
+  "name": "WeaponFireStaff",
+  "weapon": "FireStaff",
+  "price": 0,
+  "damage": 10.0,
+  "knockback": 1.0,
+  "critChance": 0.0,
+  "element": "Fire",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 2.0,
+  "maxDuration": 5.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 0.5,
+  "endCooldown": 0.5,
+  "burstTime": 1.0,
+  "minBurstInterval": 0.15000000596046448,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 1.0,
+  "useVision": true,
+  "canMultiHit": false,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 1.0,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "ProjectileSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.5
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.1599999964237213
+   }
+  ],
+  "attackPrefabPathID": 3199,
+  "iconPathID": 1248
+ },
+ {
+  "source": "sharedassets1.assets#8620",
+  "name": "WeaponFlameWalker",
+  "weapon": "Flamewalker",
+  "price": 0,
+  "damage": 5.0,
+  "knockback": 0.0,
+  "critChance": 0.0,
+  "element": "Fire",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 1.5,
+  "maxDuration": 8.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 0.5,
+  "endCooldown": 0.0,
+  "burstTime": 1.0,
+  "minBurstInterval": 0.10000000149011612,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.800000011920929,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 1.0,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "DurationMultiplier",
+    "op": "Addition",
+    "value": 0.11999999731779099
+   }
+  ],
+  "attackPrefabPathID": 4145,
+  "iconPathID": 1277
+ },
+ {
+  "source": "sharedassets1.assets#8621",
+  "name": "WeaponFrostWalker",
+  "weapon": "Frostwalker",
+  "price": 10,
+  "damage": 9.0,
+  "knockback": 0.5,
+  "critChance": 0.0,
+  "element": "Ice",
+  "projectiles": 0,
+  "projectileBounces": 0,
+  "attackDuration": 1.600000023841858,
+  "maxDuration": -1.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 0.0,
+  "projectileSpeed": 0.0,
+  "endCooldown": 1.25,
+  "burstTime": 0.0,
+  "minBurstInterval": 0.0,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.8999999761581421,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 0.0,
+  "isAura": true,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.0,
+   "z": 0.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.10000000149011612
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "DurationMultiplier",
+    "op": "Flat",
+    "value": 0.11999999731779099
+   }
+  ],
+  "attackPrefabPathID": 3975,
+  "iconPathID": 1263
+ },
+ {
+  "source": "sharedassets1.assets#8622",
+  "name": "WeaponHeroSword",
+  "weapon": "HeroSword",
+  "price": 20,
+  "damage": 11.0,
+  "knockback": 2.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 0.5,
+  "maxDuration": 5.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 30.0,
+  "endCooldown": 0.75,
+  "burstTime": 0.75,
+  "minBurstInterval": 0.15000000596046448,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.800000011920929,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.5,
+   "z": 2.5
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "ProjectileSpeedMultiplier",
+    "op": "Flat",
+    "value": 4.0
+   }
+  ],
+  "attackPrefabPathID": 4147,
+  "iconPathID": 615
+ },
+ {
+  "source": "sharedassets1.assets#8623",
+  "name": "WeaponKatana",
+  "weapon": "Katana",
+  "price": 15,
+  "damage": 11.0,
+  "knockback": 1.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 0.5,
+  "maxDuration": 0.5,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 0.0,
+  "projectileSpeed": 0.0,
+  "endCooldown": 0.4000000059604645,
+  "burstTime": 0.5,
+  "minBurstInterval": 0.019999999552965164,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.949999988079071,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 0.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.5,
+   "z": 2.5
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.200000047683716
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "CritChance",
+    "op": "Flat",
+    "value": 0.07999999821186066
+   },
+   {
+    "stat": "CritDamage",
+    "op": "Flat",
+    "value": 0.20000000298023224
+   }
+  ],
+  "attackPrefabPathID": 4146,
+  "iconPathID": 1266
+ },
+ {
+  "source": "sharedassets1.assets#8624",
+  "name": "WeaponLightningBolt",
+  "weapon": "LightningStaff",
+  "price": 0,
+  "damage": 7.0,
+  "knockback": 1.0,
+  "critChance": 0.0,
+  "element": "Lightning",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 1.0,
+  "maxDuration": 1.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 0.5,
+  "endCooldown": 1.100000023841858,
+  "burstTime": 0.30000001192092896,
+  "minBurstInterval": 0.03999999910593033,
+  "canBounce": true,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 1.0,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": true,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 1.0,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "ProjectileBounces",
+    "op": "Flat",
+    "value": 1.0
+   }
+  ],
+  "attackPrefabPathID": 3198,
+  "iconPathID": 1292
+ },
+ {
+  "source": "sharedassets1.assets#8625",
+  "name": "WeaponMines",
+  "weapon": "Mine",
+  "price": 10,
+  "damage": 10.0,
+  "knockback": 4.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 4.0,
+  "maxDuration": -1.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 0.0,
+  "projectileSpeed": 1.0,
+  "endCooldown": 1.0,
+  "burstTime": 1.0,
+  "minBurstInterval": 0.25,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.800000011920929,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 1.0,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 3.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "DurationMultiplier",
+    "op": "Flat",
+    "value": 0.4000000059604645
+   }
+  ],
+  "attackPrefabPathID": 4143,
+  "iconPathID": 929
+ },
+ {
+  "source": "sharedassets1.assets#8626",
+  "name": "WeaponPoisonFlask",
+  "weapon": "PoisonFlask",
+  "price": 14,
+  "damage": 1.0,
+  "knockback": 1.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 3.0,
+  "maxDuration": 5.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 0.0,
+  "projectileSpeed": 16.0,
+  "endCooldown": 0.800000011920929,
+  "burstTime": 1.0,
+  "minBurstInterval": 0.20000000298023224,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.8999999761581421,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": true,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 1.0,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 0.5
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "DurationMultiplier",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "ProjectileSpeedMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   }
+  ],
+  "attackPrefabPathID": 3201,
+  "iconPathID": 1250
+ },
+ {
+  "source": "sharedassets1.assets#8627",
+  "name": "WeaponRevolver",
+  "weapon": "Revolver",
+  "price": 5,
+  "damage": 5.0,
+  "knockback": 0.4000000059604645,
+  "critChance": 0.05000000074505806,
+  "element": "Neutral",
+  "projectiles": 6,
+  "projectileBounces": 0,
+  "attackDuration": 1.0,
+  "maxDuration": 5.0,
+  "maxSizeMultiplier": 4.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 2.0,
+  "endCooldown": 1.399999976158142,
+  "burstTime": 1.100000023841858,
+  "minBurstInterval": 0.019999999552965164,
+  "canBounce": true,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.8999999761581421,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": true,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 1.0,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.5
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "CritChance",
+    "op": "Flat",
+    "value": 0.10000000149011612
+   },
+   {
+    "stat": "CritDamage",
+    "op": "Flat",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "ProjectileBounces",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "ProjectileSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.20000000298023224
+   }
+  ],
+  "attackPrefabPathID": 3802,
+  "iconPathID": 1347
+ },
+ {
+  "source": "sharedassets1.assets#8630",
+  "name": "WeaponSluttyRocket",
+  "weapon": "Rockets",
+  "price": 10,
+  "damage": 11.0,
+  "knockback": 2.0,
+  "critChance": 0.05000000074505806,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 5.0,
+  "maxDuration": 5.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 1.0,
+  "endCooldown": 0.30000001192092896,
+  "burstTime": 1.0,
+  "minBurstInterval": 0.10000000149011612,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 1.0,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 60.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": true,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 1.0,
+   "z": 0.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "ProjectileSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "CritChance",
+    "op": "Flat",
+    "value": 0.07999999821186066
+   }
+  ],
+  "attackPrefabPathID": 3197,
+  "iconPathID": 1329
+ },
+ {
+  "source": "sharedassets1.assets#8628",
+  "name": "WeaponScythe",
+  "weapon": "Scythe",
+  "price": 25,
+  "damage": 11.0,
+  "knockback": 1.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 0.5,
+  "maxDuration": 0.5,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 1.0,
+  "endCooldown": 0.8500000238418579,
+  "burstTime": 1.5,
+  "minBurstInterval": 0.10000000149011612,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.800000011920929,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 0.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.5,
+   "z": 0.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.11999999731779099
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 1.5
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "KnockbackMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   }
+  ],
+  "attackPrefabPathID": 3451,
+  "iconPathID": 889
+ },
+ {
+  "source": "sharedassets1.assets#8629",
+  "name": "WeaponShotgun",
+  "weapon": "Shotgun",
+  "price": 10,
+  "damage": 9.0,
+  "knockback": 3.0,
+  "critChance": 0.05000000074505806,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 0.800000011920929,
+  "maxDuration": 0.800000011920929,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 0.800000011920929,
+  "projectileSpeed": 2.0,
+  "endCooldown": 1.0,
+  "burstTime": 1.0,
+  "minBurstInterval": 0.25,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 1.0,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": true,
+  "spawnProjectileRange": 20.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.6000000238418579,
+   "z": 1.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 3.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "CritChance",
+    "op": "Flat",
+    "value": 0.10000000149011612
+   },
+   {
+    "stat": "CritDamage",
+    "op": "Flat",
+    "value": 0.20000000298023224
+   }
+  ],
+  "attackPrefabPathID": 3800,
+  "iconPathID": 673
+ },
+ {
+  "source": "sharedassets1.assets#8631",
+  "name": "WeaponSniper",
+  "weapon": "Sniper",
+  "price": 10,
+  "damage": 22.0,
+  "knockback": 4.0,
+  "critChance": 0.05000000074505806,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 1.0,
+  "maxDuration": 1.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 2.0,
+  "endCooldown": 1.0,
+  "burstTime": 1.0,
+  "minBurstInterval": 0.30000001192092896,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 1.5,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": true,
+  "spawnProjectileRange": 999.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.6000000238418579,
+   "z": 0.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 4.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.12999999523162842
+   }
+  ],
+  "attackPrefabPathID": 3803,
+  "iconPathID": 789
+ },
+ {
+  "source": "sharedassets1.assets#8632",
+  "name": "WeaponSpaceNoodle",
+  "weapon": "SpaceNoodle",
+  "price": 10,
+  "damage": 10.0,
+  "knockback": 0.5,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 0,
+  "projectileBounces": 0,
+  "attackDuration": 4.0,
+  "maxDuration": -1.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 0.0,
+  "projectileSpeed": 0.0,
+  "endCooldown": 1.0,
+  "burstTime": 0.0,
+  "minBurstInterval": 0.0,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.75,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 60.0,
+  "isAura": true,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.0,
+   "z": 0.0
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "DurationMultiplier",
+    "op": "Flat",
+    "value": 0.20000000298023224
+   }
+  ],
+  "attackPrefabPathID": 4064,
+  "iconPathID": 926
+ },
+ {
+  "source": "sharedassets1.assets#8633",
+  "name": "WeaponSword",
+  "weapon": "Sword",
+  "price": 0,
+  "damage": 11.0,
+  "knockback": 2.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 0,
+  "attackDuration": 0.5,
+  "maxDuration": 0.5,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 1.0,
+  "endCooldown": 0.75,
+  "burstTime": 0.5,
+  "minBurstInterval": 0.10000000149011612,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 0.800000011920929,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 0.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": false,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.5,
+   "z": 2.5
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "KnockbackMultiplier",
+    "op": "Addition",
+    "value": 0.25
+   }
+  ],
+  "attackPrefabPathID": 4144,
+  "iconPathID": 1315
+ },
+ {
+  "source": "sharedassets1.assets#8634",
+  "name": "WeaponTornado",
+  "weapon": "Tornado",
+  "price": 10,
+  "damage": 8.0,
+  "knockback": 3.0,
+  "critChance": 0.0,
+  "element": "Neutral",
+  "projectiles": 1,
+  "projectileBounces": 999,
+  "attackDuration": 1.2000000476837158,
+  "maxDuration": 5.0,
+  "maxSizeMultiplier": -1.0,
+  "effectDuration": 1.5,
+  "projectileSpeed": 20.0,
+  "endCooldown": 0.800000011920929,
+  "burstTime": 1.0,
+  "minBurstInterval": 0.10000000149011612,
+  "canBounce": false,
+  "amplificationMode": "Bounce",
+  "procCoefficient": 1.0,
+  "useVision": true,
+  "canMultiHit": true,
+  "hasCrosshair": false,
+  "spawnProjectileRange": 40.0,
+  "isAura": false,
+  "onlySpawnWhenCloseEnemies": true,
+  "spawnOffset": {
+   "x": 0.0,
+   "y": 0.0,
+   "z": 0.5
+  },
+  "upgradePerLevel": [
+   {
+    "stat": "ProjectileSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "Projectiles",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "KnockbackMultiplier",
+    "op": "Addition",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "SizeMultiplier",
+    "op": "Addition",
+    "value": 0.14000000059604645
+   }
+  ],
+  "attackPrefabPathID": 4267,
+  "iconPathID": 1288
+ }
+]

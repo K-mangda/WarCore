@@ -1,0 +1,1450 @@
+[
+ {
+  "source": "sharedassets1.assets#7813",
+  "name": "Amog",
+  "character": "Amog",
+  "price": 15,
+  "statModifiers": [
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 5.0
+   },
+   {
+    "stat": "DurationMultiplier",
+    "op": "Flat",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "SizeMultiplier",
+    "op": "Flat",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "MaxHealth",
+    "op": "Flat",
+    "value": 30.0
+   },
+   {
+    "stat": "Armor",
+    "op": "Flat",
+    "value": 0.10000000149011612
+   }
+  ],
+  "startingWeapon": "WeaponPoisonFlask",
+  "passive": "Plague",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.7200000286102295,
+  "numQuestsRequiredForVisibility": 24,
+  "footstepClipPathIDs": [
+   2223,
+   2111
+  ],
+  "prefabPathID": 3128,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.27645277976989746
+   },
+   {
+    "category": "Movement",
+    "value": 0.305555522441864
+   },
+   {
+    "category": "Utility",
+    "value": 1.0
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.0
+   },
+   {
+    "category": "Coolness",
+    "value": 0.625
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7814",
+  "name": "Athena",
+  "character": "Athena",
+  "price": 9,
+  "statModifiers": [
+   {
+    "stat": "MaxHealth",
+    "op": "Flat",
+    "value": 25.0
+   },
+   {
+    "stat": "Armor",
+    "op": "Flat",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "Thorns",
+    "op": "Flat",
+    "value": 5.0
+   }
+  ],
+  "startingWeapon": "WeaponAegis",
+  "passive": "LockIn",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.5,
+  "numQuestsRequiredForVisibility": 10,
+  "footstepClipPathIDs": [
+   2223,
+   2111
+  ],
+  "prefabPathID": 4148,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 1.0
+   },
+   {
+    "category": "Movement",
+    "value": 0.16666661202907562
+   },
+   {
+    "category": "Utility",
+    "value": 0.3999995291233063
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.5714285969734192
+   },
+   {
+    "category": "Coolness",
+    "value": 0.625
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7815",
+  "name": "Bandit",
+  "character": "Bandit",
+  "price": 17,
+  "statModifiers": [
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "Evasion",
+    "op": "Flat",
+    "value": 0.10000000149011612
+   },
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 4.0
+   },
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.05000000074505806
+   }
+  ],
+  "startingWeapon": "WeaponDexecutioner",
+  "passive": "Flowstate",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.699999988079071,
+  "numQuestsRequiredForVisibility": 25,
+  "footstepClipPathIDs": [
+   2223,
+   2111
+  ],
+  "prefabPathID": 4231,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.27645277976989746
+   },
+   {
+    "category": "Movement",
+    "value": 0.305555522441864
+   },
+   {
+    "category": "Utility",
+    "value": 1.0
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.0
+   },
+   {
+    "category": "Coolness",
+    "value": 0.625
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7816",
+  "name": "Birdo",
+  "character": "Birdo",
+  "price": 13,
+  "statModifiers": [
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 5.0
+   },
+   {
+    "stat": "ExtraJumps",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.05000000074505806
+   }
+  ],
+  "startingWeapon": "WeaponTornado",
+  "passive": "Float",
+  "colliderHeight": 3.9000000953674316,
+  "colliderWidth": 0.6499999761581421,
+  "numQuestsRequiredForVisibility": 20,
+  "footstepClipPathIDs": [
+   2223,
+   2111
+  ],
+  "prefabPathID": 4280,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.0
+   },
+   {
+    "category": "Movement",
+    "value": 0.930555522441864
+   },
+   {
+    "category": "Utility",
+    "value": 0.8999998569488525
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.5714285969734192
+   },
+   {
+    "category": "Coolness",
+    "value": 0.75
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7817",
+  "name": "Bush",
+  "character": "Bush",
+  "price": 12,
+  "statModifiers": [
+   {
+    "stat": "Evasion",
+    "op": "Flat",
+    "value": 0.10000000149011612
+   },
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 6.0
+   }
+  ],
+  "startingWeapon": "WeaponSniper",
+  "passive": "Bullseye",
+  "colliderHeight": 3.9000000953674316,
+  "colliderWidth": 0.6499999761581421,
+  "numQuestsRequiredForVisibility": 14,
+  "footstepClipPathIDs": [
+   2223,
+   2111
+  ],
+  "prefabPathID": 4184,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.527999997138977
+   },
+   {
+    "category": "Movement",
+    "value": 0.16666661202907562
+   },
+   {
+    "category": "Utility",
+    "value": 0.9999994039535522
+   },
+   {
+    "category": "Difficulty",
+    "value": 1.0
+   },
+   {
+    "category": "Coolness",
+    "value": 0.25
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7818",
+  "name": "Calcium",
+  "character": "Calcium",
+  "price": 5,
+  "statModifiers": [
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 1.5
+   },
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 3.0
+   }
+  ],
+  "startingWeapon": "WeaponBone",
+  "passive": "SpeedDemon",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.699999988079071,
+  "numQuestsRequiredForVisibility": 0,
+  "footstepClipPathIDs": [],
+  "prefabPathID": 3850,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.0
+   },
+   {
+    "category": "Movement",
+    "value": 0.6250000596046448
+   },
+   {
+    "category": "Utility",
+    "value": 0.6999995112419128
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.2857142984867096
+   },
+   {
+    "category": "Coolness",
+    "value": 1.0
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7820",
+  "name": "Clank",
+  "character": "Cl4nk",
+  "price": 8,
+  "statModifiers": [
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.07000000029802322
+   },
+   {
+    "stat": "Shield",
+    "op": "Flat",
+    "value": 50.0
+   },
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "FallDamageReduction",
+    "op": "Flat",
+    "value": 0.5
+   },
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 3.0
+   },
+   {
+    "stat": "MaxHealth",
+    "op": "Flat",
+    "value": -60.0
+   }
+  ],
+  "startingWeapon": "WeaponRevolver",
+  "passive": "CritHappens",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.699999988079071,
+  "numQuestsRequiredForVisibility": 0,
+  "footstepClipPathIDs": [
+   2186
+  ],
+  "prefabPathID": 3163,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.24000000953674316
+   },
+   {
+    "category": "Movement",
+    "value": 1.0
+   },
+   {
+    "category": "Utility",
+    "value": 0.6999995112419128
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.8571428656578064
+   },
+   {
+    "category": "Coolness",
+    "value": 0.5
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7821",
+  "name": "Dicehead",
+  "character": "Dicehead",
+  "price": 20,
+  "statModifiers": [
+   {
+    "stat": "Evasion",
+    "op": "Flat",
+    "value": 0.05000000074505806
+   },
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 5.0
+   },
+   {
+    "stat": "CritChance",
+    "op": "Flat",
+    "value": 0.05000000074505806
+   },
+   {
+    "stat": "GoldIncreaseMultiplier",
+    "op": "Flat",
+    "value": 0.05000000074505806
+   }
+  ],
+  "startingWeapon": "WeaponDice",
+  "passive": "Gamba",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.699999988079071,
+  "numQuestsRequiredForVisibility": 50,
+  "footstepClipPathIDs": [
+   2223,
+   2111
+  ],
+  "prefabPathID": 4485,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.27645277976989746
+   },
+   {
+    "category": "Movement",
+    "value": 0.305555522441864
+   },
+   {
+    "category": "Utility",
+    "value": 1.0
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.0
+   },
+   {
+    "category": "Coolness",
+    "value": 0.625
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7822",
+  "name": "Fox",
+  "character": "Fox",
+  "price": 0,
+  "statModifiers": [
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "Evasion",
+    "op": "Flat",
+    "value": 0.05000000074505806
+   },
+   {
+    "stat": "Luck",
+    "op": "Flat",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 4.0
+   },
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.03999999910593033
+   }
+  ],
+  "startingWeapon": "WeaponFireStaff",
+  "passive": "RngBlessing",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.699999988079071,
+  "numQuestsRequiredForVisibility": 0,
+  "footstepClipPathIDs": [
+   2223,
+   2111
+  ],
+  "prefabPathID": 3364,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.27645277976989746
+   },
+   {
+    "category": "Movement",
+    "value": 0.305555522441864
+   },
+   {
+    "category": "Utility",
+    "value": 1.0
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.0
+   },
+   {
+    "category": "Coolness",
+    "value": 0.625
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7824",
+  "name": "Megachad",
+  "character": "Megachad",
+  "price": 6,
+  "statModifiers": [
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Addition",
+    "value": -0.05000000074505806
+   },
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "MaxHealth",
+    "op": "Flat",
+    "value": 20.0
+   }
+  ],
+  "startingWeapon": "WeaponAura",
+  "passive": "Flex",
+  "colliderHeight": 4.449999809265137,
+  "colliderWidth": 0.8500000238418579,
+  "numQuestsRequiredForVisibility": 0,
+  "footstepClipPathIDs": [
+   2244
+  ],
+  "prefabPathID": 4314,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.09600015729665756
+   },
+   {
+    "category": "Movement",
+    "value": 0.16666661202907562
+   },
+   {
+    "category": "Utility",
+    "value": 0.3999995291233063
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.1428571492433548
+   },
+   {
+    "category": "Coolness",
+    "value": 0.75
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7825",
+  "name": "Monke",
+  "character": "Monke",
+  "price": 10,
+  "statModifiers": [
+   {
+    "stat": "MaxHealth",
+    "op": "Flat",
+    "value": 35.0
+   },
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "FallDamageReduction",
+    "op": "Flat",
+    "value": 0.25
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Flat",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 1.0
+   }
+  ],
+  "startingWeapon": "WeaponBananarang",
+  "passive": "WallClimb",
+  "colliderHeight": 3.700000047683716,
+  "colliderWidth": 0.7200000286102295,
+  "numQuestsRequiredForVisibility": 10,
+  "footstepClipPathIDs": [
+   2244,
+   2265
+  ],
+  "prefabPathID": 3089,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.27645277976989746
+   },
+   {
+    "category": "Movement",
+    "value": 0.305555522441864
+   },
+   {
+    "category": "Utility",
+    "value": 1.0
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.0
+   },
+   {
+    "category": "Coolness",
+    "value": 0.625
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7826",
+  "name": "Ninja",
+  "character": "Ninja",
+  "price": 18,
+  "statModifiers": [
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "FallDamageReduction",
+    "op": "Flat",
+    "value": 0.5
+   },
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 3.0
+   },
+   {
+    "stat": "Evasion",
+    "op": "Flat",
+    "value": 0.05000000074505806
+   }
+  ],
+  "startingWeapon": "WeaponKatana",
+  "passive": "Shadowstep",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.5,
+  "numQuestsRequiredForVisibility": 25,
+  "footstepClipPathIDs": [
+   2191,
+   2233,
+   2164
+  ],
+  "prefabPathID": 3523,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.0
+   },
+   {
+    "category": "Movement",
+    "value": 0.930555522441864
+   },
+   {
+    "category": "Utility",
+    "value": 0.6999995112419128
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.5714285969734192
+   },
+   {
+    "category": "Coolness",
+    "value": 0.625
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7827",
+  "name": "Noelle",
+  "character": "Noelle",
+  "price": 14,
+  "statModifiers": [
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 3.0
+   },
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Flat",
+    "value": 0.07500000298023224
+   },
+   {
+    "stat": "Evasion",
+    "op": "Flat",
+    "value": 0.05000000074505806
+   },
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 5.0
+   }
+  ],
+  "startingWeapon": "WeaponFrostWalker",
+  "passive": "Enduring",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.6000000238418579,
+  "numQuestsRequiredForVisibility": 22,
+  "footstepClipPathIDs": [
+   2223,
+   2111
+  ],
+  "prefabPathID": 3071,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.27645277976989746
+   },
+   {
+    "category": "Movement",
+    "value": 0.305555522441864
+   },
+   {
+    "category": "Utility",
+    "value": 1.0
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.0
+   },
+   {
+    "category": "Coolness",
+    "value": 0.625
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7828",
+  "name": "Ogre",
+  "character": "Ogre",
+  "price": 7,
+  "statModifiers": [
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Addition",
+    "value": -0.05999999865889549
+   },
+   {
+    "stat": "DamageMultiplier",
+    "op": "Addition",
+    "value": 0.10000000149011612
+   },
+   {
+    "stat": "MaxHealth",
+    "op": "Flat",
+    "value": 40.0
+   },
+   {
+    "stat": "Luck",
+    "op": "Flat",
+    "value": -0.009999999776482582
+   },
+   {
+    "stat": "Armor",
+    "op": "Flat",
+    "value": 0.05000000074505806
+   },
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 0.3499999940395355
+   }
+  ],
+  "startingWeapon": "WeaponAxe",
+  "passive": "Warrior",
+  "colliderHeight": 4.75,
+  "colliderWidth": 0.8500000238418579,
+  "numQuestsRequiredForVisibility": 0,
+  "footstepClipPathIDs": [
+   2244
+  ],
+  "prefabPathID": 3339,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 1.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.11999987810850143
+   },
+   {
+    "category": "Movement",
+    "value": 0.0
+   },
+   {
+    "category": "Utility",
+    "value": 0.0
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.8571428656578064
+   },
+   {
+    "category": "Coolness",
+    "value": 0.0
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7850",
+  "name": "Roberto",
+  "character": "Roberto",
+  "price": 21,
+  "statModifiers": [
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "Evasion",
+    "op": "Flat",
+    "value": 0.15000000596046448
+   },
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 4.0
+   },
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.03999999910593033
+   }
+  ],
+  "startingWeapon": "WeaponScythe",
+  "passive": "Hoarder",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.699999988079071,
+  "numQuestsRequiredForVisibility": 22,
+  "footstepClipPathIDs": [
+   2191,
+   2233,
+   2164
+  ],
+  "prefabPathID": 3798,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.27645277976989746
+   },
+   {
+    "category": "Movement",
+    "value": 0.305555522441864
+   },
+   {
+    "category": "Utility",
+    "value": 1.0
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.0
+   },
+   {
+    "category": "Coolness",
+    "value": 0.625
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7851",
+  "name": "Robinette",
+  "character": "Robinette",
+  "price": 10,
+  "statModifiers": [
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.07500000298023224
+   },
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 3.0
+   },
+   {
+    "stat": "FallDamageReduction",
+    "op": "Flat",
+    "value": 0.25
+   },
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 3.0
+   },
+   {
+    "stat": "GoldIncreaseMultiplier",
+    "op": "Flat",
+    "value": 0.05000000074505806
+   }
+  ],
+  "startingWeapon": "WeaponBow",
+  "passive": "Stonks",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.5,
+  "numQuestsRequiredForVisibility": 10,
+  "footstepClipPathIDs": [
+   2223,
+   2111
+  ],
+  "prefabPathID": 3851,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.0
+   },
+   {
+    "category": "Movement",
+    "value": 0.930555522441864
+   },
+   {
+    "category": "Utility",
+    "value": 0.6999995112419128
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.5714285969734192
+   },
+   {
+    "category": "Coolness",
+    "value": 0.625
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7819",
+  "name": "Chadwell",
+  "character": "SirChadwell",
+  "price": 19,
+  "statModifiers": [
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Addition",
+    "value": -0.029999999329447746
+   },
+   {
+    "stat": "MaxHealth",
+    "op": "Flat",
+    "value": 50.0
+   },
+   {
+    "stat": "Armor",
+    "op": "Flat",
+    "value": 0.20000000298023224
+   },
+   {
+    "stat": "Difficulty",
+    "op": "Flat",
+    "value": 0.10000000149011612
+   }
+  ],
+  "startingWeapon": "WeaponCorruptedSword",
+  "passive": "Curse",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.699999988079071,
+  "numQuestsRequiredForVisibility": 35,
+  "footstepClipPathIDs": [
+   2230,
+   2194
+  ],
+  "prefabPathID": 3234,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.7680000066757202
+   },
+   {
+    "category": "Movement",
+    "value": 0.1499999612569809
+   },
+   {
+    "category": "Utility",
+    "value": 0.3999995291233063
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.8571428656578064
+   },
+   {
+    "category": "Coolness",
+    "value": 0.125
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7823",
+  "name": "Knight",
+  "character": "SirOofie",
+  "price": 0,
+  "statModifiers": [
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Addition",
+    "value": -0.019999999552965164
+   },
+   {
+    "stat": "MaxHealth",
+    "op": "Flat",
+    "value": 50.0
+   },
+   {
+    "stat": "Armor",
+    "op": "Flat",
+    "value": 0.15000000596046448
+   }
+  ],
+  "startingWeapon": "WeaponSword",
+  "passive": "Reinforced",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.699999988079071,
+  "numQuestsRequiredForVisibility": 0,
+  "footstepClipPathIDs": [
+   2230,
+   2194
+  ],
+  "prefabPathID": 4506,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.7680000066757202
+   },
+   {
+    "category": "Movement",
+    "value": 0.1499999612569809
+   },
+   {
+    "category": "Utility",
+    "value": 0.3999995291233063
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.8571428656578064
+   },
+   {
+    "category": "Coolness",
+    "value": 0.125
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7985",
+  "name": "Spaceman",
+  "character": "Spaceman",
+  "price": 16,
+  "statModifiers": [
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 5.0
+   },
+   {
+    "stat": "MaxHealth",
+    "op": "Flat",
+    "value": 10.0
+   },
+   {
+    "stat": "XpIncreaseMultiplier",
+    "op": "Flat",
+    "value": 0.05000000074505806
+   }
+  ],
+  "startingWeapon": "WeaponBlackHole",
+  "passive": "Quantum",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.7200000286102295,
+  "numQuestsRequiredForVisibility": 24,
+  "footstepClipPathIDs": [
+   2244,
+   2265
+  ],
+  "prefabPathID": 3357,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.27645277976989746
+   },
+   {
+    "category": "Movement",
+    "value": 0.305555522441864
+   },
+   {
+    "category": "Utility",
+    "value": 1.0
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.0
+   },
+   {
+    "category": "Coolness",
+    "value": 0.625
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7986",
+  "name": "TonyMcZoom",
+  "character": "TonyMcZoom",
+  "price": 11,
+  "statModifiers": [
+   {
+    "stat": "MaxHealth",
+    "op": "Flat",
+    "value": -30.0
+   },
+   {
+    "stat": "Shield",
+    "op": "Flat",
+    "value": 10.0
+   },
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Addition",
+    "value": 0.30000001192092896
+   },
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 3.0
+   },
+   {
+    "stat": "FallDamageReduction",
+    "op": "Flat",
+    "value": 1.0
+   },
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 3.0
+   }
+  ],
+  "startingWeapon": "WeaponWirelessDagger",
+  "passive": "Zap",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.6000000238418579,
+  "numQuestsRequiredForVisibility": 12,
+  "footstepClipPathIDs": [
+   2186
+  ],
+  "prefabPathID": 3345,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.24000000953674316
+   },
+   {
+    "category": "Movement",
+    "value": 1.0
+   },
+   {
+    "category": "Utility",
+    "value": 0.6999995112419128
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.8571428656578064
+   },
+   {
+    "category": "Coolness",
+    "value": 0.5
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ },
+ {
+  "source": "sharedassets1.assets#7987",
+  "name": "Vlad",
+  "character": "Vlad",
+  "price": 18,
+  "statModifiers": [
+   {
+    "stat": "JumpHeight",
+    "op": "Flat",
+    "value": 2.0
+   },
+   {
+    "stat": "MoveSpeedMultiplier",
+    "op": "Flat",
+    "value": 0.03999999910593033
+   },
+   {
+    "stat": "Evasion",
+    "op": "Flat",
+    "value": 0.05000000074505806
+   },
+   {
+    "stat": "PickupRange",
+    "op": "Flat",
+    "value": 5.0
+   },
+   {
+    "stat": "Lifesteal",
+    "op": "Flat",
+    "value": 0.05000000074505806
+   }
+  ],
+  "startingWeapon": "WeaponBloodMagic",
+  "passive": "Vampire",
+  "colliderHeight": 3.8499999046325684,
+  "colliderWidth": 0.6000000238418579,
+  "numQuestsRequiredForVisibility": 30,
+  "footstepClipPathIDs": [
+   2223,
+   2111
+  ],
+  "prefabPathID": 4359,
+  "statCategoryRatios": [
+   {
+    "category": "Offensive",
+    "value": 0.0
+   },
+   {
+    "category": "Defensive",
+    "value": 0.27645277976989746
+   },
+   {
+    "category": "Movement",
+    "value": 0.305555522441864
+   },
+   {
+    "category": "Utility",
+    "value": 1.0
+   },
+   {
+    "category": "Difficulty",
+    "value": 0.0
+   },
+   {
+    "category": "Coolness",
+    "value": 0.625
+   },
+   {
+    "category": "Null",
+    "value": 1.0
+   }
+  ]
+ }
+]

@@ -1,0 +1,340 @@
+[
+ {
+  "source": "sharedassets1.assets#8551",
+  "name": "TomeAgility",
+  "tome": "Agility",
+  "description": "Increases movement speed",
+  "price": 0,
+  "modifier": {
+   "stat": "MoveSpeedMultiplier",
+   "op": "Addition",
+   "value": 0.15000000596046448
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8552",
+  "name": "TomeArmor",
+  "tome": "Armor",
+  "description": "Decreases incoming damage",
+  "price": 5,
+  "modifier": {
+   "stat": "Armor",
+   "op": "Flat",
+   "value": 0.11999999731779099
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8553",
+  "name": "TomeAttraction",
+  "tome": "Attraction",
+  "description": "Increases pickup range",
+  "price": 5,
+  "modifier": {
+   "stat": "PickupRange",
+   "op": "Addition",
+   "value": 0.75
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8554",
+  "name": "TomeBalance",
+  "tome": "Balance",
+  "description": "Gain +2% in every stat",
+  "price": 10,
+  "modifier": {
+   "stat": "MaxHealth",
+   "op": "Addition",
+   "value": 0.0
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8555",
+  "name": "TomeBlood",
+  "tome": "Blood",
+  "description": "Increases lifesteal",
+  "price": 5,
+  "modifier": {
+   "stat": "Lifesteal",
+   "op": "Flat",
+   "value": 0.10000000149011612
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8556",
+  "name": "TomeChaos",
+  "tome": "Chaos",
+  "description": "Boost a random stat",
+  "price": 20,
+  "modifier": {
+   "stat": "MaxHealth",
+   "op": "Addition",
+   "value": 0.0
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8557",
+  "name": "TomeCooldown",
+  "tome": "Cooldown",
+  "description": "Increases Attack Speed",
+  "price": 0,
+  "modifier": {
+   "stat": "AttackSpeed",
+   "op": "Addition",
+   "value": 0.07500000298023224
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8558",
+  "name": "TomeCursed",
+  "tome": "Cursed",
+  "description": "Increases Difficulty",
+  "price": 12,
+  "modifier": {
+   "stat": "Difficulty",
+   "op": "Flat",
+   "value": 0.03500000014901161
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8559",
+  "name": "TomeDamage",
+  "tome": "Damage",
+  "description": "Increases damage",
+  "price": 0,
+  "modifier": {
+   "stat": "DamageMultiplier",
+   "op": "Multiplication",
+   "value": 0.07999999821186066
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8560",
+  "name": "TomeDuration",
+  "tome": "Duration",
+  "description": "Increases Attack Duration",
+  "price": 5,
+  "modifier": {
+   "stat": "DurationMultiplier",
+   "op": "Addition",
+   "value": 0.15000000596046448
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8561",
+  "name": "TomeEvasion",
+  "tome": "Evasion",
+  "description": "Increases Evasion",
+  "price": 0,
+  "modifier": {
+   "stat": "Evasion",
+   "op": "Flat",
+   "value": 0.10000000149011612
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8562",
+  "name": "TomeGamba",
+  "tome": "Gambler",
+  "description": "Boost a random stat",
+  "price": 10,
+  "modifier": {
+   "stat": "MaxHealth",
+   "op": "Addition",
+   "value": 0.0
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8563",
+  "name": "TomeGolden",
+  "tome": "Golden",
+  "description": "Increases Gold received",
+  "price": 0,
+  "modifier": {
+   "stat": "GoldIncreaseMultiplier",
+   "op": "Addition",
+   "value": 0.11999999731779099
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8564",
+  "name": "TomeHealth",
+  "tome": "Health",
+  "description": "Increases Max HP",
+  "price": 0,
+  "modifier": {
+   "stat": "MaxHealth",
+   "op": "Flat",
+   "value": 25.0
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8565",
+  "name": "TomeHoarder",
+  "tome": "Hoarder",
+  "description": "Get a random item",
+  "price": 10,
+  "modifier": {
+   "stat": "MaxHealth",
+   "op": "Addition",
+   "value": 0.0
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8566",
+  "name": "TomeKnockback",
+  "tome": "Knockback",
+  "description": "Increases Knockback",
+  "price": 0,
+  "modifier": {
+   "stat": "KnockbackMultiplier",
+   "op": "Addition",
+   "value": 0.20000000298023224
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8567",
+  "name": "TomeLuck",
+  "tome": "Luck",
+  "description": "Increases Luck",
+  "price": 6,
+  "modifier": {
+   "stat": "Luck",
+   "op": "Flat",
+   "value": 0.07999999821186066
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8568",
+  "name": "TomePrecision",
+  "tome": "Precision",
+  "description": "Increases Crit Chance",
+  "price": 0,
+  "modifier": {
+   "stat": "CritChance",
+   "op": "Flat",
+   "value": 0.07000000029802322
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8569",
+  "name": "TomeProjectileSpeed",
+  "tome": "ProjectileSpeed",
+  "description": "Increases Projectile Speed",
+  "price": 0,
+  "modifier": {
+   "stat": "ProjectileSpeedMultiplier",
+   "op": "Addition",
+   "value": 0.15000000596046448
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8570",
+  "name": "TomeQuantity",
+  "tome": "Quantity",
+  "description": "Increases Projectile Quantity",
+  "price": 5,
+  "modifier": {
+   "stat": "Projectiles",
+   "op": "Flat",
+   "value": 1.0
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8571",
+  "name": "TomeRegen",
+  "tome": "Regeneration",
+  "description": "Increases Health Regeneration",
+  "price": 0,
+  "modifier": {
+   "stat": "HealthRegen",
+   "op": "Flat",
+   "value": 40.0
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8572",
+  "name": "TomeShield",
+  "tome": "Shield",
+  "description": "Increases Max Shield",
+  "price": 0,
+  "modifier": {
+   "stat": "Shield",
+   "op": "Flat",
+   "value": 25.0
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8573",
+  "name": "TomeSilver",
+  "tome": "Silver",
+  "description": "Increases Silver received",
+  "price": 0,
+  "modifier": {
+   "stat": "SilverIncreaseMultiplier",
+   "op": "Addition",
+   "value": 0.11999999731779099
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8574",
+  "name": "TomeSize",
+  "tome": "Size",
+  "description": "Increases Attack- & Projectiles Size",
+  "price": 0,
+  "modifier": {
+   "stat": "SizeMultiplier",
+   "op": "Addition",
+   "value": 0.10000000149011612
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8575",
+  "name": "TomeThorns",
+  "tome": "Thorns",
+  "description": "Increases Thorns damage",
+  "price": 5,
+  "modifier": {
+   "stat": "Thorns",
+   "op": "Flat",
+   "value": 15.0
+  },
+  "upgradeDataPathID": 0
+ },
+ {
+  "source": "sharedassets1.assets#8576",
+  "name": "TomeXP",
+  "tome": "Xp",
+  "description": "Increases XP received",
+  "price": 7,
+  "modifier": {
+   "stat": "XpIncreaseMultiplier",
+   "op": "Addition",
+   "value": 0.07000000029802322
+  },
+  "upgradeDataPathID": 0
+ }
+]

@@ -1,0 +1,88 @@
+[
+ {
+  "source": "sharedassets1.assets#8153",
+  "name": "MapDesert",
+  "map": "Desert",
+  "stages": [
+   "StageDesert1",
+   "StageDesert2",
+   "StageDesert3"
+  ],
+  "stageDuration": 600.0,
+  "unlockOrder": 1,
+  "numShrinesMultiplier": 1.0,
+  "numChestsMultiplier": 1.0,
+  "numShrinesPotsAndOtherMultiplier": 1.0,
+  "isWaterDamaging": false,
+  "mapType": "ProceduralMesh",
+  "shrinePrefabCount": 5
+ },
+ {
+  "source": "sharedassets1.assets#8157",
+  "name": "MapDungeon",
+  "map": null,
+  "stages": [
+   "StageDungeon"
+  ],
+  "stageDuration": 600.0,
+  "unlockOrder": 3,
+  "numShrinesMultiplier": 1.0,
+  "numChestsMultiplier": 1.0,
+  "numShrinesPotsAndOtherMultiplier": 1.0,
+  "isWaterDamaging": false,
+  "mapType": "Tiles",
+  "shrinePrefabCount": 4
+ },
+ {
+  "source": "sharedassets1.assets#8159",
+  "name": "MapForest",
+  "map": "Forest",
+  "stages": [
+   "StageForest1",
+   "StageForest2",
+   "StageForest3"
+  ],
+  "stageDuration": 600.0,
+  "unlockOrder": 0,
+  "numShrinesMultiplier": 1.0,
+  "numChestsMultiplier": 1.0,
+  "numShrinesPotsAndOtherMultiplier": 1.0,
+  "isWaterDamaging": false,
+  "mapType": "Tiles",
+  "shrinePrefabCount": 5
+ },
+ {
+  "source": "sharedassets1.assets#8166",
+  "name": "MapGraveyard",
+  "map": "Graveyard",
+  "stages": [
+   "StageGraveyard"
+  ],
+  "stageDuration": 600.0,
+  "unlockOrder": 2,
+  "numShrinesMultiplier": 2.0,
+  "numChestsMultiplier": 1.5,
+  "numShrinesPotsAndOtherMultiplier": 1.5,
+  "isWaterDamaging": false,
+  "mapType": "Tiles",
+  "shrinePrefabCount": 6
+ },
+ {
+  "source": "sharedassets1.assets#8169",
+  "name": "MapHell",
+  "map": null,
+  "stages": [
+   "StageHell1",
+   "StageHell1",
+   "StageHell1"
+  ],
+  "stageDuration": 600.0,
+  "unlockOrder": 2,
+  "numShrinesMultiplier": 1.0,
+  "numChestsMultiplier": 1.0,
+  "numShrinesPotsAndOtherMultiplier": 1.0,
+  "isWaterDamaging": true,
+  "mapType": "ProceduralMesh",
+  "shrinePrefabCount": 1
+ }
+]

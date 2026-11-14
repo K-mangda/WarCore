@@ -3,6 +3,7 @@ import {burstInterval} from './AttackTiming';
 import {Vector3} from 'three';
 import {Swarm,type Enemy,type EnemyKind} from '../enemies/Swarm';
 import {balance} from './Balance';
+import {xpForLevel} from './XpCurve';
 import {availableUpgrades,emptyUpgradeLevels,nextUpgrade,type Upgrade,type UpgradeLevels} from './Upgrades';
 export type {Upgrade} from './Upgrades';
 export type Weapon='bolt'|'sword';
@@ -15,7 +16,7 @@ export interface Gem extends Pickup {}
 export interface XpReceipt {position:Vector3;value:number;time:number;kind?:PickupKind;pickups?:number;}
 export interface Hit {position:Vector3;damage:number;life:number;}
 export interface RunSnapshot {weapon:Weapon;gold:number;silver:number;health:number;maxHealth:number;level:number;xp:number;xpNeeded:number;kills:number;elapsed:number;enemyCount:number;pendingUpgrades:number;dead:boolean;damage:number;attackInterval:number;projectiles:number;upgradeLevels:UpgradeLevels;upgradeChoices:Upgrade[];}
-export const initialRun:RunSnapshot={weapon:'bolt',gold:0,silver:0,health:balance.maxHealth,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:5,kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[]};
+export const initialRun:RunSnapshot={weapon:'bolt',gold:0,silver:0,health:balance.maxHealth,maxHealth:balance.maxHealth,level:1,xp:0,xpNeeded:xpForLevel(1),kills:0,elapsed:0,enemyCount:0,pendingUpgrades:0,dead:false,damage:balance.damage,attackInterval:balance.staffEndCooldown,projectiles:1,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[]};
 export class Run {
   readonly remains:EnemyRemains[]=[];readonly swarm=new Swarm();readonly bolts:Projectile[]=[];readonly staffEffects:StaffEffect[]=[];readonly slashes:Slash[]=[];readonly gems:Gem[]=[];readonly hits:Hit[]=[];readonly xpReceipts:XpReceipt[]=[];readonly currencyReceipts:XpReceipt[]=[];
   private state:RunSnapshot={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[]};private spawnClock=0;private attackClock=0;private hurtClock=0;private started=false;private swordPending=0;private swordBurstClock=0;private swordBurstInterval=0;private staffPending=0;private staffClock=0;private staffInterval=0;
@@ -61,7 +62,7 @@ export class Run {
     else this.xpReceipts.push({position:player.clone().add(new Vector3(0,1.8,0)),value,time:this.state.elapsed,pickups:1});
     if(this.xpReceipts.length>24)this.xpReceipts.shift();
     this.state.xp+=value;this.sound('xp');
-    while(this.state.xp>=this.state.xpNeeded){this.state.xp-=this.state.xpNeeded;this.state.level++;this.state.xpNeeded=5+(this.state.level-1)*3;this.state.pendingUpgrades++;this.sound('level');}
+    while(this.state.xp>=this.state.xpNeeded){this.state.xp-=this.state.xpNeeded;this.state.level++;this.state.xpNeeded=xpForLevel(this.state.level);this.state.pendingUpgrades++;this.sound('level');}
   }
   /** Sandbox melee sector; native swing trajectory and hit timing are not reconstructed. */
   private swing(player:Vector3,facing:Vector3){

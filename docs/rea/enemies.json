@@ -1,0 +1,3315 @@
+[
+ {
+  "source": "sharedassets1.assets#8038",
+  "name": "SkeletonArmored",
+  "enemy": "ArmoredSkeleton",
+  "hp": 30,
+  "damage": 25,
+  "shield": 0,
+  "speed": 4.0,
+  "mass": 50.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.5,
+  "minStage": 0,
+  "canSpawnAfterTime": 90.0,
+  "maps": [
+   "Forest",
+   "Graveyard"
+  ],
+  "mapsRaw": 9,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.350000023841858,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.350000023841858,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7799,
+   "name": null
+  },
+  "material": {
+   "pathID": 274,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8004",
+  "name": "SkeletonArmoredDusty",
+  "enemy": "ArmoredSkeletonDusty",
+  "hp": 25,
+  "damage": 16,
+  "shield": 0,
+  "speed": 4.5,
+  "mass": 50.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 3.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 90.0,
+  "maps": [
+   "Desert"
+  ],
+  "mapsRaw": 2,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.350000023841858,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.350000023841858,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7799,
+   "name": null
+  },
+  "material": {
+   "pathID": 275,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8032",
+  "name": "Bandit",
+  "enemy": "Bandit",
+  "hp": 11000,
+  "damage": 50,
+  "shield": 0,
+  "speed": 10.0,
+  "mass": 200.0,
+  "knockbackResistance": 4.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 30.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.0,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.25,
+  "specialAttackCount": 1,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "BanditAttack",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4455
+    },
+    "attackChargeTime": 0.4000000059604645,
+    "attackRadius": 0.6000000238418579,
+    "attackCooldown": 10.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 15.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.800000011920929
+   }
+  ],
+  "animation": {
+   "pathID": 7779,
+   "name": null
+  },
+  "material": {
+   "pathID": 106,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#7991",
+  "name": "Bee",
+  "enemy": "Bee",
+  "hp": 10,
+  "damage": 15,
+  "shield": 0,
+  "speed": 6.5,
+  "mass": 40.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Forest"
+  ],
+  "mapsRaw": 1,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 0.5,
+  "overrideHeight": 0.6000000238418579,
+  "rendererScale": 3.75,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7780,
+   "name": null
+  },
+  "material": {
+   "pathID": 258,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#7992",
+  "name": "BoomerSpider",
+  "enemy": "BoomerSpider",
+  "hp": 18,
+  "damage": 30,
+  "shield": 0,
+  "speed": 6.0,
+  "mass": 30.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.5,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Forest"
+  ],
+  "mapsRaw": 1,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.5,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.0,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7800,
+   "name": null
+  },
+  "material": {
+   "pathID": 257,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8033",
+  "name": "Bush",
+  "enemy": "Bush",
+  "hp": 10000,
+  "damage": 45,
+  "shield": 0,
+  "speed": 8.5,
+  "mass": 200.0,
+  "knockbackResistance": 2.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 30.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.0,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.25,
+  "specialAttackCount": 1,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "BushAttack",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4457
+    },
+    "attackChargeTime": 0.550000011920929,
+    "attackRadius": 0.5,
+    "attackCooldown": 12.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 9999.0,
+    "endLag": 2.5,
+    "damageMultiplier": 0.800000011920929
+   }
+  ],
+  "animation": {
+   "pathID": 7781,
+   "name": null
+  },
+  "material": {
+   "pathID": 219,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#7993",
+  "name": "CactusShooter",
+  "enemy": "CactusShooter",
+  "hp": 15,
+  "damage": 30,
+  "shield": 0,
+  "speed": 5.0,
+  "mass": 20.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Desert"
+  ],
+  "mapsRaw": 2,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.0,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.25,
+  "specialAttackCount": 1,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "CactusProjectile",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3476
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 2.0,
+    "attackCooldown": 12.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 1.0,
+    "triggerDistance": 999.0,
+    "endLag": 1.0,
+    "damageMultiplier": 1.0
+   }
+  ],
+  "animation": {
+   "pathID": 7782,
+   "name": null
+  },
+  "material": {
+   "pathID": 283,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8028",
+  "name": "Miniboss_SkeletonKing",
+  "enemy": "CalciumDad",
+  "hp": 320,
+  "damage": 40,
+  "shield": 0,
+  "speed": 8.0,
+  "mass": 250.0,
+  "knockbackResistance": 4.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Graveyard"
+  ],
+  "mapsRaw": 8,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 20.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.25,
+  "overrideHeight": 0.0,
+  "rendererScale": 4.0,
+  "specialAttackCount": 3,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "BonePillarsPredictiveMultiple",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3515
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 5.0,
+    "attackCooldown": 15.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 6.0,
+    "triggerDistance": 9999.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.75
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "BonePillarsCircles",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4451
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 6.0,
+    "attackCooldown": 15.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 6.0,
+    "triggerDistance": 9999.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.75
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "LaserTargetAttack",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3178
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 4.0,
+    "attackCooldown": 40.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 8.0,
+    "nextSpecialAttackCooldown": 8.0,
+    "triggerDistance": 400.0,
+    "endLag": 5.0,
+    "damageMultiplier": 0.05000000074505806
+   }
+  ],
+  "animation": {
+   "pathID": 7805,
+   "name": null
+  },
+  "material": {
+   "pathID": 276,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8008",
+  "name": "EntStage1",
+  "enemy": "Ent1",
+  "hp": 9000,
+  "damage": 40,
+  "shield": 0,
+  "speed": 7.0,
+  "mass": 500.0,
+  "knockbackResistance": 2.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 30.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 3.4000000953674316,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.600000023841858,
+  "specialAttackCount": 5,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackContinous",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3516
+    },
+    "attackChargeTime": 0.8999999761581421,
+    "attackRadius": 4.0,
+    "attackCooldown": 15.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 120.0,
+    "endLag": 2.0,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackLines3",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3791
+    },
+    "attackChargeTime": 0.8999999761581421,
+    "attackRadius": 4.0,
+    "attackCooldown": 8.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 60.0,
+    "endLag": 2.0,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackLineSingle",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3792
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 7.0,
+    "attackCooldown": 12.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 70.0,
+    "endLag": 2.0,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackSinglePredictive",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4454
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 7.0,
+    "attackCooldown": 12.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 300.0,
+    "endLag": 2.0,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackClose",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4454
+    },
+    "attackChargeTime": 1.2000000476837158,
+    "attackRadius": 10.0,
+    "attackCooldown": 10.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 15.0,
+    "endLag": 2.0,
+    "damageMultiplier": 1.0
+   }
+  ],
+  "animation": {
+   "pathID": 7784,
+   "name": null
+  },
+  "material": {
+   "pathID": 254,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8009",
+  "name": "EntStage2",
+  "enemy": "Ent2",
+  "hp": 8000,
+  "damage": 40,
+  "shield": 0,
+  "speed": 7.0,
+  "mass": 500.0,
+  "knockbackResistance": 2.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 30.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 3.4000000953674316,
+  "overrideHeight": 0.0,
+  "rendererScale": 2.0,
+  "specialAttackCount": 5,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackContinous",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3516
+    },
+    "attackChargeTime": 0.8500000238418579,
+    "attackRadius": 5.0,
+    "attackCooldown": 13.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 2.5,
+    "triggerDistance": 120.0,
+    "endLag": 1.7999999523162842,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 0,
+    "priority": 0,
+    "attackName": "RootAttackLines3",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3791
+    },
+    "attackChargeTime": 0.8500000238418579,
+    "attackRadius": 5.5,
+    "attackCooldown": 8.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 2.5,
+    "triggerDistance": 65.0,
+    "endLag": 1.7999999523162842,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackLineSingle",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3792
+    },
+    "attackChargeTime": 0.8999999761581421,
+    "attackRadius": 7.5,
+    "attackCooldown": 12.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 2.5,
+    "triggerDistance": 70.0,
+    "endLag": 1.7999999523162842,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackSinglePredictive",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4454
+    },
+    "attackChargeTime": 0.8999999761581421,
+    "attackRadius": 8.0,
+    "attackCooldown": 12.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 2.5,
+    "triggerDistance": 500.0,
+    "endLag": 1.7999999523162842,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackClose",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4454
+    },
+    "attackChargeTime": 1.100000023841858,
+    "attackRadius": 11.0,
+    "attackCooldown": 10.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 2.5,
+    "triggerDistance": 15.0,
+    "endLag": 1.7999999523162842,
+    "damageMultiplier": 1.0
+   }
+  ],
+  "animation": {
+   "pathID": 7784,
+   "name": null
+  },
+  "material": {
+   "pathID": 255,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8010",
+  "name": "EntStage3",
+  "enemy": "Ent3",
+  "hp": 10000,
+  "damage": 22,
+  "shield": 0,
+  "speed": 3.0,
+  "mass": 500.0,
+  "knockbackResistance": 999.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 0.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 3.4000000953674316,
+  "overrideHeight": 0.0,
+  "rendererScale": 2.299999952316284,
+  "specialAttackCount": 5,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackContinous",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3516
+    },
+    "attackChargeTime": 0.699999988079071,
+    "attackRadius": 6.0,
+    "attackCooldown": 13.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 2.25,
+    "triggerDistance": 170.0,
+    "endLag": 1.7000000476837158,
+    "damageMultiplier": 0.8500000238418579
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackLines3",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3791
+    },
+    "attackChargeTime": 0.75,
+    "attackRadius": 7.5,
+    "attackCooldown": 8.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 2.25,
+    "triggerDistance": 65.0,
+    "endLag": 1.7000000476837158,
+    "damageMultiplier": 0.8500000238418579
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackLineSingle",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3792
+    },
+    "attackChargeTime": 0.800000011920929,
+    "attackRadius": 9.0,
+    "attackCooldown": 12.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 2.25,
+    "triggerDistance": 70.0,
+    "endLag": 1.7000000476837158,
+    "damageMultiplier": 0.8500000238418579
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackSinglePredictive",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4454
+    },
+    "attackChargeTime": 0.800000011920929,
+    "attackRadius": 7.5,
+    "attackCooldown": 12.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 2.25,
+    "triggerDistance": 300.0,
+    "endLag": 1.7000000476837158,
+    "damageMultiplier": 0.8500000238418579
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "RootAttackClose",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4454
+    },
+    "attackChargeTime": 1.100000023841858,
+    "attackRadius": 11.5,
+    "attackCooldown": 10.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 2.25,
+    "triggerDistance": 15.0,
+    "endLag": 1.7000000476837158,
+    "damageMultiplier": 0.8500000238418579
+   }
+  ],
+  "animation": {
+   "pathID": 7784,
+   "name": null
+  },
+  "material": {
+   "pathID": 256,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8034",
+  "name": "FrogBlue",
+  "enemy": "FrogBlue",
+  "hp": 1000,
+  "damage": 1,
+  "shield": 0,
+  "speed": 9.5,
+  "mass": 50.0,
+  "knockbackResistance": 1.0,
+  "xp": 1,
+  "creditCost": 99.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 9999999.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.0,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.75,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7785,
+   "name": null
+  },
+  "material": {
+   "pathID": 307,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8035",
+  "name": "FrogGreen",
+  "enemy": "FrogGreen",
+  "hp": 1000,
+  "damage": 1,
+  "shield": 0,
+  "speed": 9.0,
+  "mass": 50.0,
+  "knockbackResistance": 1.0,
+  "xp": 1,
+  "creditCost": 99.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 9999999.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.0,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.5,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7785,
+   "name": null
+  },
+  "material": {
+   "pathID": 306,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8036",
+  "name": "FrogRed",
+  "enemy": "FrogRed",
+  "hp": 1000,
+  "damage": 1,
+  "shield": 0,
+  "speed": 10.0,
+  "mass": 50.0,
+  "knockbackResistance": 1.0,
+  "xp": 1,
+  "creditCost": 99.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 9999999.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.0,
+  "overrideHeight": 0.0,
+  "rendererScale": 2.25,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7785,
+   "name": null
+  },
+  "material": {
+   "pathID": 308,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8011",
+  "name": "Ghost",
+  "enemy": "Ghost",
+  "hp": 10,
+  "damage": 10,
+  "shield": 0,
+  "speed": 6.0,
+  "mass": 40.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Graveyard"
+  ],
+  "mapsRaw": 8,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.2000000476837158,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.0,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7786,
+   "name": null
+  },
+  "material": {
+   "pathID": 259,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8020",
+  "name": "GhostGrave1",
+  "enemy": "GhostGrave1",
+  "hp": 1100,
+  "damage": 20,
+  "shield": 0,
+  "speed": 7.0,
+  "mass": 100.0,
+  "knockbackResistance": 1.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 15.0,
+  "canBeElite": false,
+  "canBeExecuted": false,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.2000000476837158,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.0,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7803,
+   "name": null
+  },
+  "material": {
+   "pathID": 295,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8021",
+  "name": "GhostGrave2",
+  "enemy": "GhostGrave2",
+  "hp": 2250,
+  "damage": 25,
+  "shield": 0,
+  "speed": 7.0,
+  "mass": 100.0,
+  "knockbackResistance": 1.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 15.0,
+  "canBeElite": false,
+  "canBeExecuted": false,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.2000000476837158,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.100000023841858,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7803,
+   "name": null
+  },
+  "material": {
+   "pathID": 296,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8022",
+  "name": "GhostGrave3",
+  "enemy": "GhostGrave3",
+  "hp": 5500,
+  "damage": 30,
+  "shield": 0,
+  "speed": 7.0,
+  "mass": 100.0,
+  "knockbackResistance": 2.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 15.0,
+  "canBeElite": false,
+  "canBeExecuted": false,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.2000000476837158,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.2000000476837158,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7803,
+   "name": null
+  },
+  "material": {
+   "pathID": 297,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8023",
+  "name": "GhostGrave4",
+  "enemy": "GhostGrave4",
+  "hp": 9000,
+  "damage": 35,
+  "shield": 0,
+  "speed": 7.0,
+  "mass": 100.0,
+  "knockbackResistance": 4.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 15.0,
+  "canBeElite": false,
+  "canBeExecuted": false,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.2000000476837158,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.2999999523162842,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7803,
+   "name": null
+  },
+  "material": {
+   "pathID": 298,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8024",
+  "name": "GhostInvincible",
+  "enemy": "GhostInvincible",
+  "hp": 2147483647,
+  "damage": 2147483647,
+  "shield": 0,
+  "speed": 6.5,
+  "mass": 150.0,
+  "knockbackResistance": 10000000000.0,
+  "xp": 1,
+  "creditCost": 1.5,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 0.0,
+  "canBeElite": false,
+  "canBeExecuted": false,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 1.0,
+  "colliderRadius": 1.100000023841858,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.399999976158142,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7803,
+   "name": null
+  },
+  "material": {
+   "pathID": 299,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8025",
+  "name": "GhostKingData",
+  "enemy": "GhostKing",
+  "hp": 500000,
+  "damage": 40,
+  "shield": 0,
+  "speed": 10.0,
+  "mass": 500.0,
+  "knockbackResistance": 999.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 0.0,
+  "canBeElite": false,
+  "canBeExecuted": false,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 3.5,
+  "overrideHeight": 13.25,
+  "rendererScale": 1.2999999523162842,
+  "specialAttackCount": 3,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 1,
+    "attackName": "DarknessAttack",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3107
+    },
+    "attackChargeTime": 6.5,
+    "attackRadius": 0.0,
+    "attackCooldown": 30.0,
+    "attackCooldownMax": 50.0,
+    "initialCooldown": 15.0,
+    "duration": 1.0,
+    "nextSpecialAttackCooldown": 4.0,
+    "triggerDistance": 999.0,
+    "endLag": 1.0,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "GhostRootAttackContinous",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4074
+    },
+    "attackChargeTime": 0.75,
+    "attackRadius": 5.25,
+    "attackCooldown": 15.0,
+    "attackCooldownMax": 30.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 170.0,
+    "endLag": 1.7000000476837158,
+    "damageMultiplier": 0.8500000238418579
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "GhostSpikesMultiple",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3114
+    },
+    "attackChargeTime": 1.5,
+    "attackRadius": 5.25,
+    "attackCooldown": 15.0,
+    "attackCooldownMax": 30.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 4.0,
+    "triggerDistance": 600.0,
+    "endLag": 2.0,
+    "damageMultiplier": 0.800000011920929
+   }
+  ],
+  "animation": {
+   "pathID": 7804,
+   "name": null
+  },
+  "material": {
+   "pathID": 294,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8013",
+  "name": "GhostPurple",
+  "enemy": "GhostPurple",
+  "hp": 40,
+  "damage": 20,
+  "shield": 0,
+  "speed": 8.0,
+  "mass": 50.0,
+  "knockbackResistance": 5.0,
+  "xp": 1,
+  "creditCost": 1.5,
+  "minStage": 0,
+  "canSpawnAfterTime": 420.0,
+  "maps": [
+   "Graveyard"
+  ],
+  "mapsRaw": 8,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": false,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 8.0,
+  "colliderRadius": 1.100000023841858,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.2999999523162842,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7786,
+   "name": null
+  },
+  "material": {
+   "pathID": 261,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8014",
+  "name": "GhostRed",
+  "enemy": "GhostRed",
+  "hp": 100,
+  "damage": 30,
+  "shield": 0,
+  "speed": 10.0,
+  "mass": 50.0,
+  "knockbackResistance": 50.0,
+  "xp": 1,
+  "creditCost": 1.5,
+  "minStage": 0,
+  "canSpawnAfterTime": 720.0,
+  "maps": [
+   "Graveyard"
+  ],
+  "mapsRaw": 8,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": false,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 1.0,
+  "colliderRadius": 1.100000023841858,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.5,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7786,
+   "name": null
+  },
+  "material": {
+   "pathID": 262,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8027",
+  "name": "Miniboss_Ghostham",
+  "enemy": "Ghostham",
+  "hp": 320,
+  "damage": 45,
+  "shield": 0,
+  "speed": 6.5,
+  "mass": 150.0,
+  "knockbackResistance": 3.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Graveyard"
+  ],
+  "mapsRaw": 8,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 30.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 2.0,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.2999999523162842,
+  "specialAttackCount": 3,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "SphereSlam",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4382
+    },
+    "attackChargeTime": 1.100000023841858,
+    "attackRadius": 9.0,
+    "attackCooldown": 5.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 14.0,
+    "endLag": 1.0,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "PigMudSplash",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3688
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 6.0,
+    "attackCooldown": 5.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 400.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.699999988079071
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "PigMudSplashPredictive",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3687
+    },
+    "attackChargeTime": 1.100000023841858,
+    "attackRadius": 5.0,
+    "attackCooldown": 5.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 400.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.699999988079071
+   }
+  ],
+  "animation": {
+   "pathID": 7783,
+   "name": null
+  },
+  "material": {
+   "pathID": 273,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8015",
+  "name": "Ghoul",
+  "enemy": "Ghoul",
+  "hp": 9,
+  "damage": 12,
+  "shield": 0,
+  "speed": 9.0,
+  "mass": 40.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Forest",
+   "Graveyard"
+  ],
+  "mapsRaw": 9,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.25,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.4500000476837158,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7778,
+   "name": null
+  },
+  "material": {
+   "pathID": 282,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8018",
+  "name": "GoblinWeak",
+  "enemy": "Goblin",
+  "hp": 7,
+  "damage": 15,
+  "shield": 0,
+  "speed": 5.0,
+  "mass": 30.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Forest"
+  ],
+  "mapsRaw": 1,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.0,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.100000023841858,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7787,
+   "name": null
+  },
+  "material": {
+   "pathID": 264,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8016",
+  "name": "GoblinStrong",
+  "enemy": "GoblinStrong",
+  "hp": 15,
+  "damage": 25,
+  "shield": 0,
+  "speed": 5.5,
+  "mass": 35.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.25,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Forest"
+  ],
+  "mapsRaw": 1,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.0,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.25,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7788,
+   "name": null
+  },
+  "material": {
+   "pathID": 263,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8017",
+  "name": "GoblinTank",
+  "enemy": "GoblinTank",
+  "hp": 40,
+  "damage": 30,
+  "shield": 0,
+  "speed": 5.0,
+  "mass": 80.0,
+  "knockbackResistance": 1.0,
+  "xp": 1,
+  "creditCost": 2.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 180.0,
+  "maps": [
+   "Forest"
+  ],
+  "mapsRaw": 1,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.5,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.25,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7789,
+   "name": null
+  },
+  "material": {
+   "pathID": 265,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8039",
+  "name": "SkeletonGold",
+  "enemy": "GoldenSkeleton",
+  "hp": 50,
+  "damage": 25,
+  "shield": 0,
+  "speed": 6.0,
+  "mass": 40.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 10.0,
+  "minStage": -1,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": true,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 9999.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 7.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.25,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.25,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7798,
+   "name": null
+  },
+  "material": {
+   "pathID": 279,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8019",
+  "name": "Golem",
+  "enemy": "Golem",
+  "hp": 20,
+  "damage": 20,
+  "shield": 0,
+  "speed": 5.0,
+  "mass": 35.0,
+  "knockbackResistance": 1.0,
+  "xp": 1,
+  "creditCost": 1.5,
+  "minStage": 0,
+  "canSpawnAfterTime": 90.0,
+  "maps": [
+   "Forest"
+  ],
+  "mapsRaw": 1,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.75,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.25,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7790,
+   "name": null
+  },
+  "material": {
+   "pathID": 268,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8012",
+  "name": "GhostGreater",
+  "enemy": "GreaterGhost",
+  "hp": 20,
+  "damage": 13,
+  "shield": 0,
+  "speed": 7.0,
+  "mass": 50.0,
+  "knockbackResistance": 1.0,
+  "xp": 1,
+  "creditCost": 1.5,
+  "minStage": 0,
+  "canSpawnAfterTime": 180.0,
+  "maps": [
+   "Graveyard"
+  ],
+  "mapsRaw": 8,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 15.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 10.0,
+  "colliderRadius": 1.100000023841858,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.149999976158142,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7786,
+   "name": null
+  },
+  "material": {
+   "pathID": 260,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8026",
+  "name": "Head",
+  "enemy": "Head",
+  "hp": 12,
+  "damage": 8,
+  "shield": 0,
+  "speed": 7.0,
+  "mass": 40.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Graveyard"
+  ],
+  "mapsRaw": 8,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 0.6499999761581421,
+  "overrideHeight": 0.8500000238418579,
+  "rendererScale": 2.4000000953674316,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7792,
+   "name": null
+  },
+  "material": {
+   "pathID": 269,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8030",
+  "name": "Miniboss_Golem",
+  "enemy": "MinibossGolem",
+  "hp": 250,
+  "damage": 40,
+  "shield": 0,
+  "speed": 6.0,
+  "mass": 150.0,
+  "knockbackResistance": 4.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Forest"
+  ],
+  "mapsRaw": 1,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 2.5,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.2000000476837158,
+  "specialAttackCount": 2,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "StoneAttackClose",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3324
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 8.0,
+    "attackCooldown": 8.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 17.0,
+    "endLag": 1.0,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "StoneAttackContinous",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3514
+    },
+    "attackChargeTime": 1.149999976158142,
+    "attackRadius": 6.0,
+    "attackCooldown": 16.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 100.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.75
+   }
+  ],
+  "animation": {
+   "pathID": 7791,
+   "name": null
+  },
+  "material": {
+   "pathID": 266,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#7994",
+  "name": "Miniboss_Desert_Golem",
+  "enemy": "MinibossGolemSand",
+  "hp": 250,
+  "damage": 40,
+  "shield": 0,
+  "speed": 6.0,
+  "mass": 150.0,
+  "knockbackResistance": 4.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Desert"
+  ],
+  "mapsRaw": 2,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 2.5,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.2000000476837158,
+  "specialAttackCount": 2,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "StoneAttack",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3324
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 8.0,
+    "attackCooldown": 8.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 17.0,
+    "endLag": 1.0,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "StoneAttackContinous",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3514
+    },
+    "attackChargeTime": 1.100000023841858,
+    "attackRadius": 5.5,
+    "attackCooldown": 16.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 100.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.75
+   }
+  ],
+  "animation": {
+   "pathID": 7791,
+   "name": null
+  },
+  "material": {
+   "pathID": 267,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8031",
+  "name": "Miniboss_Pig",
+  "enemy": "MinibossPig",
+  "hp": 250,
+  "damage": 40,
+  "shield": 0,
+  "speed": 6.0,
+  "mass": 150.0,
+  "knockbackResistance": 3.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Forest"
+  ],
+  "mapsRaw": 1,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 2.0,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.25,
+  "specialAttackCount": 3,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "SphereSlam",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4382
+    },
+    "attackChargeTime": 1.100000023841858,
+    "attackRadius": 9.0,
+    "attackCooldown": 5.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 14.0,
+    "endLag": 1.0,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "PigMudSplash",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3688
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 6.0,
+    "attackCooldown": 5.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 400.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.699999988079071
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "PigMudSplashPredictive",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3687
+    },
+    "attackChargeTime": 1.100000023841858,
+    "attackRadius": 5.0,
+    "attackCooldown": 5.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 400.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.699999988079071
+   }
+  ],
+  "animation": {
+   "pathID": 7783,
+   "name": null
+  },
+  "material": {
+   "pathID": 272,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#7995",
+  "name": "Miniboss_Scorpion",
+  "enemy": "MinibossScorpion",
+  "hp": 250,
+  "damage": 35,
+  "shield": 0,
+  "speed": 7.0,
+  "mass": 150.0,
+  "knockbackResistance": 3.5,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Desert"
+  ],
+  "mapsRaw": 2,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 60.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": true,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 8.0,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.100000023841858,
+  "specialAttackCount": 3,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "ScorpionSpikesMultiple",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4456
+    },
+    "attackChargeTime": 1.5,
+    "attackRadius": 6.0,
+    "attackCooldown": 16.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 600.0,
+    "endLag": 2.0,
+    "damageMultiplier": 0.800000011920929
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "ScorpionSpikesPreditctive",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4452
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 7.0,
+    "attackCooldown": 12.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 600.0,
+    "endLag": 2.0,
+    "damageMultiplier": 1.0
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "ScorpionSpikesHitscan",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4453
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 0.6000000238418579,
+    "attackCooldown": 12.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 350.0,
+    "endLag": 2.0,
+    "damageMultiplier": 0.800000011920929
+   }
+  ],
+  "animation": {
+   "pathID": 7797,
+   "name": null
+  },
+  "material": {
+   "pathID": 289,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#7996",
+  "name": "Mummy",
+  "enemy": "Mummy",
+  "hp": 8,
+  "damage": 13,
+  "shield": 0,
+  "speed": 5.5,
+  "mass": 40.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Desert"
+  ],
+  "mapsRaw": 2,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 0.8500000238418579,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.25,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7776,
+   "name": null
+  },
+  "material": {
+   "pathID": 271,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#7997",
+  "name": "MummyAncient",
+  "enemy": "MummyAncient",
+  "hp": 70,
+  "damage": 40,
+  "shield": 0,
+  "speed": 5.0,
+  "mass": 80.0,
+  "knockbackResistance": 1.0,
+  "xp": 1,
+  "creditCost": 2.5,
+  "minStage": 0,
+  "canSpawnAfterTime": 360.0,
+  "maps": [
+   "Desert"
+  ],
+  "mapsRaw": 2,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.5,
+  "overrideHeight": 0.0,
+  "rendererScale": 2.0,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7794,
+   "name": null
+  },
+  "material": {
+   "pathID": 284,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#7998",
+  "name": "MummyTank",
+  "enemy": "MummyTank",
+  "hp": 45,
+  "damage": 30,
+  "shield": 0,
+  "speed": 5.0,
+  "mass": 80.0,
+  "knockbackResistance": 1.0,
+  "xp": 1,
+  "creditCost": 2.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 180.0,
+  "maps": [
+   "Desert"
+  ],
+  "mapsRaw": 2,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.5,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.25,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7794,
+   "name": null
+  },
+  "material": {
+   "pathID": 285,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#7999",
+  "name": "Pharaoh1",
+  "enemy": "Pharaoh1",
+  "hp": 8000,
+  "damage": 40,
+  "shield": 0,
+  "speed": 7.0,
+  "mass": 500.0,
+  "knockbackResistance": 2.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 30.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.399999976158142,
+  "overrideHeight": 0.0,
+  "rendererScale": 5.5,
+  "specialAttackCount": 4,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "LaserDiscoAttack",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4403
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 4.0,
+    "attackCooldown": 25.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 14.0,
+    "nextSpecialAttackCooldown": 7.0,
+    "triggerDistance": 200.0,
+    "endLag": 0.0,
+    "damageMultiplier": 0.15000000596046448
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "LaserTargetAttack",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3178
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 4.0,
+    "attackCooldown": 40.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 8.0,
+    "nextSpecialAttackCooldown": 8.0,
+    "triggerDistance": 400.0,
+    "endLag": 5.0,
+    "damageMultiplier": 0.05000000074505806
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "DesertPillarsPredictiveMultiple",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3513
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 5.0,
+    "attackCooldown": 15.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 6.0,
+    "triggerDistance": 9999.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.75
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "DesertPillarsCircles",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4450
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 8.0,
+    "attackCooldown": 15.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 6.0,
+    "triggerDistance": 9999.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.75
+   }
+  ],
+  "animation": {
+   "pathID": 7795,
+   "name": null
+  },
+  "material": {
+   "pathID": 286,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8000",
+  "name": "Pharaoh2",
+  "enemy": "Pharaoh2",
+  "hp": 8000,
+  "damage": 40,
+  "shield": 0,
+  "speed": 7.0,
+  "mass": 500.0,
+  "knockbackResistance": 2.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 30.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.375,
+  "overrideHeight": 0.0,
+  "rendererScale": 5.75,
+  "specialAttackCount": 4,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "LaserDiscoAttack",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4403
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 4.0,
+    "attackCooldown": 25.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 15.0,
+    "nextSpecialAttackCooldown": 3.5,
+    "triggerDistance": 200.0,
+    "endLag": 0.0,
+    "damageMultiplier": 0.15000000596046448
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "LaserTargetAttack",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3178
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 4.0,
+    "attackCooldown": 30.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 8.0,
+    "nextSpecialAttackCooldown": 5.0,
+    "triggerDistance": 400.0,
+    "endLag": 5.0,
+    "damageMultiplier": 0.05000000074505806
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "DesertPillarsPredictiveMultiple",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3513
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 5.0,
+    "attackCooldown": 15.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.5,
+    "triggerDistance": 9999.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.75
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "DesertPillarsCircles",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4450
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 8.0,
+    "attackCooldown": 15.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.5,
+    "triggerDistance": 9999.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.75
+   }
+  ],
+  "animation": {
+   "pathID": 7795,
+   "name": null
+  },
+  "material": {
+   "pathID": 287,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8001",
+  "name": "Pharaoh3",
+  "enemy": "Pharaoh3",
+  "hp": 8000,
+  "damage": 40,
+  "shield": 0,
+  "speed": 3.0,
+  "mass": 500.0,
+  "knockbackResistance": 999.0,
+  "xp": 1,
+  "creditCost": 40.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 0.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": true,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.375,
+  "overrideHeight": 0.0,
+  "rendererScale": 6.0,
+  "specialAttackCount": 4,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "LaserDiscoAttack",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4403
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 4.0,
+    "attackCooldown": 25.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 15.0,
+    "nextSpecialAttackCooldown": 2.0,
+    "triggerDistance": 200.0,
+    "endLag": 0.0,
+    "damageMultiplier": 0.15000000596046448
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "LaserTargetAttack",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3178
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 4.0,
+    "attackCooldown": 45.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 8.0,
+    "nextSpecialAttackCooldown": 2.0,
+    "triggerDistance": 400.0,
+    "endLag": 5.0,
+    "damageMultiplier": 0.05000000074505806
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "DesertPillarsPredictiveMultiple",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 3513
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 5.0,
+    "attackCooldown": 15.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 9999.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.75
+   },
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "DesertPillarsCircles",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4450
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 8.0,
+    "attackCooldown": 15.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 3.0,
+    "triggerDistance": 9999.0,
+    "endLag": 1.0,
+    "damageMultiplier": 0.75
+   }
+  ],
+  "animation": {
+   "pathID": 7795,
+   "name": null
+  },
+  "material": {
+   "pathID": 288,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8002",
+  "name": "Scorpion",
+  "enemy": "Scorpion",
+  "hp": 16,
+  "damage": 20,
+  "shield": 0,
+  "speed": 7.0,
+  "mass": 30.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.2000000476837158,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Desert"
+  ],
+  "mapsRaw": 2,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": true,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 2.4000000953674316,
+  "overrideHeight": 0.0,
+  "rendererScale": 0.8500000238418579,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7796,
+   "name": null
+  },
+  "material": {
+   "pathID": 290,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8003",
+  "name": "ScorpionBig",
+  "enemy": "ScorpionMedium",
+  "hp": 30,
+  "damage": 30,
+  "shield": 0,
+  "speed": 6.5,
+  "mass": 60.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.100000023841858,
+  "minStage": 0,
+  "canSpawnAfterTime": 180.0,
+  "maps": [
+   "Desert"
+  ],
+  "mapsRaw": 2,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": true,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 2.5,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.399999976158142,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7796,
+   "name": null
+  },
+  "material": {
+   "pathID": 291,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8037",
+  "name": "Skeleton",
+  "enemy": "Skeleton",
+  "hp": 20,
+  "damage": 20,
+  "shield": 0,
+  "speed": 5.5,
+  "mass": 40.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Forest",
+   "Graveyard"
+  ],
+  "mapsRaw": 9,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.25,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.25,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7798,
+   "name": null
+  },
+  "material": {
+   "pathID": 277,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8005",
+  "name": "SkeletonDusty",
+  "enemy": "SkeletonDusty",
+  "hp": 16,
+  "damage": 22,
+  "shield": 0,
+  "speed": 6.5,
+  "mass": 40.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 2.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Desert"
+  ],
+  "mapsRaw": 2,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.25,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.25,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7798,
+   "name": null
+  },
+  "material": {
+   "pathID": 278,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8041",
+  "name": "Slime",
+  "enemy": "Slime",
+  "hp": 6,
+  "damage": 8,
+  "shield": 0,
+  "speed": 6.5,
+  "mass": 40.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 0.75,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Forest"
+  ],
+  "mapsRaw": 1,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 8.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.399999976158142,
+  "overrideHeight": 2.799999952316284,
+  "rendererScale": 1.0,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7777,
+   "name": null
+  },
+  "material": {
+   "pathID": 281,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8042",
+  "name": "_Test",
+  "enemy": "Test",
+  "hp": 15,
+  "damage": 20,
+  "shield": 0,
+  "speed": 7.0,
+  "mass": 0.5,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 4.0,
+  "minStage": -1,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   60.0,
+   120.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.25,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.0,
+  "specialAttackCount": 1,
+  "specialAttacks": [
+   {
+    "isEnabled": 1,
+    "priority": 0,
+    "attackName": "",
+    "attackPrefab": {
+     "m_FileID": 0,
+     "m_PathID": 4454
+    },
+    "attackChargeTime": 1.0,
+    "attackRadius": 1.5,
+    "attackCooldown": 8.0,
+    "attackCooldownMax": 0.0,
+    "initialCooldown": 0.0,
+    "duration": 0.0,
+    "nextSpecialAttackCooldown": 1.0,
+    "triggerDistance": 9999.0,
+    "endLag": 1.0,
+    "damageMultiplier": 1.0
+   }
+  ],
+  "animation": {
+   "pathID": 7800,
+   "name": null
+  },
+  "material": {
+   "pathID": 257,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8043",
+  "name": "_Test2",
+  "enemy": "Test2",
+  "hp": 2147483647,
+  "damage": 9999,
+  "shield": 0,
+  "speed": 0.0,
+  "mass": 1000.0,
+  "knockbackResistance": 999.0,
+  "xp": 1,
+  "creditCost": 4.0,
+  "minStage": -1,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 9999999.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.5,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.0,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7793,
+   "name": null
+  },
+  "material": {
+   "pathID": 270,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8006",
+  "name": "Tumblebone",
+  "enemy": "Tumblebone",
+  "hp": 7,
+  "damage": 9,
+  "shield": 0,
+  "speed": 11.0,
+  "mass": 25.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.029999999329447746,
+  "maps": [
+   "Desert"
+  ],
+  "mapsRaw": 2,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.600000023841858,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.0,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7801,
+   "name": null
+  },
+  "material": {
+   "pathID": 292,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8007",
+  "name": "Wisp",
+  "enemy": "Wisp",
+  "hp": 8,
+  "damage": 13,
+  "shield": 0,
+  "speed": 7.5,
+  "mass": 20.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Desert"
+  ],
+  "mapsRaw": 2,
+  "isFlying": true,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 10.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.2999999523162842,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.0,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7802,
+   "name": null
+  },
+  "material": {
+   "pathID": 293,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8040",
+  "name": "SkeletonXp",
+  "enemy": "XpSkeleton",
+  "hp": 50,
+  "damage": 25,
+  "shield": 0,
+  "speed": 6.0,
+  "mass": 40.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 10.0,
+  "minStage": -1,
+  "canSpawnAfterTime": 0.0,
+  "maps": [],
+  "mapsRaw": 0,
+  "isFlying": false,
+  "isRunningFromPlayer": true,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 9999.0,
+  "canBeElite": false,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 7.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.25,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.25,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7798,
+   "name": null
+  },
+  "material": {
+   "pathID": 280,
+   "name": null
+  }
+ },
+ {
+  "source": "sharedassets1.assets#8029",
+  "name": "Zombie",
+  "enemy": "Zombie",
+  "hp": 12,
+  "damage": 20,
+  "shield": 0,
+  "speed": 6.5,
+  "mass": 40.0,
+  "knockbackResistance": 0.0,
+  "xp": 1,
+  "creditCost": 1.0,
+  "minStage": 0,
+  "canSpawnAfterTime": 0.0,
+  "maps": [
+   "Graveyard"
+  ],
+  "mapsRaw": 8,
+  "isFlying": false,
+  "isRunningFromPlayer": false,
+  "stayDistance": [
+   0.0,
+   0.0
+  ],
+  "teleportCooldown": 12.0,
+  "canBeElite": true,
+  "canBeExecuted": true,
+  "isPoison": false,
+  "nukeProtection": false,
+  "despawnTime": 0.0,
+  "maxSuckTime": 15.0,
+  "colliderRadius": 1.0,
+  "overrideHeight": 0.0,
+  "rendererScale": 1.399999976158142,
+  "specialAttackCount": 0,
+  "specialAttacks": [],
+  "animation": {
+   "pathID": 7806,
+   "name": null
+  },
+  "material": {
+   "pathID": 300,
+   "name": null
+  }
+ }
+]

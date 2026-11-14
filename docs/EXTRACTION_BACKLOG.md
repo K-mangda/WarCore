@@ -1,5 +1,7 @@
 # งานข้อมูลต้นฉบับที่ยังขาด — 2026-11-13
 
+> **อัปเดต 2026-11-14 (REA pass; ต่อด้วย [REA_RUNTIME_SYSTEMS.md](REA_RUNTIME_SYSTEMS.md) และ [REA_PROGRESSION_FINDINGS.md](REA_PROGRESSION_FINDINGS.md) (XP/Gold ต่อคิล, level-up 3 ตัวเลือก, rarity 70/15/6/1.5): spawner credit, enemy scaling, special attacks 50 ท่า, drop):** ผู้ใช้สั่งให้ดึงข้อมูลที่ขาดเอง ผลอยู่ที่ [REA_PLAYER_PRESENTATION.md](REA_PLAYER_PRESENTATION.md) (portal/damage/low HP/death จาก disassembly) และ [REA_GAME_DATA_FINDINGS.md](REA_GAME_DATA_FINDINGS.md) + `docs/rea/*.json` (enemy 53, stage timeline 9, weapon 30 พร้อม upgrade, Tome 26 พร้อมค่า, item 87, character 21, EXP curve, enum ทางการ). พบว่าการอ่านกลุ่ม UnlockableBase ก่อนหน้านี้เลื่อนฟิลด์ (typetree `references`) จึงแก้ไว้ใน `tools/read_game_data.py` — ข้อสรุป "Tome ไม่มีค่า" ใน UPGRADE_DATA_AUDIT ใช้ไม่ได้อีก. ที่ยังเปิด: runtime spawner/credit formula, special attacks, weapon attack prefabs, pickup/drop, audio mixer, settings, movement parity.
+
 รายการนี้สำหรับเตรียมส่งให้อีก AI สืบค้นภายหลัง ไม่ใช่ข้อสรุปว่าข้อมูลไม่มีในเครื่อง และไม่ใช่คำสั่งให้สกัดซ้ำทั้งหมด อ่านข้อมูลเดิมและตาม reference ก่อนเสมอ
 
 โปรเจกต์เว็บ: `C:/Users/Korawit/Desktop/War-Core`  
