@@ -21,7 +21,7 @@ export class ProgressionView {
   const texture=this.textures.get(kind)?.clone();if(!texture)return;
   texture.needsUpdate=true;const sprite=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));sprite.onBeforeRender=(_renderer,_scene,camera)=>{this.cameraRotation.copy(camera.quaternion);};
   if(kind==='text'||kind==='burst'){
-   const glow=new T.Sprite(new T.SpriteMaterial({map:texture,color:0xffdf8a,opacity:kind==='text'?.1:.22,transparent:true,depthWrite:false,toneMapped:false,blending:T.AdditiveBlending}));
+   const glow=new T.Sprite(new T.SpriteMaterial({map:texture,color:0xffdf8a,opacity:kind==='text'?.2:.22,transparent:true,depthWrite:false,toneMapped:false,blending:T.AdditiveBlending}));
    glow.scale.setScalar(kind==='text'?1.045:1.35);glow.renderOrder=1;sprite.renderOrder=2;sprite.add(glow);
   }
   this.scene.add(sprite);return sprite;
@@ -36,7 +36,7 @@ export class ProgressionView {
   if(kind==='text'){
    const g=p.ColorModule.gradient.maxGradient;
    const t=T.MathUtils.clamp(age/initial.startLifetime.scalar/(g.ctime1/65535),0,1);
-   sprite.material.color.setRGB(1,T.MathUtils.lerp(.93,.86,t),T.MathUtils.lerp(.64,.49,t),T.SRGBColorSpace);
+   sprite.material.color.setRGB(1,T.MathUtils.lerp(1,.96,t),T.MathUtils.lerp(.78,.64,t),T.SRGBColorSpace);
    sprite.material.toneMapped=false;
    const enter=1-Math.pow(1-T.MathUtils.clamp(age/.14,0,1),3);
    const exit=T.MathUtils.clamp((initial.startLifetime.scalar-age)/.09,0,1);
@@ -46,7 +46,7 @@ export class ProgressionView {
    sprite.material.opacity=1;
   }
   if(kind==='burst'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(1,.98,.72,T.SRGBColorSpace);sprite.material.opacity=c.a*getEffectsPreferences().particlesOpacity;sprite.material.toneMapped=false;}
-  for(const child of sprite.children)if(child instanceof T.Sprite){child.material.opacity=(kind==='text'?.1:.22)*sprite.material.opacity;child.material.rotation=sprite.material.rotation;}
+  for(const child of sprite.children)if(child instanceof T.Sprite){child.material.opacity=(kind==='text'?.2:.22)*sprite.material.opacity;child.material.rotation=sprite.material.rotation;}
   if(kind==='gold'||kind==='silver'){const c=initial.startColor.maxColor;sprite.material.color.setRGB(c.r,c.g,c.b,T.SRGBColorSpace);sprite.material.opacity=c.a;sprite.material.toneMapped=false;}
  }
  burst(player:T.Vector3){

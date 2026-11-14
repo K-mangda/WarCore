@@ -483,3 +483,8 @@ User requested faster looping upgrade-screen EXP colors. Reduced the decorative 
 ## Brighter EXP and level-up sparkles - 2026-11-14
 
 User requested brighter EXP with glow and brighter yellow level-up sparkles with a slight glow. EXP brightness is 1.35 with a soft additive instanced halo; level-up burst tint and existing subtle glow are brighter. Existing pickup size, tier colors, gold/silver, burst size and motion remain unchanged. Shared game/Lab web visual tuning; not a native shader claim. Supersedes the earlier removal of EXP glow. No extraction or phase change.
+
+
+## Brighter LEVEL UP sign - 2026-11-14
+
+User supplied a screenshot and requested brighter level-up color. Brightened the LEVEL UP sign toward warm yellow and increased its subtle additive glow. Existing sign animation, sparkle tuning and gameplay remain unchanged. Shared game/Lab web visual tuning, not a native shader claim; no phase change.
