@@ -1,4 +1,6 @@
-import {useState,useSyncExternalStore} from 'react';
+import {useState,useSyncExternalStore,type CSSProperties} from 'react';
+/** Item tile colour by item rarity (MyColorUtility item colours; mapping Common green, Rare blue, Epic magenta, Legendary yellow read from the real Unlocks window, I). */
+const itemTile:Record<string,string>={Common:'#4dff97',Rare:'#0ca7fa',Epic:'#FF00F4',Legendary:'#FFE300'};
 import {nativeCharacters,nativeItems,nativeTomes,nativeWeapons} from '../data/NativeData';
 import {buyShopItem,getProfile,shopItems,shopLevel,shopPrice,subscribeProfile,unlock} from '../core/Profile';
 import {assetUrl} from '../core/assetUrl';
@@ -48,18 +50,20 @@ function Unlocks({close}:{close:()=>void}){
   const profile=useSyncExternalStore(subscribeProfile,getProfile,getProfile);
   const [tab,setTab]=useState<Tab>('Characters'),[selected,setSelected]=useState<string>('');
   const kind:IconKind=tab==='Characters'?'characters':tab==='Weapons'?'weapons':tab==='Tomes'?'tomes':tab==='Items'?'items':'hats';
-  const entries:{id:string;name:string;price:number;note:string}[]=
+  const entries:{id:string;name:string;price:number;note:string;rarity?:string}[]=
     tab==='Characters'?nativeCharacters.map(c=>({id:'c:'+c.character,name:c.character,price:c.price,note:c.statModifiers.map(m=>`${m.stat} ${m.op==='Addition'?'+'+Math.round(m.value*100)+'%':'+'+m.value}`).join(', ')}))
     :tab==='Weapons'?nativeWeapons.map(w=>({id:'w:'+w.weapon,name:w.weapon,price:0,note:`Damage ${w.damage} · cooldown ${w.endCooldown}s`}))
     :tab==='Tomes'?nativeTomes.map(t=>({id:'t:'+t.tome,name:t.tome+' Tome',price:0,note:t.description??''}))
-    :tab==='Items'?nativeItems.filter(i=>i.inItemPool).map(i=>({id:'i:'+i.item,name:i.item,price:i.price,note:i.rarity}))
+    :tab==='Items'?nativeItems.filter(i=>i.inItemPool).map(i=>({id:'i:'+i.item,name:i.item,price:i.price,note:i.rarity,rarity:i.rarity}))
     :Object.keys(gameIcons.hats).map(h=>({id:'h:'+h,name:h,price:0,note:'Hat (unlock condition and price not read yet)'}));
-  const owned=(e:{id:string;name:string;price:number})=>e.price===0||profile.unlocked.includes(e.id)||playable.has(e.id.slice(2));
+  // Owned: playable in the web, bought, or the free starter. Purchasable: has a Silver price. Anything else is locked behind a requirement and shows as a black silhouette, like the real Unlocks window.
+  const owned=(e:{id:string;name:string;price:number})=>profile.unlocked.includes(e.id)||playable.has(e.id.slice(2))||(e.price===0&&!e.id.startsWith('w:')&&!e.id.startsWith('h:'));  // free entries count as unlocked; weapons/hats need an unlock requirement the web does not track yet
+  const state=(e:{id:string;name:string;price:number})=>owned(e)?'owned':e.price>0?'buyable':'silhouette';
   const current=entries.find(e=>e.id===selected)??entries[0];
   return <div className="title-window" role="dialog" aria-label="Unlocks"><header><h2>UNLOCKS</h2><button className="title-close" onClick={close} aria-label="Close">✕</button></header>
     <div className="title-tabs">{(['Characters','Weapons','Tomes','Items','Hats'] as Tab[]).map(t=><button key={t} aria-pressed={t===tab} onClick={()=>{setTab(t);setSelected('');}}>{t.toUpperCase()}</button>)}</div>
-    <div className="title-grid">{entries.map(e=><button key={e.id} className={owned(e)?'tile owned':'tile locked'} aria-pressed={current?.id===e.id} onClick={()=>setSelected(e.id)} title={e.name}>
-      {iconFor(kind,e.name)?<img className="tile-icon" src={iconFor(kind,e.name)} alt=""/>:<span>{e.name.slice(0,10)}</span>}{!owned(e)&&<span className="tile-price"><img src={assetUrl('ui/hud/silver.png')} alt=""/>{e.price}</span>}{playable.has(e.id.slice(2))&&<i>PLAYABLE</i>}
+    <div className="title-grid">{entries.map(e=><button key={e.id} className={`tile ${state(e)}`} style={{'--tile':itemTile[e.rarity??'']??'#a3aea9'} as CSSProperties} aria-pressed={current?.id===e.id} onClick={()=>setSelected(e.id)} title={e.name}>
+      {iconFor(kind,e.name)?<img className="tile-icon" src={iconFor(kind,e.name)} alt=""/>:<span>{e.name.slice(0,10)}</span>}{state(e)==='buyable'&&<span className="tile-price"><img src={assetUrl('ui/hud/silver.png')} alt=""/>{e.price}</span>}{playable.has(e.id.slice(2))&&<i>PLAYABLE</i>}
     </button>)}</div>
     {current&&<footer>{iconFor(kind,current.name)&&<img className="footer-icon" src={iconFor(kind,current.name)} alt=""/>}<strong>{current.name}</strong><p>{current.note||' '}</p>{!owned(current)&&<button onClick={()=>unlock(current.id,current.price)} disabled={profile.silver<current.price}>BUY {current.price}</button>}{!playable.has(current.id.slice(2))&&<small>Not in the web game yet.</small>}</footer>}
   </div>;
