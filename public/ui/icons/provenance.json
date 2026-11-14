@@ -1,0 +1,1163 @@
+{
+ "from": "Megabonk_Data via tools/dump_all_unity.py + tools/export_icons.py",
+ "files": {
+  "hats/FrogHat3.png": {
+   "source": "sharedassets1.assets#470",
+   "texture": "HatFrogRed",
+   "sha256": "22360e0b0ca369e1b509c4b2bd17ca42c6859221d597c3e746e7fa2baea5dac7",
+   "filter": "point"
+  },
+  "characters/Roberto.png": {
+   "source": "sharedassets1.assets#472",
+   "texture": "Roberto",
+   "sha256": "49b9ddf0872bb1850a77fbe1e4ed27fd5956778f8c70ee49a03cc1da915c607b",
+   "filter": "point"
+  },
+  "tomes/TomeSilver.png": {
+   "source": "sharedassets1.assets#477",
+   "texture": "SilverTome",
+   "sha256": "45c96941efc97c159bd67d1b5fe994d4541aacce487c1d3147cac1364ea3679a",
+   "filter": "point"
+  },
+  "items/Leeching_Crystal.png": {
+   "source": "sharedassets1.assets#487",
+   "texture": "ItemLeechingCrystal",
+   "sha256": "d0e22cd72670acb4c6d34cc991a17d284333b4c41344b19c67071d2348706fd4",
+   "filter": "point"
+  },
+  "hats/ShadyHatBlue.png": {
+   "source": "sharedassets1.assets#488",
+   "texture": "HatShadyBlue",
+   "sha256": "8435a9b324d94688ba9d64e3cf1296b0db6927f71410ef669853f9e7572c0d1d",
+   "filter": "point"
+  },
+  "items/Beacon.png": {
+   "source": "sharedassets1.assets#496",
+   "texture": "Itembeacon",
+   "sha256": "166878ae49e1dd8b24b2c3286d4be0d39143e94fd8c5f8a31415a8c1dc59a933",
+   "filter": "point"
+  },
+  "hats/SantaHat.png": {
+   "source": "sharedassets1.assets#498",
+   "texture": "HatSanta",
+   "sha256": "fa29d943e7dab56a0bf8c2245055cd8c2b682dc92142379d7a1be55a38cde54c",
+   "filter": "point"
+  },
+  "items/BrassKnuckles.png": {
+   "source": "sharedassets1.assets#500",
+   "texture": "ItemBrassKnuckle",
+   "sha256": "8ce3c8636be5792592af4876764ac61e2cec927afb7077ae148277a3017c2ca0",
+   "filter": "point"
+  },
+  "items/Gas_Mask.png": {
+   "source": "sharedassets1.assets#508",
+   "texture": "Gasmask",
+   "sha256": "2b7b1bc614a03db17b49d200ab4aaac52bb34dea66c4646a25166d7a13ad4c9a",
+   "filter": "point"
+  },
+  "hats/FrogHat1.png": {
+   "source": "sharedassets1.assets#510",
+   "texture": "HatFrogGreen",
+   "sha256": "10b57134d626d5aec0494efe80ffa6cf8d044cbe120c9fcf0cd98ac6cdbbd774",
+   "filter": "point"
+  },
+  "items/CreditCardRed.png": {
+   "source": "sharedassets1.assets#515",
+   "texture": "ItemCreditCardRed",
+   "sha256": "e2e77ad4ead57e06eee10586c7afb0f62dbed56fcfdde9b368616445f40346f9",
+   "filter": "point"
+  },
+  "items/TimeBracelet.png": {
+   "source": "sharedassets1.assets#517",
+   "texture": "ItemTimeBracelet",
+   "sha256": "38c031c6cda686703cdb60d374e9e3e0f083665becd7db1da1752a448070c0b2",
+   "filter": "point"
+  },
+  "weapons/WeaponAura.png": {
+   "source": "sharedassets1.assets#518",
+   "texture": "Aura",
+   "sha256": "6bb7ab597f1b7db0bd9ed58ae62e922d76291c6e551ce4de068ea16670122adf",
+   "filter": "point"
+  },
+  "characters/Birdo.png": {
+   "source": "sharedassets1.assets#520",
+   "texture": "Birdo",
+   "sha256": "f59ead60341a92c4fff51cdfaf193fde570db294f38297f0777b97f2f03cc7da",
+   "filter": "point"
+  },
+  "items/Golden_Glove.png": {
+   "source": "sharedassets1.assets#528",
+   "texture": "ItemGoldenGlove",
+   "sha256": "6847ffe50c9f361bcea5f05cdc960348e3c2c65902d70852849fdef1adee3747",
+   "filter": "point"
+  },
+  "characters/Clank.png": {
+   "source": "sharedassets1.assets#532",
+   "texture": "RobotCowboy",
+   "sha256": "bdae7c93afa38897ec4ef3e07bfcf178c13c39b019f0681d13169d7b4ef8a678",
+   "filter": "point"
+  },
+  "characters/Bush.png": {
+   "source": "sharedassets1.assets#542",
+   "texture": "Bush",
+   "sha256": "3d40ef4b719581b450bdca17e8c5cb9a1c04c88ab30487f873c2c9727b731f3f",
+   "filter": "point"
+  },
+  "tomes/TomeThorns.png": {
+   "source": "sharedassets1.assets#544",
+   "texture": "Retaliation",
+   "sha256": "1a1ffd99fe7190035ee338f0f8847b93e8933e309b1dded09736d1b91260dfb0",
+   "filter": "point"
+  },
+  "items/Bloody_Cleaver.png": {
+   "source": "sharedassets1.assets#548",
+   "texture": "Bloody Cleaver",
+   "sha256": "a7cb1b175db12d9b93b0789cb22ef52902653933bc737daf762620827b51afab",
+   "filter": "point"
+  },
+  "hats/PilotHat.png": {
+   "source": "sharedassets1.assets#549",
+   "texture": "HatPilot",
+   "sha256": "a2608f89fd1cac0b797331aeb4c21532c1c0eff083bb710be57ff153d9aaacc6",
+   "filter": "point"
+  },
+  "items/Echo_Shard.png": {
+   "source": "sharedassets1.assets#554",
+   "texture": "ItemEchoShard",
+   "sha256": "8ed1af5d8b4d850c93ce58ff9af35e7e967ba4ff3636a913e01ed0014c0dcf72",
+   "filter": "point"
+  },
+  "items/Flappy_Feathers.png": {
+   "source": "sharedassets1.assets#569",
+   "texture": "ItemFeathers",
+   "sha256": "2058f92ad5841f163e772503a5bb0e5763d4d4886da8af84322dcb43330424c1",
+   "filter": "point"
+  },
+  "items/UnstableTransfusion.png": {
+   "source": "sharedassets1.assets#578",
+   "texture": "Unstable Transfusion",
+   "sha256": "c6e030fbf961f045ad0b2e05072fc175431b6e5f96c060032c7900e186353722",
+   "filter": "point"
+  },
+  "items/Anvil.png": {
+   "source": "sharedassets1.assets#581",
+   "texture": "ItemAnvil",
+   "sha256": "bc7e303d42b9b0306b01039c9bea24309abaf137cfaaa17686e2d11133b79127",
+   "filter": "point"
+  },
+  "weapons/WeaponCorruptedSword.png": {
+   "source": "sharedassets1.assets#582",
+   "texture": "CorruptedSword",
+   "sha256": "29e11381e502a922303d8efe08176b301845e9b18a389c35ee410bea5508e614",
+   "filter": "point"
+  },
+  "hats/KevinHat.png": {
+   "source": "sharedassets1.assets#588",
+   "texture": "HatKevin",
+   "sha256": "423e249029ff8d0b0ecacfb3b6c9a835a50bdc66e6602ead6b810ea8dda02058",
+   "filter": "point"
+  },
+  "items/CryptKey.png": {
+   "source": "sharedassets1.assets#593",
+   "texture": "ItemCryptKey",
+   "sha256": "8e89f76a67477336a5cb499d8fd3454699e6eee044ab8a3595788be21e5e2e4e",
+   "filter": "point"
+  },
+  "items/Glove_Poison.png": {
+   "source": "sharedassets1.assets#606",
+   "texture": "ItemGlovesPoison",
+   "sha256": "df9673a4bbe0d97a9e9d6fd6b79d4cdd5f886580431b7b63091e7d46b7d83996",
+   "filter": "point"
+  },
+  "weapons/WeaponBone.png": {
+   "source": "sharedassets1.assets#607",
+   "texture": "Bone",
+   "sha256": "cce3ab2f1a7e750f28909f9f0be17d7bd4a0fc7a6e14460f3beb5d2090c0be4c",
+   "filter": "point"
+  },
+  "items/Boss_Buster.png": {
+   "source": "sharedassets1.assets#609",
+   "texture": "ItemBossBuster",
+   "sha256": "088a0ecc8218afc1bb4df801409dec10831326d841178fa9e8858bf70fa4b16f",
+   "filter": "point"
+  },
+  "weapons/WeaponHeroSword.png": {
+   "source": "sharedassets1.assets#615",
+   "texture": "HeroSword",
+   "sha256": "5c012576d6555b034e83a0909b00fbae13c547dd988f050f940ef5840042310a",
+   "filter": "point"
+  },
+  "weapons/WeaponBlackHole.png": {
+   "source": "sharedassets1.assets#618",
+   "texture": "BlackHole",
+   "sha256": "e235b07c221ce7e233433fa2ebc3ea640c0b00ab08f4e1c92183af83a4639f25",
+   "filter": "point"
+  },
+  "items/Eagle_Claw.png": {
+   "source": "sharedassets1.assets#627",
+   "texture": "ItemEagleClaw",
+   "sha256": "cdca3e1fbdd1322f5e66c30224928f167089b3ed25972af516f0fc81fb275ccf",
+   "filter": "point"
+  },
+  "tomes/TomeXP.png": {
+   "source": "sharedassets1.assets#632",
+   "texture": "XpTome",
+   "sha256": "53690a9c4a653559400ab7d5d337137e76cbbb43bd79995474c4fe17b4fbbf0a",
+   "filter": "point"
+  },
+  "tomes/TomeBalance.png": {
+   "source": "sharedassets1.assets#634",
+   "texture": "Balance Tome",
+   "sha256": "a733651e0adcd208f4aa5aa6563bc715b2447d98d71fc04a1c27411fc055ff91",
+   "filter": "point"
+  },
+  "tomes/TomeAttraction.png": {
+   "source": "sharedassets1.assets#638",
+   "texture": "AttractionTome",
+   "sha256": "fbd68cf507761c82642fdb72662934b15695a098797ba68889a2018f49158028",
+   "filter": "point"
+  },
+  "tomes/TomeCooldown.png": {
+   "source": "sharedassets1.assets#643",
+   "texture": "CooldownTome",
+   "sha256": "19adf57556fad63b076c38d5aca8fff42ac3f16494847efc34f0afbb1ae1cac5",
+   "filter": "point"
+  },
+  "tomes/TomeEvasion.png": {
+   "source": "sharedassets1.assets#644",
+   "texture": "EvasionTome",
+   "sha256": "f8f83455630e976caae9ce4ee04b55cee05d719ec1f2722746da632fc3a542d6",
+   "filter": "point"
+  },
+  "items/Gloves_Bloody.png": {
+   "source": "sharedassets1.assets#647",
+   "texture": "ItemGlovesBloody",
+   "sha256": "d3d1a67b864d5206a8c0e4ce79228bc6b507406b5eee7d06d549e548864275a6",
+   "filter": "point"
+  },
+  "items/Tactical_Glasses.png": {
+   "source": "sharedassets1.assets#652",
+   "texture": "ItemTacticalGoggles",
+   "sha256": "c2b4fd8293a1e2770683b08eaeeb7ffc3596b89a6625e9431180c7752e881492",
+   "filter": "point"
+  },
+  "items/Wrench.png": {
+   "source": "sharedassets1.assets#663",
+   "texture": "ItemWrench",
+   "sha256": "e4e260ce216034a3fc444e39288510447bf72c49aeb17a0bf6b0e8bb08e102d8",
+   "filter": "point"
+  },
+  "items/Speed_Boi.png": {
+   "source": "sharedassets1.assets#669",
+   "texture": "Speed boi",
+   "sha256": "255f56e7e0440a2fb050fd14393f2c15ce06f68784c256aca8ea03477ed71d85",
+   "filter": "point"
+  },
+  "weapons/WeaponShotgun.png": {
+   "source": "sharedassets1.assets#673",
+   "texture": "Shotgun",
+   "sha256": "ffbdd468018d0fe252534ac7813c53c08653ecb7e0da62f5d6092e458394d511",
+   "filter": "point"
+  },
+  "hats/TopHatLong.png": {
+   "source": "sharedassets1.assets#679",
+   "texture": "HatTophatLong",
+   "sha256": "388f4d544e87550b77fb126e3f3abaab64691ceb976321fd7924a450972548bf",
+   "filter": "point"
+  },
+  "hats/ShadyHatYellow.png": {
+   "source": "sharedassets1.assets#683",
+   "texture": "HatShadyGold",
+   "sha256": "a41d48ecbb5c27e6f4adc53212b04f60ca2f062483a4d4a8af40ba4535450743",
+   "filter": "point"
+  },
+  "items/Scarf.png": {
+   "source": "sharedassets1.assets#690",
+   "texture": "ItemScarf",
+   "sha256": "fb48ac364fdd23cea1fbbe33b4d107bc6bac250dd5d855a191edf46af94aa9a9",
+   "filter": "point"
+  },
+  "items/CreditCardGreen.png": {
+   "source": "sharedassets1.assets#697",
+   "texture": "ItemCreditCardGreen",
+   "sha256": "76a6d320229df9c9a9c2cddb089c7ef524baeee1ae7b6a4f28ecb21bc7fcb595",
+   "filter": "point"
+  },
+  "items/Bonker.png": {
+   "source": "sharedassets1.assets#702",
+   "texture": "ItemBonker",
+   "sha256": "2ad738c3d628b94b5402ca31d901af4d9187a6e77b681654709bc6a2eb74bc33",
+   "filter": "point"
+  },
+  "tomes/TomeChaos.png": {
+   "source": "sharedassets1.assets#729",
+   "texture": "ChaosTome",
+   "sha256": "f0438e0ca7ab3dbd0728dedc261c62d2fa36a7a308a56dfe04faa55ec04c0ec9",
+   "filter": "point"
+  },
+  "tomes/TomeSize.png": {
+   "source": "sharedassets1.assets#733",
+   "texture": "SizeTome",
+   "sha256": "4584e027cc88e9ef8b073733f5639d27353360cf16c0f23e00dc80b053c76632",
+   "filter": "point"
+  },
+  "items/Cowards_Cloak.png": {
+   "source": "sharedassets1.assets#743",
+   "texture": "ItemSpeedyCloak",
+   "sha256": "e8413f45067a6dbf650eed3b9d2d9fbce322b75e545592276b6467bdbbdd4a57",
+   "filter": "point"
+  },
+  "hats/ShadyHatBlack.png": {
+   "source": "sharedassets1.assets#747",
+   "texture": "HatShadyBlack",
+   "sha256": "210cf954fbd85e8eff8140217472c9aae330c814a576b396afe055ac35d96333",
+   "filter": "point"
+  },
+  "items/Pumpkin.png": {
+   "source": "sharedassets1.assets#749",
+   "texture": "ItemPumpkin",
+   "sha256": "f2ac3e0543699cfdd0dddbf9463673a9ea6955cbe7ad6e664784b1e694195d53",
+   "filter": "point"
+  },
+  "items/Battery.png": {
+   "source": "sharedassets1.assets#767",
+   "texture": "ItemBattery",
+   "sha256": "2ebf5ea799109fcf208d1638e4d27fc52ba2f179cc7548b2ee61b93eaf3e400a",
+   "filter": "point"
+  },
+  "tomes/TomeKnockback.png": {
+   "source": "sharedassets1.assets#786",
+   "texture": "KnockbackTome",
+   "sha256": "b7de6e1b876216723660de9618ef13aaf5b2e325774127e42af3ffa8a19602c6",
+   "filter": "point"
+  },
+  "weapons/WeaponSniper.png": {
+   "source": "sharedassets1.assets#789",
+   "texture": "Sniper",
+   "sha256": "94e8527fa3171fe430a008a48d3207ad5b705e8eeaaac71f5be723dbec238657",
+   "filter": "point"
+  },
+  "tomes/TomeDamage.png": {
+   "source": "sharedassets1.assets#792",
+   "texture": "DamageTome",
+   "sha256": "3dd3d75a3039dc8a2ad53312e0577facdd9cc21faa51dd12af7a9a857021cd6b",
+   "filter": "point"
+  },
+  "weapons/WeaponBloodMagic.png": {
+   "source": "sharedassets1.assets#793",
+   "texture": "BloodMagic",
+   "sha256": "92017f8f9b32eaed148f858f4962aeeee300a4129ad0440a172b03cf40fbb9e1",
+   "filter": "point"
+  },
+  "tomes/TomeHealth.png": {
+   "source": "sharedassets1.assets#801",
+   "texture": "HealthTome",
+   "sha256": "c11b24bf68ea0c5f8381f25d83bfc389cbc10188957f685b1f1e6f09cf8d0f65",
+   "filter": "point"
+  },
+  "items/Bob_Dead.png": {
+   "source": "sharedassets1.assets#804",
+   "texture": "ItemBobDead",
+   "sha256": "4a640f67534603979337a9dededda3796ae364b13ef7deff96ebd35af3db3f71",
+   "filter": "point"
+  },
+  "items/ForbiddenJuice.png": {
+   "source": "sharedassets1.assets#806",
+   "texture": "ItemShadowJuice",
+   "sha256": "816f8889fb57fd4ae8104d4ea2773a2643aafde9eb4d6a44d7efe42f93cac958",
+   "filter": "point"
+  },
+  "tomes/TomeCursed.png": {
+   "source": "sharedassets1.assets#808",
+   "texture": "CursedTome",
+   "sha256": "8ba3eac73517b100255bcc2013c28a48b7156ab5aa0c017522e60f6c974e5cb7",
+   "filter": "point"
+  },
+  "items/Spicy_Meatball.png": {
+   "source": "sharedassets1.assets#817",
+   "texture": "ItemSpicyMeatball",
+   "sha256": "930da51dd20a9437062d5ccaba8bc44634653031da4293f49813e9e28fd69a6f",
+   "filter": "point"
+  },
+  "items/Mirror.png": {
+   "source": "sharedassets1.assets#821",
+   "texture": "ItemMirror",
+   "sha256": "8118752ce9293883d705480c69fa1b01b7d32cd588e68174ca9d161809385717",
+   "filter": "point"
+  },
+  "items/Joe_s_Dagger.png": {
+   "source": "sharedassets1.assets#823",
+   "texture": "JoesDagger",
+   "sha256": "90f0884766f6460b447d73c4fe6c182e09263625f1efee894772360ca6e8b418",
+   "filter": "point"
+  },
+  "items/Gloves_Cursed.png": {
+   "source": "sharedassets1.assets#842",
+   "texture": "ItemGlovesCursed",
+   "sha256": "26e13ff38d649b66ae3657a322dc7aadee7868b94120fcf6d6d36d1536d3c1a7",
+   "filter": "point"
+  },
+  "items/Turbo_Socks.png": {
+   "source": "sharedassets1.assets#843",
+   "texture": "ItemTurboSocks",
+   "sha256": "69143ece929f8dd61da8a9ee5dd4990c3ab66fb5a86eabc054a3aebdddb1a757",
+   "filter": "point"
+  },
+  "hats/Sheriff.png": {
+   "source": "sharedassets1.assets#847",
+   "texture": "HatSheriff",
+   "sha256": "08fc003d199a3d5b6b285028413804718d5f95aeecf2f56a16b0b848f9dbdde9",
+   "filter": "point"
+  },
+  "tomes/TomeArmor.png": {
+   "source": "sharedassets1.assets#855",
+   "texture": "ArmorTome",
+   "sha256": "3ebdb7b14c0ef439c104d38d4155fab7d9e9ccf2e5ff7cd3f68807de6c20522b",
+   "filter": "point"
+  },
+  "tomes/TomeHoarder.png": {
+   "source": "sharedassets1.assets#856",
+   "texture": "HoarderTome",
+   "sha256": "8f8dbf7ba31defc84183f4282284fa4c31885dcbc626397818b154885db3263d",
+   "filter": "point"
+  },
+  "tomes/TomeRegen.png": {
+   "source": "sharedassets1.assets#864",
+   "texture": "RegenerationTome",
+   "sha256": "da949fb2853e3943ef67d9fcb1e98e55b2db2cdeb88d7f6554783d8d2ccc5680",
+   "filter": "point"
+  },
+  "items/Oats.png": {
+   "source": "sharedassets1.assets#874",
+   "texture": "ItemOats",
+   "sha256": "ae792f006d7b0c9466614a57ff6fa2a76d0896fc1c3a33403a10baf3769c546d",
+   "filter": "point"
+  },
+  "items/Ghost.png": {
+   "source": "sharedassets1.assets#878",
+   "texture": "ItemGhost",
+   "sha256": "a2cb4d1cc7c1d55e64d56a511150745a8e0eac76093515adb9963a900d8cf73c",
+   "filter": "point"
+  },
+  "hats/CheeseHat.png": {
+   "source": "sharedassets1.assets#879",
+   "texture": "HatCheese",
+   "sha256": "5e6098fbb60121527c1921b69484aa5d6eae20909bcea05d36e40da2338276fb",
+   "filter": "point"
+  },
+  "tomes/TomeLuck.png": {
+   "source": "sharedassets1.assets#888",
+   "texture": "LuckTome",
+   "sha256": "543f5feac77d49b7b0ad721d050668be18e178b6ebf3f0dc385ab1b07d02ba0a",
+   "filter": "point"
+  },
+  "weapons/WeaponScythe.png": {
+   "source": "sharedassets1.assets#889",
+   "texture": "Scythe",
+   "sha256": "44a71c2d90a2f0c2fc72c94b0a3a1f7f2f43161333642aff2aa5f8faed88d305",
+   "filter": "point"
+  },
+  "items/Overpowered_Lamp.png": {
+   "source": "sharedassets1.assets#890",
+   "texture": "ItemOverpoweredLamp",
+   "sha256": "46535fa0a84f7437cc926fe2aedaeb90591be0a3ed5016672355fb439d2abc0b",
+   "filter": "point"
+  },
+  "items/Campfire.png": {
+   "source": "sharedassets1.assets#892",
+   "texture": "ItemCampfire",
+   "sha256": "6dbcc5e55f759ddd76854583c7935176f4d6c01c82598620d5bc78687412e227",
+   "filter": "point"
+  },
+  "weapons/WeaponDragonsBreath.png": {
+   "source": "sharedassets1.assets#899",
+   "texture": "DragonsBreath",
+   "sha256": "0fb12be8eddd93edb86755ca056464b6bc052a8a03bee25909bf42d8205c75dd",
+   "filter": "point"
+  },
+  "shop/Toggler.png": {
+   "source": "sharedassets1.assets#905",
+   "texture": "toggler",
+   "sha256": "e9192847fc100e50db116a361cc89177cbb38b2f3108d61254b19f043c604e45",
+   "filter": "point"
+  },
+  "weapons/WeaponAxe.png": {
+   "source": "sharedassets1.assets#915",
+   "texture": "Axe",
+   "sha256": "bd32b108c0a2195c3db6f3c0e7f0a19f80221164ac68fb9e2d0104476178e9b3",
+   "filter": "point"
+  },
+  "weapons/WeaponSpaceNoodle.png": {
+   "source": "sharedassets1.assets#926",
+   "texture": "Space Noodle",
+   "sha256": "0ca091a0cfe54c7c0e1e55fc74c152d9c2595253f8e783330b8d7c5a705a0bbf",
+   "filter": "point"
+  },
+  "items/ToxicBarrel.png": {
+   "source": "sharedassets1.assets#927",
+   "texture": "ToxicBarrel",
+   "sha256": "11c8bafa9643e84127f31acae950667fdabd607a6d159bfeed1e3d4f9d3a39b7",
+   "filter": "point"
+  },
+  "weapons/WeaponMines.png": {
+   "source": "sharedassets1.assets#929",
+   "texture": "Mine",
+   "sha256": "fda04bb7f0b27cf17e2c2a03fe8e9fbb4f18b58bc8694a9be766dd0e39ecb719",
+   "filter": "point"
+  },
+  "characters/Spaceman.png": {
+   "source": "sharedassets1.assets#934",
+   "texture": "Astronat",
+   "sha256": "a834a761b14a7a87865a0b8fa85db04112c0fd7a705919873ac06cf7d0537644",
+   "filter": "point"
+  },
+  "items/GymSauce.png": {
+   "source": "sharedassets1.assets#940",
+   "texture": "ItemGymSauce",
+   "sha256": "002216415068e28cbf1ef76c469cb1b24214c44941ba7e1231e1681975b90690",
+   "filter": "point"
+  },
+  "tomes/TomeBlood.png": {
+   "source": "sharedassets1.assets#943",
+   "texture": "BloodTOme",
+   "sha256": "abe12a36c73589cad23be6092c38110eb2fff7baf7ce64e521709f504a615d78",
+   "filter": "point"
+  },
+  "tomes/TomeProjectileSpeed.png": {
+   "source": "sharedassets1.assets#945",
+   "texture": "ProjectileSpeedTOme",
+   "sha256": "aad85efc608298894f73498261d20ca0950e28e73aa9c2785aebafa34d76725d",
+   "filter": "point"
+  },
+  "items/Shattered_Knowledge.png": {
+   "source": "sharedassets1.assets#952",
+   "texture": "ItemShatteredWisdom",
+   "sha256": "6cd75737523010718c7ca518f35975411d440d8d3e0991201ffe3feb5bd404d6",
+   "filter": "point"
+  },
+  "items/Energy_Core.png": {
+   "source": "sharedassets1.assets#957",
+   "texture": "ItemEnergyCore",
+   "sha256": "a710bb1508101f9e8ae66e4f7b25b0d412a49ba48c5d2aaf9a3f0be1c795288c",
+   "filter": "point"
+  },
+  "characters/Monke.png": {
+   "source": "sharedassets1.assets#961",
+   "texture": "Monke",
+   "sha256": "90d7e48483fac164ab3c77857b20700f9d81c5ecd2fed4ea5d81da7434180fd4",
+   "filter": "point"
+  },
+  "shop/Skip.png": {
+   "source": "sharedassets1.assets#966",
+   "texture": "Skip2",
+   "sha256": "f3ba98fe4fb8abe722352bd5dfbd0211f757208aabf56e6ba3a4a4d1e8ccfa8b",
+   "filter": "point"
+  },
+  "items/OldMask.png": {
+   "source": "sharedassets1.assets#972",
+   "texture": "ItemOldMask",
+   "sha256": "dd2e3ecb4f31612b916d6262e7401c151af7efee11e4db17ca802895c8bfb75e",
+   "filter": "point"
+  },
+  "items/Skuleg.png": {
+   "source": "sharedassets1.assets#975",
+   "texture": "ItemSkuleg",
+   "sha256": "0567b8e6657d9d957707d1f68198b0b800c5def8ccf72c84b5b9e06138636389",
+   "filter": "point"
+  },
+  "tomes/TomeDuration.png": {
+   "source": "sharedassets1.assets#976",
+   "texture": "DurationTome",
+   "sha256": "c2a3f227d7e435e42f5dd93610fc9147a2be1a4908877f46f5aabf3ee57bdbb3",
+   "filter": "point"
+  },
+  "hats/Clown.png": {
+   "source": "sharedassets1.assets#979",
+   "texture": "HatClown",
+   "sha256": "067b7ac4be19f155286c18d9751b184372a7e9cd5ac34b1026fe167b2c7dd77f",
+   "filter": "point"
+  },
+  "items/Gloves_Power.png": {
+   "source": "sharedassets1.assets#1003",
+   "texture": "ItemGlovesPower",
+   "sha256": "9e6682018f3c375205572bef2b0359dcd91cc7992434f48a1f82db82f3ec11fa",
+   "filter": "point"
+  },
+  "items/Moldy_Cheese.png": {
+   "source": "sharedassets1.assets#1005",
+   "texture": "ItemMoldyCheese",
+   "sha256": "f5922c898f4cfc3160fa9b80a26927e343b9f8f44d0683867f619e0dd58de967",
+   "filter": "point"
+  },
+  "items/Beer.png": {
+   "source": "sharedassets1.assets#1008",
+   "texture": "ItemBeer",
+   "sha256": "de889bc25620c50ea7d064bc02f942df79533d7066dd1967be87829fbf526f36",
+   "filter": "point"
+  },
+  "items/Golden_Ring.png": {
+   "source": "sharedassets1.assets#1011",
+   "texture": "ItemGoldenRing",
+   "sha256": "3e3c1b55fcdb0f61c687e4985ac82ca9d13263ddf2582dfc09961e35b75538a5",
+   "filter": "point"
+  },
+  "items/Golden_Sneakers.png": {
+   "source": "sharedassets1.assets#1017",
+   "texture": "ItemGoldenSneakers",
+   "sha256": "18966d4f62c58490bdccc66fe5e3001bb7afe324331efe545807e99b0165425d",
+   "filter": "point"
+  },
+  "items/WizardsHat.png": {
+   "source": "sharedassets1.assets#1018",
+   "texture": "ItemWizardsHat",
+   "sha256": "4472c9c3ee1aa773b01cadf8ed8128ea460d03eabdf20af2b1d55f063c0f3579",
+   "filter": "point"
+  },
+  "characters/Noelle.png": {
+   "source": "sharedassets1.assets#1028",
+   "texture": "Noelle",
+   "sha256": "b8eb29a5afe953371c0cb8c38e8849949298a64d4655ee5b3687e9449b53e992",
+   "filter": "point"
+  },
+  "tomes/TomeShield.png": {
+   "source": "sharedassets1.assets#1029",
+   "texture": "ShieldTome",
+   "sha256": "cf50fb40479de5055e3c127c455576af69090382c19d77f3f31fbcffbbe5400b",
+   "filter": "point"
+  },
+  "characters/Calcium.png": {
+   "source": "sharedassets1.assets#1030",
+   "texture": "Calcium",
+   "sha256": "559deedcbb53427f0037b480fbeb932f05dbe5caec42278c4871dd54b61a2a29",
+   "filter": "point"
+  },
+  "items/Holy_Book.png": {
+   "source": "sharedassets1.assets#1033",
+   "texture": "ItemHolyBook",
+   "sha256": "7472d0a6a386f8cce207cba4aaae34156dd3bdd1460ab990a837dddae8d60c98",
+   "filter": "point"
+  },
+  "shop/SilverMultiplier.png": {
+   "source": "sharedassets1.assets#1041",
+   "texture": "Silver2",
+   "sha256": "c8b543edc01b5f3ca0542ca82fc176f9f7df3c39c68deeec7fa643528969a0f1",
+   "filter": "point"
+  },
+  "items/Glove_Lightning.png": {
+   "source": "sharedassets1.assets#1043",
+   "texture": "ItemGlovesLightning",
+   "sha256": "540c3a129d742637af0cdfe53db3e2114393945173103b9b05a426764a145781",
+   "filter": "point"
+  },
+  "weapons/WeaponDice.png": {
+   "source": "sharedassets1.assets#1045",
+   "texture": "Dice",
+   "sha256": "8f17975441445d6488a0b94c2c449fcd16d26b3ad9684c7d73404ac94184c905",
+   "filter": "point"
+  },
+  "hats/FrogHat2.png": {
+   "source": "sharedassets1.assets#1055",
+   "texture": "HatFrogBlue",
+   "sha256": "a02c1d20af9ff0bd380449110d678a77b68b607f00b9f98f362d7e4f447452fd",
+   "filter": "point"
+  },
+  "weapons/WeaponAegis.png": {
+   "source": "sharedassets1.assets#1061",
+   "texture": "Aegis",
+   "sha256": "6a319aec750d908bb33ddd93f73135e04182aa6b797315e0b90dbbefa8a054ac",
+   "filter": "point"
+  },
+  "items/Medkit.png": {
+   "source": "sharedassets1.assets#1062",
+   "texture": "ItemMedkit",
+   "sha256": "49d60a8fcd3c1588682742e7584954ab6170b125ff3927df47a42242aea4bb9a",
+   "filter": "point"
+  },
+  "characters/Bandit.png": {
+   "source": "sharedassets1.assets#1063",
+   "texture": "Bandit",
+   "sha256": "4181ee00b495767524a94838783bece8a0c6b9f68c1320c13f93578d1d8a420a",
+   "filter": "point"
+  },
+  "hats/GlassesHat.png": {
+   "source": "sharedassets1.assets#1069",
+   "texture": "HatGlasses",
+   "sha256": "168f69dfe25ee09ad50d2f222d0502b31c7f86d5c8786a6407024e5f2cc76198",
+   "filter": "point"
+  },
+  "items/Golden_Shield.png": {
+   "source": "sharedassets1.assets#1070",
+   "texture": "ItemGoldenShield",
+   "sha256": "589d5cf3f88f5730e0974ec95b52f47ea3fbe0e17279e12b8aabe87e2d5def5e",
+   "filter": "point"
+  },
+  "items/Demonic_Soul.png": {
+   "source": "sharedassets1.assets#1088",
+   "texture": "ItemDemonSoul",
+   "sha256": "d540a64832a25f664342cccd65455754adec6ed74ea4e7079af94aed7d24532d",
+   "filter": "point"
+  },
+  "items/IceCrystal.png": {
+   "source": "sharedassets1.assets#1091",
+   "texture": "ItemIceCrystal",
+   "sha256": "01ea22a31f182a3fef7454ab1660f85830a5fb8bf0ab069c44cc00599f9ab049",
+   "filter": "point"
+  },
+  "characters/Megachad.png": {
+   "source": "sharedassets1.assets#1092",
+   "texture": "Megachad",
+   "sha256": "ab1a79d76e24287dd1cddd1230958e2fcf97c58c4830bbc7f4846901035dd3b3",
+   "filter": "point"
+  },
+  "items/Ice_Cube.png": {
+   "source": "sharedassets1.assets#1097",
+   "texture": "ItemIceCube",
+   "sha256": "41c9d81a473eec029c0d72afc1de259b2c610f760266c1686ed1b97ef8b76799",
+   "filter": "point"
+  },
+  "tomes/TomePrecision.png": {
+   "source": "sharedassets1.assets#1107",
+   "texture": "PrecisionTome",
+   "sha256": "fd1189a01408d2c9211a75e40705ed53dfdc8f437f602a92cf5e281f365d91df",
+   "filter": "point"
+  },
+  "items/PotSteel.png": {
+   "source": "sharedassets1.assets#1110",
+   "texture": "ItemPot",
+   "sha256": "f76faf7cb51d1a476a14b4180149b937b24e473894479c2467f1f3d6df10f775",
+   "filter": "point"
+  },
+  "items/Key.png": {
+   "source": "sharedassets1.assets#1117",
+   "texture": "ItemKey",
+   "sha256": "67a43cbaf66e946ec2a7fb13d2de3397fbaed0159ed3e15b585a64a1ec05da1d",
+   "filter": "point"
+  },
+  "items/IdleJuice.png": {
+   "source": "sharedassets1.assets#1125",
+   "texture": "IdleJuice",
+   "sha256": "a82e4fec06171ef2e9bb456d3e3931b0431f2104b46d6981b9973fa7ab6a8de1",
+   "filter": "point"
+  },
+  "items/Dragonfire.png": {
+   "source": "sharedassets1.assets#1127",
+   "texture": "ItemDragonfire",
+   "sha256": "2110508bc0396c9ee55ea9f4da871ec301f04576147ac9af78c89f19e8e3cfa0",
+   "filter": "point"
+  },
+  "shop/Weapons.png": {
+   "source": "sharedassets1.assets#1142",
+   "texture": "Weapons",
+   "sha256": "c140026dbd9573777db693506438580f16314a5daaf7fbccd2c352c1ee2fd2d5",
+   "filter": "point"
+  },
+  "items/Clover.png": {
+   "source": "sharedassets1.assets#1144",
+   "texture": "itemClover",
+   "sha256": "24d477f7b63049dd3e43b353004b003512e4e9dff4133a32e6c6847f6ec8fcdd",
+   "filter": "point"
+  },
+  "items/Lightning_Orb.png": {
+   "source": "sharedassets1.assets#1146",
+   "texture": "ItemLightningOrb",
+   "sha256": "20265e569f35482ad44d5973189d24254278eddcaee317cc2d3b6bc38fb091b7",
+   "filter": "point"
+  },
+  "items/Slippery_Ring.png": {
+   "source": "sharedassets1.assets#1151",
+   "texture": "ItemSlipperyRing",
+   "sha256": "37ab921de47344417d23c0b9714553f74c23f3d90ffb1cb871cd3ac77d4f3b54",
+   "filter": "point"
+  },
+  "items/Slutty_Cannon.png": {
+   "source": "sharedassets1.assets#1152",
+   "texture": "ItemSluttyCannon",
+   "sha256": "ce256ca73f0bca4192fce28e374c987ef3d7397ad975f2456b601735e307b14c",
+   "filter": "point"
+  },
+  "shop/Tomes.png": {
+   "source": "sharedassets1.assets#1153",
+   "texture": "tomes",
+   "sha256": "07eb0101fd50ecbd865bf7ee1a5d645ae47af2b4ad84b253b9c1ecabcf2abf7c",
+   "filter": "point"
+  },
+  "characters/Vlad.png": {
+   "source": "sharedassets1.assets#1167",
+   "texture": "BloodMage",
+   "sha256": "3c400bf13a12c7e4a400fb61ed5224858dd3b4f3fd95cc0246f2e12e43cc10d7",
+   "filter": "point"
+  },
+  "items/Grandma_s_Secret_Tonic.png": {
+   "source": "sharedassets1.assets#1171",
+   "texture": "GrandmasSecretTonic",
+   "sha256": "eca481fef7fcd6cbca48af557780ce1dd9042128082d00b197e20a1c561f74c4",
+   "filter": "point"
+  },
+  "hats/ShadyHatPink.png": {
+   "source": "sharedassets1.assets#1172",
+   "texture": "HatShadyPink",
+   "sha256": "c8cb596e9764acf01f2fca070e004dbbf3340dbb46b9a562bcc866b552365269",
+   "filter": "point"
+  },
+  "characters/Amog.png": {
+   "source": "sharedassets1.assets#1173",
+   "texture": "Amog",
+   "sha256": "3127be31681ecc5200c279db7a32b9d4e2bca0ef55aad298f5f5cdf5c8e943e2",
+   "filter": "point"
+  },
+  "items/Cursed_Doll.png": {
+   "source": "sharedassets1.assets#1174",
+   "texture": "ItemCursedDoll",
+   "sha256": "e5a35eda435afadf91a2d9e4f73c4bf0af8923dab7222a1113043557eafbc195",
+   "filter": "point"
+  },
+  "items/Bobs_Lantern.png": {
+   "source": "sharedassets1.assets#1178",
+   "texture": "ItemBobsLantern",
+   "sha256": "51757e0925aa8ed1c6c97f2260fa6672500353f05bd4a1667475be81f7546f5c",
+   "filter": "point"
+  },
+  "hats/MedievalHat.png": {
+   "source": "sharedassets1.assets#1180",
+   "texture": "HatMedieval",
+   "sha256": "833f3e6370fd24d64978a2f9f1a0231609856787692c05f84afdb46647896e3f",
+   "filter": "point"
+  },
+  "weapons/WeaponWirelessDagger.png": {
+   "source": "sharedassets1.assets#1181",
+   "texture": "Bluetooth Knife",
+   "sha256": "a556c9d4b78aaff809d33ecfe22eb51a0e992f1f6fb513191666f40877ac95f0",
+   "filter": "point"
+  },
+  "tomes/TomeQuantity.png": {
+   "source": "sharedassets1.assets#1189",
+   "texture": "QuantityTome",
+   "sha256": "58897be6e883c4a6939da175d54eb934c7626928d984a17a2e8843ea37ed932f",
+   "filter": "point"
+  },
+  "hats/CrownHat.png": {
+   "source": "sharedassets1.assets#1199",
+   "texture": "HatCrown",
+   "sha256": "97a1aac79244d7effc3a3dd43fb35dd85d41927d2536b95e5bdab5281beaeaeb",
+   "filter": "point"
+  },
+  "items/Kevin.png": {
+   "source": "sharedassets1.assets#1216",
+   "texture": "Kevin",
+   "sha256": "650323c429908610208635d29aabf11d4aa73ca420075ec0408c88fd9c686fc7",
+   "filter": "point"
+  },
+  "tomes/TomeGamba.png": {
+   "source": "sharedassets1.assets#1219",
+   "texture": "GamblerTome",
+   "sha256": "b192ca33e86b73f72ecf1212a009d3a3635a5b5199da8f74e7b9a72ad7b188d3",
+   "filter": "point"
+  },
+  "shop/Banish.png": {
+   "source": "sharedassets1.assets#1221",
+   "texture": "Banish2",
+   "sha256": "88f16c1a8194a4f7af8c401ec68144fbe7e330b1dcc0636d532b7cf0f1a6393f",
+   "filter": "point"
+  },
+  "items/PhantomShroud.png": {
+   "source": "sharedassets1.assets#1222",
+   "texture": "ItemPhantomShroud",
+   "sha256": "fc010a64d133f7ab5e45b467d82f7dde354d881ef20324ba3a12ef4954a35282",
+   "filter": "point"
+  },
+  "characters/Knight.png": {
+   "source": "sharedassets1.assets#1229",
+   "texture": "Knight",
+   "sha256": "fd7a55d478ba2a1816b770f03f7006a1622ed89c6e68c204a84d9a1d01eb3e1f",
+   "filter": "point"
+  },
+  "items/Sucky_Magnet.png": {
+   "source": "sharedassets1.assets#1232",
+   "texture": "ItemSuckyHoof",
+   "sha256": "c31eead77a8f6885b1fa6631dd03ac1e6e7af2b1f477cead1cfeffce9074f50e",
+   "filter": "point"
+  },
+  "items/Giant_Fork.png": {
+   "source": "sharedassets1.assets#1237",
+   "texture": "ItemFork",
+   "sha256": "6acaaf29ed2c3927fe3dccdf8ce8886bb3ca864103c0f4405b1f02c18a5fc59d",
+   "filter": "point"
+  },
+  "characters/Ogre.png": {
+   "source": "sharedassets1.assets#1245",
+   "texture": "Ogre",
+   "sha256": "0f4699670d6f184e846ec63fd66a14d8d379b9349e2b1323be7c2a51fe8a1605",
+   "filter": "point"
+  },
+  "items/Turbo_Skates.png": {
+   "source": "sharedassets1.assets#1247",
+   "texture": "ItemRollerblades",
+   "sha256": "81a9139e626a19a997e9afb5fa8f87aeebaea8802476716d197f7e496a5903a7",
+   "filter": "point"
+  },
+  "weapons/WeaponFireStaff.png": {
+   "source": "sharedassets1.assets#1248",
+   "texture": "Firestaff",
+   "sha256": "7fd988273659490051e0db91dffb42fc72fa17c72c48270a26fa79f9713c7f8b",
+   "filter": "point"
+  },
+  "weapons/WeaponPoisonFlask.png": {
+   "source": "sharedassets1.assets#1250",
+   "texture": "Poison Flask",
+   "sha256": "1f7bf692b0c2db981fa77863b3125af7ab6b4c0a92231ebfdb88e6dd03b3264f",
+   "filter": "point"
+  },
+  "characters/Robinette.png": {
+   "source": "sharedassets1.assets#1256",
+   "texture": "Robinette",
+   "sha256": "9474afd3d724c20ffe0a8e54940a36e35f726eecf9129de5e7c93111504a33eb",
+   "filter": "point"
+  },
+  "items/Quins_Mask.png": {
+   "source": "sharedassets1.assets#1262",
+   "texture": "ItemQuinsMask",
+   "sha256": "e2a17cde7b55527547cf3ad00b3e693dd0ddfd501eee9da169262eb47b7b8858",
+   "filter": "point"
+  },
+  "weapons/WeaponFrostWalker.png": {
+   "source": "sharedassets1.assets#1263",
+   "texture": "Frostwalker",
+   "sha256": "8ba00633ef0ff8dcd51075c3ffec6edb77a0128971e75333517d1a98613f9ab8",
+   "filter": "point"
+  },
+  "weapons/WeaponKatana.png": {
+   "source": "sharedassets1.assets#1266",
+   "texture": "Katana",
+   "sha256": "f828be00c49634cb067f2e2b54f7ca9ea5c7022db52b6108599caa6ee5dc9a4d",
+   "filter": "point"
+  },
+  "tomes/TomeAgility.png": {
+   "source": "sharedassets1.assets#1270",
+   "texture": "SpeedTome",
+   "sha256": "28043cd572cb5f0163485d64af81c616f37d72a39ccb2602e1fad3832c52bd67",
+   "filter": "point"
+  },
+  "weapons/WeaponFlameWalker.png": {
+   "source": "sharedassets1.assets#1277",
+   "texture": "Firewalker",
+   "sha256": "79aa9ced4103485aef12811208344cca6a2d45f8945163cfa49d7a88a78597da",
+   "filter": "point"
+  },
+  "items/Beefy_Ring.png": {
+   "source": "sharedassets1.assets#1279",
+   "texture": "ItemBeefyRing",
+   "sha256": "52c6b3c5934151a014f822852247c95c8d8f7eec864b402fbaacfbc797b4bc64",
+   "filter": "point"
+  },
+  "items/Borgar.png": {
+   "source": "sharedassets1.assets#1280",
+   "texture": "ItemBorgor",
+   "sha256": "3cedfd9a0559a89db3dc11cf1b905ace09c16b855b1a99859e7e282074693637",
+   "filter": "point"
+  },
+  "weapons/WeaponTornado.png": {
+   "source": "sharedassets1.assets#1288",
+   "texture": "Tornado",
+   "sha256": "46520a7fbad88cce8c6378088220c8620f510e41b42fca8766bf521f3e920650",
+   "filter": "point"
+  },
+  "items/Demon_Blade.png": {
+   "source": "sharedassets1.assets#1289",
+   "texture": "ItemDemonBlade",
+   "sha256": "e8e523a22c2d59e4d1f0869a4d9c3ef9c156db31736363051ac6beaaca4c570b",
+   "filter": "point"
+  },
+  "weapons/WeaponLightningBolt.png": {
+   "source": "sharedassets1.assets#1292",
+   "texture": "LightningStaff",
+   "sha256": "a929a44b1b738971efce2760bc9f39d6448273b89a80152f08c97177a88664e6",
+   "filter": "point"
+  },
+  "tomes/TomeGolden.png": {
+   "source": "sharedassets1.assets#1294",
+   "texture": "GoldenTome",
+   "sha256": "7eb4ad25faa5476ec7a9247e84d2fb41255b94b3c837c5747432e3e34d204176",
+   "filter": "point"
+  },
+  "hats/PotHat.png": {
+   "source": "sharedassets1.assets#1296",
+   "texture": "HatPot",
+   "sha256": "bafb5aa40ea68a6496c42d2cd256a2944cdd41fca34f5f30396b3e834bee38fb",
+   "filter": "point"
+  },
+  "items/Chonkplate.png": {
+   "source": "sharedassets1.assets#1298",
+   "texture": "Chonkplate",
+   "sha256": "763fe565f39fe9fa26f36e36977a9b897ae33f7b601475f8f21db2bb78ccd734",
+   "filter": "point"
+  },
+  "items/Demonic_Blood.png": {
+   "source": "sharedassets1.assets#1307",
+   "texture": "ItemDemonBlood",
+   "sha256": "c9fc1b45b8a6601471701dc52af0c30e9fdbf58d8f38562639dbfed99191f96e",
+   "filter": "point"
+  },
+  "characters/TonyMcZoom.png": {
+   "source": "sharedassets1.assets#1310",
+   "texture": "Hoverguy",
+   "sha256": "a03c832f9cb7e639f32e79ceac1bba5fe7b437572eed690980d9f25edd56e305",
+   "filter": "point"
+  },
+  "items/Spiky_Shield.png": {
+   "source": "sharedassets1.assets#1311",
+   "texture": "ItemSpikyShieldf",
+   "sha256": "692740226b2aad42424a4829cb116393c297850c8264820c604a7fb8048bb92f",
+   "filter": "point"
+  },
+  "items/Za_Warudo.png": {
+   "source": "sharedassets1.assets#1313",
+   "texture": "ItemZaWarudo",
+   "sha256": "42b4cea8d7301fd87954473ce25fdf3e560b3c1256eca2b6c7e8de8676a38f7e",
+   "filter": "point"
+  },
+  "weapons/WeaponSluttyRocket.png": {
+   "source": "sharedassets1.assets#1329",
+   "texture": "SluttyRocket",
+   "sha256": "6103adc89fc76611f05c318c49d83c8b0fb7b5ededf47e7a7c66c295834cff6a",
+   "filter": "point"
+  },
+  "weapons/WeaponChunkers.png": {
+   "source": "sharedassets1.assets#1335",
+   "texture": "Chunkers",
+   "sha256": "95f03cf9cc12c6e16b18c9f0d69b31b1100a63b2af237161579efe84560bc123",
+   "filter": "point"
+  },
+  "weapons/WeaponBow.png": {
+   "source": "sharedassets1.assets#1336",
+   "texture": "Bow",
+   "sha256": "93958e800df448ca85e0744171bedaafa079b936c1501315fcb238c9afac7824",
+   "filter": "point"
+  },
+  "hats/TopHat.png": {
+   "source": "sharedassets1.assets#1342",
+   "texture": "HatTopHat",
+   "sha256": "550d5fc030a5d31194386bb354c33cdc79e8c96022dc823d93c29feb56126e18",
+   "filter": "point"
+  },
+  "characters/Athena.png": {
+   "source": "sharedassets1.assets#1346",
+   "texture": "Athena",
+   "sha256": "af060eda9ae64c4bd5779b7901541c222df58b0789dca52b025c02c98b3fe607",
+   "filter": "point"
+  },
+  "weapons/WeaponRevolver.png": {
+   "source": "sharedassets1.assets#1347",
+   "texture": "Revolver",
+   "sha256": "915800eeb35cf3694fcf8fbf08704333c7b75baf1439939439900b77d97b01a7",
+   "filter": "point"
+  },
+  "hats/MicrowaveHat.png": {
+   "source": "sharedassets1.assets#1348",
+   "texture": "HatMicrowave",
+   "sha256": "4b33758fdbe39c77f2db1d0613f2b5b86da13ec93418054374814091c53985c8",
+   "filter": "point"
+  },
+  "shop/Boombox.png": {
+   "source": "sharedassets1.assets#1356",
+   "texture": "boombox",
+   "sha256": "ef229f0a97fadf16a8ba0b845d110987686c158907a44c66182d5656ddb29e5e",
+   "filter": "point"
+  },
+  "items/Gamer_Goggles.png": {
+   "source": "sharedassets1.assets#1359",
+   "texture": "GamerLens",
+   "sha256": "706478b7a0d7d4d5d210d1777d2de96961f7e756d4c76ddd07e8601c79f69bae",
+   "filter": "point"
+  },
+  "items/Cactus.png": {
+   "source": "sharedassets1.assets#1364",
+   "texture": "ItemCactus",
+   "sha256": "b4360a43c156b865f3f9ba633c9bff621c56bf211ef3b46af2f1fc5e7a26913f",
+   "filter": "point"
+  },
+  "weapons/WeaponBananarang.png": {
+   "source": "sharedassets1.assets#1367",
+   "texture": "Bananarang",
+   "sha256": "8cf5cf682c95a4abd32c828939688a9bfcbd7623746eb41d6a38c20c73d9e238",
+   "filter": "point"
+  },
+  "items/CageKeyMonke.png": {
+   "source": "sharedassets1.assets#1369",
+   "texture": "CageKey",
+   "sha256": "e982f2866b33657729820d30d9e1fcb0a203194ec987d81d8131febb0f19a26e",
+   "filter": "point"
+  },
+  "items/Electric_Plug.png": {
+   "source": "sharedassets1.assets#1370",
+   "texture": "ItemElectricPlug",
+   "sha256": "0872a4c4041005083af403294502f0d39a2d5bcbcae1be0bc52c066f8e0b8457",
+   "filter": "point"
+  },
+  "items/Backpack.png": {
+   "source": "sharedassets1.assets#1377",
+   "texture": "ItemBackpack",
+   "sha256": "b932ba71eb0b7392645c61968fa4b611102773c4763a64b9f9ce6718692b9394",
+   "filter": "point"
+  },
+  "characters/Fox.png": {
+   "source": "sharedassets1.assets#1385",
+   "texture": "Fox",
+   "sha256": "ff9ae4355d4355d9f70ab9599598e77b7533f4014608d4332e5111f685f8e3f7",
+   "filter": "point"
+  },
+  "weapons/WeaponDexecutioner.png": {
+   "source": "sharedassets1.assets#1387",
+   "texture": "Dexecutioner",
+   "sha256": "a7549c77c45e63bf627f1d9524eab685afe6bab38eaf54f670974f1fa5558762",
+   "filter": "point"
+  },
+  "items/Snek.png": {
+   "source": "sharedassets1.assets#1393",
+   "texture": "ItemSnek",
+   "sha256": "6472d6b030e98c70272a0cf929d73126fd7a7456863e7167b54b554f3c411fe9",
+   "filter": "point"
+  },
+  "characters/Ninja.png": {
+   "source": "sharedassets1.assets#1400",
+   "texture": "Ninja",
+   "sha256": "d8a854fb4ca8bf5a50cd3c7da50181af42d39967ee3738edd6aab2a0c5d176d7",
+   "filter": "point"
+  },
+  "hats/WizardHat.png": {
+   "source": "sharedassets1.assets#1406",
+   "texture": "HatWizard",
+   "sha256": "5c515fb60ea235c320d94147e118b7044ce2c5b7477162e8bf637498bd7f994d",
+   "filter": "point"
+  },
+  "hats/Headset.png": {
+   "source": "sharedassets1.assets#1416",
+   "texture": "HatHeadset",
+   "sha256": "55ccf0d9d7eff163cfc9b19f38cf6032aafcb9d57b831d17dc545c176f1e06e2",
+   "filter": "point"
+  },
+  "characters/Chadwell.png": {
+   "source": "sharedassets1.assets#1424",
+   "texture": "CorruptedKnight",
+   "sha256": "84c7f18a072c93bee4b93e332c7a364b43b0e24b82e38cfcd5b1691c69cc2d5e",
+   "filter": "point"
+  },
+  "items/SoulHarvester.png": {
+   "source": "sharedassets1.assets#1425",
+   "texture": "ItemSoulHarvester",
+   "sha256": "f1bc39f8d6b8820238d6bf79b3c9181febd56cb525b2077f16282debe8a1bfa0",
+   "filter": "point"
+  },
+  "shop/Refresh.png": {
+   "source": "sharedassets1.assets#1426",
+   "texture": "Refresh2",
+   "sha256": "f4abc0a1e594d94880ea84700813d3f7b0022d0cec0f51eab35790798f244273",
+   "filter": "point"
+  },
+  "characters/Dicehead.png": {
+   "source": "sharedassets1.assets#1430",
+   "texture": "Dicehead",
+   "sha256": "ed838c6dbb0a152e45ce4f6e5a04e04d757d3c42f921f1cabbb54f133c549b13",
+   "filter": "point"
+  }
+ }
+}

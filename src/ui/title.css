@@ -22,3 +22,9 @@
 @media(max-width:800px){.title-main{top:34vh}.title-main button{font-size:24px;min-width:160px}.title-side{left:16px}}
 /* On the title screen the in-run HUD is hidden (the real menu shows only Silver and the menus). */
 main:has(.title-screen) :is(.run-hud,main>header,.weapon-status,.settings-toggle,.lab-toggle,.performance,.top-hud,.health,.experience,.crosshair){display:none}
+.tile-icon{width:84%;height:84%;object-fit:contain;image-rendering:pixelated}
+.title-grid .tile.locked .tile-icon{filter:brightness(.25) saturate(.3)}
+.title-grid .tile.locked .tile-price{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;color:#fff;text-shadow:2px 2px #000}
+.title-grid.shop .tile-icon{width:110px;height:110px}
+.title-window footer{grid-template-columns:auto 1fr auto}.footer-icon{grid-row:1/3;width:96px;height:96px;image-rendering:pixelated;border:3px solid #6a756f}
+.title-window footer strong,.title-window footer p{grid-column:2}.title-window footer button,.title-window footer em{grid-column:3}.title-window footer small{grid-column:2/4}
