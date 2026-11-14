@@ -77,3 +77,15 @@
 .experience b{background:var(--exp-rainbow);background-repeat:no-repeat}
 .upgrade-spectrum{height:12px;border:2px solid #101010;background:var(--exp-rainbow)}
 .upgrade-spectrum-track{display:none}
+
+/* Open animation (P): the native Window class has no tween of its own and the Animator/clip data is unread, so timing and easing are web choices. */
+@keyframes upgrade-open{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes upgrade-card-in{from{opacity:0;transform:translateX(-30px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes upgrade-fade{from{opacity:0}to{opacity:1}}
+.upgrade-screen{animation:upgrade-fade .18s ease-out}
+.upgrade-side,.upgrade-offers{animation:upgrade-open .28s cubic-bezier(.2,.9,.3,1.1) both}
+.upgrade-offers{animation-delay:.04s}.upgrade-player-stats{animation-delay:.08s}
+.upgrade-cards button{animation:upgrade-card-in .26s cubic-bezier(.2,.9,.3,1.1) backwards}
+.upgrade-cards button:nth-child(1){animation-delay:.14s}.upgrade-cards button:nth-child(2){animation-delay:.22s}.upgrade-cards button:nth-child(3){animation-delay:.30s}.upgrade-cards button:nth-child(4){animation-delay:.38s}
+.upgrade-actions{animation:upgrade-fade .3s .42s ease-out both}
+@media(prefers-reduced-motion:reduce){.upgrade-screen,.upgrade-side,.upgrade-offers,.upgrade-cards button,.upgrade-actions{animation:none}}
