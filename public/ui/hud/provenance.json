@@ -2,10 +2,28 @@
  "source": "Megabonk_Data/sharedassets1.assets Texture2D 'Vignette2' (path 626), used by LowHpUi.vignette RawImage in level2/level4",
  "exportedBy": "tools/read_feedback_visuals.py + UnityPy",
  "files": {
+  "gold.png": {
+   "sha256": "5557c69a2e411406962b84ae3bb8e21b5e7ecfea8744ee904a21996dd9d2188d",
+   "bytes": 384
+  },
+  "silver.png": {
+   "sha256": "fc82843b470df63aece8d296cad1792642f657de4a273c0bfc287580643b4c5f",
+   "bytes": 447
+  },
+  "skull.png": {
+   "sha256": "7ebda32731db754000bacb03d5920a64f3835d16dfd5f79d48b674bd8d7d3c89",
+   "bytes": 593
+  },
   "low-hp-vignette.png": {
    "sha256": "0c13e27d6852d44d5f801261d4e1eae70a83cefcf79700debdd4e1879d36ba08",
    "bytes": 324955
   }
  },
- "note": "1024x1024 RGBA; alpha 0 at the centre rising to 1 at the corners. The RawImage colour (0.217,0,0.0172) tints it and alpha = danger value."
+ "note": "1024x1024 RGBA; alpha 0 at the centre rising to 1 at the corners. The RawImage colour (0.217,0,0.0172) tints it and alpha = danger value.",
+ "notes": {
+  "silver.png": "sharedassets1 Texture2D Silver (path 766), the Coin image under the HUD hierarchy (tools/read_hud_icons.py)",
+  "gold.png": "icon_coin (greyscale, sharedassets1 path 1408) multiplied by (1,0.9,0.17); the game tints it at runtime, exact tint unread (I)",
+  "skull.png": "32x32 crop of atlas_emojis_PSD (sharedassets1 path 1169) at (352,128)",
+  "clock and chest icons": "not located in the texture list; drawn as SVG in src/ui/TopHud.tsx"
+ }
 }
