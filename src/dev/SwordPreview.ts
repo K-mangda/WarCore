@@ -7,6 +7,7 @@ import {WeaponSoundPreview} from './WeaponSoundPreview';
 import {SharedHitPreview} from './SharedHitPreview';
 import {LabAssets,roomAssets} from './LabAssets';
 import {balance} from '../combat/Balance';
+import {xpForLevel} from '../combat/XpCurve';
 import {PickupNumbers} from '../combat/PickupNumbers';
 import {ProgressionView} from '../combat/ProgressionView';
 import './lab.css';
@@ -58,7 +59,7 @@ function resetStaff(){seed=1;pickupNumbers.clear();run.reset();run.setWeapon(wea
 function resetXp(){
  seed=1;run.reset();staff.reset();progression.clear();pickupNumbers.clear();
  const kind=weapon.value==='gold'?'gold':weapon.value==='silver'?'silver':'xp';
- for(let i=0;i<(weapon.value==='level'?5:3);i++)run.gems.push({kind,position:weapon.value==='level'?origin.clone():new T.Vector3((i-1)*.6,kind==='gold'?balance.goldSpawnHeight:balance.xpHoverHeight,-3-i*.5),value:kind==='xp'&&weapon.value!=='level'?[1,10,50][i]:1});
+ for(let i=0;i<(weapon.value==='level'?xpForLevel(1):3);i++)run.gems.push({kind,position:weapon.value==='level'?origin.clone():new T.Vector3((i-1)*.6,kind==='gold'?balance.goldSpawnHeight:balance.xpHoverHeight,-3-i*.5),value:kind==='xp'&&weapon.value!=='level'?[1,10,50][i]:1});
 }
 
 function advanceXp(age:number){while(!run.blocked&&run.snapshot().elapsed+1e-7<age){const dt=Math.min(.02,age-run.snapshot().elapsed);run.step(dt,origin,facing());xpView.update(run);pickupNumbers.update(run,dt);if(weapon.value!=='level')while(run.blocked&&!run.snapshot().dead)run.choose('damage');}}
