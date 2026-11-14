@@ -4,7 +4,7 @@ import {resolve,dirname} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import assert from 'node:assert/strict';
 import {Vector3} from 'three';
-for(const name of ['combat/Run','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm']){
+for(const name of ['combat/Run','combat/Upgrades','combat/Pickups','combat/Balance','combat/AttackTiming','enemies/Swarm','combat/XpCurve','player/Danger']){
   const destination=resolve('.local-evidence/combat-check',name+'.js');mkdirSync(dirname(destination),{recursive:true});
   const code=ts.transpileModule(readFileSync('src/'+name+'.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace(/from '(\.[^']+)'/g,"from '$1.js'");writeFileSync(destination,code);
 }
@@ -16,7 +16,8 @@ run.swarm.enemies.push({id:999,position:new Vector3(0,0,-5),velocity:new Vector3
 run.step(.5,player);assert.equal(run.snapshot().kills,1,'Automatic attack must hit a target crossed between frames');assert.equal(run.gems.filter(p=>(p.kind??'xp')==='xp').reduce((n,p)=>n+(p.value??1),0)+run.snapshot().xp,1,'A killed enemy must preserve its XP, including immediate attraction');
 run.gems.push({position:player.clone()});
 run.gems[0].position.copy(player);run.step(.02,player);assert.equal(run.snapshot().xp,2,'Near XP must be collected');
-const upgradeRun=create();for(let i=0;i<13;i++)upgradeRun.gems.push({position:player.clone()});upgradeRun.step(.02,player);
+// Native XP table: level 2 at 7 XP, level 3 at 23 cumulative XP (XpCurve).
+const upgradeRun=create();for(let i=0;i<23;i++)upgradeRun.gems.push({position:player.clone()});upgradeRun.step(.02,player);
 assert.equal(upgradeRun.snapshot().level,3);assert.equal(upgradeRun.snapshot().pendingUpgrades,2,'Multiple earned levels must preserve both choices');
 const time=upgradeRun.snapshot().elapsed;const before=upgradeRun.swarm.enemies[0].position.clone();upgradeRun.step(10,player);
 assert.equal(upgradeRun.snapshot().elapsed,time);assert.ok(before.equals(upgradeRun.swarm.enemies[0].position),'Level choices must freeze the simulation');
@@ -59,10 +60,10 @@ assert.equal(front.health,90,'Sword must hit its forward sector');assert.equal(b
 assert.equal(front.velocity.length(),5,'Firestaff knockback tuning leaves Sword unchanged');
 assert.equal(sword.setWeapon('bolt'),false,'Weapon changes are restricted to a fresh run');
 for(let i=0;i<5;i++)sword.step(.02,player);assert.equal(front.health,90,'A persistent swing must hit each enemy once');
-for(let i=0;i<5;i++)sword.gems.push({position:player.clone()});sword.step(.02,player);
+for(let i=0;i<7;i++)sword.gems.push({position:player.clone()});sword.step(.02,player);
 const slashLife=sword.slashes[0].life;sword.step(.1,player);assert.equal(sword.slashes[0].life,slashLife,'Upgrade pause must freeze slash age');
 sword.reset();assert.equal(sword.snapshot().weapon,'sword');assert.equal(sword.slashes.length,0);assert.equal(sword.snapshot().elapsed,0);assert.equal(sword.setWeapon('bolt'),true);
-const multi=new Run(()=>0,()=>true,random);multi.setWeapon('sword');for(let i=0;i<5;i++)multi.gems.push({position:player.clone()});multi.step(.02,player);multi.choose('projectiles');
+const multi=new Run(()=>0,()=>true,random);multi.setWeapon('sword');for(let i=0;i<7;i++)multi.gems.push({position:player.clone()});multi.step(.02,player);multi.choose('projectiles');
 for(let i=0;i<44;i++)multi.step(.02,player);
 const shared=enemy(1004,0,-2);multi.swarm.enemies.push(shared);multi.step(.02,player);assert.equal(multi.slashes.length,1,'Quantity must not create a simultaneous side fan');assert.equal(shared.health,90);
 for(let i=0;i<14;i++)multi.step(.02,player);
@@ -95,7 +96,7 @@ assert.ok(staff.staffEffects.some(effect=>effect.kind==='muzzle'));assert.ok(sta
 assert.equal(staffEvents.filter(e=>e==='shot').length,1);assert.equal(staffEvents.filter(e=>e==='staffImpact').length,1);assert.equal(staffEvents.filter(e=>e==='staffHit').length,1);
 staff.reset();assert.equal(staff.staffEffects.length,0,'Reset must clear all Firestaff phases');
 const emptyStaff=new Run(()=>0,()=>true,random,event=>staffEvents.push(event));const eventCount=staffEvents.length;emptyStaff.step(.02,player);assert.equal(emptyStaff.bolts.length,0);assert.equal(staffEvents.length,eventCount,'No-target TryInit must not make a phantom shot sound');
-for(let i=0;i<5;i++)emptyStaff.gems.push({position:player.clone()});emptyStaff.step(.02,player);emptyStaff.choose('projectiles');
+for(let i=0;i<7;i++)emptyStaff.gems.push({position:player.clone()});emptyStaff.step(.02,player);emptyStaff.choose('projectiles');
 emptyStaff.swarm.enemies.push(enemy(2100,0,-12));emptyStaff.step(.02,player);assert.equal(emptyStaff.bolts.length,1,'Quantity must not create a simultaneous spread');
 for(let i=0;i<25;i++)emptyStaff.step(.02,player);assert.equal(staffEvents.filter(e=>e==='shot').length,3,'Quantity2 must produce two timed shots');
 console.log('Firestaff checks passed: targeted burst, source phase events, bounded explosion damage, no-target silence and reset.');
