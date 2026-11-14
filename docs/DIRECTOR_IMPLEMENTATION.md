@@ -38,9 +38,9 @@ Base stats of the two playable weapons now come from serialized `WeaponData`: **
 
 `nativeWeapons` also holds all 30 weapons with `upgradePerLevel` (e.g. Sword: +0.2 Size, DamageMultiplier Flat 2.0, +1 Projectile, +0.25 Knockback; FireStaff: +0.2 ProjectileSpeed, DamageMultiplier Flat 2.5, +1 Projectile, +0.16 Size). **Not applied yet:** the offer screen has no weapon-level cards, and the meaning of `DamageMultiplier` + `Flat` (likely +N damage per level) and the combination order depend on the undecoded `PlayerStatsNew.GetStat`. Next step once decoded: add weapon cards (3 offers drawn from weapons + Tomes, `GetRandomUpgrades`) with rarity rolls from `Rarity.ts`.
 
-## Lab - "Native data" page
+## Lab - **Data** tab (native data tables)
 
-`data.html` (linked from the Lab header as **Native data**, built as a Vite entry) lists everything in `NativeData.ts` with search: enemies (53), stage timelines (9), weapons (30, with per-level modifiers), Tomes (26), items (87), characters (21) and maps (5). Each tab has a note saying what the web uses and what is still unverified, and the footer shows the provenance hashes. The row builders are pure (`src/dev/NativeDataTables.ts`) and covered by `tools/check_native_data.mjs`. The existing Lab rooms (weapon models, pickups, effects, character clips, enemy previews) are unchanged; enemies/characters without extracted models only appear in this data view.
+`data.html` (the Lab's **Data** tab embeds it; also reachable directly, built as a Vite entry) lists everything in `NativeData.ts` with search: enemies (53), stage timelines (9), weapons (30, with per-level modifiers), Tomes (26), items (87), characters (21) and maps (5). Each tab has a note saying what the web uses and what is still unverified, and the footer shows the provenance hashes. The row builders are pure (`src/dev/NativeDataTables.ts`) and covered by `tools/check_native_data.mjs`. The existing Lab rooms (weapon models, pickups, effects, character clips, enemy previews) are unchanged; enemies/characters without extracted models only appear in this data view.
 
 ## Lab - Effects -> "Level-up selection screen" room
 

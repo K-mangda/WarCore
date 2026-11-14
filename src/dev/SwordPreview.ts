@@ -98,17 +98,28 @@ function inspect(){
 }
 function halt(){ticket++;cancelAnimationFrame(animation);playbackCadence.reset();audible=false;soundPreview.stop();audio.stopProgression();audio.stopGameplay();}
 frame.addEventListener('input',()=>{halt();inspect();});rotate.addEventListener('input',()=>{halt();inspect();});
-const screenFrame=document.createElement('iframe');screenFrame.title='Level-up selection screen';screenFrame.style.cssText='display:none;width:100%;height:78vh;min-height:560px;border:1px solid #605747;background:#121b20';host.after(screenFrame);
-/** The selection screen is a React page (levelup.html) that drives the real Run/UpgradeMenu; shown here as its own room instead of a separate link. */
-function showScreenRoom(on:boolean){host.style.display=on?'none':'';screenFrame.style.display=on?'block':'none';if(on&&!screenFrame.src)screenFrame.src=assetUrl('levelup.html?embedded=1');}
-async function selectRoom(){
- if(weapon.value==='levelup-screen'){
-  halt();loadTicket++;roomReady=false;showScreenRoom(true);renderer.clear();sharedHit.reset();soundPanel.style.display='none';soundPanel.replaceChildren();retry.hidden=true;
-  play.disabled=true;stop.disabled=true;frame.disabled=true;rotate.disabled=true;
-  readiness.textContent='Real selection screen driven by the real game Run: press "Give level-up" inside it, pick a card and read the log. Banish/Skip/Refresh stay disabled until their rules are known.';
-  document.getElementById('room-title')!.textContent='WARCORE LAB · LEVEL-UP SCREEN';document.getElementById('ready')!.textContent='Ready · Selection screen';return;
+/** Rooms that embed a page instead of the 3D view: the level-up selection screen (drives the real Run/UpgradeMenu) and the native data tables. */
+const pageRooms:Record<string,{page:string;title:string;text:string;ready:string}>={
+ 'levelup-screen':{page:'levelup.html',title:'LEVEL-UP SCREEN',ready:'Ready · Selection screen',text:'Real selection screen driven by the real game Run: press "Give level-up" inside it, pick a card and read the log. Banish/Skip/Refresh stay disabled until their rules are known.'},
+ 'native-data':{page:'data.html',title:'NATIVE DATA',ready:'Ready · Native data',text:'Serialized game data (enemies, stages, weapons, Tomes, items, characters, maps) with notes on what the web already uses. Use the tabs and search inside.'},
+};
+const pageFrames=new Map<string,HTMLIFrameElement>();
+function showPageRoom(room:string|undefined){
+ host.style.display=room?'none':'';
+ for(const [id,info] of Object.entries(pageRooms)){
+  let frame=pageFrames.get(id);
+  if(!frame&&id===room){frame=document.createElement('iframe');frame.title=info.title;frame.style.cssText='display:none;width:100%;height:78vh;min-height:560px;border:1px solid #605747;background:#121b20';frame.src=assetUrl(`${info.page}?embedded=1`);host.after(frame);pageFrames.set(id,frame);}
+  if(frame)frame.style.display=id===room?'block':'none';
  }
- showScreenRoom(false);
+}
+async function selectRoom(){
+ const pageRoom=pageRooms[weapon.value];
+ if(pageRoom){
+  halt();loadTicket++;roomReady=false;showPageRoom(weapon.value);renderer.clear();sharedHit.reset();soundPanel.style.display='none';soundPanel.replaceChildren();retry.hidden=true;
+  play.disabled=true;stop.disabled=true;frame.disabled=true;rotate.disabled=true;readiness.textContent=pageRoom.text;
+  document.getElementById('room-title')!.textContent=`WARCORE LAB · ${pageRoom.title}`;document.getElementById('ready')!.textContent=pageRoom.ready;return;
+ }
+ showPageRoom(undefined);
  retry.hidden=true;readiness.textContent=roomReadiness(weapon.value);
  const request=++loadTicket;roomReady=false;play.disabled=true;stop.disabled=true;frame.disabled=true;rotate.disabled=true;sharedHit.reset();soundPanel.style.display='none';soundPanel.replaceChildren();
  const status=document.getElementById('ready')!;status.textContent='Loading room…';renderer.clear();
@@ -135,6 +146,7 @@ const categories={
  weapons:[['sword','Sword - Combat'],['bolt','Firestaff - Combat'],...weaponModelRooms],
  pickups:[['xp','EXP tiers'],['gold','Gold'],['silver','Silver']],
  effects:[['level','Level up'],['levelup-screen','Level-up selection screen']],
+ data:[['native-data','Native data tables']],
  enemies:[['skeleton-walk','Skeleton - Walk'],['skeleton-hit','Skeleton - Hit'],['skeleton-death','Skeleton - Death'],['bandit-walk','Bandit - Walk'],['bandit-hit','Bandit - Hit'],['bandit-death','Bandit - Death']],
 } as const;
 type Category=keyof typeof categories;
@@ -159,7 +171,7 @@ const retry=document.createElement('button');retry.textContent='Retry room';retr
 const version=document.createElement('small');version.textContent=' · BUILD '+buildVersion;document.getElementById('room-title')!.after(version);
 search.addEventListener('input',()=>openCategory(currentCategory));
 const tabs=Array.from(document.querySelectorAll<HTMLButtonElement>('[data-category]'));
-const lastRoom:Record<Category,string>={characters:'fox-idle',weapons:'sword',pickups:'xp',effects:'level',enemies:'skeleton-walk'};
+const lastRoom:Record<Category,string>={characters:'fox-idle',weapons:'sword',pickups:'xp',effects:'level',data:'native-data',enemies:'skeleton-walk'};
 let currentCategory:Category='weapons';
 function openCategory(category:Category,room=lastRoom[category],preview=true){
  currentCategory=category;
