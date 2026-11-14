@@ -488,3 +488,8 @@ User requested brighter EXP with glow and brighter yellow level-up sparkles with
 ## Brighter LEVEL UP sign - 2026-11-14
 
 User supplied a screenshot and requested brighter level-up color. Brightened the LEVEL UP sign toward warm yellow and increased its subtle additive glow. Existing sign animation, sparkle tuning and gameplay remain unchanged. Shared game/Lab web visual tuning, not a native shader claim; no phase change.
+
+
+## Brighter level-up sparkles - 2026-11-14
+
+User requested brighter golden level-up fragments. Lightened the burst tint and increased its additive glow; size, speed, sign and gameplay are unchanged. Shared game/Lab web visual tuning; no native shader claim or phase change.
