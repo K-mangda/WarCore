@@ -36,6 +36,8 @@ export class Run {
   private newDirector(){return new Director({stage:balance.stage,maxEnemies:balance.maxEnemies,random:this.random});}
   get blocked(){return this.state.dead||this.state.pendingUpgrades>0;}
   snapshot():RunSnapshot{return {...this.state,upgradeLevels:{...this.state.upgradeLevels},upgradeRarity:{...this.state.upgradeRarity},upgradeChoices:this.state.pendingUpgrades>0&&!this.state.dead?availableUpgrades(this.state):[],enemyCount:this.swarm.enemies.length};}
+  /** Current stat sheet (base + character + Tomes). PickupRange drives the magnet radius, HealthRegen the passive healing. */
+  liveStats(){return playerStats(balance.character,{damage:this.state.damageBonus,haste:this.state.attackSpeedBonus,projectiles:this.state.projectileBonus});}
   reset(){this.state={...initialRun,upgradeLevels:emptyUpgradeLevels(),upgradeChoices:[],upgradeRarity:{},weapon:this.state.weapon,damage:weaponDamage(this.state.weapon),attackInterval:weaponCooldown(this.state.weapon)};this.dangerState=initialDanger();this.director=undefined;this.evaded=0;this.attackClock=0;this.hurtClock=0;this.swordPending=0;this.swordBurstClock=0;this.staffPending=0;this.staffClock=0;this.remains.length=0;this.swarm.clear();this.bolts.length=0;this.staffEffects.length=0;this.slashes.length=0;this.gems.length=0;this.hits.length=0;this.xpReceipts.length=0;this.currencyReceipts.length=0;}
   setWeapon(weapon:Weapon):boolean{
     if(this.state.elapsed!==0||(weapon!=='bolt'&&weapon!=='sword'))return false;
@@ -185,7 +187,7 @@ export class Run {
     if(this.staffEffects.length>128)this.staffEffects.splice(0,this.staffEffects.length-128);
     for(let i=this.gems.length-1;i>=0;i--){
       const gem=this.gems[i];
-      if(movePickup(gem,player.clone().add(new Vector3(0,.35,0)),dt,balance.magnetRadius)){
+      if(movePickup(gem,player.clone().add(new Vector3(0,.35,0)),dt,this.liveStats().PickupRange)){
         this.gems.splice(i,1);const kind=gem.kind??'xp';
         if(kind==='xp')this.gainXp(gem.value??1,player);
         else{this.state[kind]+=gem.value??1;this.sound(kind);
@@ -207,6 +209,8 @@ export class Run {
         if(this.state.health===0){this.state.dead=true;this.sound('death');}
       }
     }
+    // HealthRegen is per minute (PlayerHealth.healingPerMinute 10, damage source "HealthRegen"); the exact tick cadence is unread (I), so it accrues smoothly.
+    if(!this.state.dead&&this.state.health<this.state.maxHealth)this.state.health=Math.min(this.state.maxHealth,this.state.health+this.liveStats().HealthRegen/60*dt);
     this.dangerState=stepDanger(this.dangerState,this.state.health,this.state.maxHealth,dt);this.state.danger=this.dangerState.value;
   }
 }

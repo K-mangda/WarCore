@@ -23,7 +23,7 @@ const time=upgradeRun.snapshot().elapsed;const before=upgradeRun.swarm.enemies[0
 assert.equal(upgradeRun.snapshot().elapsed,time);assert.ok(before.equals(upgradeRun.swarm.enemies[0].position),'Level choices must freeze the simulation');
 assert.equal(upgradeRun.choose('damage'),true);assert.equal(upgradeRun.blocked,true);assert.equal(upgradeRun.choose('projectiles'),true);assert.equal(upgradeRun.blocked,false);assert.equal(upgradeRun.choose('haste'),false,'Cannot grant a free upgrade');
 const death=create();death.swarm.enemies.push({id:998,position:player.clone(),velocity:new Vector3(),health:Infinity,flash:0});
-death.step(.02,player);const health=death.snapshot().health;for(let i=0;i<20;i++)death.step(.02,player);assert.equal(death.snapshot().health,health,'Contact damage must respect invulnerability interval');
+death.step(.02,player);const health=death.snapshot().health;for(let i=0;i<20;i++)death.step(.02,player);assert.ok(Math.abs(death.snapshot().health-health)<.5,'Contact damage must respect invulnerability interval');
 for(let i=0;i<1000&&!death.blocked;i++)death.step(.02,player);assert.equal(death.snapshot().dead,true);assert.equal(death.snapshot().health,0);
 death.reset();assert.equal(death.snapshot().health,100);assert.equal(death.snapshot().dead,false);assert.equal(death.swarm.enemies.length,0);assert.equal(death.bolts.length,0);assert.equal(death.snapshot().pendingUpgrades,0);
 const hidden=new Run(()=>0,()=>true,random);hidden.step(.02,player);assert.equal(hidden.swarm.enemies.length,0,'Spawn must reject positions visible to camera');
@@ -226,7 +226,7 @@ const eliteGoblin=enemySpec(goblin,0,true);assert.equal(eliteGoblin.maxHealth,70
 const piggy=enemySpec({...goblin,enemy:'MinibossPig',creditCost:40,hp:250},0);assert.equal(piggy.visual,'bandit','Miniboss-class enemies borrow the Bandit model');
 const real=new Run(()=>0,()=>false,drandom);real.step(.02,player);assert.ok(real.swarm.enemies.length>=3&&real.swarm.enemies.length<=5&&real.swarm.enemies.every(e=>e.spec?.enemy==='Goblin'&&e.health===(e.spec.elite?70:7)),'Run spawns director enemies with real stats');
 const hurtRun=new Run(()=>0,()=>false,drandom);hurtRun.swarm.enemies.push({...enemy(7001,0,0),spec:enemySpec(goblin,0)});hurtRun.step(.02,player);
-assert.equal(hurtRun.snapshot().health,85,'Contact damage uses the enemy native damage (Goblin 15)');
+assert.ok(Math.abs(hurtRun.snapshot().health-85)<.5,'Contact damage uses the enemy native damage (Goblin 15)');
 const {weaponData,weaponDamage,weaponCooldown}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Weapons.js')));
 assert.equal(weaponDamage('bolt'),10);assert.equal(weaponCooldown('bolt'),.5);assert.equal(weaponDamage('sword'),11);assert.equal(weaponCooldown('sword'),.75);
 assert.equal(weaponData('sword').burstTime,.5);assert.equal(weaponData('bolt').burstTime,1);assert.equal(weaponData('bolt').minBurstInterval,.15);
@@ -240,7 +240,7 @@ assert.equal(fox.Armor,0);assert.equal(fox.PickupRange,9);assert.equal(fox.JumpH
 assert.ok(Math.abs(armorReduction(.75)-.4995)<1e-9&&armorReduction(0)===0&&armorReduction(1e9)<.999+1e-9,'Armor a/(a+0.75)*0.999');assert.ok(Math.abs(evasionChance(1)-.4995)<1e-9);
 const tomed=playerStats('Fox',{damage:.16,haste:.15,projectiles:3});assert.ok(Math.abs(tomed.DamageMultiplier-1.16)<1e-9,'Damage Tome accumulates linearly: 1 + sum of level values');assert.ok(Math.abs(tomed.AttackSpeed-1.15)<1e-9);assert.equal(tomed.Projectiles,3);
 assert.equal(formatStat(.0566,'percent'),'5.7%');assert.equal(formatStat(1.04,'multiplier'),'x1.04');
-const dodger=new Run(()=>0,()=>false,()=>0);dodger.swarm.enemies.push({...enemy(7101,0,0),spec:enemySpec(goblin,0)});dodger.step(.02,player);assert.equal(dodger.snapshot().health,100,'A hit rolled under the evasion chance is dodged');assert.equal(dodger.evaded,1);
+const dodger=new Run(()=>0,()=>false,()=>0);dodger.swarm.enemies.push({...enemy(7101,0,0),spec:enemySpec(goblin,0)});dodger.step(.02,player);assert.ok(Math.abs(dodger.snapshot().health-100)<.5,'A hit rolled under the evasion chance is dodged');assert.equal(dodger.evaded,1);
 const {roundHalfEven2,tomeLevelValue,nextUpgrade:nextTome,upgradeDescription}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Upgrades.js')));
 const {rarityColors,upgradeMultiplier,rollUpgradeRarity,rarityWeights,upgradeWeights}=await import(pathToFileURL(resolve('.local-evidence/combat-check/combat/Rarity.js')));
 assert.equal(roundHalfEven2(.096),.1);assert.equal(roundHalfEven2(.105),.1,'Ties round to even');assert.equal(roundHalfEven2(.115),.12);assert.equal(tomeLevelValue('damage',2),.16);assert.equal(tomeLevelValue('haste',1.2),.09);assert.equal(tomeLevelValue('projectiles',1.4),1.4);
@@ -259,3 +259,4 @@ console.log('Director checks passed: credit formulas, Forest 1 timeline, pool gr
 const banditDeath=new Run(()=>0,()=>true,()=>.5);banditDeath.setWeapon('sword');banditDeath.swarm.enemies.push({...enemy(6001,0,-2),kind:'bandit',health:1});banditDeath.step(.02,player);
 assert.equal(banditDeath.remains[0].kind,'bandit','A dead Bandit retains its species for dissolution');assert.equal(banditDeath.snapshot().kills,1);banditDeath.reset();assert.equal(banditDeath.remains.length,0);
 console.log('Bandit death checks passed: species-preserving dissolution and reset.');
+{const regen=create();regen.state.health=50;for(let i=0;i<50;i++)regen.step(.02,player);const healed=regen.snapshot().health-50;assert.ok(Math.abs(healed-10/60)<.02,'HealthRegen 10/min must heal ~0.167 HP in 1 s, got '+healed);assert.equal(regen.liveStats().PickupRange,9,'Pickup range comes from the stat sheet (base 5 + Fox 4)');console.log('Regen and pickup range checks passed.');}
