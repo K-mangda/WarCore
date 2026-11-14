@@ -30,7 +30,7 @@ function App(){
   },[attempt]);
   const time=`${Math.floor(data.elapsed/60).toString().padStart(2,'0')}:${Math.floor(data.elapsed%60).toString().padStart(2,'0')}`;
   return <main>
-    <div ref={host} className="world"/><div className="vignette"/>{data.elapsed>0&&!data.dead&&data.health/data.maxHealth<.3&&<div className="low-health-vignette" aria-hidden="true"/>}
+    <div ref={host} className="world"/><div className="vignette"/>{data.elapsed>0&&!data.dead&&data.danger>.001&&<div className="low-health-vignette" style={{opacity:data.danger}} aria-hidden="true"/>}
     <header><img className="game-logo" src={assetUrl('branding/warcore-logo-transparent.png')} alt="WARCORE"/><span className="build">WEB PLAYTEST · PROVISIONAL BALANCE</span></header>
     <button className="audio-toggle" aria-pressed={audioPreferences.muted} onClick={()=>{engine.current?.audio.unlock();engine.current?.audio.toggle();}}>{audioPreferences.muted?'SOUND OFF':'SOUND ON'}</button>
     <button className="settings-toggle" onClick={()=>{engine.current?.audio.unlock();engine.current?.audio.play('click');engine.current?.pauseForSettings();setSettingsOpen(true);}}>SETTINGS</button>
