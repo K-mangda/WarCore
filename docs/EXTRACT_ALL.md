@@ -61,3 +61,7 @@ First full pass: 4,575 unique functions attempted, 4,659 files with real pseudoc
 - 432 "complete MCP response exceeded" (very large functions with `analyze_function` detail=complete);
 - 355 "No procedure exists at the requested address" (Ghidra did not create a function at that IL2CPP entry).
 Fix: the batch now uses `procedure_pseudo_code` (pseudocode only), retries by file offset (from dump.cs), then falls back to the containing function, and treats any error reply as a failure (logged in `failures.log`, no file written, retried on the next run). The 787 error files were deleted and a retry run started (one more binary import).
+
+## Retry result (2026-11-14 08:55 UTC)
+
+4,575 planned function bodies: 4,255 have Ghidra pseudocode; the last 320 have no Ghidra function even by file offset or containing function, so `tools/disasm_missing.py` writes Capstone disassembly for them (`*.asm.c`). Coverage of the plan is now 100% (93% as C-like pseudocode).
