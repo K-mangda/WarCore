@@ -61,7 +61,8 @@ Rule: when the user redirects, anything I had planned or promised goes here firs
 | Spawn portal sequence visuals, death-screen look | three wait values still unknown; wipe shader unknown |
 | Silver drop rule (currently every 12 kills, provisional) | decompile batch 6 (`PickupManager`) |
 | Chests, shrines, pots, quests | decompile batch 6 (interactables) |
-| Enemy / boss behaviour, 87 item effects, Tome details | decompile batch 6 |
+| **Enemy types** (53 in `docs/rea/enemies.json`: Skeleton variants, Bandit, Bee, BoomerSpider, Bush, CactusShooter, CalciumDad, Ent 1-3, Frogs, Ghost family, Ghoul, Goblins, Golem, miniboss Golem/Pig/Scorpion, Mummies, Pharaoh 1-3, Scorpions, Slime, Tumblebone, Wisp, Zombie, ...): per-type movement/attack behaviour (ranged, charge, summon, explode, invisible/invincible) and per-type models. Web only has Skeleton and Bandit models; the rest use stand-ins with the right HP/damage/speed. | decompile batch 6 (enemy classes) for behaviour; model extraction for visuals |
+| Boss behaviour (Ent, Pharaoh, GhostKing), 87 item effects, Tome details | decompile batch 6 |
 | Models and animations: other enemies, 20 characters, 28 weapons | extraction pass (UnityPy + FBX), not started |
 | XP table rounding mode | unresolved (Round vs floor) |
 | `check_deploy` needs `MSYS_NO_PATHCONV=1` and a `--base=/WarCore/` build | run before relying on CI |
